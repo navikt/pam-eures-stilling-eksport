@@ -3,6 +3,7 @@ package no.nav.pam.euresstillingeksport.rest
 import no.nav.pam.euresstillingeksport.service.ApiService
 import no.nav.pam.euresstillingeksport.service.GetAllResponse
 import no.nav.pam.euresstillingeksport.service.GetChangesResponse
+import no.nav.pam.euresstillingeksport.service.GetDetailsResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -34,6 +35,6 @@ class ApiController {
      * Henter detaljer om en stilling
      */
     @PostMapping("/getDetails", produces = ["application/json"], consumes = ["application/json"])
-    fun getDetails(referanser : List<String>) =
+    fun getDetails(@RequestBody referanser : List<String>): GetDetailsResponse =
             apiService.getDetails(referanser)
 }
