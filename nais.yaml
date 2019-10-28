@@ -1,0 +1,39 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: pam-eures-stilling-eksport
+  namespace: default
+  labels:
+    team: teampam
+spec:
+  image: docker.pkg.github.com/navikt/repo/pam-eures-stilling-eksport
+  port: 8080
+  liveness:
+    path: pam-eures-stilling-eksport/internal/isAlive
+    initialDelay: 130
+    timeout: 1
+    failureThreshold: 2
+  readiness:
+    path: pam-eures-stilling-eksport/internal/isReady
+    initialDelay: 130
+    timeout: 1
+  replicas:
+    min: 2
+    max: 2
+  cpuThresholdPercentage: 50
+  resources:
+    limits:
+      cpu: 3000m
+      memory: 2048Mi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+  vault:
+    enabled: true
+  webproxy: true
+  prometheus:
+    enabled: true
+    path: pam-eures-stilling-eksport/actuator/prometheus
+  ingresses:
+    - https://pam-eures-stilling-eksport.nais.oera.no
+
