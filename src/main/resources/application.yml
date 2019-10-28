@@ -1,0 +1,21 @@
+management:
+  endpoint.health.enabled: true
+  endpoints:
+    prometheus.enabled: true
+    prometheus.web.enabled: true
+    web.exposure.include: health,info,status,metrics,prometheus,configprops,env,conditions,beans,auditevents,mappings
+  metrics:
+    web.server.auto-time-requests: true
+    distribution.percentiles-histogram.http.server.requests: true
+
+spring:
+  metrics.web.server.auto-time-requests: true
+  main:
+    banner-mode: "off"
+server:
+  error:
+    whitelabel:
+      enabled: true
+    include-stacktrace: never
+  servlet:
+    context-path: /pam-eures-stilling-eksport
