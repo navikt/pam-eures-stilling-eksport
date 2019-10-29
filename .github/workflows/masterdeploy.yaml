@@ -35,7 +35,7 @@ jobs:
     - name: Deploy to preprod-sbs
       uses: navikt/deployment-cli/action@0.4.0
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         cluster: preprod-sbs
         team: team-jakt
