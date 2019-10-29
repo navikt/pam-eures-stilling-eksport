@@ -15,10 +15,13 @@ jobs:
       uses: actions/checkout@v1
     - name: Build
       run: mvn -U clean install
-    - name: Create Docker tag
+    - name: create docker tag
       env:
         NAME: pam-eures-stilling-eksport
+        DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/pam-eures-stilling-eksport
       run: |
+        echo $DOCKER_IMAGE > .docker_image
+        echo $(echo $GITHUB_SHA | cut -c1-7) > .docker_tag
         docker build -t $(cat .docker_image):$(cat .docker_tag) .
     - name: Login to Github Package Registry
       env:
