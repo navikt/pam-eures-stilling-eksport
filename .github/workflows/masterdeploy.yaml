@@ -37,7 +37,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        cluster: preprod-sbs
+        cluster: dev-sbs
         team: team-jakt
         resources: nais-preprod.yaml
 
