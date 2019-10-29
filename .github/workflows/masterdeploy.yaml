@@ -8,12 +8,12 @@ jobs:
     name: Deploy pam-eures-stilling-eksport til prod
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
     - name: Checkout
       uses: actions/checkout@v1
     - name: Build
-      uses: actions/setup-java@v1
-      with:
-        java-version: '12.0.1'
       run: mvn -U clean install
     - name: Create Docker tag
       env:
