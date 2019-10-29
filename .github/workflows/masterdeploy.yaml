@@ -38,7 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         cluster: dev-sbs
-        team: team-jakt
+        team: PAM
         resources: nais-preprod.yaml
 
 
