@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teampam
 spec:
-  image: docker.pkg.github.com/navikt/repo/pam-eures-stilling-eksport
+  image: {{ image }}:{{ tag }}
   port: 8080
   liveness:
     path: pam-eures-stilling-eksport/internal/isAlive

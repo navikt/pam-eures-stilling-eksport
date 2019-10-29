@@ -1,4 +1,4 @@
-name: Deploy pam-eures-stilling-eksport til NAIS
+name: Deploy pam-eures-stilling-eksport til NAIS prod
 on:
   push:
     branches:
@@ -38,7 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         cluster: dev-sbs
-        team: PAM
+        team: pam
         resources: nais-preprod.yaml
 
 
