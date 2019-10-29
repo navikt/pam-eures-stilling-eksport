@@ -1,0 +1,38 @@
+name: Deploy pam-eures-stilling-eksport til NAIS
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy_prod:
+    name: Deploy pam-eures-stilling-eksport til prod
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Build
+      run: mvn -U clean install
+    - name: Create Docker tag
+      env:
+        NAME: pam-eures-stilling-eksport
+      run: |
+        docker build -t $(cat .docker_image):$(cat .docker_tag) .
+    - name: Login to Github Package Registry
+      env:
+        DOCKER_USERNAME: x-access-token
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+      run: |
+        echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin docker.pkg.github.com
+    - name: Push Docker image
+      run: |
+        docker push $(cat .docker_image):$(cat .docker_tag)
+    - name: Deploy to preprod-sbs
+      uses: navikt/deployment-cli/action0.4.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+      with:
+        cluster: preprod-sbs
+        team: team-jakt
+        resources: nais-preprod.yaml
+
+
