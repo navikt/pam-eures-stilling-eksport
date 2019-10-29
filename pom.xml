@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>no.nav.pam</groupId>
-	<artifactId>eures-stilling-eksport</artifactId>
+	<artifactId>pam-eures-stilling-eksport</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>eures-stilling-eksport</name>
 	<description>EURES eksport av stillinger</description>
