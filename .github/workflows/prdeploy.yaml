@@ -1,6 +1,6 @@
 name: Deploy pam-eures-stilling-eksport til NAIS preprod
 on:
-  pull-request:
+  pull_request:
     types: [opened, synchronize, reopened]
 jobs:
   deploy_preprod:
