@@ -4,7 +4,7 @@ metadata:
   name: pam-eures-stilling-eksport
   namespace: default
   labels:
-    team: pam
+    team: PAM
 spec:
   image: {{ image }}:{{ tag }}
   port: 8080
