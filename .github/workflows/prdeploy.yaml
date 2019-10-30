@@ -1,11 +1,10 @@
-name: Deploy pam-eures-stilling-eksport til NAIS prod
+name: Deploy pam-eures-stilling-eksport til NAIS preprod
 on:
-  push:
-    branches:
-      - master
+  pull-request:
+    types: [opened, synchronize, reopened]
 jobs:
-  deploy_prod:
-    name: Deploy pam-eures-stilling-eksport til prod
+  deploy_preprod:
+    name: Deploy pam-eures-stilling-eksport til preprod
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-java@v1
@@ -39,6 +38,6 @@ jobs:
       with:
         cluster: dev-sbs
         team: teampam
-        resources: nais.yaml
+        resources: nais-preprod.yaml
 
 
