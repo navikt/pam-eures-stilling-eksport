@@ -12,10 +12,12 @@ spring:
   metrics.web.server.auto-time-requests: true
   main:
     banner-mode: "off"
+  profiles:
+    active: ${NAIS_CLUSTER_NAME}
 server:
   error:
     whitelabel:
       enabled: true
     include-stacktrace: never
   servlet:
-    context-path: /pam-eures-stilling-eksport
+    context-path: /
