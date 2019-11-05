@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.stereotype.Service
+import org.springframework.web.client.HttpClientErrorException
+import org.springframework.web.client.HttpStatusCodeException
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
+import java.io.IOException
 
 @Service
 class AdFeedClient @Autowired constructor (
@@ -24,17 +27,23 @@ class AdFeedClient @Autowired constructor (
             val response = restTemplate.getForEntity("${adApiURL}/feed?uuid=${uuid}", FeedTransport::class.java)
             // TODO sjekk responskode og håndter feil på en grei nok måte
             return response.body?.content.orEmpty()[0]
+        } catch (e: HttpStatusCodeException) {
+            if (e.rawStatusCode >= 400 && e.rawStatusCode < 500) {
+                LOG.error("Greide ikke å lese svar fra pam-ad ved uthenting av ad {}: {} " +
+                        "HTTP feilkode: {}", uuid, e.message, e.rawStatusCode, e)
+                throw IllegalArgumentException("Greide ikke å lese respons fra pam-ad: ${e.message}", e)
+            } else if (e.rawStatusCode >= 500) {
+                LOG.info("pam-ad utilgjengelig/feiler ved uthenting av ad {}: {} " +
+                        "HTTP feilkode: {}", uuid, e.message, e.rawStatusCode, e)
+                throw IOException("Greide ikke å lese respons fra pam-ad: ${e.message}", e)
+            }
+            throw e
         } catch (e: RestClientException) {
             if (e.cause is HttpMessageNotReadableException) {
                 // Dette er en applikasjonsfeil som det ikke vil nytte å rekjøre, typisk pga feil i parsing av JSON
                 LOG.error("Greide ikke å lese svar fra pam-ad ved uthenting av ad {}: {}", uuid, e.message, e)
                 throw IllegalArgumentException("Greide ikke å lese respons fra pam-ad: ${e.message}", e)
             }
-            // TODO det er mer som skal håndteres her...
-            throw e
-        } catch (e: Exception) {
-            // TODO vi må ha ordentlig feilhåndtering, og der har ikke catch all en rolle
-            LOG.error("Dette var ikke helt som forventet", e)
             throw e
         }
 
