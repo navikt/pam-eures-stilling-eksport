@@ -1,10 +1,7 @@
 package no.nav.pam.euresstillingeksport
 
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.TestConfiguration
@@ -23,7 +20,7 @@ import javax.net.ssl.X509TrustManager
 		properties = ["pam-ad.url=https://pam-ad.nais.oera-q.local/api/v1/ads"])
 @ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-//@Disabled("Integrasjonstest som ikke kjører på github")
+@Disabled("Integrasjonstest som ikke kjører på github")
 class PamAdITests {
 
 	@Autowired
