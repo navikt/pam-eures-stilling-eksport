@@ -18,4 +18,6 @@ server:
       enabled: true
     include-stacktrace: never
   servlet:
-    context-path: /pam-eures-stilling-eksport
+    context-path: /
+  profiles:
+    active: ${NAIS_CLUSTER_NAME}

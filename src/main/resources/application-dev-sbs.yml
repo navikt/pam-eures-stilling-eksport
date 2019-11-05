@@ -1,0 +1,2 @@
+pam-ad:
+  url: http://pam-ad.default.svc.nais.local:80/api/v1/ads
