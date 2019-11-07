@@ -18,16 +18,16 @@ spec:
     initialDelay: 130
     timeout: 1
   replicas:
-    min: 2
-    max: 2
+    min: 1
+    max: 1
   cpuThresholdPercentage: 50
   resources:
     limits:
       cpu: 3000m
-      memory: 4096Mi
+      memory: 8192Mi
     requests:
       cpu: 200m
-      memory: 1024Mi
+      memory: 2048Mi
   vault:
     enabled: false
   webproxy: true
