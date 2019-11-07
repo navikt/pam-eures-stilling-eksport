@@ -23,11 +23,11 @@ data class Ad(
         val reference: String?,
         val published: LocalDateTime?,
         val expires: LocalDateTime?,
-        val employer: Employer,
+        val employer: Employer?,
         val categoryList: List<Category>,
         val administration: Administration,
         val publishedByAdmin: String?,
-        val businessName: String,
+        val businessName: String?,
         val firstPublished: Boolean,
         val deactivatedByExpiry: Boolean,
         val activationOnPublishingDate: Boolean

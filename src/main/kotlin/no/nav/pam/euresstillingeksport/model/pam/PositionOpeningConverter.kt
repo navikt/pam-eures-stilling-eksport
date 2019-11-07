@@ -42,7 +42,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             ),
             positionTitle = title ?: "" ,
             positionLocation = locationList.map { it.toPositionLocation() },
-            positionOrganization = employer.toPositionOrganization(),
+            positionOrganization = employer?.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
             positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key] ?: ""),

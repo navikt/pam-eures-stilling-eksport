@@ -1,0 +1,174 @@
+{
+    "content": [
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 44806,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "Nordisk Togteknikk AS",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.11",
+                    "description": null,
+                    "id": 4661,
+                    "name": "Elmont\u00f8r",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "einar.hageskal@nortog.no",
+                    "id": 602216,
+                    "name": "Einar Hageskal",
+                    "phone": "+47 957 66 906",
+                    "role": null,
+                    "title": "Daglig Leder"
+                }
+            ],
+            "created": "2019-01-19T07:20:11.999",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2019-01-19T07:16:32.212",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 17,
+                "id": 51974,
+                "location": {
+                    "address": "Kv\u00e6rnerveien 6",
+                    "city": "OSLO",
+                    "country": "NORGE",
+                    "county": "OSLO",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "OSLO",
+                    "municipalCode": "0301",
+                    "postalCode": "0195"
+                },
+                "locationList": [
+                    {
+                        "address": "Kv\u00e6rnerveien 6",
+                        "city": "OSLO",
+                        "country": "NORGE",
+                        "county": "OSLO",
+                        "latitude": null,
+                        "longitude": null,
+                        "municipal": "OSLO",
+                        "municipalCode": "0301",
+                        "postalCode": "0195"
+                    }
+                ],
+                "mediaList": [],
+                "name": "NORDISK TOGTEKNIKK AS",
+                "orgform": "BEDR",
+                "orgnr": "987938323",
+                "parentOrgnr": "914251559",
+                "properties": {
+                    "nace2": "[{\"code\":\"33.170\",\"name\":\"Reparasjon og vedlikehold av andre transportmidler\"}]"
+                },
+                "publicName": "NORDISK TOGTEKNIKK AS",
+                "status": "ACTIVE",
+                "updated": "2019-03-02T01:31:08.618",
+                "updatedBy": "pam-ad",
+                "uuid": "8e72ec01-2d56-453c-84ed-a498f1d12cf7"
+            },
+            "expires": "2019-03-01T07:33:00",
+            "firstPublished": false,
+            "id": 52333,
+            "location": {
+                "address": "Kv\u00e6rnerveien 6",
+                "city": "OSLO",
+                "country": "NORGE",
+                "county": "OSLO",
+                "latitude": "59.905067443847656",
+                "longitude": "10.784148216247559",
+                "municipal": "OSLO",
+                "municipalCode": "0301",
+                "postalCode": "0195"
+            },
+            "locationList": [
+                {
+                    "address": "Kv\u00e6rnerveien 6",
+                    "city": "OSLO",
+                    "country": "NORGE",
+                    "county": "OSLO",
+                    "latitude": "59.905067443847656",
+                    "longitude": "10.784148216247559",
+                    "municipal": "OSLO",
+                    "municipalCode": "0301",
+                    "postalCode": "0195"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Kv\u00e6rnerveien 6,0195 Oslo",
+                "adtext": "<p>For snarlig ansettelse \u00f8nskes 2 mann med erfaring fra vedlikehold og feils\u00f8king p\u00e5 tyngre kj\u00f8ret\u00f8y eller togmateriell.</p>\n<p>Arbeidsoppgavene vil best\u00e5 i utf\u00f8relse av planlagte vedlikeholdsoppgaver samt reparasjoner av b\u00e5de dieseldrevne og elektriske lokomotiver.</p>\n<p>Det kreves god kompetanse innenfor feils\u00f8king og reparasjoner av dieseldrevne kj\u00f8ret\u00f8y samt gode kunnskaper innefor trykkluft og elektronikk.</p>\n<p>Vi tilbyr gode arbeids og l\u00f8nnsvilk\u00e5r.</p>\n",
+                "applicationdue": "Snarest",
+                "applicationemail": "einar.hageskal@nortog.no",
+                "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=138328250",
+                "author": "Privat",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.0869034",
+                "employer": "Nordisk Togteknikk AS",
+                "employerdescription": "<p>Nordisk Togteknikk AS er den st\u00f8rste private akt\u00f8ren innenfor leveranse av vedlikeholdstjenester for Lokomotiver og Godsvogner i Norge, v\u00e5rt hovedengasjement er leveranse av preventive og korrektive vedlikeholdstjenester overfor Togoperat\u00f8rer i Norge og Sverige.</p>\n",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "138328250",
+                "industry": "Industri og produksjon",
+                "jobtitle": "Vi s\u00f8ker Mekanikkere/ Elektrikkere med gode kunskaper innenfor feils\u00f8king og vedlikehold av tyngre kj\u00f8ret\u00f8y, lokomotiver eller tog.",
+                "keywords": "Erfaring,Kompetanse,N\u00f8yaktighet,Sikkerhet,Selvstendig",
+                "location": "Oslo",
+                "occupation": "Teknisk service;Teknisk personell",
+                "positioncount": "2",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.08452183},{\"label\":\"Togreparat\u00f8r\",\"score\":0.07460987},{\"label\":\"Lastebilmekaniker\",\"score\":0.073640704},{\"label\":\"Kondukt\u00f8r\",\"score\":0.060916554}]",
+                "sector": "Privat",
+                "sourceupdated": "2019-01-18T07:33:00.000Z",
+                "sourceurl": "https://www.finn.no/138328250",
+                "starttime": "01.03.2019"
+            },
+            "published": "2019-01-19T07:09:22.618",
+            "publishedByAdmin": null,
+            "reference": "138328250",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Motorkyndige Teknikkere/ Elektrikkere/ Feils\u00f8kere",
+            "updated": "2019-03-02T01:31:32.861",
+            "updatedBy": "pam-ad",
+            "uuid": "db6cc067-7f39-42f1-9866-d9ee47894ec6"
+        }
+    ],
+    "empty": false,
+    "first": true,
+    "last": true,
+    "number": 0,
+    "numberOfElements": 1,
+    "pageable": {
+        "offset": 0,
+        "pageNumber": 0,
+        "pageSize": 20,
+        "paged": true,
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+        },
+        "unpaged": false
+    },
+    "size": 20,
+    "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+    },
+    "totalElements": 1,
+    "totalPages": 1
+}

@@ -1,0 +1,2299 @@
+{
+    "content": [
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10358,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "3115.16",
+                    "description": null,
+                    "id": 2368,
+                    "name": "Konstrukt\u00f8r (mekanikk)",
+                    "parentId": 2352
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "Oyvind.rogdeberg@uniflex.no",
+                    "id": 327497,
+                    "name": "\u00d8yvind Rogdeberg",
+                    "phone": "+47 469 82 006",
+                    "role": null,
+                    "title": "Personalkonsulent"
+                }
+            ],
+            "created": "2018-11-26T07:06:35.761",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2019-01-06T22:59:00",
+            "firstPublished": false,
+            "id": 12513,
+            "location": {
+                "address": "Luramyrveien 40",
+                "city": "SANDNES",
+                "country": "NORGE",
+                "county": "ROGALAND",
+                "latitude": "58.88082504272461",
+                "longitude": "5.723229885101318",
+                "municipal": "SANDNES",
+                "municipalCode": "1102",
+                "postalCode": "4313"
+            },
+            "locationList": [
+                {
+                    "address": "Luramyrveien 40",
+                    "city": "SANDNES",
+                    "country": "NORGE",
+                    "county": "ROGALAND",
+                    "latitude": "58.88082504272461",
+                    "longitude": "5.723229885101318",
+                    "municipal": "SANDNES",
+                    "municipalCode": "1102",
+                    "postalCode": "4313"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Luramyrveien 40,4313 Sandnes",
+                "adtext": "<p>Vi s\u00f8ker n\u00e5 etter b\u00e5de industrimekanikere og elektrikere som kan ta oppdrag b\u00e5de offshore og onshore.</p>\n<p>Kvalifikasjoner mekanisk:</p>\n<ul><li>Fagbrev</li><li>Relevant erfaring</li><li>Erfaring fra mekanisk arbeid offshore</li><li>Grunnleggende sikkerhetskurs</li><li>Skandinavisk talende</li></ul>\n<p>Kvalifikasjoner elektro:</p>\n<ul><li>Fagbrev elektriker</li><li>Relevant erfaring</li><li>Erfaring fra elektrikerarbeid offshore</li><li>Grunnleggende sikkerhetskurs</li><li>Skandinavisk talende</li></ul>\n<p>Send inn s\u00f8knad via v\u00e5r hjemmeside ved \u00e5 trykke p\u00e5 &#34;s\u00f8k stilling&#34; til h\u00f8yre.</p>\n",
+                "applicationdue": "Fort\u00f8pende",
+                "applicationurl": "https://apply.recman.no/job_post.php?id=72162&path=finn",
+                "author": "Uniflex Norge AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.05117802",
+                "employer": "Uniflex Bemanning",
+                "employerdescription": "<p>Uniflex Bemanning er en bemannings- og rekrutteringsakt\u00f8r med over 50 kontorer i Norden.</p>\n<p>Vi er en auktorisert bemanningsbedrift og leier ut og rekrutterer innen bygg &amp; anlegg, industri &amp; lager, olje &amp; gass og kontor &amp; administrasjon.</p>\n<p>Vi er sertifiserte innen kvalitet og milj\u00f8 (ISO 9001 og 14001) samt er en Revidert Arbeidsgiver. V\u00e5rt hovedkontor i Norge ligger i Oslo. I tillegg har vi kontorer i Bergen, Stavanger, Trondheim og Fredrikstad. Uniflex finnes i dag representert i Norge, Sverige og Finland.</p>\n<p>Konsernets hovedkontor ligger i Stockholm der vi er notert p\u00e5 NASDAQ OMX Stockholm, Small Cap.</p>\n<p>I Sverige er Uniflex er en av landets st\u00f8rste bemanningsbyr\u00e5 med ca 4000 ansatte og 40 kontor.</p>\n",
+                "employerhomepage": "http://www.uniflex.no",
+                "engagementtype": "Vikariat",
+                "extent": "Heltid",
+                "externalref": "7216200251118053441",
+                "industry": "Olje og gass",
+                "location": "Sandnes",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/1239440039/iad_493992138846187357logo.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/1239440039/iad_5178777520826689315logo.png",
+                "occupation": "Mekanikk og installasjon",
+                "positioncount": "10",
+                "searchtags": "[{\"label\":\"Selger innen Installasjon\",\"score\":0.23293172},{\"label\":\"Konstrukt\u00f8r innen mekanikk\",\"score\":0.05117802},{\"label\":\"Leder mekanikk\",\"score\":0.05117802},{\"label\":\"Mekaniker\",\"score\":0.05117802},{\"label\":\"Dokumentasjonsansvarlig inen maskin og tekniskinstallasjon)\",\"score\":0.047118932}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-27T10:12:00.000Z",
+                "sourceurl": "https://www.finn.no/134794906",
+                "starttime": "Avtales"
+            },
+            "published": "2019-01-07T01:31:18.13",
+            "publishedByAdmin": null,
+            "reference": "134794906",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Vi s\u00f8ker n\u00e5 industrimekanikere og elektrikere, for offshore og onshore oppdrag",
+            "updated": "2019-01-07T01:32:12.777",
+            "updatedBy": "pam-ad",
+            "uuid": "891fe3a1-b761-41ac-b23c-9dc639fe417e"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 8913,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": "System",
+                "status": "DONE"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.11",
+                    "description": null,
+                    "id": 4661,
+                    "name": "Elmont\u00f8r",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [],
+            "created": "2018-11-22T15:08:03.352",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-11-27T01:00:00",
+            "firstPublished": false,
+            "id": 10726,
+            "location": {
+                "address": null,
+                "city": "TROMS\u00d8",
+                "country": "NORGE",
+                "county": "TROMS",
+                "latitude": null,
+                "longitude": null,
+                "municipal": "TROMS\u00d8",
+                "municipalCode": "1902",
+                "postalCode": "9254"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "TROMS\u00d8",
+                    "country": "NORGE",
+                    "county": "TROMS",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "TROMS\u00d8",
+                    "municipalCode": "1902",
+                    "postalCode": "9254"
+                }
+            ],
+            "mediaList": [],
+            "medium": "NAV Servicesenter",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "adtext": "<p><a href=\"https://www.finn.no/job/fulltime/ad.html?finnkode&#61;133371683\" rel=\"nofollow\">Klikk her</a></p>\n",
+                "applicationdue": "2018-11-27T01:00",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.94618475",
+                "employer": "Troms\u00f8 Havn",
+                "employerdescription": "<p>.</p>\n",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "jobtitle": "Elektriker",
+                "location": "Troms\u00f8",
+                "positioncount": "1",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.93937075},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.69572157},{\"label\":\"Skipselektriker\",\"score\":0.63100046},{\"label\":\"Hjelpemont\u00f8r av elektriske komponenter\",\"score\":0.63092935},{\"label\":\"Elektrikerl\u00e6rling\",\"score\":0.6308081}]",
+                "sector": "Ikke oppgitt"
+            },
+            "published": "2018-11-16T01:00:00",
+            "publishedByAdmin": null,
+            "reference": "9922721",
+            "source": "stillingsolr",
+            "status": "INACTIVE",
+            "title": "Elektriker/Automatiker",
+            "updated": "2018-11-28T01:31:16.965",
+            "updatedBy": "pam-ad",
+            "uuid": "8be5ed56-6601-490a-a21d-bcf51014b295"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 8935,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": "System",
+                "status": "DONE"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.11",
+                    "description": null,
+                    "id": 4661,
+                    "name": "Elmont\u00f8r",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [],
+            "created": "2018-11-22T15:08:03.819",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-12-11T01:00:00",
+            "firstPublished": false,
+            "id": 10748,
+            "location": {
+                "address": null,
+                "city": "SLEMMESTAD",
+                "country": "NORGE",
+                "county": "BUSKERUD",
+                "latitude": null,
+                "longitude": null,
+                "municipal": "R\u00d8YKEN",
+                "municipalCode": "0627",
+                "postalCode": "3470"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "SLEMMESTAD",
+                    "country": "NORGE",
+                    "county": "BUSKERUD",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "R\u00d8YKEN",
+                    "municipalCode": "0627",
+                    "postalCode": "3470"
+                }
+            ],
+            "mediaList": [],
+            "medium": "NAV Servicesenter",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "adtext": "<p>i s\u00f8ker etter en motivert og dyktig elektriker Gruppe L. Arbeid vil v\u00e6re p\u00e5 Neas sitt renseanlegg i Slemmestad og foreg\u00e5 p\u00e5 dagtid. Arbeidstiden er fra 07.00 til 15.00.<br />\nTidligere arbeidserfaring fra industrien er en fordel, men ikke et krav. Varighet kan bli langvarig.<br />\nSkandinavisk spr\u00e5k er et krav i stillingen.</p>\n<p>Kurskrav:</p>\n<p>Fagbrev / dsb<br />\nFSE/HLR<br />\nArbeidsvarsling kl.1<br />\nArbeid i h\u00f8yden<br />\nArbeid p\u00e5 stillas<br />\nLiftkurs (saxelift &#43; teleskoplift)</p>\n<p>S\u00f8kerne bes laste opp oppdaterte cv &#43; evt. gyldige kursdokumenter p\u00e5 v\u00e5r hjemmeside. www.cnp.no</p>\n<p>Skulle det v\u00e6re sp\u00f8rsm\u00e5l rundt stillingene ta kontakt p\u00e5 mail eller telefon:</p>\n<p>Knut Arild Renstr\u00f8m mobil 913 000 44, mail: kar&#64;cnp.no</p>\n<p>Caroline Wentworth mobil 452 90 045, mail:caroline&#64;cnp.no</p>\n<p><a href=\"https://cnp.recman.no/job.php?job_id&#61;73758&amp;path&#61;nav#\" rel=\"nofollow\">S\u00f8k p\u00e5 stillingen</a></p>\n",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.94618475",
+                "employer": "CNP Bemanning AS",
+                "employerdescription": "<p>CNP Bemanning AS er en landsdekkende leverand\u00f8r av fagpersonell innen elektro/r\u00f8r/plate og sveis til on-/ offshore, skipsindustrien, samferdsel og bygg/anlegg. Selskapet leverer h\u00f8yt kvalifisert personell, og har fokus p\u00e5 kvalitet og HMS som en integrert del i alle ledd av sin leveranse. Gjennom ett godt samarbeid plikter selskapet alltid \u00e5 levere resultat raskt og effektivt, med det m\u00e5l for \u00f8yet \u00e5 fremst\u00e5 som en attraktiv samarbeidspartner og arbeidsgiver for kunder og ansatte</p>\n",
+                "engagementtype": "Annet",
+                "expertise": "Fagbrev/svennebrev",
+                "extent": "Heltid",
+                "jobtitle": "Elektriker",
+                "location": "R\u00f8yken",
+                "positioncount": "1",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.93937075},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.69572157},{\"label\":\"Skipselektriker\",\"score\":0.63100046},{\"label\":\"Hjelpemont\u00f8r av elektriske komponenter\",\"score\":0.63092935},{\"label\":\"Elektrikerl\u00e6rling\",\"score\":0.6308081}]",
+                "sector": "Ikke oppgitt",
+                "workhours": "Dagtid"
+            },
+            "published": "2018-11-29T12:00:03.906",
+            "publishedByAdmin": null,
+            "reference": "9912656",
+            "source": "stillingsolr",
+            "status": "INACTIVE",
+            "title": "Vi s\u00f8ker etter en Elektriker Gr. L med industrierfaring",
+            "updated": "2018-12-12T05:02:04.212",
+            "updatedBy": "pam-ad",
+            "uuid": "a206ee9c-72d8-4c4d-bef0-4eac0970c448"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 9675,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "EL-INSTALLASJON AS",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "bl@el-install.no",
+                    "id": 1777877,
+                    "name": "Bj\u00f8rnar Leth",
+                    "phone": "+47 917 78 189",
+                    "role": null,
+                    "title": "Daglig leder"
+                }
+            ],
+            "created": "2018-11-23T07:17:36.646",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2019-06-26T07:05:06.352",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 10,
+                "id": 146060,
+                "location": {
+                    "address": "Langmyra 2",
+                    "city": "SKOPPUM",
+                    "country": "NORGE",
+                    "county": "VESTFOLD",
+                    "latitude": "59.3792447794",
+                    "longitude": "10.4043973905521",
+                    "municipal": "HORTEN",
+                    "municipalCode": "0701",
+                    "postalCode": "3185"
+                },
+                "locationList": [
+                    {
+                        "address": "Langmyra 2",
+                        "city": "SKOPPUM",
+                        "country": "NORGE",
+                        "county": "VESTFOLD",
+                        "latitude": "59.3792447794",
+                        "longitude": "10.4043973905521",
+                        "municipal": "HORTEN",
+                        "municipalCode": "0701",
+                        "postalCode": "3185"
+                    }
+                ],
+                "mediaList": [],
+                "name": "EL-INSTALLASJON AS",
+                "orgform": "BEDR",
+                "orgnr": "981193032",
+                "parentOrgnr": "986982329",
+                "properties": {
+                    "nace2": "[{\"code\":\"43.210\",\"name\":\"Elektrisk installasjonsarbeid\"}]"
+                },
+                "publicName": "EL-INSTALLASJON AS",
+                "status": "ACTIVE",
+                "updated": "2019-08-07T01:31:08.05783",
+                "updatedBy": "pam-ad",
+                "uuid": "47193d47-3e20-44cb-bc51-d76713e8b243"
+            },
+            "expires": "2019-08-06T11:48:00",
+            "firstPublished": false,
+            "id": 11652,
+            "location": {
+                "address": "Langmyra 2",
+                "city": "SKOPPUM",
+                "country": "NORGE",
+                "county": "VESTFOLD",
+                "latitude": "59.37923812866211",
+                "longitude": "10.404397964477539",
+                "municipal": "HORTEN",
+                "municipalCode": "0701",
+                "postalCode": "3185"
+            },
+            "locationList": [
+                {
+                    "address": "Langmyra 2",
+                    "city": "SKOPPUM",
+                    "country": "NORGE",
+                    "county": "VESTFOLD",
+                    "latitude": "59.37923812866211",
+                    "longitude": "10.404397964477539",
+                    "municipal": "HORTEN",
+                    "municipalCode": "0701",
+                    "postalCode": "3185"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Langmyra 2,3185 Skoppum",
+                "adtext": "<p>Vi s\u00f8ker selvstendig elektriker.</p>\n<p>Vi har flyttet inn i nyoppussede lokaler p\u00e5 Skoppum, kun 2 minutter fra E18, og ligger sv\u00e6rt sentralt til for betjening av v\u00e5re kunder i Vestfold og Telemark. Vi opplever stadig \u00f8kende foresp\u00f8rsler og med flere store leilighet og bolig prosjekter i ordreb\u00f8kene kan vi tilby en variert hverdag med mye nyanlegg og noe serviceoppdrag. Hos oss vil rett person f\u00e5 mulighet til \u00e5 ta ansvar for egne prosjekter.</p>\n<p>Vi er leverand\u00f8r av smarthus systemer og har fokus p\u00e5 \u00e5 levere moderne elektriske anlegg av h\u00f8y kvalitet.</p>\n<p>Vi kan tilby:</p>\n<ul><li>\n<p>Gode betingelser</p>\n</li><li>\n<p>Fleksibel hverdag, arbeide selvstendig</p>\n</li><li>\n<p>Gode kolleger, godt arbeidsmilj\u00f8</p>\n</li><li>\n<p>Telefon og ipad</p>\n</li><li>\n<p>Forsikring og tjenestepensjon</p>\n</li><li>\n<p>Bilordning</p>\n</li><li>\n<p>Bonusordning</p>\n</li></ul>\n<p>\u00d8nskede kvalifikasjoner:</p>\n<ul><li>\n<p>Fagbrev gr L</p>\n</li><li>\n<p>Erfaring, evne til \u00e5 jobbe selvstendig</p>\n</li><li>\n<p>Ansvarbevist, kunne ta prosjektansvar</p>\n</li><li>\n<p>Kunne norsk muntlig og skriftlig</p>\n</li><li>\n<p>\u00d8nske \u00e5 v\u00e6re med \u00e5 utvikle bedriften videre</p>\n</li></ul>\n",
+                "applicationdue": "Snarest",
+                "applicationemail": "bl@el-install.no",
+                "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=132788540",
+                "author": "Privat",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.63972974",
+                "employer": "EL-INSTALLASJON AS",
+                "employerdescription": "<p>Elektrikervirksomhet med 7 ansatte, med hovedfokus i vestfold og telemark.</p>\n",
+                "employerhomepage": "http://el-install.no",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "132788540",
+                "industry": "Kraft og energi",
+                "jobtitle": "Elektromont\u00f8r",
+                "keywords": "Mont\u00f8r,Elektriker,Erfaring,Selvstendig,Utvikling",
+                "location": "Skoppum",
+                "occupation": "H\u00e5ndverker",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.63972974},{\"label\":\"Vaktmester\",\"score\":0.63972974},{\"label\":\"Smed\",\"score\":0.63972974},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794478}]",
+                "sector": "Privat",
+                "sourceupdated": "2019-07-04T09:22:00.000Z",
+                "sourceurl": "https://www.finn.no/132788540",
+                "starttime": "01.10.2019"
+            },
+            "published": "2019-07-05T07:04:29.653",
+            "publishedByAdmin": null,
+            "reference": "132788540",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Elektriker",
+            "updated": "2019-08-07T01:31:21.13224",
+            "updatedBy": "pam-ad",
+            "uuid": "1dac4e57-73fb-42ef-a947-475453a51c79"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7323,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "bjorn@backup-bygg.no",
+                    "id": 48326,
+                    "name": "Bj\u00f8rn Stalheim",
+                    "phone": "+47 922 41 979",
+                    "role": null,
+                    "title": "Leder"
+                }
+            ],
+            "created": "2018-11-21T07:26:55.441",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-12-19T22:59:00",
+            "firstPublished": false,
+            "id": 8757,
+            "location": {
+                "address": null,
+                "city": "SKI",
+                "country": "NORGE",
+                "county": "AKERSHUS",
+                "latitude": "59.71520233154297",
+                "longitude": "10.8381929397583",
+                "municipal": "SKI",
+                "municipalCode": "0213",
+                "postalCode": "1400"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "SKI",
+                    "country": "NORGE",
+                    "county": "AKERSHUS",
+                    "latitude": "59.71520233154297",
+                    "longitude": "10.8381929397583",
+                    "municipal": "SKI",
+                    "municipalCode": "0213",
+                    "postalCode": "1400"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "1400 Ski",
+                "adtext": "<p>Vi s\u00f8ker etter elektrikere til prosjekter i og rundt Oslo.</p>\n<p>Vi har mange varierte prosjekter, b\u00e5de nybygg/rehab av boliger, nybygg/rehab av n\u00e6ringslokaler og serviceoppdrag.</p>\n<p>Er dere et team som \u00f8nsker \u00e5 jobbe sammen, har vi mulighet til \u00e5 organisere dette.</p>\n<p>Trenger du hjelp med \u00e5 organisere bolig i Oslo omr\u00e5det, er vi behjelpelige med dette.</p>\n<p>Du vil f\u00e5 fast ansettelse hos BackUp Byggpersonell AS.</p>\n<h2>\u00d8nskede kvalifikasjoner</h2>\n<ul><li>Fagbrev gr.L eller godkjent DSB</li><li>Kan kommunisere p\u00e5 Norsk eller Engelsk</li><li>Erfaring med elektroinstallasjon fra Norge</li></ul>\n<h2>Personlige egenskaper</h2>\n<ul><li>P\u00e5litelig</li><li>Opptatt av HMS</li></ul>\n<h2>Vi tilbyr</h2>\n<ul><li>Fast ansettelse</li><li>L\u00f8nn hver 14 dag</li><li>Arbeid hos solide elektroentrepren\u00f8rer</li></ul>\n<p>For sp\u00f8rsm\u00e5l, ta kontakt med Bj\u00f8rn Stalheim i Backup Byggpersonell p\u00e5 92241979. S\u00f8knad og CV sendes til bjorn&#64;backup-bygg.no</p>\n",
+                "applicationdue": "Snarest",
+                "applicationlabel": "76630",
+                "applicationurl": "https://secure.webtemp.no/WebtempCVPortal/default.aspx?k=23&id_utleie=3009316",
+                "author": "BackUp Byggpersonell AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "BackUp Byggpersonell AS, Bygg & Anlegg (Construction) - Oslo & Omegn",
+                "employerdescription": "<p>BackUp Gruppen har siden 1997 v\u00e6rt en totalleverand\u00f8r av rekrutterings- og bemanningsl\u00f8sninger.</p>\n<p>BackUp Byggpersonell er en spesialistavdeling i BackUp Gruppen som leverer kvalifisert bemanning til bygg &amp;anlegg og industrisektoren. Solid fagkompetanse hos v\u00e5re konsulenter sikrer produktive og fleksible bemanningsl\u00f8sninger for v\u00e5re kunder.<br />\nVi betjener hele landet gjennom v\u00e5re avdelinger i Stor-Oslo, \u00d8stfold, Vestfold, S\u00f8rlandet, Rogaland, Midt-Norge og Nord-Norge.</p>\n",
+                "employerhomepage": "http://www.backup-bygg.no",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "20007663001",
+                "industry": "Bygg og anlegg",
+                "keywords": "Elektriker,Electrician",
+                "location": "Ski",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/141838280/iad_3596780196574083085logo_bygg_finn.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/141838280/iad_8275287202153749073logo_bygg_finn.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "4",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-26T00:14:00.000Z",
+                "sourceurl": "https://www.finn.no/133456302",
+                "starttime": "Etter avtale"
+            },
+            "published": "2018-11-27T07:16:15.852",
+            "publishedByAdmin": null,
+            "reference": "133456302",
+            "source": "FINN",
+            "status": "STOPPED",
+            "title": "Elektrikere til installasjonsoppdrag - fast ansettelse",
+            "updated": "2018-11-27T07:17:47.208",
+            "updatedBy": "pam-ad",
+            "uuid": "11abb2b5-3a22-4920-8643-a91514d5a8d3"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7326,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "geir@nordicec.no",
+                    "id": 236146,
+                    "name": "Geir Henrik Johansen",
+                    "phone": "+47 480 04 867",
+                    "role": null,
+                    "title": "R\u00e5dgiver"
+                }
+            ],
+            "created": "2018-11-21T07:26:55.507",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2019-01-02T00:00:00",
+            "firstPublished": false,
+            "id": 8760,
+            "location": {
+                "address": null,
+                "city": "OSLO",
+                "country": "NORGE",
+                "county": "OSLO",
+                "latitude": "59.895503997802734",
+                "longitude": "10.730401992797852",
+                "municipal": "OSLO",
+                "municipalCode": "0301",
+                "postalCode": "0150"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "OSLO",
+                    "country": "NORGE",
+                    "county": "OSLO",
+                    "latitude": "59.895503997802734",
+                    "longitude": "10.730401992797852",
+                    "municipal": "OSLO",
+                    "municipalCode": "0301",
+                    "postalCode": "0150"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "0150 Oslo",
+                "adtext": "<p>Nordic Elektro Construction AS (NEC) er en leverand\u00f8r av rekruttering- og bemanningsl\u00f8sninger til bygg- og anleggsbransjen.<br />\nVi er et norsk bemanningsforetak, eid av et svensk konsern med \u00e5relang erfaring innen elektro installasjon og bemanningsl\u00f8sninger i flere bransjer.<br />\nV\u00e5re konsulenter har lang erfaring innen bemanningsbransjen og solid fagkompetanse i bygg- og anleggsbransjen.<br />\nNEC er et mindre selskap som gir en rask oppf\u00f8lging av b\u00e5de kunder og medarbeidere.</p>\n<h2>Arbeidsoppgaver</h2>\n<p>N\u00e6ringsbygg og leiligheter</p>\n<h2>\u00d8nskede kvalifikasjoner</h2>\n<p>Fagbrev gr.L eller DSB-godkjenning<br />\nNordisk spr\u00e5k eller godt engelsk</p>\n<h2>Personlige egenskaper</h2>\n<p>Jobber selvstendig, strukturert og systematisk<br />\nSamarbeider og kommuniserer godt<br />\nFleksibel til arbeidsoppgaver og l\u00f8sningsorientert<br />\nServiceinnstilt<br />\nAnsvarsbevist og pliktoppfyllende</p>\n<h2>Vi tilbyr</h2>\n<p>Konkurransedyktige betingelser<br />\nOrdnede arbeidsforhold<br />\n12 % feriepenger<br />\nGodtgj\u00f8relser etter avtaler/prosjekt<br />\nKl\u00e6r, personlig verneutstyr og verkt\u00f8y<br />\nGod oppf\u00f8lging og tilrettelegging<br />\nFSE-kurs hvert \u00e5rS\u00f8k p\u00e5 stillingen ved \u00e5 legge inn din CV<br />\nPlease send us your CV</p>\n",
+                "applicationdue": "02.01.2019",
+                "applicationlabel": "500005",
+                "applicationurl": "https://secure.webtemp.no/WebtempCVPortal/default.aspx?k=188&id_rekruttering=3000009",
+                "author": "NORDIC ELEKTRO CONSTRUCTION AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "Nordic Elektro Construction",
+                "employerdescription": "<p>Vi har erfarne medarbeidere og tilbyr tjenester innen rekruttering og personalutleie. Ta kontakt for \u00e5 h\u00f8re hva vi kan tilby deg og ditt foretak!</p>\n",
+                "employerhomepage": "http://www.nordicec.no",
+                "engagementtype": "Prosjekt",
+                "extent": "Heltid",
+                "externalref": "10050000502",
+                "industry": "Bygg og anlegg",
+                "keywords": "elektriker,elektromont\u00f8r,mont\u00f8r,gruppe L",
+                "location": "Oslo",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/6026376/iad_1642207359516239513logo_-_nordic_elektro_construction_as.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/6026376/iad_1147075976902696303logo_-_nordic_elektro_construction_as.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "4",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-12-04T00:14:00.000Z",
+                "sourceurl": "https://www.finn.no/133365218",
+                "starttime": "10.12.2018"
+            },
+            "published": "2018-12-02T07:04:26.302",
+            "publishedByAdmin": null,
+            "reference": "133365218",
+            "source": "FINN",
+            "status": "STOPPED",
+            "title": "Elektrikere s\u00f8kes for kort/langvarige prosjekter",
+            "updated": "2018-12-20T07:30:18.084",
+            "updatedBy": "pam-ad",
+            "uuid": "6e853293-b400-4fc3-a279-798a80b78890"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10490,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "74",
+                    "description": null,
+                    "id": 4648,
+                    "name": "Elektrikere, elektronikere mv.",
+                    "parentId": 4281
+                }
+            ],
+            "contactList": [],
+            "created": "2018-11-27T06:01:09.349",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-12-03T00:00:00",
+            "firstPublished": false,
+            "id": 12649,
+            "location": {
+                "address": null,
+                "city": "RAMSUND",
+                "country": "NORGE",
+                "county": "NORDLAND",
+                "latitude": null,
+                "longitude": null,
+                "municipal": "TJELDSUND",
+                "municipalCode": "1852",
+                "postalCode": "9442"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "RAMSUND",
+                    "country": "NORGE",
+                    "county": "NORDLAND",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "TJELDSUND",
+                    "municipalCode": "1852",
+                    "postalCode": "9442"
+                }
+            ],
+            "mediaList": [],
+            "medium": "AMEDIA",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "9442 Ramsund",
+                "adtext": "<p><b><b>Forsvaret har 3 ledige stillinger <br /></b></b></p>\n<ul><li>Fagarbeider Industrimekaniker<br />Link til stillingen: https://forsvaret.no/karriere/ledige-stillinger/sivile-stillinger/fagarbeider-industrimekaniker </li><li>Fagarbeider Serviceelektroniker/Dataelektroniker<br />Link til stillingen: https://forsvaret.no/karriere/ledige-stillinger/sivile-stillinger/fagarbeider-serviceelektroniker-dataelektroniker</li><li>Fagarbeider Elektriker/ Skipselektriker/Automatiker<br />Link til stillingen: https://forsvaret.no/karriere/ledige-stillinger/sivile-stillinger/fagarbeider-elektriker-skipselektriker-automatiker </li></ul>\n",
+                "applicationdue": "3. desember 2018",
+                "author": "Forsvaret",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.23701808",
+                "employer": "Forsvarets logistikkorganisasjon",
+                "employerdescription": "<p>En jobb i Forsvaret er noe mer enn en jobb. Forsvarets viktigste oppgave er \u00e5 skape sikkerhet for Norge og trygghet for befolkningen. Uansett hvilken stilling du har, er du med p\u00e5 \u00e5 ivareta landets og fellesskapets interesser.</p>\nSom en del av <a href=\"https://forsvaret.no/organisasjon/forsvarets-logistikkorganisasjon\" rel=\"nofollow\">Forsvarets logistikkorganisasjon</a> (FLO) s\u00f8rger du for at Forsvaret kan utf\u00f8re sine oppgaver og forsvare landet p\u00e5 best mulig m\u00e5te. FLO fornyer, forenkler og forbedrer Forsvarets logistikk. Det gir styrket kampkraft og b\u00e6rekraft. I FLO jobber sivile og milit\u00e6re med h\u00f8y kompetanse og lang erfaring med milit\u00e6r logistikk og materiell. Forsyning og vedlikehold av materiell, som er unikt for Forsvaret, er kjernekompetansen til FLOs ansatte. FLO ivaretar innkj\u00f8p og driftsanskaffelser for forsvarssektoren. Frem mot 2020 skal FLO jobbe for \u00e5 bli best i offentlig sektor p\u00e5 anskaffelser av varer og tjenester.\n",
+                "engagementtype": "Annet",
+                "extent": "Heltid",
+                "jobtitle": "Elektriker, elektroniker og industrimekaniker",
+                "location": "Tjeldsund",
+                "logolisting": "c4/63/c463518c89b7806f89c21a7724ed9daf",
+                "logomain": "https://g.api.no/obscura/API/image/r1/zett/355x223rp-hi/1508983200000",
+                "positioncount": "3",
+                "searchtags": "[{\"label\":\"Arbeidsleder innen industrimekanikk\",\"score\":0.16520956},{\"label\":\"Industrimekaniker\",\"score\":0.059428398},{\"label\":\"Elektroniker (dataelektroniker)\",\"score\":0.058779795}]",
+                "sector": "Ikke oppgitt",
+                "sourcecreated": "2018-11-22T10:32:18Z",
+                "sourceupdated": "2018-11-22T10:32:18Z",
+                "sourceurl": "https://forsvaret.no/karriere/ledige-stillinger/sivile-stillinger/?filter=&filter=Ramsund&filter=Mekanikk%20og%20elektro&rowlimit=10"
+            },
+            "published": "2018-12-03T01:31:05.34",
+            "publishedByAdmin": null,
+            "reference": "3474459",
+            "source": "AMEDIA",
+            "status": "INACTIVE",
+            "title": "Elektriker, elektroniker og industrimekaniker",
+            "updated": "2018-12-03T01:31:23.065",
+            "updatedBy": "pam-ad",
+            "uuid": "cd315799-daba-4e2b-a616-4822cc6803e8"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10501,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.01",
+                    "description": null,
+                    "id": 4651,
+                    "name": "Elektriker",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "knut.jostein.saevild@oneco.no",
+                    "id": 149844,
+                    "name": "Knut Jostein S\u00e6vild",
+                    "phone": "920 22 521 ",
+                    "role": null,
+                    "title": "Manager Telecom Operation West"
+                }
+            ],
+            "created": "2018-11-27T06:01:09.786",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-12-03T00:00:00",
+            "firstPublished": false,
+            "id": 12660,
+            "location": {
+                "address": null,
+                "city": "F\u00d8RDE",
+                "country": "NORGE",
+                "county": "SOGN OG FJORDANE",
+                "latitude": null,
+                "longitude": null,
+                "municipal": "F\u00d8RDE",
+                "municipalCode": "1432",
+                "postalCode": "6800"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "F\u00d8RDE",
+                    "country": "NORGE",
+                    "county": "SOGN OG FJORDANE",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "F\u00d8RDE",
+                    "municipalCode": "1432",
+                    "postalCode": "6800"
+                }
+            ],
+            "mediaList": [],
+            "medium": "AMEDIA",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "6800 F\u00f8rde",
+                "adtext": "<p><b>\u00d8nsker du \u00e5 jobbe innen drift &amp; vedlikehold av mobil og kringkasting?\u00a0</b></p>\n<p>Er du elektriker og vil jobbe med de mest spennende oppdragene innen drift og vedlikehold av mobil og kringkasting.</p>\n<p>OneCo Telecom AS er leverand\u00f8r av de mest spennende og attraktive oppdrag innen felttjenester i Norge. Vil du v\u00e6re med p\u00e5 laget?</p>\n<p>OneCo Telecom AS (Tidligere Rejlers Telecom AS) er i meget sterk vekst i Norge. Montasje, drift og vedlikehold av telekommunikasjon og kringkasting st\u00e5r for en stor del av denne veksten. Kundenes tillit gir oss mange interessante prosjekter og vi er n\u00e5 p\u00e5 utkikk etter elektriker med gruppe L og erfaring fra 48V installasjoner som \u00f8nsker \u00e5 utvikle seg innen v\u00e5rt fagfelt. Vi s\u00f8ker n\u00e5 etter ny medarbeider i Sogn og Fjordane.</p>\n<p>OneCo Telecom har et landsdekkende feltapparat med en d\u00f8gnkontinuerlig beredskap. Vi jobber blant annet med store prosjekter innen drift, vedlikehold, optimalisering, kvalitetssikring, utbygging og kapasitetsutvidelser innen kringkasting DAB/DTT mobil og transmisjon for store akt\u00f8rer som blant annet Norkring og Telia.</p>\n<p><b>For \u00e5 styrke v\u00e5r bemanning i Sogn og Fjordane \u00f8nsker vi \u00e5 ansette en ny elektriker Gr.L.</b></p>\n<p>Foretrukket m\u00f8nstringssted er innenfor omr\u00e5det F\u00f8rde/Flor\u00f8 men vi er ikke l\u00e5st p\u00e5 dette omr\u00e5det. Elektrikere med erfaring fra telecom/kringkasting og eventuelt mastekompetanse oppfordres spesielt til \u00e5 s\u00f8ke</p>\n<p><b>Arbeidsoppgaver:</b></p>\n<ul><li>Montasje og ombygging av AC/DC kraftsystemer og ventilasjon p\u00e5 mobil og kringkastingssendere.</li><li>Drift og vedlikehold av mobil basestasjoner og kringkastingssendere.\u00a0</li><li>Idriftsettelse av nye mobil og kringkasting DAB/DTT systemer</li><li>Installasjonsoppdrag p\u00e5 400/230 og 48 volt systemer</li><li>Deltagelse i enhetens beredskapsordning</li></ul>\n<p><b>\u00d8nskede kvalifikasjoner:</b></p>\n<ul><li>Fagbrev gruppe L/elektriker.</li><li>\u00d8nskelig, men ikke p\u00e5krevd, erfaring fra mobil og/eller kringkastingsinfrastruktur inkl. arbeid med antenner/kabling i mast.</li><li>Gode ferdigheter innen bruk av PC og m\u00e5leinstrumenter\u00a0</li><li>Like \u00e5 jobbe selvstendig ute i felt</li><li>Gjerne noen \u00e5rs erfaring ute i feltet, men nyutdannede oppfordres ogs\u00e5 til \u00e5 s\u00f8ke</li></ul>\n<p><b>Personlige egenskaper:</b></p>\n<ul><li>God muntlig og skriftlig kommunikasjonsevne b\u00e5de norsk og engelsk</li><li>Fleksibel, p\u00e5litelig, l\u00e6revillig og initiativrik</li><li>M\u00e5 kunne takle et h\u00f8yt arbeidstempo i til tider et hektisk milj\u00f8</li><li>Strukturert, evne til \u00e5 jobbe selvstendig, men ogs\u00e5 gode samarbeidsevner</li><li>God helse</li></ul>\n<p><b>Vi tilbyr:</b></p>\n<ul><li>Varierte arbeidsdager med stor frihet og utfordrende oppgaver</li><li>Mulighet til \u00e5 jobbe ut fra eget m\u00f8nstringssted</li><li>Gode muligheter for faglig og personlig utvikling i et selskap i vekst</li><li>Sv\u00e6rt godt arbeidsmilj\u00f8 med positive og engasjerte kollegaer</li><li>Arbeid med spennende kunder og prosjekter, og med ny teknologi</li><li>Gode pensjons- og forsikringsordninger</li><li>Frisk luft og trim i arbeidstiden</li><li>Konkurransedyktige betingelser\u00a0</li></ul>\n<p>F\u00f8rerkort klasse BE er et krav</p>\n<p>\u00a0Last opp cv, s\u00f8knad og relevante papirer, s\u00e5 tar vi kontakt med aktuelle kandidater fortl\u00f8pende.</p>\n<p>Ved sp\u00f8rsm\u00e5l, ta kontakt med Knut Jostein S\u00e6vild, Manager Telecom Operation West p\u00e5 tlf &#43;47 920 22 521 eller mail knut.jostein.saevild&#64;oneco.no<br /><br /><b>For mer informasjon og \u00e5 s\u00f8ke p\u00e5 stillingen. Klikk p\u00e5 annonselenken.</b></p>\n",
+                "applicationdue": "03.12.2018",
+                "author": "OneCo Vest AS",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.8640455",
+                "employer": "OneCo Vest AS",
+                "engagementtype": "Annet",
+                "extent": "Heltid",
+                "jobtitle": "Elektriker Gr.L.",
+                "location": "F\u00f8rde",
+                "logolisting": "17/14/17146724b9b4c922b4e170df689af9a2",
+                "logomain": "https://g.api.no/obscura/API/image/r1/zett/355x223rp-hi/1508983200000",
+                "positioncount": "1",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.8541215},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.54483676},{\"label\":\"Cable Railway Rigger\",\"score\":0.46064684},{\"label\":\"Automatiseringsmont\u00f8r\",\"score\":0.4601779},{\"label\":\"Butikkselger elektro\",\"score\":0.45970848}]",
+                "sector": "Privat",
+                "sourcecreated": "2018-11-26T12:00:55Z",
+                "sourceupdated": "2018-11-26T12:00:55Z",
+                "sourceurl": "https://karriere.no/jobb/onsker-du-a-jobbe-innen-drift-vedlikehold-av-mobil-og-kringkasting-1045562"
+            },
+            "published": "2018-12-03T01:31:05.485",
+            "publishedByAdmin": null,
+            "reference": "3474867",
+            "source": "AMEDIA",
+            "status": "INACTIVE",
+            "title": "Elektriker Gr.L.",
+            "updated": "2018-12-03T01:31:23.178",
+            "updatedBy": "pam-ad",
+            "uuid": "ca30f1b0-6f65-4543-ada9-5c295069ae82"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7389,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "markus.rawcliffe@nrva.no",
+                    "id": 324995,
+                    "name": "Markus Rawcliffe",
+                    "phone": "+47 988 27 289",
+                    "role": null,
+                    "title": "Avdelingsleder Drift"
+                },
+                {
+                    "email": "pal.holm@nrva.no",
+                    "id": 324996,
+                    "name": "P\u00e5l Thomas Holm",
+                    "phone": "+47 924 40 087",
+                    "role": null,
+                    "title": "Fagansvarlig Automasjon"
+                }
+            ],
+            "created": "2018-11-21T07:26:56.479",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2019-01-06T00:00:00",
+            "firstPublished": false,
+            "id": 8823,
+            "location": {
+                "address": "Strandveien 22",
+                "city": "STR\u00d8MMEN",
+                "country": "NORGE",
+                "county": "AKERSHUS",
+                "latitude": "59.95525360107422",
+                "longitude": "11.02470874786377",
+                "municipal": "SKEDSMO",
+                "municipalCode": "0231",
+                "postalCode": "1466"
+            },
+            "locationList": [
+                {
+                    "address": "Strandveien 22",
+                    "city": "STR\u00d8MMEN",
+                    "country": "NORGE",
+                    "county": "AKERSHUS",
+                    "latitude": "59.95525360107422",
+                    "longitude": "11.02470874786377",
+                    "municipal": "SKEDSMO",
+                    "municipalCode": "0231",
+                    "postalCode": "1466"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Strandveien 22,1466 Str\u00f8mmen",
+                "adtext": "<h3><strong>Vil du bidra til rene vassdrag og rent drikkevann til alle p\u00e5 Nedre Romerike? Vil du jobbe i en fremtidsrettet og milj\u00f8fokusert virksomhet -- med utfordrende og varierte oppgaver?</strong></h3>\n<h3>Vi trenger flere til \u00e5 drifte og vedlikeholde v\u00e5re avanserte prosessanlegg og transportsystemer for \u00e5 m\u00f8te stor befolkningsvekst, skjerpede milj\u00f8krav og klimaendringene de neste \u00e5rene. Vi s\u00f8ker en automatiker eller elektriker til driftsavdelingen. Du vil f\u00e5 oppgaver knyttet til vannbehandling, avl\u00f8psrensing og transportsystemer. Stillingen rapporterer til Gruppeleder Elektro og Automasjon.</h3>\n<p><strong>Arbeidsoppgaver</strong></p>\n<ul><li>\n<p>Vedlikeholde og drifte anleggene for vannbehandling, avl\u00f8psrensing og transportsystemene.</p>\n</li><li>\n<p>Jobbe aktivt med internkontroll, forebyggende vedlikehold, driftsoptimalisering og oppf\u00f8lging av kritisk instrumentering sammen med de andre gruppene i Drift.</p>\n</li><li>\n<p>V\u00e6re med som Drift sin representant i prosjekter ved rehabilitering og bygging av nye anlegg.</p>\n</li><li>\n<p>Stillingen kan inneb\u00e6re \u00e5 delta i vaktordning.</p>\n</li></ul>\n<p><strong>Kvalifikasjoner</strong></p>\n<ul><li>\n<p>Fagbrev innen automasjon eller elektro.</p>\n</li><li>\n<p>Det er \u00f8nskelig at du har erfaring innenfor fagfeltet fortrinnsvis fra prosessanlegg og/eller vann- og avl\u00f8psanlegg.</p>\n</li><li>\n<p>F\u00f8rerkort kl. B.</p>\n</li><li>\n<p>Fordel med erfaring i bruk av SD-anlegg, FDV-system og Office.</p>\n</li></ul>\n<p><strong>Vi \u00f8nsker en medarbeider som</strong></p>\n<ul><li>\n<p>Er l\u00f8sningsorientert.</p>\n</li><li>\n<p>Jobber godt selvstendig og i team, m\u00e5lrettet og effektivt.</p>\n</li><li>\n<p>Har gode samarbeidsevner og god ordenssans.</p>\n</li><li>\n<p>Lar deg motivere av kontinuerlig forbedringsarbeid og \u00f8nsker \u00e5 utvikle deg videre faglig.</p>\n</li><li>\n<p>Har et stort fokus p\u00e5 HMS.</p>\n</li><li>\n<p>Lar seg motivere av kontinuerlig forbedringsarbeid.</p>\n</li><li>\n<p>Lojal mot v\u00e5re verdier.</p>\n</li></ul>\n<p><strong>Vi kan tilby</strong></p>\n<ul><li>\n<p>Spennende og varierte oppgaver i en fremtidsrettet og milj\u00f8fokusert virksomhet.</p>\n</li><li>\n<p>Gode muligheter for faglig videreutvikling.</p>\n</li><li>\n<p>Trivelig og godt arbeidsmilj\u00f8 .</p>\n</li><li>\n<p>Ordnede arbeidsforhold og konkurransedyktig l\u00f8nn.</p>\n</li><li>\n<p>Meget gode pensjons- og forsikringsordninger.</p>\n</li></ul>\n<p>For stillingen gjelder 6 m\u00e5neders pr\u00f8vetid og pliktig medlemskap i kollektiv pensjonskasse med 2 % medlemsinnskudd av regulativl\u00f8nn.</p>\n",
+                "applicationdue": "06.01.2019",
+                "applicationemail": "jobb@nrva.no",
+                "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=134439337",
+                "author": "Privat",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "Nedre Romerike Avl\u00f8psselskap (NRA) IKS",
+                "employerdescription": "<p>Nedre Romerike Vannverk IKS (NRV) leverer drikkevann til 160.000 innbyggere. Nedre Romerike Avl\u00f8psselskap IKS (NRA) tar imot avl\u00f8psvann fra snart 130.000 innbyggere, renser, og leverer vannet tilbake til naturen. Felles administrasjon bidrar til kostnadseffektiv drift og god koordinering av virksomhetene. I selskapene er det totalt rett over 100 ansatte.</p>\n<p>Sikker vannforsyning og god rensing av avl\u00f8psvannet er en forutsetning for moderne samfunnsutvikling. Samtidig har vi et ansvar for at utviklingen skjer p\u00e5 en b\u00e6rekraftig m\u00e5te - b\u00e5de milj\u00f8messig, \u00f8konomisk og sosialt. NRV og NRA har som en del av sin strategi at vi skal v\u00e6re kliman\u00f8ytrale innen 2030. \u00d8nsker du \u00e5 ta den utfordringen?</p>\n<p>Rent vann - for deg, milj\u00f8et og fremtiden</p>\n",
+                "employerhomepage": "http://www.nrva.no",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "134439337",
+                "industry": "Industri og produksjon;Kirke og menighet;VVS",
+                "keywords": "Automatiker,Automasjon,Elektro,Elektriker,Vann/Avl\u00f8p",
+                "location": "Str\u00f8mmen",
+                "occupation": "H\u00e5ndverker",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Offentlig",
+                "sourceupdated": "2019-01-02T14:12:00.000Z",
+                "sourceurl": "https://www.finn.no/134439337"
+            },
+            "published": "2019-01-03T07:07:37.735",
+            "publishedByAdmin": null,
+            "reference": "134439337",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Nedre Romerike Avl\u00f8psselskap (NRA) IKS s\u00f8ker Automatiker eller Elektriker",
+            "updated": "2019-01-06T01:32:15.407",
+            "updatedBy": "pam-ad",
+            "uuid": "9f2340e4-3526-4183-8912-167bc9f473d0"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7427,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "NORDIC ELEKTRO CONSTRUCTION AS",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "john@nordicec.no",
+                    "id": 236203,
+                    "name": "John Marius Lisleb\u00f8",
+                    "phone": "+47 480 05 467",
+                    "role": null,
+                    "title": "Rekruttering og HMS"
+                },
+                {
+                    "email": "geir@nordicec.no",
+                    "id": 236204,
+                    "name": "Geir Henrik Johansen",
+                    "phone": "+47 480 04 867",
+                    "role": null,
+                    "title": "R\u00e5dgiver"
+                }
+            ],
+            "created": "2018-11-21T07:26:57.086",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2018-11-21T07:20:28.173",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 9,
+                "id": 8277,
+                "location": {
+                    "address": "Stoltenbergs gate 3A",
+                    "city": "T\u00d8NSBERG",
+                    "country": "NORGE",
+                    "county": "VESTFOLD",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "T\u00d8NSBERG",
+                    "municipalCode": "0704",
+                    "postalCode": "3110"
+                },
+                "locationList": [
+                    {
+                        "address": "Stoltenbergs gate 3A",
+                        "city": "T\u00d8NSBERG",
+                        "country": "NORGE",
+                        "county": "VESTFOLD",
+                        "latitude": null,
+                        "longitude": null,
+                        "municipal": "T\u00d8NSBERG",
+                        "municipalCode": "0704",
+                        "postalCode": "3110"
+                    }
+                ],
+                "mediaList": [],
+                "name": "NORDIC ELEKTRO CONSTRUCTION AS",
+                "orgform": "BEDR",
+                "orgnr": "921335377",
+                "parentOrgnr": "913726626",
+                "properties": {
+                    "nace2": "[{\"code\":\"43.210\",\"name\":\"Elektrisk installasjonsarbeid\"}]"
+                },
+                "publicName": "NORDIC ELEKTRO CONSTRUCTION AS",
+                "status": "ACTIVE",
+                "updated": "2019-05-03T07:15:05.62",
+                "updatedBy": "pam-ad",
+                "uuid": "198d9bc9-006d-4a3a-9236-868e95723e49"
+            },
+            "expires": "2019-01-02T00:00:00",
+            "firstPublished": false,
+            "id": 8861,
+            "location": {
+                "address": null,
+                "city": "T\u00d8NSBERG",
+                "country": "NORGE",
+                "county": "VESTFOLD",
+                "latitude": "59.2660026550293",
+                "longitude": "10.418704986572266",
+                "municipal": "T\u00d8NSBERG",
+                "municipalCode": "0704",
+                "postalCode": "3110"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "T\u00d8NSBERG",
+                    "country": "NORGE",
+                    "county": "VESTFOLD",
+                    "latitude": "59.2660026550293",
+                    "longitude": "10.418704986572266",
+                    "municipal": "T\u00d8NSBERG",
+                    "municipalCode": "0704",
+                    "postalCode": "3110"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "3110 T\u00f8nsberg",
+                "adtext": "<p>Nordic Elektro Construction AS (NEC) er en leverand\u00f8r av rekruttering- og bemanningsl\u00f8sninger til bygg- og anleggsbransjen.<br />\nVi er et norsk bemanningsforetak, eid av et svensk konsern med \u00e5relang erfaring innen elektro installasjon og bemanningsl\u00f8sninger i flere bransjer.<br />\nV\u00e5re konsulenter har lang erfaring innen bemanningsbransjen og solid fagkompetanse i bygg- og anleggsbransjen.<br />\nNEC er et mindre selskap som gir en rask oppf\u00f8lging av b\u00e5de kunder og medarbeidere.</p>\n<h2>Arbeidsoppgaver</h2>\n<p>N\u00e6ringsbygg og leiligheter</p>\n<h2>\u00d8nskede kvalifikasjoner</h2>\n<p>Fagbrev gr.L eller DSB-godkjenning<br />\nNordisk spr\u00e5k eller godt engelsk</p>\n<h2>Personlige egenskaper</h2>\n<p>Jobber selvstendig, strukturert og systematisk<br />\nSamarbeider og kommuniserer godt<br />\nFleksibel til arbeidsoppgaver og l\u00f8sningsorientert<br />\nServiceinnstilt<br />\nAnsvarsbevist og pliktoppfyllende</p>\n<h2>Vi tilbyr</h2>\n<p>Konkurransedyktige betingelser<br />\nOrdnede arbeidsforhold<br />\n12 % feriepenger<br />\nGodtgj\u00f8relser etter avtaler/prosjekt<br />\nKl\u00e6r, personlig verneutstyr og verkt\u00f8y<br />\nGod oppf\u00f8lging og tilrettelegging<br />\nFSE-kurs hvert \u00e5rS\u00f8k p\u00e5 stillingen ved \u00e5 legge inn din CV<br />\nPlease send us your CV</p>\n",
+                "applicationdue": "02.01.2019",
+                "applicationlabel": "500004",
+                "applicationurl": "https://secure.webtemp.no/WebtempCVPortal/default.aspx?k=188&id_rekruttering=3000008",
+                "author": "NORDIC ELEKTRO CONSTRUCTION AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "Nordic Elektro Construction",
+                "employerdescription": "<p>Vi har erfarne medarbeidere og tilbyr tjenester innen rekruttering og personalutleie. Ta kontakt for \u00e5 h\u00f8re hva vi kan tilby deg og ditt foretak!</p>\n",
+                "employerhomepage": "http://www.nordicec.no",
+                "engagementtype": "Prosjekt",
+                "extent": "Heltid",
+                "externalref": "10050000402",
+                "industry": "Bygg og anlegg",
+                "keywords": "elektriker,elektromont\u00f8r,mont\u00f8r,gruppe L",
+                "location": "T\u00f8nsberg",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/6026376/iad_1642207359516239513logo_-_nordic_elektro_construction_as.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/6026376/iad_1147075976902696303logo_-_nordic_elektro_construction_as.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "2",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-12-04T00:14:00.000Z",
+                "sourceurl": "https://www.finn.no/133365217",
+                "starttime": "10.12.2018"
+            },
+            "published": "2018-12-02T07:04:25.811",
+            "publishedByAdmin": null,
+            "reference": "133365217",
+            "source": "FINN",
+            "status": "STOPPED",
+            "title": "Elektrikere s\u00f8kes for kort/langvarige prosjekter",
+            "updated": "2018-12-20T07:30:18.916",
+            "updatedBy": "pam-ad",
+            "uuid": "6fc08176-690f-47f2-bf4f-ae13c6d5a690"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10582,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "TPI NORWAY AS",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "lars.normann.hovik@tpin.no",
+                    "id": 203636,
+                    "name": "Lars Normann H\u00f8vik",
+                    "phone": "+47 975 09 660",
+                    "role": null,
+                    "title": "Vedlikeholdssjef"
+                }
+            ],
+            "created": "2018-11-27T07:15:15.183",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2018-11-27T07:13:22.52",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 72,
+                "id": 12694,
+                "location": {
+                    "address": "Gruveveien 1",
+                    "city": "KRAGER\u00d8",
+                    "country": "NORGE",
+                    "county": "TELEMARK",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "KRAGER\u00d8",
+                    "municipalCode": "0815",
+                    "postalCode": "3770"
+                },
+                "locationList": [
+                    {
+                        "address": "Gruveveien 1",
+                        "city": "KRAGER\u00d8",
+                        "country": "NORGE",
+                        "county": "TELEMARK",
+                        "latitude": null,
+                        "longitude": null,
+                        "municipal": "KRAGER\u00d8",
+                        "municipalCode": "0815",
+                        "postalCode": "3770"
+                    }
+                ],
+                "mediaList": [],
+                "name": "TPI NORWAY AS",
+                "orgform": "BEDR",
+                "orgnr": "873107812",
+                "parentOrgnr": "918275452",
+                "properties": {
+                    "nace2": "[{\"code\":\"21.200\",\"name\":\"Produksjon av farmas\u00f8ytiske preparater\"}]"
+                },
+                "publicName": "TPI NORWAY AS",
+                "status": "ACTIVE",
+                "updated": "2018-11-27T07:13:22.52",
+                "updatedBy": "pam-ad",
+                "uuid": "f151b9c3-61dc-4fb3-82b9-f620c95b3f38"
+            },
+            "expires": "2018-12-13T00:00:00",
+            "firstPublished": false,
+            "id": 12832,
+            "location": {
+                "address": "GRUVEVEIEN 1",
+                "city": "KRAGER\u00d8",
+                "country": "NORGE",
+                "county": "TELEMARK",
+                "latitude": "58.870765686035156",
+                "longitude": "9.404691696166992",
+                "municipal": "KRAGER\u00d8",
+                "municipalCode": "0815",
+                "postalCode": "3770"
+            },
+            "locationList": [
+                {
+                    "address": "GRUVEVEIEN 1",
+                    "city": "KRAGER\u00d8",
+                    "country": "NORGE",
+                    "county": "TELEMARK",
+                    "latitude": "58.870765686035156",
+                    "longitude": "9.404691696166992",
+                    "municipal": "KRAGER\u00d8",
+                    "municipalCode": "0815",
+                    "postalCode": "3770"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "GRUVEVEIEN 1,3770 Krager\u00f8",
+                "adtext": "<p>Vi s\u00f8ker etter en strukturert, fleksibel og dyktig elektriker til v\u00e5rt fabrikkanlegg i Krager\u00f8. Du blir en del av v\u00e5r tekniske avdeling, som har ansvar for prosjektarbeid, vedlikehold av produksjonsutstyr, st\u00f8ttesystemer og bygg.</p>\n<p>Stillingen inng\u00e5r i vaktordning.</p>\n<h3>Arbeidsoppgaver</h3>\n<ol><li>Gjennomf\u00f8ring, dokumentasjon og videreutvikling av forebyggende vedlikehold og optimalisering av eksisterende anlegg</li><li>Faglig bidrag i prosjektarbeid ved ombygging og utskiftning av utstyr og tekniske installasjoner</li><li>Teknisk probleml\u00f8sning og reparasjoner</li><li>Kontroll og kalibrering av utstyr</li><li>Internkontroll</li></ol>\n<h3>\u00d8nskede kvalifikasjoner:</h3>\n<ol><li>Elektriker Gr.L</li><li>Relevant erfaring, fortrinnsvis innenfor legemiddel- eller n\u00e6ringsmiddelindustri</li><li>Erfaring med vedlikehold, EX-installasjoner, GMP-regelverk, forbedringsarbeid/lean</li><li>F\u00f8rerkort klasse B</li><li>Gode norsk- og engelsk-kunnskaper</li><li>Gode kommunikasjons- og samarbeidsevner</li><li>Sluttf\u00f8re jobber og dokumentasjon</li><li>Jobbe selvstendig</li></ol>\n<p>Alle s\u00f8kere m\u00e5 v\u00e6re villige til \u00e5 fremlegge politiattest.</p>\n",
+                "applicationdue": "13.12.2018",
+                "applicationemail": "personal@tpin.no",
+                "applicationlabel": "Elektriker",
+                "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=134505743",
+                "author": "TPI NORWAY AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396064",
+                "employer": "TPI Norway AS",
+                "employerdescription": "<p>TPI Enterprises Ltd produserer r\u00e5materiale (NRM) for den internasjonale farmas\u00f8ytiske industrien. Selskapet er fremtidsrettet og innovativt, og har oppn\u00e5dd et internasjonalt rykte for den h\u00f8ye kvaliteten p\u00e5 produkt og konkurransedyktige priser.<br />\nI oktober 2017 kj\u00f8pte selskapet en opiat- og tablettfabrikk i Krager\u00f8, TPI Norway AS. Her jobber ca 70 medarbeidere innenfor produksjon av APIer, tabletter, kvalitet og administrative funksjoner.</p>\n",
+                "employerhomepage": "http://www.tpienterprices.com",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "134505743",
+                "industry": "Farmasi og legemiddel",
+                "keywords": "Forebyggende,vedlikehold,optimalisering,reparasjoner,probleml\u00f8sning",
+                "location": "Krager\u00f8",
+                "occupation": "H\u00e5ndverker",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396064},{\"label\":\"Vaktmester\",\"score\":0.6396064},{\"label\":\"Smed\",\"score\":0.6396064},{\"label\":\"Hjelpearbeider innen bygg\",\"score\":0.5793044}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-26T10:57:00.000Z",
+                "sourceurl": "https://www.finn.no/134505743",
+                "starttime": "Snarest"
+            },
+            "published": "2018-12-13T01:31:15.896",
+            "publishedByAdmin": null,
+            "reference": "134505743",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Elektriker med fagbrev Gr. L",
+            "updated": "2018-12-13T01:31:39.622",
+            "updatedBy": "pam-ad",
+            "uuid": "f856dbef-3f7c-490f-9ab9-f9c6df0db370"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 9052,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": "System",
+                "status": "DONE"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.11",
+                    "description": null,
+                    "id": 4661,
+                    "name": "Elmont\u00f8r",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [],
+            "created": "2018-11-22T15:08:05.63",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-12-03T01:00:00",
+            "firstPublished": false,
+            "id": 10865,
+            "location": {
+                "address": null,
+                "city": "TRONDHEIM",
+                "country": "NORGE",
+                "county": "TR\u00d8NDELAG",
+                "latitude": null,
+                "longitude": null,
+                "municipal": "TRONDHEIM",
+                "municipalCode": "5001",
+                "postalCode": "7048"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "TRONDHEIM",
+                    "country": "NORGE",
+                    "county": "TR\u00d8NDELAG",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "TRONDHEIM",
+                    "municipalCode": "5001",
+                    "postalCode": "7048"
+                }
+            ],
+            "mediaList": [],
+            "medium": "NAV Servicesenter",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "adtext": "<p>Vi s\u00f8ker servicetekniker elektro med interesse for automasjon Elektriker med interesse for automasjon</p>\n<p>For \u00e5 bli best m\u00e5 man ha de beste folkene, og i Caverion tiltrekker vi oss disse med v\u00e5rt fokus p\u00e5 tilfredse medarbeidere, god oppl\u00e6ring og spennende utviklingsmuligheter.<br />\nS\u00f8k n\u00e5 og gled deg til jobben hver dag!</p>\n<p>Vi i Caverion Trondheim ruster oss for framtiden og har flere spennende prosjekter i variert omfang og st\u00f8rrelse.<br />\nSom bedrift ligger Caverion helt i front i innf\u00f8ring av nye teknologiske l\u00f8sninger for alle typer bygg og vi legger stor vekt p\u00e5 \u00e5 skape et positivt, utviklende og sikkert arbeidsmilj\u00f8.</p>\n<p><em><strong>Er du elektriker med interesse for automasjon?\nFor den riktige kandidaten tilbyr vi oppl\u00e6ringsl\u00f8p innen automasjon!</strong></em></p>\n<p>Vi s\u00f8ker deg som er interessert i den siste teknologien, de smarteste montasjel\u00f8sningene og de rasjonelle produksjonsmetodene.<br />\nVi tilbyr konkurransedyktige betingelser, hyggelig uformell kultur, samt gode muligheter for faglig og personlig utvikling.</p>\n<p><strong>Dine hovedarbeidsoppgaver:</strong></p>\n<ul><li>Mindre prosjekter, service, montasje og vedlikehold</li><li>Kundeoppf\u00f8lging gjennom r\u00e5dgivning og salg</li><li>Utarbeide dokumentasjon p\u00e5 egne jobber</li><li>V\u00e6re en viktig bidragsyter i et flerfaglig milj\u00f8</li></ul>\n<p><strong>Kvalifikasjoner:</strong></p>\n<ul><li>Fagbrev elektro</li><li>Interesse for automasjonsfaget</li><li>Erfaring med digitale verkt\u00f8y og god systemforst\u00e5else</li><li>Erfaring fra service, montasje og vedlikehold</li><li>F\u00f8rerkort for personbil</li><li>Behersker norsk skriftlig og muntlig</li></ul>\n<p><strong>Vi tilbyr deg:</strong></p>\n<ul><li>For riktig kandidat tilbys oppl\u00e6ringsl\u00f8p innen automasjon</li><li>En spennende og faglig utfordrende hverdag</li><li>V\u00e6re en viktig bidragsyter i v\u00e5re leveranser</li><li>Mulighet til \u00e5 utvikle deg faglig og personlig i et flerfaglig milj\u00f8</li><li>Gode pensjons- og forsikringsordninger</li><li>Ordnede arbeidsforhold</li><li>H\u00f8y etisk standard</li><li>En trygg arbeidsplass</li><li>Utdanning og l\u00f8nn etter avtale</li><li>Godt arbeidsmilj\u00f8</li></ul>\n<p>Avdelingen i Tr\u00f8ndelag S\u00f8r best\u00e5r i dag av ca. 140 dyktige medarbeidere og leverer tekniske installasjoner og vedlikehold innen fagene<br />\nelektro, automasjon, ventilasjon, renrom, r\u00f8r, pumpeservice, sikkerhet, AV og kj\u00f8ling for bygg og industri.<br />\nSom en av Norges ledende partnere innen tekniske bygginstallasjoner er vi b\u00e5de seri\u00f8se, solide og utviklingsorienterte.</p>\n<p>Vi har som m\u00e5lsetning \u00e5 rekruttere flere kvinner til Caverion, og oppfordrer derfor ogs\u00e5 kvinner til \u00e5 s\u00f8ke.</p>\n<p><em><strong>Bli en del av den mest fremtidsrettede tekniske bedriften i Norden - Hos oss har du &#39;En hel verden \u00e5 vokse i&#39;</strong></em></p>\n<p><strong>Caverions medarbeidergaranti</strong><br />\n<em>Som medarbeider i Caverion skal du:</em></p>\n<ul><li>F\u00e5 mulighet til \u00e5 utvikle deg faglig og personlig i et flerfaglig milj\u00f8</li><li>Ha mulighet til \u00e5 trives i et positivt arbeidsmilj\u00f8 hvor medarbeidertilfredsheten jevnlig blir m\u00e5lt gjennom v\u00e5r medarbeiderunders\u00f8kelse</li><li>Jobbe trygt i bransjens beste system innen Helse, Milj\u00f8 og Sikkerhet</li><li>Ha pensjons- og forsikringsordninger som gir trygghet for deg og din familie</li><li>Arbeide i en bedrift som vektlegger ordnede arbeidsforhold og h\u00f8y etisk standard</li></ul>\n<p>Sted: Trondheim</p>\n<p>Kontakter:<br />\nMarkus Espelien, , mob: 47 466 11 523</p>\n<p>For elektronisk s\u00f8knadsskjema: <a href=\"https://caverion.easycruit.com/vacancy/application/2181001/41840?channel&#61;aetat&amp;iso&#61;no\" rel=\"nofollow\">[Klikk her]</a></p>\n",
+                "applicationdue": "2018-12-03T01:00",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.94618475",
+                "employer": "Caverion Norge AS - Trondheim",
+                "employerdescription": "<p>Caverion leverer smarte tekniske l\u00f8sninger og service for bygg, industri og infrastruktur. V\u00e5rt unike tjenestetilbud dekker hele livssyklusen: design, konstruksjon og vedlikehold. V\u00e5r visjon er \u00e5 v\u00e6re f\u00f8rstevalget innen digitalisering av bygg, industri og infrastruktur. Selskapet har en omsetning i overkant av 3,3 milliarder kroner og 2 600 ansatte i Norge. Caverion-konsernet hadde i 2017 en omsetning p\u00e5 ca. 23 milliarder kroner og n\u00e6rmere 16.000 ansatte i 12 land i Europa.</p>\n",
+                "engagementtype": "Annet",
+                "extent": "Heltid",
+                "jobtitle": "Elektriker",
+                "location": "Trondheim",
+                "positioncount": "1",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.93937075},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.69572157},{\"label\":\"Skipselektriker\",\"score\":0.63100046},{\"label\":\"Hjelpemont\u00f8r av elektriske komponenter\",\"score\":0.63092935},{\"label\":\"Elektrikerl\u00e6rling\",\"score\":0.6308081}]",
+                "sector": "Ikke oppgitt"
+            },
+            "published": "2018-11-29T12:00:05.001",
+            "publishedByAdmin": null,
+            "reference": "9920305",
+            "source": "stillingsolr",
+            "status": "INACTIVE",
+            "title": "Elektriker med interesse for automasjon",
+            "updated": "2018-12-04T01:32:27.046",
+            "updatedBy": "pam-ad",
+            "uuid": "a9b0256a-9fd4-44db-93ab-b06493124d88"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7438,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "alexander.eide@personalhuset-sg.com",
+                    "id": 48335,
+                    "name": "Alexander Eide",
+                    "phone": "+47 413 52 290",
+                    "role": null,
+                    "title": "R\u00e5dgiver"
+                }
+            ],
+            "created": "2018-11-21T07:26:57.276",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-12-28T22:59:00",
+            "firstPublished": false,
+            "id": 8872,
+            "location": {
+                "address": null,
+                "city": "HAUGESUND",
+                "country": "NORGE",
+                "county": "ROGALAND",
+                "latitude": "59.391700744628906",
+                "longitude": "5.295693397521973",
+                "municipal": "HAUGESUND",
+                "municipalCode": "1106",
+                "postalCode": "5538"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "HAUGESUND",
+                    "country": "NORGE",
+                    "county": "ROGALAND",
+                    "latitude": "59.391700744628906",
+                    "longitude": "5.295693397521973",
+                    "municipal": "HAUGESUND",
+                    "municipalCode": "1106",
+                    "postalCode": "5538"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "5538 Haugesund",
+                "adtext": "<h2>\u00d8nskede kvalifikasjoner</h2>\n<ul><li>Fagbrev, Gr L</li><li>Allsidig erfaring</li><li>F\u00f8rerkort kl B</li><li>M\u00e5 beherske norsk muntlig og skriftlig</li></ul>\n<h2>Personlige egenskaper</h2>\n<ul><li>Strukturert</li><li>Selvstendig</li><li>Fleksibel</li><li>Effektiv og ansvarsbevisst</li><li>Serviceinnstilt</li><li>V\u00e6re genuint opptatt av HMS</li></ul>\n<h2>Vi tilbyr</h2>\n<p>Spennende og utfordrende oppgaver i en veldrevet og profesjonell servicebedrift.F\u00d8LG OSS P\u00c5 FACEBOOK: www.facebook.com/personalhusethaugesund</p>\n",
+                "applicationdue": "S\u00f8knader blir vurdert fortl\u00f8pende",
+                "applicationlabel": "27021",
+                "applicationurl": "http://www.personalhuset.no/webtemp-stillinger/?src=https://secure.webtemp.no/WebtempCVPortal/stillingsingle.aspx?k%3D41%26id_utleie%3D3031445",
+                "author": "Personalhuset Staffing Group",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "Personalhuset, Haugesund",
+                "employerdescription": "<p>Personalhuset Staffing Group er et av Nordens st\u00f8rste og ledende rekrutterings- og bemanningsselskaper. Vi tilbyr tjenester innen rekruttering, personalutleie og omstilling. Personalhuset Staffing Group har 40 kontorer, og uansett hvor du m\u00f8ter oss, vil den samme h\u00f8ye kvalitet og entusiasme prege v\u00e5re tjenester. V\u00e5r visjon er \u00e5 v\u00e6re avgj\u00f8rende for v\u00e5re kunders suksess. For mer informasjon se www.personalhuset.no</p>\n",
+                "employerhomepage": "http://www.personalhuset.no",
+                "engagementtype": "Engasjement",
+                "extent": "Heltid",
+                "externalref": "20002702101",
+                "industry": "Elektronikk",
+                "location": "Haugesund",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/1117069714/iad_548791157859928360personalhuset_logo_gr_nn_2018.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/1117069714/iad_1699059966769665498personalhuset_logo_gr_nn_2018.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "2",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-26T00:18:00.000Z",
+                "sourceurl": "https://www.finn.no/134115506",
+                "starttime": "Etter avtale"
+            },
+            "published": "2018-11-27T07:16:16.037",
+            "publishedByAdmin": null,
+            "reference": "134115506",
+            "source": "FINN",
+            "status": "STOPPED",
+            "title": "Elektriker med fagbrev, Gr L",
+            "updated": "2018-11-27T07:17:47.32",
+            "updatedBy": "pam-ad",
+            "uuid": "1cc53d99-c011-469f-a19f-acb9a8b654fd"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10634,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "obf@keepers.no",
+                    "id": 328754,
+                    "name": "\u00d8yvind Fjelds\u00e6ter",
+                    "phone": "+47 902 29 083",
+                    "role": null,
+                    "title": "Recruitment and staffing consultant"
+                }
+            ],
+            "created": "2018-11-27T07:15:15.836",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2019-01-07T22:59:00",
+            "firstPublished": false,
+            "id": 12884,
+            "location": {
+                "address": "Lysaker Torg 8",
+                "city": "LYSAKER",
+                "country": "NORGE",
+                "county": "AKERSHUS",
+                "latitude": "59.91192626953125",
+                "longitude": "10.637003898620605",
+                "municipal": "B\u00c6RUM",
+                "municipalCode": "0219",
+                "postalCode": "1366"
+            },
+            "locationList": [
+                {
+                    "address": "Lysaker Torg 8",
+                    "city": "LYSAKER",
+                    "country": "NORGE",
+                    "county": "AKERSHUS",
+                    "latitude": "59.91192626953125",
+                    "longitude": "10.637003898620605",
+                    "municipal": "B\u00c6RUM",
+                    "municipalCode": "0219",
+                    "postalCode": "1366"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Lysaker Torg 8,1366 Lysaker",
+                "adtext": "<p><em>Er du en Keeper? N\u00e5 trenger vi flere p\u00e5 elektro laget v\u00e5rt. Vi ser etter deg som har god erfaring som industrielektriker, faglig stolthet og ambisjoner, st\u00e5-p\u00e5 vilje og godt hum\u00f8r. H\u00f8res dette ut som deg? S\u00f8k idag! Kanskje du blir en av v\u00e5re Keepers.</em></p>\n<p>Arbeidsoppgaver<br />\nIndustri/modul</p>\n<p>\u00d8nskede kvalifikasjoner</p>\n<ul><li>Fagbrev Elektriker Gr.L</li><li>Godkjend DSB hvis utenlandsk s\u00f8ker</li><li>Arbeidserfaring som elektriker i minimum to \u00e5r,</li><li>Engelsk/skandinavisk spr\u00e5k</li><li>FSE</li><li>F\u00f8rstehjelp</li><li>Varmt arbeid</li><li>EX</li><li>Fallsikring</li></ul>\n<p>Personlige egenskaper<br />\nVi ser etter deg som har</p>\n<ul><li>h\u00f8y arbeidskapasitet</li><li>gode probleml\u00f8sningsevner og er selvg\u00e5ende</li><li>gode samarbeidsevner og er en omsorgsfull arbeidskollega</li><li>god ordenssans og er punktlig</li></ul>\n<p>Vi tilbyr<br />\nHos oss f\u00e5r du personlig oppf\u00f8lgning av fast personalkonsulent som bist\u00e5r deg i arbeidshverdagen, s\u00e5 vel som i arbeidet med \u00e5 n\u00e5 dine karrierem\u00e5l og spesialfelt</p>\n<ul><li>rettet mot innovativ teknologi, s\u00e5 vel som tradisjonell industri, olje og gass.</li><li>fleksibilitet i forhold til arbeidstid og sted</li><li>spennende innovative prosjekt - rask responstid</li><li>gode l\u00f8nnsvilk\u00e5r</li></ul>\n<p><em>Gjennom en profesjonell kartlegging av v\u00e5re kunders behov og dine ambisjoner, finner vi dr\u00f8mme jobben til akkurat deg! S\u00f8knader behandles l\u00f8pende. S\u00e5 send inn din s\u00f8knad idag.</em></p>\n",
+                "applicationdue": "Snarest",
+                "applicationemail": "obf@keepers.no",
+                "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=134839797",
+                "author": "Keepers AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396064",
+                "employer": "Keepers AS",
+                "employerdescription": "<p>Keepers AS bemanner og rekrutterer fagpersonell og spesialister til hele Norge. Keepers leverer raske, fleksible og kostnadseffektive l\u00f8sninger til gode kunder \u00e5r etter \u00e5r. V\u00e5re dyktige medarbeidere ute p\u00e5 oppdrag har skapt grunnlaget for den vekst og suksess vi opplever. Keepers er mer enn et navn -- det er et l\u00f8fte. En stor andel av de som arbeider for Keepers ender opp med fast ansettelse hos v\u00e5re kunder, eller som fast ansatt hos Keepers. Hvorfor har vi gode folk? Erfaring og kvalitetssikring er svaret. Vi tar ingen sjanser p\u00e5 vegne av v\u00e5re kunder.</p>\n<p>Fagfolk med kunnskap og stolthet</p>\n",
+                "engagementtype": "Prosjekt",
+                "extent": "Heltid",
+                "externalref": "134839797",
+                "industry": "Bygg og anlegg",
+                "location": "Lysaker",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/1509706837/iad_1411003309824713438logo_keepers.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/1509706837/iad_7375551445382984493coverbilde_facebook_logo_original4.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "4",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396064},{\"label\":\"Vaktmester\",\"score\":0.6396064},{\"label\":\"Smed\",\"score\":0.6396064},{\"label\":\"Hjelpearbeider innen bygg\",\"score\":0.5793044}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-26T08:54:00.000Z",
+                "sourceurl": "https://www.finn.no/134839797",
+                "starttime": "Etter avtale"
+            },
+            "published": "2019-01-08T01:31:17.183",
+            "publishedByAdmin": null,
+            "reference": "134839797",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Vi trenger industri elektrikere",
+            "updated": "2019-01-08T01:31:44.242",
+            "updatedBy": "pam-ad",
+            "uuid": "d4df9664-40a2-4d8c-a459-6c1598fc6a65"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 9131,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": "System",
+                "status": "DONE"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.11",
+                    "description": null,
+                    "id": 4661,
+                    "name": "Elmont\u00f8r",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [
+                {
+                    "email": null,
+                    "id": 63231,
+                    "name": "K\u00e5re Hansen, Salgs - og Personalkonsulent, <a href=\"mailto:kaarehansen@verto.no\">kaarehansen@verto.no</a>, +4748095024",
+                    "phone": null,
+                    "role": null,
+                    "title": null
+                }
+            ],
+            "created": "2018-11-22T15:08:06.515",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2018-11-28T01:00:00",
+            "firstPublished": false,
+            "id": 10944,
+            "location": {
+                "address": null,
+                "city": "FOSNAV\u00c5G",
+                "country": "NORGE",
+                "county": "M\u00d8RE OG ROMSDAL",
+                "latitude": null,
+                "longitude": null,
+                "municipal": "HER\u00d8Y (M\u00d8RE OG ROMSDAL)",
+                "municipalCode": "1515",
+                "postalCode": "6090"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "FOSNAV\u00c5G",
+                    "country": "NORGE",
+                    "county": "M\u00d8RE OG ROMSDAL",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "HER\u00d8Y (M\u00d8RE OG ROMSDAL)",
+                    "municipalCode": "1515",
+                    "postalCode": "6090"
+                }
+            ],
+            "mediaList": [],
+            "medium": "NAV Servicesenter",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "adtext": "<p>Elektrikere s\u00f8kes for kunde av Verto</p>\n<p>Vi s\u00f8ker etter elektrikere for b\u00e5de prosjektansettelser og til faste stillinger. B\u00e5de erfarne og nyutdannede oppfordres til \u00e5 s\u00f8ke.<br />\nSpennende stillinger med varierte arbeidsoppgaver.</p>\n<p>Kvalifikasjoner:</p>\n<p>fagbrev gr L<br />\nerfaring etter fagbrev en fordel, men ikke et krav<br />\nserviceorientert</p>\n<p>Arbeidsoppgaver:</p>\n<p>installasjon bolig/n\u00e6ring/industri</p>\n<p>Passer ikke denne stillingen til din erfaring/utdanning kan du uansett sende din CV til oss og fortelle hva du \u00f8nsker \u00e5 jobbe med.</p>\n<p>Verto har en omfattende kundebase innen flere fagfelt og bransjer, som kan v\u00e6re p\u00e5 utkikk etter medarbeidere med din bakgrunn.<br />\nLes mer og registrer CV p\u00e5 <a href=\"http://www.verto.no\" rel=\"nofollow\">www.verto.no</a></p>\n<p><a href=\"https://apply.recman.no/job_post.php?id&#61;74399&amp;path&#61;nav\" rel=\"nofollow\">S\u00f8k p\u00e5 stillingen</a></p>\n",
+                "applicationdue": "2018-11-28T01:00",
+                "classification_input_source": "jobtitle",
+                "classification_styrk08_score": "0.94618475",
+                "employer": "Verto Norge AS",
+                "employerdescription": "<p>VERTO NORGE AS er et bemanningsbyr\u00e5 lokalisert p\u00e5 Sunnm\u00f8re. Vi samarbeider med store og sm\u00e5 bedrifter over hele landet, og leverer innen alle bransjer og fagomr\u00e5der. Vi opplever til stadighet \u00e5 finne medarbeidere til v\u00e5re kunder fra v\u00e5r egen medarbeiderdatabase. Registrer deg hos oss!</p>\n<p>VERTO NORWAY AS is a staffing agency located on the west coast of Norway.<br />\nVerto cooperates with businesses large and small across the country of Norway. \u00bfWe deliver workers to all industries and disciplines, and help companies to find both Norwegian and foreign labor.</p>\n",
+                "employerhomepage": "www.verto.no/",
+                "engagementtype": "Engasjement",
+                "extent": "Heltid",
+                "jobtitle": "Elektriker",
+                "location": "Volda \u00d8rsta",
+                "positioncount": "2",
+                "salary": "L\u00f8nn etter avtale",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.93937075},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.69572157},{\"label\":\"Skipselektriker\",\"score\":0.63100046},{\"label\":\"Hjelpemont\u00f8r av elektriske komponenter\",\"score\":0.63092935},{\"label\":\"Elektrikerl\u00e6rling\",\"score\":0.6308081}]",
+                "sector": "Ikke oppgitt"
+            },
+            "published": "2018-11-03T01:00:00",
+            "publishedByAdmin": null,
+            "reference": "9913429",
+            "source": "stillingsolr",
+            "status": "INACTIVE",
+            "title": "Elektrikere",
+            "updated": "2018-11-29T01:31:32.723",
+            "updatedBy": "pam-ad",
+            "uuid": "df8b52ec-e064-4b74-b8fc-564595e3d3b8"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10201,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": null,
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "mr@people.no",
+                    "id": 321017,
+                    "name": "Merete Ront\u00e9n",
+                    "phone": "+47 920 36 663",
+                    "role": null,
+                    "title": "Daglig leder"
+                },
+                {
+                    "email": "bn@people.no",
+                    "id": 321018,
+                    "name": "Bj\u00f8rn Nykmark",
+                    "phone": "+47 958 30 972",
+                    "role": null,
+                    "title": "R\u00e5dgiver"
+                }
+            ],
+            "created": "2018-11-24T07:17:58.626",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": null,
+            "expires": "2019-01-04T22:59:00",
+            "firstPublished": false,
+            "id": 12336,
+            "location": {
+                "address": null,
+                "city": "OSLO",
+                "country": "NORGE",
+                "county": "OSLO",
+                "latitude": "59.88979721069336",
+                "longitude": "10.811100006103516",
+                "municipal": "OSLO",
+                "municipalCode": "0301",
+                "postalCode": "0680"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "OSLO",
+                    "country": "NORGE",
+                    "county": "OSLO",
+                    "latitude": "59.88979721069336",
+                    "longitude": "10.811100006103516",
+                    "municipal": "OSLO",
+                    "municipalCode": "0301",
+                    "postalCode": "0680"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "0680 Oslo",
+                "adtext": "<p><strong>GK Elektro leverer alt innen elektro til alle typer bygg, samt industri og datasentre. Vi har egne fagmilj\u00f8er innen service og prosjekter i \u00d8stfold, Romerike, Oslo, Asker, Hamar, Kongsvinger, Lillehammer, Bergen, Trondheim og Troms\u00f8. Selskapet er del av GK Gruppen som omsetter for over 6 milliarder kroner og har mer enn 3300 ansatte i Skandinavia.</strong></p>\n<h3><strong>\u00d8nsker du utfordrende og spennende oppgaver i et solid flerfaglig firma?</strong></h3>\n<p><em>GK Elektro AS sine kontorer i Oslo ligger i Ryenstubben 12. Her er vi samlokalisert med de \u00f8vrige GK selskapene GK Inneklima, GK R\u00f8r og GK Sikkerhet. Milj\u00f8huset i Oslo er GKs hovedkontor og v\u00e5re to serviceavdelinger p\u00e5 elektro teller tilsammen 50 ansatte.</em></p>\n<h3><strong>Vi vil n\u00e5 satse p\u00e5 deg som elektriker til v\u00e5rt entreprise-team i Akershus og Oslo</strong></h3>\n<ul><li>Trives du godt som elektriker men ser at det ikke er muligheter der du er?</li><li>Har du jobbet noen \u00e5r som elektriker, og \u00f8nsker \u00e5 komme til et firma med gode karrieremuligheter?</li><li>Vil du v\u00e6re en del av et profesjonelt flerfaglig milj\u00f8, med hyggelige medarbeidere og et veldig godt samhold?</li><li>Ser du 12 m\u00e5neder frem i tid, og ser at det ikke er noe der, som du ikke har gjort millioner av ganger f\u00f8r?</li><li>Vil du ha mulighet til \u00e5 vise frem dine ferdigheter og f\u00e5 utvikle deg i et firma i sterk vekst?</li></ul>\n<h3><strong>Hva tilbyr GK Elektro?</strong></h3>\n<ul><li>Et firma som investerer i videreutdanning og utviklingsmuligheter for sine ansatte</li><li>Et firma som gir deg muligheter til \u00e5 utvikle deg karrieremessig</li><li>Et firma i sterk vekst med mange spennende prosjekter</li><li>Et firma som jobber for at du skal stortrives p\u00e5 jobb</li><li>Et firma som jobber aktivt med \u00e5 v\u00e6re med i den teknologiske utviklingen</li><li>Et firma som virkelig ser deg og din innsats</li><li>Et firma som vil ha deg med p\u00e5 reisen videre</li><li>Et firma som legger stor vekt p\u00e5 et uformelt og sosialt arbeidsmilj\u00f8</li><li>Et solid firma med h\u00f8yt kvalifiserte kollegaer</li><li>Et firma som st\u00f8tter deg \u00f8konomisk hvis du \u00f8nsker \u00e5 trene og holde deg i form</li><li>Et firma som har meget gode konkurransedyktige l\u00f8nnsbetingelser</li></ul>\n<h3><strong>Kvalifik</strong> <strong>asjoner:</strong></h3>\n<ul><li>Fagbrev elektromont\u00f8r Gr. L</li><li>Erfaring fra prosjekt /- erfaring som BAS ogs\u00e5 av interesse</li><li>Kundefokusert og utadvendt</li><li>Resultatorientert</li><li>Du m\u00e5 beherske norsk, b\u00e5de muntlig og skriftlig</li><li>F\u00f8rerkort kl. B</li></ul>\n<h3><strong>Personlige egenskaper:</strong></h3>\n<ul><li>Du er stolt av yrket ditt</li><li>Du er blid, h\u00f8flig og positiv mot de du m\u00f8ter</li><li>Du trives med \u00e5 yte den beste servicen</li><li>Du er en vi kan stole p\u00e5, og som tar ansvar for dine oppgaver</li><li>Du trives med probleml\u00f8sning og er l\u00f8sningsorientert</li><li>Du vil bidra til det gode milj\u00f8et GK jobber for</li><li>Du \u00f8nsker \u00e5 v\u00e6re med p\u00e5 laget</li></ul>\n<p><strong>H\u00f8res dette b\u00e5de interessant og spennende ut? Da ser vi frem til \u00e5 h\u00f8re i fra deg!</strong></p>\n<p>Send inn en kortfattet s\u00f8knad, s\u00e5 tar vi kontakt med deg. Du kan ogs\u00e5 ringe Merete Ront\u00e9n i People of Norway as p\u00e5 tlf. 920 36 663, eller sende en epost p\u00e5 mr&#64;people.no hvis du har noen sp\u00f8rsm\u00e5l, eller for \u00e5 avtale et infom\u00f8te.</p>\n<p>Alle henvendelser behandles konfidensielt, om \u00f8nskelig ogs\u00e5 overfor v\u00e5r oppdragsgiver.<br />\nVi vil behandle s\u00f8knader fortl\u00f8pende!</p>\n",
+                "applicationdue": "Fortl\u00f8pende",
+                "applicationurl": "https://apply.recman.no/job_post.php?id=77100&path=finn",
+                "author": "People AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.63963014",
+                "employer": "GK Elektro AS",
+                "employerdescription": "<p>People er ett fullservice selskap med tjenester innen bemanning, rekruttering og konsulentutleie. People har et tyvetalls kontorer i Norge og fire kontorer i Sverige. Som organisasjon besitter People solid kunnskap om lokale forhold og dekker samtidig hele landet.</p>\n<p>I l\u00f8pet av 15 \u00e5r har vi opparbeidet et omfattende nettverk av trofaste kunder og en stor kandidatbase. Dette \u00f8ker muligheter for god match mellom kandidater og kunder.</p>\n<p>People tilbyr tjenester p\u00e5 tvers av bransjer og fagomr\u00e5der b\u00e5de i Norge og Sverige.</p>\n<p>People ? Matching great talent, whit great companies</p>\n",
+                "engagementtype": "Engasjement",
+                "extent": "Heltid",
+                "externalref": "77100",
+                "industry": "Bygg og anlegg;H\u00e5ndverkstjenester;Elektronikk",
+                "keywords": "Elektrisk Installasjon,Prosjekt og teamarbeid,Bas/Formann,Elektroarbeid,Elektro,Elektriker,Entreprise",
+                "location": "Oslo",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "10",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.63963014},{\"label\":\"Vaktmester\",\"score\":0.63963014},{\"label\":\"Smed\",\"score\":0.63963014},{\"label\":\"Hjelpearbeider innen bygg\",\"score\":0.57933307}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-12-03T11:07:00.000Z",
+                "sourceurl": "https://www.finn.no/134628697",
+                "starttime": "Fortl\u00f8pende"
+            },
+            "published": "2018-12-04T07:07:03.202",
+            "publishedByAdmin": null,
+            "reference": "134628697",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Vi vil n\u00e5 satse p\u00e5 deg som elektriker til v\u00e5rt entreprise team",
+            "updated": "2019-01-05T01:32:07.799",
+            "updatedBy": "pam-ad",
+            "uuid": "40d424bf-87e4-4ac7-ab98-028d6a48afdc"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7506,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "BRAVIDA NORGE AS AVD LILLEHAMMER ELEKTRO",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "stian.klophus@bravida.no",
+                    "id": 214001,
+                    "name": "Stian Klophus",
+                    "phone": "+47 482 83 411",
+                    "role": null,
+                    "title": "Avdelingssjef"
+                }
+            ],
+            "created": "2018-11-21T07:26:58.49",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2018-11-21T07:20:37.011",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 22,
+                "id": 8315,
+                "location": {
+                    "address": "Mesnadalsvegen 4",
+                    "city": "LILLEHAMMER",
+                    "country": "Norge",
+                    "county": "OPPLAND",
+                    "latitude": null,
+                    "longitude": null,
+                    "municipal": "LILLEHAMMER",
+                    "municipalCode": "0501",
+                    "postalCode": "2609"
+                },
+                "locationList": [
+                    {
+                        "address": "Mesnadalsvegen 4",
+                        "city": "LILLEHAMMER",
+                        "country": "Norge",
+                        "county": "OPPLAND",
+                        "latitude": null,
+                        "longitude": null,
+                        "municipal": "LILLEHAMMER",
+                        "municipalCode": "0501",
+                        "postalCode": "2609"
+                    }
+                ],
+                "mediaList": [],
+                "name": "BRAVIDA NORGE AS AVD LILLEHAMMER ELEKTRO",
+                "orgform": "BEDR",
+                "orgnr": "982953715",
+                "parentOrgnr": "987582561",
+                "properties": {
+                    "nace2": "[{\"code\":\"43.210\",\"name\":\"Elektrisk installasjonsarbeid\"}]"
+                },
+                "publicName": "BRAVIDA NORGE AS AVD LILLEHAMMER ELEKTRO",
+                "status": "ACTIVE",
+                "updated": "2018-11-21T07:20:37.011",
+                "updatedBy": "pam-ad",
+                "uuid": "2207dc91-0019-4839-b15c-38e256182a2d"
+            },
+            "expires": "2018-12-15T00:00:00",
+            "firstPublished": false,
+            "id": 8940,
+            "location": {
+                "address": "Mesnadalsveien 4",
+                "city": "LILLEHAMMER",
+                "country": "NORGE",
+                "county": "OPPLAND",
+                "latitude": "61.115440368652344",
+                "longitude": "10.455156326293945",
+                "municipal": "LILLEHAMMER",
+                "municipalCode": "0501",
+                "postalCode": "2609"
+            },
+            "locationList": [
+                {
+                    "address": "Mesnadalsveien 4",
+                    "city": "LILLEHAMMER",
+                    "country": "NORGE",
+                    "county": "OPPLAND",
+                    "latitude": "61.115440368652344",
+                    "longitude": "10.455156326293945",
+                    "municipal": "LILLEHAMMER",
+                    "municipalCode": "0501",
+                    "postalCode": "2609"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Mesnadalsveien 4,2609 Lillehammer",
+                "adtext": "<p><em>Er du glad i faget ditt og \u00f8nsker en stilling i et stort og solid selskap? Da kan Bravida v\u00e6re rett arbeidsgiver for deg!</em></p>\n<p>I forbindelse med \u00f8kende oppdragsmengde og et \u00f8nske om vekst i avdelingen s\u00f8ker vi etter elektrikere til v\u00e5r avdeling Lillehammer Elektro. Avdelingen har i dag 19 medarbeidere og en omsetning p\u00e5 ca. 35 millioner kroner. Oppdragene er i hovedsak i omr\u00e5det Lillehammer og omegn. Avdelingen har et bredt spekter av kunder, og utf\u00f8rer b\u00e5de tradisjonell service og mindre prosjekter. Vi har kunder innen n\u00e6ring, industri, borettslag, sykehus og privatpersoner. Her f\u00e5r du alle muligheter som fagperson til \u00e5 utvikle deg!</p>\n<h3>Arbeidsoppgaver</h3>\n<p>Som mont\u00f8r i Bravida arbeider du selvstendig i ulike type oppdrag, for bedrifts- og privatmarkedet. I jobben f\u00e5r du b\u00e5de planlegge, samordne og utf\u00f8re oppdrag. Arbeidet inneb\u00e6rer b\u00e5de teknisk probleml\u00f8sning og kontakt med kunder. Du kommer ogs\u00e5 til \u00e5 v\u00e6re ansvarlig for at ethvert oppdrag er i tr\u00e5d med v\u00e5re h\u00f8ye krav til kvalitet og sikkerhet. Du vil ha f\u00f8lgende arbeidsoppgaver:</p>\n<ul><li>Gjennomf\u00f8ring av installasjoner p\u00e5 en effektiv og god m\u00e5te</li><li>Utf\u00f8re oppdrag faglig og forskriftsmessig riktig</li><li>Utf\u00f8re ulike serviceoppdrag</li><li>Utredninger/feils\u00f8king av tekniske systemer</li><li>Mersalg mot kunder</li><li>Dokumentasjon av oppdrag</li><li>Kommunikasjon med kunder og n\u00e6rmeste leder</li><li>Vise ansvar for egen og andres sikkerhet - ha ansvar for god HMS-kultur</li></ul>\n<h3>Kvalifikasjoner</h3>\n<ul><li>Fagbrev elektriker gr. L</li><li>F\u00f8rerkort klasse B</li><li>Interesse for elektrofaget og salg/kunderservice</li><li>God norsk muntlig og skriftlig formuleringsevne</li></ul>\n<h3>Personlige egenskaper</h3>\n<ul><li>Du har faglig stolthet og holder kunnskap og evnene dine ved like</li><li>Du har gode kommunikasjonsevner p\u00e5 norsk</li><li>Du er selvstendig og jobber strukturert og systematisk</li><li>Du er serviceinnstilt og l\u00f8sningsorientert</li><li>Du er p\u00e5litelig og ansvarsbevisst</li><li>Du samarbeider godt og er en lagspiller</li></ul>\n<h3>Vi tilbyr</h3>\n<ul><li>En stilling i et solid selskap med h\u00f8yt kvalifiserte kollegaer</li><li>Gode muligheter for faglig og personlig videreutvikling</li><li>Konkurransedyktige l\u00f8nnsbetingelser</li><li>Meget gunstige pensjons- og forsikringsordninger</li><li>Gode systemer som hjelper deg i arbeidshverdagen</li><li>Et uformelt og sosialt arbeidsmilj\u00f8</li></ul>\n<h3>Interessert?</h3>\n<p>Vi ser frem til \u00e5 motta din s\u00f8knad! S\u00f8knader behandles <strong>fortl\u00f8pende</strong> . Vil du ha et innblikk i v\u00e5r arbeidshverdag? F\u00f8lg Bravida Norge p\u00e5 sosiale medier.</p>\n",
+                "applicationdue": "15.12.2018",
+                "applicationurl": "https://www.bravida.no/jobbe-hos-oss/ledige-stillinger/?rmpage=job&rmjob=3766&ref=http://www.finn.no",
+                "author": "Bravida Norge AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "Bravida Norge AS",
+                "employerdescription": "<p>Bravida er Nordens ledende leverand\u00f8r av service- og installasjonstjenester. Vi tilbyr spesialkompetanse innen teknikkomr\u00e5dene elektro, r\u00f8r og ventilasjon. P\u00e5 disse teknikkomr\u00e5dene kan vi ta ansvar for hele installasjonsprosessen, fra design og prosjektering til installasjon og service. Bravida tilbyr ogs\u00e5 tjenester innenfor spesialomr\u00e5der som sikkerhet, sprinkleranlegg, kj\u00f8ling, elkraft og teknisk bygningsdrift.</p>\n<p>Vi kombinerer det store selskapets ressurser med den lokale bedriftens fleksibilitet og n\u00e6rv\u00e6r. Totalt har Bravida over 11 000 medarbeidere, i Sverige, Norge, Danmark og Finland. I Norge har Bravida over 60 avdelinger og over 3000 ansatte. V\u00e5r ambisjon er \u00e5 v\u00e6re en fremtidsrettet bedrift som leder an og bidrar til \u00e5 videreutvikle bransjen. Les mer om oss p\u00e5 v\u00e5re hjemmesider www.bravida.no.</p>\n",
+                "employerhomepage": "http://www.bravida.no",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "3766",
+                "industry": "Bygg og anlegg;Elektronikk;H\u00e5ndverkstjenester",
+                "keywords": "elektriker,elektro,elektromont\u00f8r,servicemont\u00f8r,prosjektmont\u00f8r",
+                "location": "Lillehammer",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/1536398680/iad_4722737567766571242bravida.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/1536398680/iad_8510229474200309095bravida.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "2",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-20T10:45:00.000Z",
+                "sourceurl": "https://www.finn.no/134417379"
+            },
+            "published": "2018-12-15T01:31:13.8",
+            "publishedByAdmin": null,
+            "reference": "134417379",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Bravida i Lillehammer s\u00f8ker flere elektrikere",
+            "updated": "2018-12-15T01:32:13.026",
+            "updatedBy": "pam-ad",
+            "uuid": "56b01bb0-2aaa-4589-8e7c-73f4f0a09258"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 7558,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "PERSONALHUSET SERVICE MANAGEMENT AS AVD STAVANGER",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "eivind.andersen@personalhuset-sg.com",
+                    "id": 147325,
+                    "name": "Eivind Andersen",
+                    "phone": "+47 940 93 429",
+                    "role": null,
+                    "title": "R\u00e5dgiver"
+                }
+            ],
+            "created": "2018-11-21T07:26:59.391",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2018-11-21T07:20:17.275",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 10,
+                "id": 8229,
+                "location": {
+                    "address": "Luramyrveien 75",
+                    "city": "SANDNES",
+                    "country": "NORGE",
+                    "county": "ROGALAND",
+                    "latitude": "58.88572480692801",
+                    "longitude": "5.7265536209633146",
+                    "municipal": "SANDNES",
+                    "municipalCode": "1102",
+                    "postalCode": "4313"
+                },
+                "locationList": [
+                    {
+                        "address": "Luramyrveien 75",
+                        "city": "SANDNES",
+                        "country": "NORGE",
+                        "county": "ROGALAND",
+                        "latitude": "58.88572480692801",
+                        "longitude": "5.7265536209633146",
+                        "municipal": "SANDNES",
+                        "municipalCode": "1102",
+                        "postalCode": "4313"
+                    }
+                ],
+                "mediaList": [],
+                "name": "PERSONALHUSET SERVICE MANAGEMENT AS AVD STAVANGER",
+                "orgform": "BEDR",
+                "orgnr": "991053778",
+                "parentOrgnr": "913641590",
+                "properties": {
+                    "nace2": "[{\"code\":\"78.200\",\"name\":\"Utleie av arbeidskraft\"},{\"code\":\"70.100\",\"name\":\"Hovedkontortjenester\"}]"
+                },
+                "publicName": "PERSONALHUSET SERVICE MANAGEMENT AS AVD STAVANGER",
+                "status": "ACTIVE",
+                "updated": "2019-10-08T07:06:29.23469",
+                "updatedBy": "pam-ad",
+                "uuid": "ed53c475-dcf9-47bf-826b-f92ee1ef3917"
+            },
+            "expires": "2018-12-13T22:59:00",
+            "firstPublished": false,
+            "id": 8992,
+            "location": {
+                "address": null,
+                "city": "SANDNES",
+                "country": "NORGE",
+                "county": "ROGALAND",
+                "latitude": "58.872962951660156",
+                "longitude": "5.721339702606201",
+                "municipal": "SANDNES",
+                "municipalCode": "1102",
+                "postalCode": "4313"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "SANDNES",
+                    "country": "NORGE",
+                    "county": "ROGALAND",
+                    "latitude": "58.872962951660156",
+                    "longitude": "5.721339702606201",
+                    "municipal": "SANDNES",
+                    "municipalCode": "1102",
+                    "postalCode": "4313"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "4313 Sandnes",
+                "adtext": "<p>Vi s\u00f8ker elektriker til offshore og onshore arbeid</p>\n<h2>Arbeidsoppgaver</h2>\n<p>Serviceoppdrag onshore og offshore<br />\nKontroll og feils\u00f8king<br />\nDiverse monteringsarbeid</p>\n<h2>\u00d8nskede kvalifikasjoner</h2>\n<p>Fagbrev elektriker<br />\nErfaring fra elektrikerarbeid offshore<br />\nGrunnleggende sikkerhetskurs</p>\n<h2>Personlige egenskaper</h2>\n<p>Punktlig og n\u00f8yaktig<br />\nEvnen til \u00e5 jobbe b\u00e5de selvstendig og i team<br />\nGod holdning til HMS<br />\nStrukturert og l\u00f8sningsorientert</p>\n<h2>Vi tilbyr</h2>\n<p>Konkurransedyktige betingelser<br />\nGode utviklingsmuligheter i en voksende bedriftFor mer informasjon om stillingen ta kontakt med Eivind Andersen p\u00e5 Tlf: &#43;47 940 934 29/ E-mail: eivind.andersen&#64;personalhuset-sg.com</p>\n<p>For \u00e5 s\u00f8ke p\u00e5 stillingen se www.personalhuset.no, under ledige stillinger Rogaland</p>\n",
+                "applicationlabel": "26663",
+                "applicationurl": "http://www.personalhuset.no/webtemp-stillinger/?src=https://secure.webtemp.no/WebtempCVPortal/stillingsingle.aspx?k%3D41%26id_utleie%3D3031073",
+                "author": "Personalhuset Staffing Group",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.6396993",
+                "employer": "Personalhuset, Stavanger",
+                "employerdescription": "<p>F\u00d8LG OSS P\u00c5 FACEBOOK - https://www.facebook.com/personalhusetstavanger/</p>\n",
+                "employerhomepage": "http://www.personalhuset.no",
+                "engagementtype": "Vikariat",
+                "extent": "Heltid",
+                "externalref": "20002666301",
+                "industry": "Olje og gass",
+                "location": "Sandnes",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/1117069714/iad_548791157859928360personalhuset_logo_gr_nn_2018.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/1117069714/iad_1699059966769665498personalhuset_logo_gr_nn_2018.png",
+                "occupation": "H\u00e5ndverker",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.6396993},{\"label\":\"Vaktmester\",\"score\":0.6396993},{\"label\":\"Smed\",\"score\":0.6396993},{\"label\":\"Hjelpearbeider VVS\",\"score\":0.5794155}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-29T00:57:00.000Z",
+                "sourceurl": "https://www.finn.no/132985179",
+                "starttime": "01.12.2018"
+            },
+            "published": "2018-12-02T07:05:02.705",
+            "publishedByAdmin": null,
+            "reference": "132985179",
+            "source": "FINN",
+            "status": "STOPPED",
+            "title": "Elektriker Gr L",
+            "updated": "2018-12-02T07:05:12.495",
+            "updatedBy": "pam-ad",
+            "uuid": "0cbb4043-3b70-41c6-8936-c35d3258cc8a"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10734,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "STOLT AS AVD OSLO",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7411.12",
+                    "description": null,
+                    "id": 4662,
+                    "name": "Elektroinstallat\u00f8r",
+                    "parentId": 4650
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "ki@stoltbemanning.no",
+                    "id": 328688,
+                    "name": "Kenan Ibrahimefendic",
+                    "phone": "+47 908 58 485",
+                    "role": null,
+                    "title": "HR-Recruitment Manager Installation"
+                }
+            ],
+            "created": "2018-11-27T07:15:17.243",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2019-01-08T01:31:08.219",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 532,
+                "id": 42238,
+                "location": {
+                    "address": "Grensesvingen 6",
+                    "city": "OSLO",
+                    "country": "NORGE",
+                    "county": "OSLO",
+                    "latitude": "59.91340258647728",
+                    "longitude": "10.799463988332821",
+                    "municipal": "OSLO",
+                    "municipalCode": "0301",
+                    "postalCode": "0663"
+                },
+                "locationList": [
+                    {
+                        "address": "Grensesvingen 6",
+                        "city": "OSLO",
+                        "country": "NORGE",
+                        "county": "OSLO",
+                        "latitude": "59.91340258647728",
+                        "longitude": "10.799463988332821",
+                        "municipal": "OSLO",
+                        "municipalCode": "0301",
+                        "postalCode": "0663"
+                    }
+                ],
+                "mediaList": [],
+                "name": "STOLT AS AVD OSLO",
+                "orgform": "BEDR",
+                "orgnr": "988851841",
+                "parentOrgnr": "912539075",
+                "properties": {
+                    "nace2": "[{\"code\":\"78.200\",\"name\":\"Utleie av arbeidskraft\"}]"
+                },
+                "publicName": "STOLT AS AVD OSLO",
+                "status": "ACTIVE",
+                "updated": "2019-11-02T01:31:11.045845",
+                "updatedBy": "pam-ad",
+                "uuid": "29397eeb-327c-4fc7-910f-cd492436f6f7"
+            },
+            "expires": "2019-01-07T22:59:00",
+            "firstPublished": false,
+            "id": 12984,
+            "location": {
+                "address": "Grensesvingen 6",
+                "city": "OSLO",
+                "country": "NORGE",
+                "county": "OSLO",
+                "latitude": "59.916500091552734",
+                "longitude": "10.800298690795898",
+                "municipal": "OSLO",
+                "municipalCode": "0301",
+                "postalCode": "0663"
+            },
+            "locationList": [
+                {
+                    "address": "Grensesvingen 6",
+                    "city": "OSLO",
+                    "country": "NORGE",
+                    "county": "OSLO",
+                    "latitude": "59.916500091552734",
+                    "longitude": "10.800298690795898",
+                    "municipal": "OSLO",
+                    "municipalCode": "0301",
+                    "postalCode": "0663"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "Grensesvingen 6,0663 Oslo",
+                "adtext": "<p>Vi s\u00f8ker etter stolte elektrikere som elsker faget sitt, og som vil v\u00e6re med p\u00e5 \u00e5 bygge Norge videre sammen med oss. STOLT har mange spennende prosjekter innenfor nybygg av boliger, n\u00e6ringslokaler, og serviceoppdrag i Oslo og omegn.</p>\n<p>Som STOLT blir du en del av et unikt team som jobber for \u00e5 ivareta dine interesser, og som s\u00f8rger for at du f\u00e5r en riktig karriereutvikling som du s\u00f8ker. Gjennom STOLT sitt onboarding program s\u00f8rger vi for at du f\u00e5r god oppstart, og at alt er tilrettelagt for at du skal kunne prestere best mulig. Du vil f\u00e5 en dedikert personalkonsulent som vil v\u00e6re tilgjengelig for deg, hjelp med bolig om du trenger det, og gratis kursing.</p>\n<p><strong>Vi tilbyr</strong></p>\n<ul><li>Konkurransedyktige betingelser</li><li>Fast ansettelse</li><li>L\u00f8nn hver 14 dag</li><li>Jobbe med faglig sterke kollegaer</li><li>Spennende prosjekter hos anerkjente elektroentrepren\u00f8rer</li><li>Fleksibel hverdag</li></ul>\n<p><strong>\u00d8nskede kvalifikasjoner</strong></p>\n<ul><li>Fagbrev gr.L eller godkjent DSB</li><li>Kommunikasjonsevner p\u00e5 norsk eller engelsk</li><li>Minimum 2 \u00e5rs arbeidserfaring</li></ul>\n<p><strong>Personlige egenskaper</strong></p>\n<ul><li>Du har faglig stolthet</li><li>H\u00f8y arbeidsmoral</li><li>Gode samarbeidsegenskaper</li><li>N\u00f8yaktig og punktlig</li><li>Ryddig og strukturer</li><li>Serviceinnstilt og l\u00f8sningsorientert</li></ul>\n<p>Kjenner du deg igjen i beskrivelsen, og kan STOLT tilby deg nye karrieremuligheter? S\u00f8k p\u00e5 stillingen i dag eller send oss en mail eller ring oss for en hyggelig prat.</p>\n",
+                "applicationdue": "Etter avtale",
+                "applicationurl": "https://apply.recman.no/job_post.php?id=77213&path=finn",
+                "author": "Stolt AS",
+                "classification_input_source": "title",
+                "classification_styrk08_score": "0.34318605",
+                "employer": "Stolt AS",
+                "employerdescription": "<p>STOLT er en markedsutfordrer i sterk vekst hvor det legges vekt p\u00e5 ryddighet i alle ledd og et godt sosialt milj\u00f8. Sm\u00e5 og store superhelter innen fagomr\u00e5dene bygg og anlegg, industri, bilfag, lager, transport og merkantile fag. Geografisk dekker vi oppdrag i \u00f8st, s\u00f8r, vest og midt-Norge. Vi har v\u00e6rt der ute for v\u00e5re kunder og kandidater siden 2005, er Revidert Arbeidsgiver gjennom NHO Service og kvalifisert i StartBANK. Vi i STOLT brenner for utvikling, engasjement, arbeidsglede og no bullshit policy . Personalutleie og rekruttering til faste stillinger. Pr\u00f8v oss du ogs\u00e5 da vel!</p>\n",
+                "employerhomepage": "http://www.stoltbemanning.no",
+                "engagementtype": "Fast",
+                "extent": "Heltid",
+                "externalref": "77213",
+                "industry": "Bygg og anlegg",
+                "keywords": "Elektriker,DSB",
+                "location": "Oslo",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/2025191758/iad_9150310790591454364stolt.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/2025191758/iad_5375536148992778624stolt.png",
+                "positioncount": "5",
+                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.34318605},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.1210943},{\"label\":\"Automatiker\",\"score\":0.119198844},{\"label\":\"Kuldemont\u00f8r\",\"score\":0.119170226},{\"label\":\"Installasjonselektriker\",\"score\":0.11895653}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-11-26T15:01:00.000Z",
+                "sourceurl": "https://www.finn.no/134869229",
+                "starttime": "Etter avtale"
+            },
+            "published": "2019-01-08T01:31:07.963",
+            "publishedByAdmin": null,
+            "reference": "134869229",
+            "source": "FINN",
+            "status": "INACTIVE",
+            "title": "Har vi dr\u00f8mmejobben din som elektriker?",
+            "updated": "2019-01-08T01:31:43.446",
+            "updatedBy": "pam-ad",
+            "uuid": "c2e23664-89ba-4232-8e6d-3c43072d1400"
+        },
+        {
+            "activationOnPublishingDate": false,
+            "administration": {
+                "comments": null,
+                "id": 10258,
+                "navIdent": null,
+                "remarks": [],
+                "reportee": null,
+                "status": "RECEIVED"
+            },
+            "businessName": "PEOPLE4YOU BEMANNING STAVANGER",
+            "categoryList": [
+                {
+                    "categoryType": "STYRK08NAV",
+                    "code": "7221",
+                    "description": "Smeder trekker tr\u00e5d, hamrer og smir stolper, stenger, blokker og plater av jern, st\u00e5l eller annet metall for \u00e5 lage og reparere verkt\u00f8y, gjenstander, redskaper til landbruk mv.",
+                    "id": 4467,
+                    "name": "Smeder",
+                    "parentId": 4466
+                }
+            ],
+            "contactList": [
+                {
+                    "email": "oystein.heier@people4you.no",
+                    "id": 227492,
+                    "name": "\u00d8ystein Heier",
+                    "phone": "+47 913 93 079",
+                    "role": null,
+                    "title": "Markedssjef"
+                }
+            ],
+            "created": "2018-11-24T07:17:59.627",
+            "createdBy": "pam-ad",
+            "deactivatedByExpiry": false,
+            "employer": {
+                "contactList": [],
+                "created": "2018-11-21T07:20:19.141",
+                "createdBy": "pam-ad",
+                "deactivated": null,
+                "employees": 4,
+                "id": 8239,
+                "location": {
+                    "address": "Reidar Berges gate 9",
+                    "city": "STAVANGER",
+                    "country": "NORGE",
+                    "county": "ROGALAND",
+                    "latitude": "58.970619430993786",
+                    "longitude": "5.743910229924884",
+                    "municipal": "STAVANGER",
+                    "municipalCode": "1103",
+                    "postalCode": "4013"
+                },
+                "locationList": [
+                    {
+                        "address": "Reidar Berges gate 9",
+                        "city": "STAVANGER",
+                        "country": "NORGE",
+                        "county": "ROGALAND",
+                        "latitude": "58.970619430993786",
+                        "longitude": "5.743910229924884",
+                        "municipal": "STAVANGER",
+                        "municipalCode": "1103",
+                        "postalCode": "4013"
+                    }
+                ],
+                "mediaList": [],
+                "name": "PEOPLE4YOU BEMANNING STAVANGER",
+                "orgform": "BEDR",
+                "orgnr": "996294048",
+                "parentOrgnr": "996286592",
+                "properties": {
+                    "nace2": "[{\"code\":\"78.200\",\"name\":\"Utleie av arbeidskraft\"}]"
+                },
+                "publicName": "PEOPLE4YOU BEMANNING STAVANGER",
+                "status": "ACTIVE",
+                "updated": "2019-08-26T07:02:04.098806",
+                "updatedBy": "pam-ad",
+                "uuid": "e1223fc6-3ccd-4e7e-9dc3-5352ac6578c5"
+            },
+            "expires": "2019-01-04T22:59:00",
+            "firstPublished": false,
+            "id": 12393,
+            "location": {
+                "address": null,
+                "city": "STAVANGER",
+                "country": "NORGE",
+                "county": "ROGALAND",
+                "latitude": "58.971004486083984",
+                "longitude": "5.743002891540527",
+                "municipal": "STAVANGER",
+                "municipalCode": "1103",
+                "postalCode": "4013"
+            },
+            "locationList": [
+                {
+                    "address": null,
+                    "city": "STAVANGER",
+                    "country": "NORGE",
+                    "county": "ROGALAND",
+                    "latitude": "58.971004486083984",
+                    "longitude": "5.743002891540527",
+                    "municipal": "STAVANGER",
+                    "municipalCode": "1103",
+                    "postalCode": "4013"
+                }
+            ],
+            "mediaList": [],
+            "medium": "FINN",
+            "privacy": "SHOW_ALL",
+            "properties": {
+                "address": "4013 Stavanger",
+                "adtext": "<p>V\u00e5r kunde s\u00f8ker elektrikere for st\u00f8rre industrioppdrag fra midten av desember.<br />\nKabeltrekking, bygging av kableskinner, montering str\u00f8mskinner</p>\n<h2>Arbeidstid</h2>\n<p>Dagtid</p>\n<h2>\u00d8nskede kvalifikasjoner</h2>\n<p>Fagbrev</p>\n<h2>Personlige egenskaper</h2>\n<ul><li>Effektiv og n\u00f8yaktig</li><li>Pliktoppfyllende</li><li>Faglig stolthet / yrkesstolthet.</li><li>HMS og Kvalitetsbevisst</li></ul>\n<p>Spr\u00e5k: Norsk/engelskSend s\u00f8knad i dag!</p>\n",
+                "applicationdue": "S\u00f8kere blir vurdert fortl\u00f8pende",
+                "applicationlabel": "430941",
+                "applicationurl": "https://www.people4you.no/webtemp/?id=3004407",
+                "author": "People4you Bemanning AS",
+                "classification_input_source": "occupation",
+                "classification_styrk08_score": "0.63963014",
+                "employer": "People4you - Stavanger",
+                "employerdescription": "<p>People4you er et av landets raskest voksende bemannings- og rekrutteringsselskap. Vi l\u00f8ser bemanningsutfordringene for n\u00e6ringslivet. V\u00e5re r\u00e5dgivere har solid erfaring fra bransjen og benytter DNV-sertifiserte verkt\u00f8y i sitt arbeid. Vi har kontorer i Oslo,Askim, Bergen, Romerike, Ski og Stavanger. Vi har spesialistselskaper innenfor IT og Bygg &amp; Anlegg, der vi tilbyr h\u00f8yt kvalifiserte konsulenter innenfor bemanning og rekruttering.</p>\n",
+                "employerhomepage": "http://www.people4you.no",
+                "engagementtype": "Vikariat",
+                "extent": "Heltid",
+                "externalref": "20043094101",
+                "industry": "H\u00e5ndverkstjenester",
+                "keywords": "Elektriker,Electrician,Industrielektriker",
+                "location": "Stavanger",
+                "logolisting": "https://images.finncdn.no/mmo/logo/result/390277821/iad_7093793849083468455people4you.png",
+                "logomain": "https://images.finncdn.no/mmo/logo/object/390277821/iad_4169011619571226369people4you.png",
+                "occupation": "H\u00e5ndverker",
+                "positioncount": "5",
+                "searchtags": "[{\"label\":\"Grunnarbeider\",\"score\":0.63963014},{\"label\":\"Vaktmester\",\"score\":0.63963014},{\"label\":\"Smed\",\"score\":0.63963014},{\"label\":\"Hjelpearbeider innen bygg\",\"score\":0.57933307}]",
+                "sector": "Privat",
+                "sourceupdated": "2018-12-15T00:20:00.000Z",
+                "sourceurl": "https://www.finn.no/134649750",
+                "starttime": "Medio Desember"
+            },
+            "published": "2018-12-15T07:07:45.859",
+            "publishedByAdmin": null,
+            "reference": "134649750",
+            "source": "FINN",
+            "status": "STOPPED",
+            "title": "Elektrikere s\u00f8kes! - We seek electricians!",
+            "updated": "2018-12-18T07:17:00.014",
+            "updatedBy": "pam-ad",
+            "uuid": "d45c5801-2445-4361-b637-c382be3291a1"
+        }
+    ],
+    "empty": false,
+    "first": false,
+    "last": false,
+    "number": 2,
+    "numberOfElements": 20,
+    "pageable": {
+        "offset": 40,
+        "pageNumber": 2,
+        "pageSize": 20,
+        "paged": true,
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+        },
+        "unpaged": false
+    },
+    "size": 20,
+    "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+    },
+    "totalElements": 1517,
+    "totalPages": 76
+}

@@ -1,5 +1,5 @@
 pam-ad:
-  url: https://pam-ad.nais.oera-q.local/api/v1/ads
+  url: http://localhost:8081/api/v1/ads
 spring:
   main:
     allow-bean-definition-overriding: true
