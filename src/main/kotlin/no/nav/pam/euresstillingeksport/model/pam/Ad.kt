@@ -25,7 +25,7 @@ data class Ad(
         val expires: LocalDateTime?,
         val employer: Employer?,
         val categoryList: List<Category>,
-        val administration: Administration,
+        val administration: Administration?,
         val publishedByAdmin: String?,
         val businessName: String?,
         val firstPublished: Boolean,
