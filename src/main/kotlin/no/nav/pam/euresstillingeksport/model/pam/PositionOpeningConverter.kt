@@ -41,10 +41,10 @@ private fun Ad.toPositionProfile(): PositionProfile {
                     )
             ),
             positionTitle = title ?: "" ,
-            positionLocation = null,// TODO null for now - PositionLocation,
-            positionOrganization = null,// TODO null for now -  PositionOrganization,
+            positionLocation = locationList.map { it.toPositionLocation() },
+            positionOrganization = employer.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toInt() ?: 1,
-            jobCategoryCode = null,// TODO null for now -  JobCategoryCode,
+            jobCategoryCode = toJobCategoryCode(),
             positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key] ?: ""),
             positionQualifications = null, // We do not have these data in a structured format
             positionFormattedDescription = PositionFormattedDescription(properties[PropertyMapping.positionCount.key] ?: ""),
@@ -54,6 +54,12 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key] ?: ""),
             applicationCloseDate = expires!!
     )
+}
+
+fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
+    return categoryList.filter { it.categoryType?.equals("STYRK08NAV", ignoreCase = true) ?: false }
+            .map { JobCategoryCode(code = it.code ?: "INGEN") }
+
 }
 
 fun extentToPositionOfferingTypeCode(extent: String): PositionOfferingTypeCode { // same as PositionScheduleTypeCode...
