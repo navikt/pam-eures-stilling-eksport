@@ -1,6 +1,7 @@
 package no.nav.pam.euresstillingeksport
 
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
+import no.nav.pam.euresstillingeksport.service.StillingService
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -29,6 +30,9 @@ class PamAdITests {
 	@Autowired
 	lateinit var adClient: AdFeedClient
 
+	@Autowired
+	lateinit var stillingService: StillingService
+
 	val root = "/input/api/jv/v0.1"
 
 	@TestConfiguration
@@ -45,5 +49,13 @@ class PamAdITests {
 	fun skaHenteAd() {
 		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
 		Assertions.assertEquals("INACTIVE", ad.status)
+	}
+
+	@Test
+	fun populerDb() {
+		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
+		stillingService.lagreStilling(ad)
+		val jsonStilling = stillingService.hentStilling(ad.uuid)
+		System.out.println(jsonStilling)
 	}
 }

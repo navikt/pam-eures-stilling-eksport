@@ -20,6 +20,7 @@
 		<logback-access.version>2.7.1</logback-access.version>
 		<logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
 		<wiremock.version>2.25.1</wiremock.version>
+		<shedlock.version>3.0.0</shedlock.version>
 	</properties>
 
 	<dependencyManagement>
@@ -39,6 +40,21 @@
 				<artifactId>wiremock-jre8</artifactId>
 				<version>${wiremock.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>3.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>net.javacrumbs.shedlock</groupId>
+				<artifactId>shedlock-spring</artifactId>
+				<version>${shedlock.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.javacrumbs.shedlock</groupId>
+				<artifactId>shedlock-provider-jdbc-template</artifactId>
+				<version>${shedlock.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -50,6 +66,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
@@ -89,6 +109,28 @@
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency>
+		<!-- H2 skal bare brukes inntil vi kommer opp med noe bedre -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-provider-jdbc-template</artifactId>
 		</dependency>
 
 		<dependency>
