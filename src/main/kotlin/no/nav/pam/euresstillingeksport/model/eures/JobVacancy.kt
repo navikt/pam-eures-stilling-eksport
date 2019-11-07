@@ -1,5 +1,6 @@
 package no.nav.pam.euresstillingeksport.model.eures
 
+import java.awt.geom.Line2D
 import java.time.LocalDateTime
 
 data class PositionOpening(
@@ -65,10 +66,10 @@ data class PartyId(
 data class PositionProfile(
         private val postingInstruction: PostingInstruction,
         private val positionTitle: String,
-        private val positionLocation: PositionLocation?,
+        private val positionLocation: List<PositionLocation>,
         private val positionOrganization: PositionOrganization?,
         private val positionOpenQuantity: Int,
-        private val jobCategoryCode: JobCategoryCode?,
+        private val jobCategoryCode: List<JobCategoryCode>,
         private val positionOfferingTypeCode: PositionOfferingTypeCode,
         private val positionQualifications: PositionQualifications?,
         private val positionFormattedDescription: PositionFormattedDescription,
@@ -83,25 +84,28 @@ data class PositionProfile(
 data class PositionOrganization(
         private val organizationIdentifiers: OrganizationIdentifiers,
         private val industryCode: List<IndustryCode>,
-        private val organizationSizeCode: OrganizationSizeCode
+        private val organizationSizeCode: OrganizationSizeCode? = null // Belive we do not have this
 )
 
 data class OrganizationIdentifiers(
         private val organizationName: String, // child element
-        private val organizationLegalID: OrganizationLegalID
+        private val organizationLegalID: OrganizationLegalID?
 
 )
 
 data class OrganizationLegalID(
-        private val schemeID: String, // attribute
-        private val schemeAgencyID: String, // attribute
-        private val schemeAgencyName: String, // attribute
-        private val schemeVersionID: String, // attribute
+//        private val schemeID: String, // attribute
+//        private val schemeAgencyID: String, // attribute
+//        private val schemeAgencyName: String, // attribute
+//        private val schemeVersionID: String, // attribute
 
         private val organizationId: String // Content
 )
 
-class IndustryCode // enum/kodeverk
+data class IndustryCode( // enum/kodeverk // TODO NACE_2  -se 4.15.17
+        private val code: String
+)
+
 class OrganizationSizeCode // enum/kodeverk
 
 data class PositionLocation(
@@ -109,12 +113,15 @@ data class PositionLocation(
 )
 
 data class Address(
-        private val cityName: String,
-        private val countryCode: CountryCode,
-        private val postalCode: String
+        private val cityName: String?,
+        private val countryCode: String,
+        private val postalCode: String?,
+        private val choice: Choice?
 )
 
-class CountryCode // enum/kodeverk
+data class Choice(
+        private val addressLine: String?
+)
 
 
 data class PostingInstruction(
@@ -212,7 +219,14 @@ data class Measure(
 
 class DegreeTypeCode // enum/kodeverk
 class LicenseTypeCode // enum/kodeverk
-class JobCategoryCode // enum/kodeverk + klasse
+data class JobCategoryCode(
+        val listName: String = "ISCO2008", // Attribute
+        val listVersionID: String = "2008", // Attribute
+        val listURI: String = "http://ec.europa.eu/esco/ConceptScheme/ISCO2008", // Attribute
+
+        val code: String
+)
+
 enum class PositionOfferingTypeCode {
     DirectHire,
     Temporary,
