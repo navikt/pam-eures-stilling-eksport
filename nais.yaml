@@ -27,7 +27,7 @@ spec:
       memory: 8192Mi
     requests:
       cpu: 200m
-      memory: 512Mi
+      memory: 2048Mi
   vault:
     enabled: false
   webproxy: true
