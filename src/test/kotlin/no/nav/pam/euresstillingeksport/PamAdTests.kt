@@ -2,11 +2,14 @@ package no.nav.pam.euresstillingeksport
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
+import no.nav.pam.euresstillingeksport.service.ApiServiceStub
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.context.annotation.Bean
+import org.springframework.stereotype.Service
 import org.springframework.test.context.ActiveProfiles
 import java.io.IOException
 
@@ -26,6 +29,9 @@ class PamAdTests {
 
 	@TestConfiguration
 	class TestConfig : ApiTestConfiguration() {
+		@Bean
+		fun apiService() =
+				ApiServiceStub()
 	}
 
 

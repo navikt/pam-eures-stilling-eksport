@@ -62,5 +62,4 @@ class ApiConfiguration {
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
         HttpsURLConnection.setDefaultHostnameVerifier { hostname, session -> true }
     }
-
 }

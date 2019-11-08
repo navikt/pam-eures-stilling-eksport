@@ -4,8 +4,8 @@ import no.nav.pam.euresstillingeksport.model.Converters
 import org.springframework.stereotype.Service
 
 @Service
-class ApiService {
-    fun getAll(): GetAllResponse {
+class AdApiService : ApiService {
+    override fun getAll(): GetAllResponse {
         // Returner mock data inntil videre
         return GetAllResponse(listOf(
                 Stillingreferanse(Converters.isoDatetimeToTimestamp("2019-01-11T12:00:00"),
@@ -23,7 +23,7 @@ class ApiService {
                 ))
     }
 
-    fun getChanges(ts: Long): GetChangesResponse {
+    override fun getChanges(ts: Long): GetChangesResponse {
         // Returner mock data inntil videre
         return GetChangesResponse(listOf(
                 Stillingreferanse(Converters.isoDatetimeToTimestamp("2019-01-11T12:00:00"),
@@ -49,7 +49,7 @@ class ApiService {
                 )
     }
 
-    fun getDetails(referanser : List<String>): GetDetailsResponse {
+    override fun getDetails(referanser : List<String>): GetDetailsResponse {
         return GetDetailsResponse(
                 mapOf(Pair("ref1", JvDetails("ref1",
                         "NAV", "ACTIVE",
