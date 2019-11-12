@@ -1,5 +1,6 @@
 package no.nav.pam.euresstillingeksport.model.pam
 
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.time.LocalDateTime
 
@@ -90,11 +91,35 @@ data class Employer(
         val employees: Int
 )
 
+enum class AdStatus {
+    DELETED,
+    INACTIVE,
+    REJECTED,
+    STOPPED,
+    ACTIVE,
+    UNKNOWN;
+
+    companion object {
+        @JvmStatic
+        @JsonCreator()
+        fun fromString(ad : String?) : AdStatus {
+            if (ad == null) {
+                return UNKNOWN
+            } else {
+                try {
+                    return valueOf(ad)
+                } catch (e : Exception) {
+                    return UNKNOWN
+                }
+            }
+        }
+    }
+}
+
+
 /**
- * NB: Vi må vurdere litt hvordan vi gjør det med timestamps. Vi må sannsynligvis opprette nye timestamps
- * i eksportapplkasjonen.
- * Sakset fra EURES Functional message exchange specifications new regulation v1.3.2 kapittel 2.2.1:
- *
+ * NB: Timestamps her er ikke de samme tidsstempel som man finner inne i annonsen. Tidsstempel her er
+ * tidsstempel som brukt i EURES.
  * Important note: these timestamps should be considered from the point of providing the data to the uniform exchange
  * system of EURES. This means that they might be different from the original timestamps that are recorded in
  * the source systems.
@@ -102,8 +127,8 @@ data class Employer(
 data class StillingsannonseMetadata (
         val id: String,
         val kilde: String,
-        val status: String,
+        val status: AdStatus,
         val opprettetTs : LocalDateTime,
         val sistEndretTs : LocalDateTime,
-        val varerTilTs: LocalDateTime?
+        val lukketTs: LocalDateTime?
 )

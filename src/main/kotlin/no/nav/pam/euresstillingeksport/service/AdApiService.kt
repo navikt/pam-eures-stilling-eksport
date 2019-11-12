@@ -12,10 +12,10 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
         return GetAllResponse(stillingsannonser.map {
             Stillingreferanse(Converters.localdatetimeToTimestamp(it.opprettetTs),
                     Converters.localdatetimeToTimestamp(it.sistEndretTs),
-                    it.varerTilTs?.let {ts -> Converters.localdatetimeToTimestamp(ts)} ?: null,
+                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts)} ?: null,
                     it.id,
-                    "NAV",
-                    it.status)
+                    it.kilde,
+                    EuresStatus.fromAdStatus(it.status))
         })
     }
 
@@ -31,10 +31,10 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
         return GetChangesResponse(stillingsannonser.map {
             Stillingreferanse(Converters.localdatetimeToTimestamp(it.opprettetTs),
                     Converters.localdatetimeToTimestamp(it.sistEndretTs),
-                    it.varerTilTs?.let { ts -> Converters.localdatetimeToTimestamp(ts)} ?: null,
+                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts)} ?: null,
                     it.id,
-                    "NAV",
-                    it.status)
+                    it.kilde,
+                    EuresStatus.fromAdStatus(it.status))
         }, // TODO finn ut av kravene for modified og closed lista
                 emptyList(), emptyList())
     }
@@ -43,7 +43,7 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
         stillingService.hentStillingsannonser(referanser)
         return GetDetailsResponse(
                 mapOf(Pair("ref1", JvDetails("ref1",
-                        "NAV", "ACTIVE",
+                        "NAV", EuresStatus.ACTIVE,
                         "HR_OPEN XML her",
                         "1.0",
                         Converters.isoDatetimeToTimestamp("2019-01-11T12:00:00"),
@@ -51,7 +51,7 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
                         Converters.isoDatetimeToTimestamp("2019-01-11T13:00:00")
                         )),
                 Pair("ref2", JvDetails("ref2",
-                        "NAV", "ACTIVE",
+                        "NAV", EuresStatus.ACTIVE,
                         "HR_OPEN XML her",
                         "1.0",
                         Converters.isoDatetimeToTimestamp("2019-01-11T12:00:00"),

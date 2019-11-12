@@ -54,7 +54,7 @@ class PamAdITests {
 	@Test
 	fun populerDb() {
 		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
-		stillingService.lagreStilling(ad)
+		stillingService.lagreStillinger(listOf(ad))
 		val jsonStilling = stillingService.hentStilling(ad.uuid)
 		System.out.println(jsonStilling)
 	}
