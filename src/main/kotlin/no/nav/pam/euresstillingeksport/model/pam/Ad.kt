@@ -89,3 +89,21 @@ data class Employer(
         val orgform: String?,
         val employees: Int
 )
+
+/**
+ * NB: Vi må vurdere litt hvordan vi gjør det med timestamps. Vi må sannsynligvis opprette nye timestamps
+ * i eksportapplkasjonen.
+ * Sakset fra EURES Functional message exchange specifications new regulation v1.3.2 kapittel 2.2.1:
+ *
+ * Important note: these timestamps should be considered from the point of providing the data to the uniform exchange
+ * system of EURES. This means that they might be different from the original timestamps that are recorded in
+ * the source systems.
+ */
+data class StillingsannonseMetadata (
+        val id: String,
+        val kilde: String,
+        val status: String,
+        val opprettetTs : LocalDateTime,
+        val sistEndretTs : LocalDateTime,
+        val varerTilTs: LocalDateTime?
+)
