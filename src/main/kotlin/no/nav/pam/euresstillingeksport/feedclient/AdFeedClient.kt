@@ -10,17 +10,18 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.retry.backoff.ExponentialBackOffPolicy
+import org.springframework.retry.policy.SimpleRetryPolicy
+import org.springframework.retry.support.RetryTemplate
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
-import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.HttpStatusCodeException
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 import java.io.IOException
-import java.time.Instant
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -31,10 +32,30 @@ class AdFeedClient @Autowired constructor (
         private val restTemplate : RestTemplate) {
     companion object {
         private val LOG = LoggerFactory.getLogger(AdFeedClient::class.java)
+
+        private val retryTemplate = initRetryTemplate()
+
+        private fun initRetryTemplate() : RetryTemplate {
+            val retryTemplate = RetryTemplate()
+
+            retryTemplate.setBackOffPolicy(ExponentialBackOffPolicy().apply {
+                initialInterval = 100
+                multiplier = 2.0
+                maxInterval = 1000
+            })
+            retryTemplate.setThrowLastExceptionOnExhausted(true)
+            retryTemplate.setRetryPolicy(SimpleRetryPolicy(3,
+                    mapOf(IOException::class.java to true)))
+            return retryTemplate
+        }
+
     }
 
 
-    fun getAd(uuid : String) : Ad {
+    fun getAd(uuid : String) : Ad =
+        retryTemplate.execute<Ad, Exception>({getAdWrapped(uuid)})
+
+    fun getAdWrapped(uuid : String) : Ad {
         try {
             val response = restTemplate.getForEntity("${adApiURL}/feed?uuid=${uuid}", FeedTransport::class.java)
             // TODO sjekk responskode og håndter feil på en grei nok måte
@@ -61,8 +82,11 @@ class AdFeedClient @Autowired constructor (
 
     }
 
-
     fun hentPage(sistLest: LocalDateTime) : FeedTransport {
+        return retryTemplate.execute<FeedTransport, Exception>({hentPageWrapped(sistLest)})
+    }
+
+    fun hentPageWrapped(sistLest: LocalDateTime) : FeedTransport {
         try {
             val uri = UriComponentsBuilder.fromUriString("${adApiURL}/feed")
                     .queryParam("size", 100)
