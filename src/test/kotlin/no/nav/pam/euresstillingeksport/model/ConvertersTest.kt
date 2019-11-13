@@ -7,8 +7,9 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 class ConvertersTest {
+
     @Test
-    fun skalKonvertereLocalDateTilMillisEpoch() {
+    fun `skal konvertere local date til millis epoch`() {
         val now = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)
         val nowMillis = Converters.localdatetimeToTimestamp(now)
 
@@ -17,7 +18,7 @@ class ConvertersTest {
     }
 
     @Test
-    fun skalKonvertereIsoTidspunktTilMillisEpoch() {
+    fun `skal konvertere iso tidspunkt til millis epoch`() {
         val tidspunkt = "2019-10-01T10:30:15"
         val tidspunktMs = Converters.isoDatetimeToTimestamp(tidspunkt)
         val tidspunktLdt = Converters.timestampToLocalDateTime(tidspunktMs)
