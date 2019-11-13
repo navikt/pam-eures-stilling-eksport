@@ -161,7 +161,6 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     }
 
     fun finnStillingsannonser(idListe: List<String>) : List<StillingsannonseMetadata> {
-        // Hvis listen med id'er er veldig stor, så vil vi få sql-feil
         val idChunks = idListe.chunked(200)
         val eksisterendeAnnonser = ArrayList<StillingsannonseMetadata>()
 
