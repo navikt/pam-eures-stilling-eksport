@@ -1,9 +1,7 @@
 package no.nav.pam.euresstillingeksport.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.model.pam.Ad
-import no.nav.pam.euresstillingeksport.model.pam.AdStatus
-import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseMetadata
+import no.nav.pam.euresstillingeksport.model.pam.*
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,23 +20,23 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     @Transactional
     fun lagreStillinger(ad: List<Ad>) {
         val eksisterendeStillinger = stillingRepository.findStillingsannonserByIds(ad.map {it.uuid})
-                .associateBy({it.first.id}, {it})
-        val nyeAnnonser = ArrayList<Pair<StillingsannonseMetadata, String>>()
-        val endredeAnnonser = ArrayList<Pair<StillingsannonseMetadata, String>>()
+                .associateBy({it.stillingsannonseMetadata.id}, {it})
+        val nyeAnnonser = ArrayList<StillingsannonseJson>()
+        val endredeAnnonser = ArrayList<StillingsannonseJson>()
 
         ad.forEach {
            val jsonAd = objectMapper.writeValueAsString(it)
            if (eksisterendeStillinger[it.uuid] != null) {
                // Stillingsannonsen fins i databasen fra før.
-               val eksisterendeAd = objectMapper.readValue(eksisterendeStillinger[it.uuid]?.second, Ad::class.java)
-               val eksisterendeMetadata = eksisterendeStillinger[it.uuid]?.first
+               val eksisterendeAd = objectMapper.readValue(eksisterendeStillinger[it.uuid]?.jsonAd, Ad::class.java)
+               val eksisterendeMetadata = eksisterendeStillinger[it.uuid]?.stillingsannonseMetadata
 
                // TODO Kunne vi brukt String.equals på jsonAd og json i databasen isteden for å sammenligne deserialiserte objekter?
                if (!eksisterendeAd.equals(it) && eksisterendeMetadata != null) {
                    // Reell endring i annonse
                     val nyMetadata =
                             konverterTilStillingsannonseMetadata(it, eksisterendeMetadata)
-                   endredeAnnonser.add(Pair(nyMetadata, jsonAd))
+                   endredeAnnonser.add(StillingsannonseJson(nyMetadata, jsonAd))
                    LOG.info("Annonse {} er endret. Status er {}", it.uuid, it.status)
                } else {
                    LOG.info("Ingen endring i annonse {} - ignorerer", it.uuid)
@@ -46,7 +44,7 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
            } else {
                 // Ny Stillingsannonse - kun legg til nye annonser som er aktive
                 if (AdStatus.fromString(it.status) == AdStatus.ACTIVE) {
-                    nyeAnnonser.add(Pair(konverterTilStillingsannonseMetadata(it), jsonAd))
+                    nyeAnnonser.add(StillingsannonseJson(konverterTilStillingsannonseMetadata(it), jsonAd))
                     LOG.info("Ny annonse {}", it.uuid)
                } else {
                    LOG.info("Ny annonse {} har status {}, blir ikke lagt til", it.uuid, it.status)
@@ -98,15 +96,15 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     fun hentAlleStillinger(nyereEnnTs: Long?) : List<StillingsannonseMetadata> =
         stillingRepository.findStillingsannonserByStatus(null, nyereEnnTs)
 
-    fun hentStillingsannonser(uuidListe : List<String>) : List<Pair<StillingsannonseMetadata, Ad>> {
+    fun hentStillingsannonser(uuidListe : List<String>) : List<Stillingsannonse> {
         return stillingRepository.findStillingsannonserByIds(uuidListe).map {
-            val ad = objectMapper.readValue(it.second, Ad::class.java)
-            Pair(it.first, ad)
+            val ad = objectMapper.readValue(it.jsonAd, Ad::class.java)
+            Stillingsannonse(it.stillingsannonseMetadata, ad)
         }
     }
 
-    fun hentStillingsannonse(uuid: String) : Pair<StillingsannonseMetadata, Ad>? {
-        var stillingsannonseJson : Pair<StillingsannonseMetadata, String>?
+    fun hentStillingsannonse(uuid: String) : Stillingsannonse? {
+        var stillingsannonseJson : StillingsannonseJson?
         try {
             stillingsannonseJson = stillingRepository.findStillingsannonseById(uuid)
         } catch (e: EmptyResultDataAccessException){
@@ -114,7 +112,7 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
         }
 
         return if (stillingsannonseJson == null) null
-            else Pair<StillingsannonseMetadata, Ad>(stillingsannonseJson.first,
-                objectMapper.readValue(stillingsannonseJson.second, Ad::class.java))
+            else Stillingsannonse(stillingsannonseJson.stillingsannonseMetadata,
+                objectMapper.readValue(stillingsannonseJson.jsonAd, Ad::class.java))
     }
 }

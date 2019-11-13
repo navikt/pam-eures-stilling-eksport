@@ -51,6 +51,6 @@ class PamAdITests {
 		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
 		stillingService.lagreStillinger(listOf(ad.copy(status="ACTIVE")))
 		val stillingsannonse = stillingService.hentStillingsannonse(ad.uuid)
-		Assertions.assertNotNull(stillingsannonse?.second)
+		Assertions.assertNotNull(stillingsannonse?.ad)
 	}
 }

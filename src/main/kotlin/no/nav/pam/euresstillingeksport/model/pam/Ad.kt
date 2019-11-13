@@ -132,3 +132,13 @@ data class StillingsannonseMetadata (
         val sistEndretTs : LocalDateTime,
         val lukketTs: LocalDateTime?
 )
+
+data class Stillingsannonse (
+        val stillingsannonseMetadata: StillingsannonseMetadata,
+        val ad: Ad
+)
+
+data class StillingsannonseJson (
+        val stillingsannonseMetadata: StillingsannonseMetadata,
+        val jsonAd: String
+)

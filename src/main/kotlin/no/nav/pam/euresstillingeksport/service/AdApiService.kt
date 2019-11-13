@@ -49,16 +49,16 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
     override fun getDetails(referanser : List<String>): GetDetailsResponse {
         val stillingsannonser = stillingService.hentStillingsannonser(referanser)
 
-        return GetDetailsResponse(stillingsannonser.associateBy({ it.first.id },
+        return GetDetailsResponse(stillingsannonser.associateBy({ it.stillingsannonseMetadata.id },
                 {
-                    JvDetails(it.first.id,
-                            it.first.kilde,
-                            EuresStatus.fromAdStatus(it.first.status),
-                            it.second.convertToPositionOpening().toString(), // Dette er ment å skulle returnere HR-XML...
+                    JvDetails(it.stillingsannonseMetadata.id,
+                            it.stillingsannonseMetadata.kilde,
+                            EuresStatus.fromAdStatus(it.stillingsannonseMetadata.status),
+                            it.ad.convertToPositionOpening().toString(), // Dette er ment å skulle returnere HR-XML...
                             "1.0",
-                            Converters.localdatetimeToTimestamp(it.first.opprettetTs),
-                            Converters.localdatetimeToTimestamp(it.first.sistEndretTs),
-                            it.first.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null
+                            Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.opprettetTs),
+                            Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.sistEndretTs),
+                            it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null
                     )
                 }))
     }

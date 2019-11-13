@@ -2,6 +2,7 @@ package no.nav.pam.euresstillingeksport.repository
 
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.pam.AdStatus
+import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseJson
 import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseMetadata
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,9 +34,9 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() } ?: null)
     }
 
-    private val stillingsannonseMedContentRowMapper = RowMapper<Pair<StillingsannonseMetadata, String>>
+    private val stillingsannonseMedContentRowMapper = RowMapper<StillingsannonseJson>
     { rs, rowNum ->
-        Pair(StillingsannonseMetadata(rs.getString("id"),
+        StillingsannonseJson(StillingsannonseMetadata(rs.getString("id"),
                 rs.getString("kilde"),
                 AdStatus.valueOf(rs.getString("status")),
                 rs.getTimestamp("opprettet_ts").toLocalDateTime(),
@@ -47,16 +48,16 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     /**
      * @throws EmptyResultDataAccessException
      */
-    fun findStillingsannonseById(uuid: String): Pair<StillingsannonseMetadata, String>? {
+    fun findStillingsannonseById(uuid: String): StillingsannonseJson? {
         val stillingsannonse = jdbcTemplate.queryForObject("select ${stillingFelter} " +
                 "from stillinger where id=?",
                 arrayOf(uuid), stillingsannonseMedContentRowMapper)
         return stillingsannonse
     }
 
-    fun findStillingsannonserByIds(idListe : List<String>) : List<Pair<StillingsannonseMetadata, String>>{
+    fun findStillingsannonserByIds(idListe : List<String>) : List<StillingsannonseJson>{
         val idChunks = idListe.chunked(200)
-        val annonser = ArrayList<Pair<StillingsannonseMetadata, String>>()
+        val annonser = ArrayList<StillingsannonseJson>()
 
         idChunks.forEach {
             val params = MapSqlParameterSource()
@@ -99,7 +100,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         return stillingsannonser
     }
 
-    fun updateStillingsannonser(stillingsannonser: List<Pair<StillingsannonseMetadata, String>>): Int {
+    fun updateStillingsannonser(stillingsannonser: List<StillingsannonseJson>): Int {
         val sqlUpdate = "update stillinger " +
                 "set json_stilling=?," +
                 "kilde=?, status=?, opprettet_ts=?, sist_endret_ts=?, lukket_ts=? " +
@@ -109,7 +110,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         return antOppdatert
     }
 
-    fun saveStillingsannonser(stillingsannonser: List<Pair<StillingsannonseMetadata, String>>): Int {
+    fun saveStillingsannonser(stillingsannonser: List<StillingsannonseJson>): Int {
         val sqlInsert = "insert into " +
                 "stillinger(id, json_stilling, kilde, status," +
                 "opprettet_ts, sist_endret_ts, lukket_ts) " +
@@ -119,40 +120,40 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         return antInserted
     }
 
-    private fun batchUpdateAds(sqlUpdate: String, adsSomSkalOppdateres: List<Pair<StillingsannonseMetadata, String>>): Int {
+    private fun batchUpdateAds(sqlUpdate: String, adsSomSkalOppdateres: List<StillingsannonseJson>): Int {
         val antOppdatert = jdbcTemplate.batchUpdate(sqlUpdate,
                 object : BatchPreparedStatementSetter {
                     override fun getBatchSize(): Int = adsSomSkalOppdateres.size
                     override fun setValues(pstmt: PreparedStatement, idx: Int) {
-                        pstmt.setString(7, adsSomSkalOppdateres[idx].first.id)
-                        pstmt.setString(1, adsSomSkalOppdateres[idx].second)
-                        pstmt.setString(2, adsSomSkalOppdateres[idx].first.kilde)
-                        pstmt.setString(3, adsSomSkalOppdateres[idx].first.status.toString())
-                        pstmt.setTimestamp(4, Timestamp.valueOf(adsSomSkalOppdateres[idx].first.opprettetTs))
-                        pstmt.setTimestamp(5, Timestamp.valueOf(adsSomSkalOppdateres[idx].first.sistEndretTs))
+                        pstmt.setString(7, adsSomSkalOppdateres[idx].stillingsannonseMetadata.id)
+                        pstmt.setString(1, adsSomSkalOppdateres[idx].jsonAd)
+                        pstmt.setString(2, adsSomSkalOppdateres[idx].stillingsannonseMetadata.kilde)
+                        pstmt.setString(3, adsSomSkalOppdateres[idx].stillingsannonseMetadata.status.toString())
+                        pstmt.setTimestamp(4, Timestamp.valueOf(adsSomSkalOppdateres[idx].stillingsannonseMetadata.opprettetTs))
+                        pstmt.setTimestamp(5, Timestamp.valueOf(adsSomSkalOppdateres[idx].stillingsannonseMetadata.sistEndretTs))
                         pstmt.setTimestamp(6,
-                                if (adsSomSkalOppdateres[idx].first.lukketTs == null) null
-                                else Timestamp.valueOf(adsSomSkalOppdateres[idx].first.lukketTs))
+                                if (adsSomSkalOppdateres[idx].stillingsannonseMetadata.lukketTs == null) null
+                                else Timestamp.valueOf(adsSomSkalOppdateres[idx].stillingsannonseMetadata.lukketTs))
                     }
                 }
         )
         return antOppdatert.sum()
     }
 
-    private fun batchInsertAds(sqlInsert: String, adsSomSkalInsertes: List<Pair<StillingsannonseMetadata, String>>): Int {
+    private fun batchInsertAds(sqlInsert: String, adsSomSkalInsertes: List<StillingsannonseJson>): Int {
         val antInserted = jdbcTemplate.batchUpdate(sqlInsert,
                 object : BatchPreparedStatementSetter {
                     override fun getBatchSize(): Int = adsSomSkalInsertes.size
                     override fun setValues(pstmt: PreparedStatement, idx: Int) {
-                        pstmt.setString(1, adsSomSkalInsertes[idx].first.id)
-                        pstmt.setString(2, adsSomSkalInsertes[idx].second)
-                        pstmt.setString(3, adsSomSkalInsertes[idx].first.kilde)
-                        pstmt.setString(4, adsSomSkalInsertes[idx].first.status.toString())
-                        pstmt.setTimestamp(5, Timestamp.valueOf(adsSomSkalInsertes[idx].first.opprettetTs))
-                        pstmt.setTimestamp(6, Timestamp.valueOf(adsSomSkalInsertes[idx].first.sistEndretTs))
+                        pstmt.setString(1, adsSomSkalInsertes[idx].stillingsannonseMetadata.id)
+                        pstmt.setString(2, adsSomSkalInsertes[idx].jsonAd)
+                        pstmt.setString(3, adsSomSkalInsertes[idx].stillingsannonseMetadata.kilde)
+                        pstmt.setString(4, adsSomSkalInsertes[idx].stillingsannonseMetadata.status.toString())
+                        pstmt.setTimestamp(5, Timestamp.valueOf(adsSomSkalInsertes[idx].stillingsannonseMetadata.opprettetTs))
+                        pstmt.setTimestamp(6, Timestamp.valueOf(adsSomSkalInsertes[idx].stillingsannonseMetadata.sistEndretTs))
                         pstmt.setTimestamp(7,
-                                if (adsSomSkalInsertes[idx].first.lukketTs == null) null
-                                else Timestamp.valueOf(adsSomSkalInsertes[idx].first.lukketTs))
+                                if (adsSomSkalInsertes[idx].stillingsannonseMetadata.lukketTs == null) null
+                                else Timestamp.valueOf(adsSomSkalInsertes[idx].stillingsannonseMetadata.lukketTs))
                     }
                 }
         )
