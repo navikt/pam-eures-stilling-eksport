@@ -8,11 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.ActiveProfiles
-import java.security.SecureRandom
-import java.security.cert.X509Certificate
-import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLContext
-import javax.net.ssl.X509TrustManager
 
 /**
  * Dette er en integrasjonstest som går mot pam-ad i q. Denne testen vil aldri kunne kjøre på github, og skal derfor ignoreres
@@ -54,8 +49,8 @@ class PamAdITests {
 	@Test
 	fun populerDb() {
 		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
-		stillingService.lagreStillinger(listOf(ad))
-		val jsonStilling = stillingService.hentStilling(ad.uuid)
-		System.out.println(jsonStilling)
+		stillingService.lagreStillinger(listOf(ad.copy(status="ACTIVE")))
+		val stillingsannonse = stillingService.hentStillingsannonse(ad.uuid)
+		Assertions.assertNotNull(stillingsannonse?.second)
 	}
 }

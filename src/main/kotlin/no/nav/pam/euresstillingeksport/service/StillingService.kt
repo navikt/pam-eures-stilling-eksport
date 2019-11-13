@@ -94,9 +94,9 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     }
 
     fun hentAlleAktiveStillinger() : List<StillingsannonseMetadata> =
-            hentAlleAktiveStillinger(null)
-    fun hentAlleAktiveStillinger(nyereEnnTs: Long?) : List<StillingsannonseMetadata> =
-        stillingRepository.findStillingsannonserByStatus("ACTIVE", nyereEnnTs)
+            stillingRepository.findStillingsannonserByStatus("ACTIVE", null)
+    fun hentAlleStillinger(nyereEnnTs: Long?) : List<StillingsannonseMetadata> =
+        stillingRepository.findStillingsannonserByStatus(null, nyereEnnTs)
 
     fun hentStillingsannonser(uuidListe : List<String>) : List<Pair<StillingsannonseMetadata, Ad>> {
         return stillingRepository.findStillingsannonserByIds(uuidListe).map {
@@ -105,16 +105,16 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
         }
     }
 
-    // TODO Dette er ikke helt riktig og brukes bare i en test - kandidat for å skrotes (testen må i så fall fikses)...
-    fun hentStilling(uuid: String) : Ad? {
-        var jsonStilling : String?
+    fun hentStillingsannonse(uuid: String) : Pair<StillingsannonseMetadata, Ad>? {
+        var stillingsannonseJson : Pair<StillingsannonseMetadata, String>?
         try {
-            jsonStilling = stillingRepository.findStillingsannonseById(uuid)
+            stillingsannonseJson = stillingRepository.findStillingsannonseById(uuid)
         } catch (e: EmptyResultDataAccessException){
-            jsonStilling = null
+            stillingsannonseJson = null
         }
 
-        return if (jsonStilling == null) null
-            else objectMapper.readValue(jsonStilling, Ad::class.java)
+        return if (stillingsannonseJson == null) null
+            else Pair<StillingsannonseMetadata, Ad>(stillingsannonseJson.first,
+                objectMapper.readValue(stillingsannonseJson.second, Ad::class.java))
     }
 }

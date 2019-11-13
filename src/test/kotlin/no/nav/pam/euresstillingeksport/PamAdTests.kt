@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
 import org.springframework.test.context.ActiveProfiles
 import java.io.IOException
+import java.util.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -78,5 +79,19 @@ class PamAdTests {
 		Assertions.assertThrows(IOException::class.java) {
 			adClient.getAd("service_unavailable")
 		}
+	}
+
+	/*
+	Dette testcaset står beskrevet i EURES Functional message exchange specifications new regulation v1.3.2
+	Kapittel 2.2.1, eksempel 1-4
+	 */
+	@Test
+	fun skalHandtereTimestamps() {
+		// Eksempel 1
+		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
+				.copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
+
+
+
 	}
 }

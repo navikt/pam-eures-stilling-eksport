@@ -21,6 +21,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     }
 
     private val namedJdbcTemplate = NamedParameterJdbcTemplate(jdbcTemplate)
+    private val stillingFelter = "id, kilde, status, opprettet_ts, sist_endret_ts, lukket_ts, json_stilling"
 
     private val stillingsannonseRowMapper = RowMapper<StillingsannonseMetadata>
     { rs, rowNum ->
@@ -31,6 +32,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 rs.getTimestamp("sist_endret_ts").toLocalDateTime(),
                 rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() } ?: null)
     }
+
     private val stillingsannonseMedContentRowMapper = RowMapper<Pair<StillingsannonseMetadata, String>>
     { rs, rowNum ->
         Pair(StillingsannonseMetadata(rs.getString("id"),
@@ -45,10 +47,11 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     /**
      * @throws EmptyResultDataAccessException
      */
-    fun findStillingsannonseById(uuid: String): String {
-        val jsonStilling = jdbcTemplate.queryForObject("select json_stilling from stillinger where id=?",
-                arrayOf(uuid), String::class.java)
-        return jsonStilling
+    fun findStillingsannonseById(uuid: String): Pair<StillingsannonseMetadata, String>? {
+        val stillingsannonse = jdbcTemplate.queryForObject("select ${stillingFelter} " +
+                "from stillinger where id=?",
+                arrayOf(uuid), stillingsannonseMedContentRowMapper)
+        return stillingsannonse
     }
 
     fun findStillingsannonserByIds(idListe : List<String>) : List<Pair<StillingsannonseMetadata, String>>{
@@ -58,8 +61,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         idChunks.forEach {
             val params = MapSqlParameterSource()
             params.addValue("idListe", it)
-            val annonserIChunk = namedJdbcTemplate.query("select id, kilde, status, " +
-                "opprettet_ts, sist_endret_ts, lukket_ts, json_stilling " +
+            val annonserIChunk = namedJdbcTemplate.query("select ${stillingFelter} " +
                         "from stillinger " +
                         "where id in (:idListe) " +
                         "order by sist_endret_ts asc",
@@ -71,20 +73,25 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         return annonser
     }
 
-    fun findStillingsannonserByStatus(status: String, nyereEnnTS: Long?): List<StillingsannonseMetadata> {
+    fun findStillingsannonserByStatus(status: String?, nyereEnnTS: Long?): List<StillingsannonseMetadata> {
         var nyereEnnSql = ""
+        var statusSql = ""
         val sqlParametre = MapSqlParameterSource()
-        sqlParametre.addValue("status", status)
+
         if (nyereEnnTS != null) {
             nyereEnnSql = "and sist_endret_ts >= :nyereEnn "
             sqlParametre.addValue("nyereEnn",
                     Timestamp.valueOf(Converters.timestampToLocalDateTime(nyereEnnTS)))
         }
+        if (status != null) {
+            statusSql = "and status=:status "
+            sqlParametre.addValue("status", status)
+        }
 
-        val stillingsannonser = namedJdbcTemplate.query("select id, kilde, status, " +
-                "opprettet_ts, sist_endret_ts, lukket_ts " +
+        val stillingsannonser = namedJdbcTemplate.query("select ${stillingFelter} " +
                 "from stillinger " +
-                "where status=:status " + nyereEnnSql +
+                "where 1=1 " +
+                "$statusSql $nyereEnnSql " +
                 "order by sist_endret_ts asc",
                 sqlParametre,
                 stillingsannonseRowMapper)
