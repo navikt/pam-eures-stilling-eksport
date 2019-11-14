@@ -134,26 +134,22 @@ class AdFeedClient @Autowired constructor (
         }
 
         fun poll(sistLest: LocalDateTime) {
-            // Batchupdate kommer nok ikke til å overleve særlig lenge
-            // det er en litt eksperimentell "to early optimization" som ikke ser ut til å optimalisere noe særlig...
-            val brukBatchUpdate = true
             var nyeste = sistLest
+            var now = System.currentTimeMillis()
             val trans = feedClient.hentPage(sistLest)
-            LOG.info("Leste {} elementer fra feeden. Totalt {} sider",
-                    trans.numberOfElements, trans.totalPages)
+            var msBrukt = System.currentTimeMillis() - now
+            LOG.info("Leste {} elementer fra feeden på {}ms. Totalt {} sider igjen ",
+                    trans.numberOfElements, msBrukt, trans.totalPages)
 
-            if (brukBatchUpdate)
-                stillingService.lagreStillinger(trans.content)
-
+            now = System.currentTimeMillis()
+            stillingService.lagreStillinger(trans.content)
             trans.content.forEach {
-                if (!brukBatchUpdate)
-                    stillingService.lagreStilling(it)
-
                 if (it.updated.isAfter(nyeste))
                     nyeste = it.updated
             }
             feedRepository.oppdaterFeedPeker(nyeste)
-
+            msBrukt = System.currentTimeMillis() - now
+            LOG.info("Brukte {}ms på å lagre/oppdatere {} stillinger i databasen.", msBrukt, trans.content.size)
             if (!trans.last)
                 poll(nyeste)
         }

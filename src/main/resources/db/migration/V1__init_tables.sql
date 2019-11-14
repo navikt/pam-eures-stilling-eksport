@@ -4,7 +4,7 @@ create table stillinger(
     status varchar(100) not null,
     opprettet_ts timestamp not null,
     sist_endret_ts timestamp not null,
-    varer_til_ts timestamp null,
+    lukket_ts timestamp null,
 	json_stilling clob not null
 );
 

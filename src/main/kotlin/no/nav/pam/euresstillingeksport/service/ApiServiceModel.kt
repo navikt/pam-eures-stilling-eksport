@@ -1,6 +1,7 @@
 package no.nav.pam.euresstillingeksport.service
 
 import com.fasterxml.jackson.annotation.JsonInclude
+import no.nav.pam.euresstillingeksport.model.pam.AdStatus
 
 /**
  * Request/responsobjekter som brukes i API'er
@@ -12,8 +13,24 @@ data class Stillingreferanse (
     val closingTimestamp: Long?,
     val reference: String,
     val source: String,
-    val status: String
+    val status: EuresStatus
 )
+
+enum class EuresStatus {
+    CLOSED,
+    ACTIVE;
+
+    companion object {
+        @JvmStatic
+        fun fromAdStatus(s : AdStatus) : EuresStatus {
+            if (s == AdStatus.ACTIVE) {
+                return ACTIVE
+            } else {
+                return CLOSED
+            }
+        }
+    }
+}
 
 data class GetAllResponse (
     val allReferences: List<Stillingreferanse>
@@ -29,7 +46,7 @@ data class GetChangesResponse (
 data class JvDetails (
     val reference: String,
     val source: String,
-    val status: String,
+    val status: EuresStatus,
     /** Content er innholdet i stillingen serialisert til XML i HR Open */
     val content: String,
     val contentFormatVersion : String = "1.0",
