@@ -1,10 +1,12 @@
 package no.nav.pam.euresstillingeksport.rest
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
@@ -12,8 +14,14 @@ import org.springframework.retry.annotation.EnableRetry
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
+import org.springframework.http.ResponseEntity
 import org.springframework.scheduling.annotation.EnableScheduling
+import org.springframework.web.bind.annotation.ControllerAdvice
+import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.context.request.WebRequest
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+import java.lang.Exception
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import javax.net.ssl.HttpsURLConnection
@@ -43,6 +51,13 @@ class ApiConfiguration {
     }
 
     @Bean
+    fun xmlMapper() =
+        XmlMapper().apply {
+            registerModule(KotlinModule())
+            registerModule(JavaTimeModule())
+        }
+
+    @Bean
     open fun lockProvider(@Autowired dataSource: DataSource) =
             JdbcTemplateLockProvider(dataSource)
 
@@ -61,5 +76,17 @@ class ApiConfiguration {
 
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
         HttpsURLConnection.setDefaultHostnameVerifier { hostname, session -> true }
+    }
+}
+
+@ControllerAdvice
+class WebControllerErrorHandler : ResponseEntityExceptionHandler() {
+    companion object {
+        private val LOG = LoggerFactory.getLogger(WebControllerErrorHandler::class.java)
+    }
+    @ExceptionHandler(value=[(Exception::class)])
+    fun loggingExceptionHandler(e: Exception, wr: WebRequest): ResponseEntity<Any>? {
+        LOG.info("Uhåndtert feil propagerte til webserver: {}", e.message, e)
+        return handleException(e, wr)
     }
 }

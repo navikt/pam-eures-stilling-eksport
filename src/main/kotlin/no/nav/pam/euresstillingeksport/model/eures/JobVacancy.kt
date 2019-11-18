@@ -4,29 +4,29 @@ import java.awt.geom.Line2D
 import java.time.LocalDateTime
 
 data class PositionOpening(
-        private val id: Id,
-        private val positionOpeningStatusCode: PositionOpeningStatusCode,
-        private val postingRequester: PostingRequester,
-        private val positionProfiles: List<PositionProfile>
+        val id: Id,
+        val positionOpeningStatusCode: PositionOpeningStatusCode,
+        val postingRequester: PostingRequester,
+        val positionProfiles: List<PositionProfile>
 )
 
 data class Id(
-        private val documentId: DocumentId
+        val documentId: DocumentId
 )
 
 data class DocumentId(
-        private val uuid: String, // Body
+        val uuid: String, // Body
 
-        private val schemeAgencyID: String, // !!! attributter
-        private val schemeAgencyName: String,// !!! attributter
+        val schemeAgencyID: String, // !!! attributter
+        val schemeAgencyName: String,// !!! attributter
 
-        private val schemeVersionID: String = "1.3", // attributter // TODO verify that this is static
-        private val schemeID: String = "NAV-001" // attributter // TODO verify that this is static
+        val schemeVersionID: String = "1.3", // attributter // TODO verify that this is static
+        val schemeID: String = "NAV-001" // attributter // TODO verify that this is static
 )
 
 data class PositionOpeningStatusCode(
-        private val name: String,
-        private val value: String
+        val name: String,
+        val value: String
 )
 // "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<PositionOpening validFrom=\"2019-11-05\" majorVersionID=\"3\" minorVersionID=\"2\" xmlns=\"http://www.hr-xml.org/3\" xmlns:ns2=\"http://www.openapplications.org/oagis/9\">\n    <DocumentID schemeID=\"NAV-001\" schemeAgencyID=\"NAV\" schemeAgencyName=\"NAV PES\" schemeVersionID=\"1.3\">08211911000002</DocumentID>\n                           <PositionOpeningStatusCode name=\"Active\">Active</PositionOpeningStatusCode>\n    <PostingRequester>\n        <PartyID schemeID=\"NAV\" schemeAgencyID=\"NAV PES\" schemeAgencyName=\"NAV PES\">9999</PartyID>\n    </PostingRequester>\n    <PositionProfile languageCode=\"en\" validFrom=\"2019-11-05\" validTo=\"2019-11-18\">\n        <PostingInstruction>\n            <ApplicationMethod>\n                <Instructions type=\"Fake instructions type\">See jobdescription</Instructions>\n            </ApplicationMethod>\n        </PostingInstruction>\n        <PositionTitle>Barnehagelærar, 30% midlertidig stilling</PositionTitle>\n        <PositionLocation>\n            <Address>\n                <ns2:CityName sequence=\"1\">Norge,Bø i Telemark</ns2:CityName>\n                <ns2:CountrySubDivisionCode>NO034</ns2:CountrySubDivisionCode>\n                <CountryCode>NO</CountryCode>\n                <ns2:PostalCode>3800</ns2:PostalCode>\n            </Address>\n        </PositionLocation>\n        <PositionOrganization>\n            <OrganizationIdentifiers>\n                <OrganizationName>BØ KOMMUNE Personalavdelinga v/ Hilde Bakkåker</OrganizationName>\n            </OrganizationIdentifiers>\n        </PositionOrganization>\n        <PositionOpenQuantity>1</PositionOpenQuantity>\n        <JobCategoryCode listName=\"ISCO2008\" listVersionID=\"2008\" listURI=\"http://ec.europa.eu/esco/ConceptScheme/ISCO2008\">2342</JobCategoryCode>\n        <PositionFormattedDescription>\n            <Content>&lt;h3&gt;&lt;strong&gt;Omtale av arbeidsstaden&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Bøhamna barnehage er ein to-avdelings barnehage, med barn i alderen 0-5 år. Barnehagen er samlokalisera med Veslekroa studentbarnehage, som og har to avdelingar. Barnehagane har felles uteområde, felles årsplan, felles personalrom og same styrar.&lt;br /&gt;\nBarnehagen har fokus på språk, sosial kompetanse og eit mangfaldig læringsmiljø. Alle barnehagane i Bø har hatt opplæring i utviklingsprogrammet &amp;#34;De utrolige årene&amp;#34;, der samspel, vaksenrolle og tilknytning er sentrale område. Barnehagen ligg ved USN sitt campus i Bø. Det er både sentrumsnært og nær fine skogområder.&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Kort om stillinga&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Vi har ledig 30 % midlertidig stilling som barnehagelærar fram til 30.06.20. Det er ønskje om snarast mogleg tiltredelse.&lt;br /&gt;\nPedagogisk leiar på småbarnsavdeling er næraste overordna.&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Arbeidsoppgåver&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Saman med pedagogsik leiar på avdelingen er dine oppgåver:&lt;/p&gt;\n&lt;ul&gt;&lt;li&gt;Pedagogisk leiing av barnegruppa&lt;/li&gt;&lt;li&gt;Fagleg rettleiing overfor personalet på gruppa&lt;/li&gt;&lt;li&gt;Foreldresamarbeid&lt;/li&gt;&lt;li&gt;Samarbeid mellom avdelingane&lt;/li&gt;&lt;li&gt;Tverrfagleg samarbeid med offentlege hjelpeinstansar&lt;/li&gt;&lt;/ul&gt;\n&lt;h3&gt;&lt;strong&gt;Krav til utdanning og ønskja kvalifikasjonar&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;I stillinga krev vi godkjent barnehagelærarutdanning&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Personlege eigenskapar&lt;/strong&gt;&lt;/h3&gt;\n&lt;ul&gt;&lt;li&gt;Relasjonskompetanse&lt;/li&gt;&lt;li&gt;Samarbeid -og kommunikasjonsevner&lt;/li&gt;&lt;li&gt;Evne til å vise engasjement i arbeidet&lt;/li&gt;&lt;li&gt;Evne til å være fleksibel og løysingsorientert&lt;/li&gt;&lt;/ul&gt;\n&lt;h3&gt;&lt;strong&gt;Offentleggjering&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Iflg. Offentlighetslova § 25 pliktar arbeidsgjevar å gjere søkjar oppmerksam på at opplysningar om søkjarane kan bli offentleggjort sjølv om søkjaren har bedt om å bli unntatt offentlegheita. Bø kommune vil varsle søkjara som har bedt om unnatakelse frå offentlegheit hvis dette ønskjet ikkje kan imøtekomast.&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Anna&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Bø kommune er ei IA-verksemd, og vi er opptekne av mangfald. Vi oppmodar alle kvalifiserte kandidatar til å søkje jobb hos oss uavhengig av alder, kjønn, funksjonshemming og etnisitet.&lt;br /&gt;\nAktuelle søkjarar vil bli innkalla til intervju. Kopi av vitnemål og attestar leverast i forbindelse med intervjuet&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Særskilt for stillinga&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Krav om politiattest.&lt;br /&gt;\nE-læringskurset for nytilsette skal tas før oppstart i stilling.&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Vi tilbyr&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Løn og arbeidsvilkår etter gjeldande lov og avtaleverk.&lt;/p&gt;\n&lt;h3&gt;&lt;strong&gt;Søknad sendast&lt;/strong&gt;&lt;/h3&gt;\n&lt;p&gt;Søknad må sendast elektronisk via valget &amp;#34;søk på stilling&amp;#34;.&lt;/p&gt;\n&lt;p&gt;Vi anbefalar å skrive søknadsteksten i eit teksbehandlingssystem før du startar søkjeprosessen. Da kan du kopiere/lime inn teksten i søknaden.&lt;/p&gt;\n&lt;p&gt;Når du startar å registrere søknaden, må du gjere den ferdig. Det er ikkje mogleg å mellomlagre søknaden.&lt;/p&gt;\n&lt;p&gt;Hvis du har huka av for at du vil ha dokumenter og anna kommunikasjon tilsendt elektronisk, vil du få ein epost med kvittering om at søknaden er mottatt.&lt;/p&gt;\n&lt;p&gt;&lt;a href=\"https://visma-bo.midt-telemark.no/recruitment/opening?1\"&gt;Se annonse&lt;/a&gt;&lt;/p&gt;&lt;p hidden&gt;PAM&lt;/p&gt;</Content>\n        </PositionFormattedDescription>\n        <TravelPreference>\n            <WillingToTravelIndicator>true</WillingToTravelIndicator>\n            <TravelPercentage>0</TravelPercentage>\n            <ns2:Description type=\"travelPreferenceDescriptionType\">travelPreferenceDescription</ns2:Description>\n        </TravelPreference>\n        <WorkingLanguageCode>NO</WorkingLanguageCode>\n        <PositionPeriod>\n            <StartDate>\n                <DateText typeCode=\"startDateType\">na</DateText>\n            </StartDate>\n            <EndDate>\n                <DateText typeCode=\"endDateType\">NA</DateText>\n            </EndDate>\n            <ns2:Description type=\"periodDescription\"/>\n        </PositionPeriod>\n        <ImmediateStartIndicator>false</ImmediateStartIndicator>\n        <PositionScheduleTypeCode>FullTime</PositionScheduleTypeCode>\n        <OfferedRemunerationPackage>\n            <RemunerationRange>\n                <RemunerationReferenceAmount currencyID=\"NOK\">0</RemunerationReferenceAmount>\n                <RemunerationMinimumAmount currencyID=\"NOK\">0</RemunerationMinimumAmount>\n                <RemunerationMaximumAmount currencyID=\"NOK\">0</RemunerationMaximumAmount>\n            </RemunerationRange>\n        </OfferedRemunerationPackage>\n        <ApplicationCloseDate typeCode=\"ApplicationCloseDateType\">2019-11-18</ApplicationCloseDate>\n    </PositionProfile>\n</PositionOpening>\n",
 // "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<PositionOpening validFrom=\"2019-11-05\" majorVersionID=\"3\" minorVersionID=\"2\" xmlns=\"http://www.hr-xml.org/3\" xmlns:ns2=\"http://www.openapplications.org/oagis/9\">\n    <DocumentID schemeID=\"NAV-001\" schemeAgencyID=\"NAV\" schemeAgencyName=\"Nav public employment services\" schemeVersionID=\"1.3\">11241911000015</DocumentID>\n    <PositionOpeningStatusCode name=\"Active\">Active</PositionOpeningStatusCode>\n    <PostingRequester>\n        <PartyID schemeID=\"NAV\" schemeAgencyID=\"NAV PES\" schemeAgencyName=\"NAV PES\">9999</PartyID>\n    </PostingRequester>\n    <PositionProfile languageCode=\"en\" validFrom=\"2019-11-05\" validTo=\"2019-12-16\">\n        <PostingInstruction>\n            <ApplicationMethod>\n                <Instructions type=\"Fake instructions type\">See jobdescription</Instructions>\n            </ApplicationMethod>\n        </PostingInstruction>\n        <PositionTitle>Regnskapsmedarbeider</PositionTitle>\n        <PositionLocation>\n            <Address>\n                <ns2:CityName sequence=\"1\">Norge,Sola</ns2:CityName>\n                <ns2:CountrySubDivisionCode>NO043</ns2:CountrySubDivisionCode>\n                <CountryCode>NO</CountryCode>\n                <ns2:PostalCode>4056</ns2:PostalCode>\n            </Address>\n        </PositionLocation>\n        <PositionOrganization>\n            <OrganizationIdentifiers>\n                <OrganizationName>AZETS PEOPLE AS</OrganizationName>\n            </OrganizationIdentifiers>\n        </PositionOrganization>\n        <PositionOpenQuantity>1</PositionOpenQuantity>\n        <JobCategoryCode listName=\"ISCO2008\" listVersionID=\"2008\" listURI=\"http://ec.europa.eu/esco/ConceptScheme/ISCO2008\">4311</JobCategoryCode>\n        <PositionFormattedDescription>\n            <Content>&lt;p&gt;For en av våre kunder søker vi etter en regnskapsmedarbeider. For rette person er dette en spennende mulighet i et internasjonalt selskap.&lt;/p&gt;\n&lt;p&gt;Stillingen har i utganspunktet varighet på 6 mnd, men her er det mulighet for forlengelse.&lt;/p&gt;\n&lt;p&gt;Det er ønsket snarlig oppstart, og søknader vurderes forløpende.&lt;/p&gt;\n&lt;h3&gt;Arbeidsoppgaver&lt;/h3&gt;\n&lt;p&gt;Arbeidsoppgavene består av følgende&lt;/p&gt;\n&lt;ul&gt;&lt;li&gt;Utgående faktura.&lt;/li&gt;&lt;li&gt;Inngående faktura ved behov.&lt;/li&gt;&lt;li&gt;Kommunikasjon med kunde AP.&lt;/li&gt;&lt;li&gt;Bokføringer.&lt;/li&gt;&lt;li&gt;Avstemninger.&lt;/li&gt;&lt;/ul&gt;\n&lt;h3&gt;Ønskede kvalifikasjoner&lt;/h3&gt;\n&lt;p&gt;Kvalifikasjoner som er ønsket i denne stillingen er som følger:&lt;/p&gt;\n&lt;ul&gt;&lt;li&gt;Relevant utdannelse.&lt;/li&gt;&lt;li&gt;Kandidaten må ha god Excel kunnskap.&lt;/li&gt;&lt;li&gt;Kandidaten må ha erfaring fra liknende arbeid.&lt;/li&gt;&lt;li&gt;Flytende engelsk - muntlig og skriftlig.&lt;/li&gt;&lt;li&gt;Det er en fordel om du har kjennskap til MS Dynamic AX og Eye-Share.&lt;/li&gt;&lt;/ul&gt;\n&lt;h3&gt;Personlige egenskaper&lt;/h3&gt;\n&lt;p&gt;Til denne stillingen leter vi etter deg som er:&lt;/p&gt;\n&lt;ul&gt;&lt;li&gt;Positiv, - og som har en &amp;#34;can-do&amp;#34; attitude.&lt;/li&gt;&lt;li&gt;Du må være komfortabel med kundekontakt, både på norsk og engelsk.&lt;/li&gt;&lt;li&gt;Du liker å være frempå, og anser deg selv som en fremoverlent og proaktiv person.&lt;/li&gt;&lt;/ul&gt;\n&lt;p&gt;Var dette interessant? Ring oss gjerne for mer informasjon om stillingen.&lt;/p&gt;\n&lt;p&gt;&lt;a href=\"https://www.finn.no/162294015\"&gt;Se annonse&lt;/a&gt;&lt;/p&gt;&lt;p hidden&gt;PAM&lt;/p&gt;</Content>\n        </PositionFormattedDescription>\n        <TravelPreference>\n            <WillingToTravelIndicator>true</WillingToTravelIndicator>\n            <TravelPercentage>0</TravelPercentage>\n            <ns2:Description type=\"travelPreferenceDescriptionType\">travelPreferenceDescription</ns2:Description>\n        </TravelPreference>\n        <WorkingLanguageCode>NO</WorkingLanguageCode>\n        <PositionPeriod>\n            <StartDate>\n                <DateText typeCode=\"startDateType\">na</DateText>\n            </StartDate>\n            <EndDate>\n                <DateText typeCode=\"endDateType\">NA</DateText>\n            </EndDate>\n            <ns2:Description type=\"periodDescription\"/>\n        </PositionPeriod>\n        <ImmediateStartIndicator>false</ImmediateStartIndicator>\n        <PositionScheduleTypeCode>FullTime</PositionScheduleTypeCode>\n        <OfferedRemunerationPackage>\n            <RemunerationRange>\n                <RemunerationReferenceAmount currencyID=\"NOK\">0</RemunerationReferenceAmount>\n                <RemunerationMinimumAmount currencyID=\"NOK\">0</RemunerationMinimumAmount>\n                <RemunerationMaximumAmount currencyID=\"NOK\">0</RemunerationMaximumAmount>\n            </RemunerationRange>\n        </OfferedRemunerationPackage>\n        <ApplicationCloseDate typeCode=\"ApplicationCloseDateType\">2019-12-16</ApplicationCloseDate>\n    </PositionProfile>\n</PositionOpening>\n",
@@ -51,82 +51,82 @@ data class PositionOpeningStatusCode(
 
 
 data class PostingRequester(
-        private val partyId: PartyId = PartyId(),
-        private val partyName: String? = ""
+        val partyId: PartyId = PartyId(),
+        val partyName: String? = ""
 )
 
 data class PartyId(
-        private val schemeID: String = "NAV", // atributter // TODO verify that this is static
-        private val schemeAgencyID: String = "NAV PES", // atributter // TODO verify that this is static
-        private val schemeAgencyName: String = "NAV PES", // atributter // TODO verify that this is static
+        val schemeID: String = "NAV", // atributter // TODO verify that this is static
+        val schemeAgencyID: String = "NAV PES", // atributter // TODO verify that this is static
+        val schemeAgencyName: String = "NAV PES", // atributter // TODO verify that this is static
 
-        private val partnerId: String = "9999" // Body - vår ID // TODO verify that this is static
+        val partnerId: String = "9999" // Body - vår ID // TODO verify that this is static
 )
 
 data class PositionProfile(
-        private val postingInstruction: PostingInstruction,
-        private val positionTitle: String,
-        private val positionLocation: List<PositionLocation>,
-        private val positionOrganization: PositionOrganization?,
-        private val positionOpenQuantity: Int,
-        private val jobCategoryCode: List<JobCategoryCode>,
-        private val positionOfferingTypeCode: PositionOfferingTypeCode,
-        private val positionQualifications: PositionQualifications?,
-        private val positionFormattedDescription: PositionFormattedDescription,
-        private val workingLanguageCode: String,
-        private val positionPeriod: PositionPeriod,
-        private val immediateStartIndicator: Boolean,
-        private val positionScheduleTypeCode: PositionScheduleTypeCode,
-        private val applicationCloseDate: LocalDateTime       // YYYY-MM-DD
+        val postingInstruction: PostingInstruction,
+        val positionTitle: String,
+        val positionLocation: List<PositionLocation>,
+        val positionOrganization: PositionOrganization?,
+        val positionOpenQuantity: Int,
+        val jobCategoryCode: List<JobCategoryCode>,
+        val positionOfferingTypeCode: PositionOfferingTypeCode,
+        val positionQualifications: PositionQualifications?,
+        val positionFormattedDescription: PositionFormattedDescription,
+        val workingLanguageCode: String,
+        val positionPeriod: PositionPeriod,
+        val immediateStartIndicator: Boolean,
+        val positionScheduleTypeCode: PositionScheduleTypeCode,
+        val applicationCloseDate: LocalDateTime       // YYYY-MM-DD
 )
 
 
 data class PositionOrganization(
-        private val organizationIdentifiers: OrganizationIdentifiers,
-        private val industryCode: List<IndustryCode>,
-        private val organizationSizeCode: OrganizationSizeCode? = null // Belive we do not have this
+        val organizationIdentifiers: OrganizationIdentifiers,
+        val industryCode: List<IndustryCode>,
+        val organizationSizeCode: OrganizationSizeCode? = null // Belive we do not have this
 )
 
 data class OrganizationIdentifiers(
-        private val organizationName: String, // child element
-        private val organizationLegalID: OrganizationLegalID?
+        val organizationName: String, // child element
+        val organizationLegalID: OrganizationLegalID?
 
 )
 
 data class OrganizationLegalID(
-//        private val schemeID: String, // attribute
-//        private val schemeAgencyID: String, // attribute
-//        private val schemeAgencyName: String, // attribute
-//        private val schemeVersionID: String, // attribute
+//        val schemeID: String, // attribute
+//        val schemeAgencyID: String, // attribute
+//        val schemeAgencyName: String, // attribute
+//        val schemeVersionID: String, // attribute
 
-        private val organizationId: String // Content
+        val organizationId: String // Content
 )
 
 data class IndustryCode( // enum/kodeverk // TODO NACE_2  -se 4.15.17
-        private val code: String
+        val code: String
 )
 
 class OrganizationSizeCode // enum/kodeverk
 
 data class PositionLocation(
-        private val address: Address
+        val address: Address
 )
 
 data class Address(
-        private val cityName: String?,
-        private val countryCode: String,
-        private val postalCode: String?,
-        private val choice: Choice?
+        val cityName: String?,
+        val countryCode: String,
+        val postalCode: String?,
+        val choice: Choice?
 )
 
 data class Choice(
-        private val addressLine: String?
+        val addressLine: String?
 )
 
 
 data class PostingInstruction(
-        private val postingOptionCode: PostingOptionCode? = null,
-        private val applicationMethod: ApplicationMethod
+        val postingOptionCode: PostingOptionCode? = null,
+        val applicationMethod: ApplicationMethod
 )
 
 enum class PostingOptionCode {
@@ -134,87 +134,87 @@ enum class PostingOptionCode {
 }
 
 data class ApplicationMethod(
-        private val instructions: String = "See jobdescription"
+        val instructions: String = "See jobdescription"
 )
 
 data class PositionQualifications(
-    private val positionCompetency: PositionCompetency,
-    private val educationRequirement: EducationRequirement,
-    private val experienceSummary: ExperienceSummary,
-    private val licenseTypeCode: LicenseTypeCode
+    val positionCompetency: PositionCompetency,
+    val educationRequirement: EducationRequirement,
+    val experienceSummary: ExperienceSummary,
+    val licenseTypeCode: LicenseTypeCode
 )
 
 data class PositionCompetency (
-    private val competencyID: CompetencyID,
-    private val taxonomyID: String, // enum values
-    private val requiredProficiencyLevel: RequiredProficiencyLevel,
-    private val desiredProficiencyLevel: DesiredProficiencyLevel,
-    private val competencyDimension: CompetencyDimension
+    val competencyID: CompetencyID,
+    val taxonomyID: String, // enum values
+    val requiredProficiencyLevel: RequiredProficiencyLevel,
+    val desiredProficiencyLevel: DesiredProficiencyLevel,
+    val competencyDimension: CompetencyDimension
 )
 
 data class CompetencyID (
-    private val schemeID: String, // attribute ="ISO-639-1/2-Languages"
-    private val schemeAgencyID: String, // attribute ="ISO"
-    private val schemeAgencyName: String, // attribute ="ISO"
-    private val schemeVersionID: String, // attribute ="639-1:2002 Alpha 2"
-    private val schemeDataURI: String, // attribute ="http://www.loc.gov"
+    val schemeID: String, // attribute ="ISO-639-1/2-Languages"
+    val schemeAgencyID: String, // attribute ="ISO"
+    val schemeAgencyName: String, // attribute ="ISO"
+    val schemeVersionID: String, // attribute ="639-1:2002 Alpha 2"
+    val schemeDataURI: String, // attribute ="http://www.loc.gov"
 
-    private val value: String // element value
+    val value: String // element value
 )
 
 data class RequiredProficiencyLevel (
-        private val scoreText: String
+        val scoreText: String
 )
 
 data class DesiredProficiencyLevel (
-        private val scoreText: String
+        val scoreText: String
 )
 
 data class CompetencyDimension(
-        private val competencyDimensionTypeCode: CompetencyDimensionTypeCodem,
-        private val score: Score
+        val competencyDimensionTypeCode: CompetencyDimensionTypeCodem,
+        val score: Score
 )
 data class CompetencyDimensionTypeCodem(
-        private val listName: String, // attribute ="EURES_Dimension"
-        private val listVersionID: String, // attribute ="1.0"
-        private val listURI: String, // attribute ="http://www.coe.int"
+        val listName: String, // attribute ="EURES_Dimension"
+        val listVersionID: String, // attribute ="1.0"
+        val listURI: String, // attribute ="http://www.coe.int"
 
-        private val value: String // element value
+        val value: String // element value
 )
 
 data class Score(
-        private val scoreText: String
+        val scoreText: String
 )
 
 data class EducationRequirement(
-        private val educationLevelCode: EducationLevelCode,
-        private val degreeTypeCode: DegreeTypeCode
+        val educationLevelCode: EducationLevelCode,
+        val degreeTypeCode: DegreeTypeCode
 )
 
 data class EducationLevelCode(
-        private val listName: String, // Attribute
-        private val listVersionID: String, // Attribute
-        private val value: Int // value
+        val listName: String, // Attribute
+        val listVersionID: String, // Attribute
+        val value: Int // value
 )
 
 data class ExperienceSummary(
-        private val experienceCategory: ExperienceCategory,
-        private val measure: Measure
+        val experienceCategory: ExperienceCategory,
+        val measure: Measure
 )
 
 data class ExperienceCategory(
-        private val listName: String, // CategoryCode attribute
-        private val listVersionID: String, // CategoryCode attribute
-        private val listURI: String, // CategoryCode attribute
-        private val name: String, // CategoryCode attribute
+        val listName: String, // CategoryCode attribute
+        val listVersionID: String, // CategoryCode attribute
+        val listURI: String, // CategoryCode attribute
+        val name: String, // CategoryCode attribute
 
-        private val categoryCode: String
+        val categoryCode: String
 
 )
 
 data class Measure(
-        private val unitCode: String, // attribute
-        private val value: Int // value
+        val unitCode: String, // attribute
+        val value: Int // value
 )
 
 class DegreeTypeCode // enum/kodeverk
@@ -248,15 +248,15 @@ enum class PositionScheduleTypeCode {
 }
 
 data class PositionPeriod(
-        private val startDate: Date
+        val startDate: Date
 )
 
 data class Date(
-        private val formattedDateTime: LocalDateTime? = null,
-        private val dateText: String
+        val formattedDateTime: LocalDateTime? = null,
+        val dateText: String
 )
 
 data class PositionFormattedDescription(
-        private val content: String
+        val content: String
 )
 
