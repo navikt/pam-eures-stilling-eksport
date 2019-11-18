@@ -1,15 +1,14 @@
 package no.nav.pam.euresstillingeksport.service
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import no.nav.pam.euresstillingeksport.model.Converters
+import no.nav.pam.euresstillingeksport.model.eures.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.model.eures.PositionOpening
 import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class AdApiService(@Autowired private val stillingService: StillingService,
-                   @Autowired private val xmlMapper: XmlMapper) : ApiService {
+class AdApiService(@Autowired private val stillingService: StillingService) : ApiService {
     /** Kun referanser til aktive stillingsannonser skal returneres */
     override fun getAll(): GetAllResponse {
         val stillingsannonser = stillingService.hentAlleAktiveStillinger()
@@ -67,7 +66,7 @@ class AdApiService(@Autowired private val stillingService: StillingService,
     }
 
     fun toXML(positionOpening: PositionOpening): String {
-        return xmlMapper.writeValueAsString(positionOpening)
+        return HrxmlSerializer.serialize(positionOpening)
     }
 }
 

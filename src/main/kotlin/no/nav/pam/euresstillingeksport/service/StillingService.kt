@@ -18,25 +18,37 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     }
 
     @Transactional
-    fun lagreStillinger(ad: List<Ad>) {
+    fun lagreStillinger(ad: List<Ad>): Int {
+        var antallModifiserteStillinger: Int = 0
         val eksisterendeStillinger = stillingRepository.findStillingsannonserByIds(ad.map {it.uuid})
                 .associateBy({it.stillingsannonseMetadata.id}, {it})
         val nyeAnnonser = ArrayList<StillingsannonseJson>()
         val endredeAnnonser = ArrayList<StillingsannonseJson>()
 
-        ad.forEach {
+        ad.filter {
+            try {
+                it.convertToPositionOpening()
+                true
+            } catch (e: Exception) {
+                val suffix = if (eksisterendeStillinger[it.uuid] == null) ""
+                        else ". Dette er en oppdatering av en eksisterende annonse."
+                LOG.error("Import av stillingsannonse avvist pga at den ikke kan konverteres til Eures format. " +
+                        "Stillingsannonse id:{}, feilmelding: {}{}", it.uuid, e.message, suffix, e)
+                false
+            }
+        }.forEach {
            val jsonAd = objectMapper.writeValueAsString(it)
            if (eksisterendeStillinger[it.uuid] != null) {
                // Stillingsannonsen fins i databasen fra før.
                val eksisterendeAd = objectMapper.readValue(eksisterendeStillinger[it.uuid]?.jsonAd, Ad::class.java)
                val eksisterendeMetadata = eksisterendeStillinger[it.uuid]?.stillingsannonseMetadata
 
-               // TODO Kunne vi brukt String.equals på jsonAd og json i databasen isteden for å sammenligne deserialiserte objekter?
                if (!eksisterendeAd.equals(it) && eksisterendeMetadata != null) {
                    // Reell endring i annonse
                     val nyMetadata =
                             konverterTilStillingsannonseMetadata(it, eksisterendeMetadata)
                    endredeAnnonser.add(StillingsannonseJson(nyMetadata, jsonAd))
+                   antallModifiserteStillinger++
                    LOG.info("Annonse {} er endret. Status er {}", it.uuid, it.status)
                } else {
                    LOG.info("Ingen endring i annonse {} - ignorerer", it.uuid)
@@ -45,6 +57,7 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
                 // Ny Stillingsannonse - kun legg til nye annonser som er aktive
                 if (AdStatus.fromString(it.status) == AdStatus.ACTIVE) {
                     nyeAnnonser.add(StillingsannonseJson(konverterTilStillingsannonseMetadata(it), jsonAd))
+                    antallModifiserteStillinger++
                     LOG.info("Ny annonse {}", it.uuid)
                } else {
                    LOG.info("Ny annonse {} har status {}, blir ikke lagt til", it.uuid, it.status)
@@ -54,6 +67,7 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
 
         stillingRepository.updateStillingsannonser(endredeAnnonser)
         stillingRepository.saveStillingsannonser(nyeAnnonser)
+        return antallModifiserteStillinger
     }
 
     // Konverterer en ny annonse til metadata

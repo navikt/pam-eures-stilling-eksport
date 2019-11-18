@@ -51,7 +51,7 @@ class KonverteringTests {
 		val now = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		val ad = initAd()
 		val po = ad.convertToPositionOpening()
-		Assertions.assertTrue(po.positionOpeningStatusCode.)
+		Assertions.assertTrue(po.positionOpeningStatusCode.name == "Active")
 		System.out.println(adApi.toXML(po))
 
 	}
