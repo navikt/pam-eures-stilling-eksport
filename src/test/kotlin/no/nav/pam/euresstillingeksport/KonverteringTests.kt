@@ -51,8 +51,9 @@ class KonverteringTests {
 		val now = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		val ad = initAd()
 		val po = ad.convertToPositionOpening()
+		// Mulig vi trenger *litt* mer testing på om vi konverterer til riktig HR-XML
 		Assertions.assertTrue(po.positionOpeningStatusCode.name == "Active")
-		System.out.println(adApi.toXML(po))
+		//System.out.println(adApi.toXML(po))
 
 	}
 }
