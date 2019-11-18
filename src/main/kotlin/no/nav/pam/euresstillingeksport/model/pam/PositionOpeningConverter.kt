@@ -19,17 +19,17 @@ enum class PropertyMapping(val key: String) {
 
 fun Ad.convertToPositionOpening(): PositionOpening {
     return PositionOpening(
-            id = toId(),
+            documentId = toDocumentId(),
             positionOpeningStatusCode = PositionOpeningStatusCode("Active", "Active"),
             postingRequester = PostingRequester(),
-            positionProfiles = asList(toPositionProfile())
+            positionProfile = asList(toPositionProfile())
     )
 }
 
-private fun Ad.toId() = Id(DocumentId(
+private fun Ad.toDocumentId() = DocumentId(
         uuid = uuid,
         schemeAgencyID = toSchemeAgencyId(source!!, medium!!),
-        schemeAgencyName= toSchemeAgencyName(source!!, medium!!)))
+        schemeAgencyName= toSchemeAgencyName(source!!, medium!!))
 
 
 private fun Ad.toPositionProfile(): PositionProfile {
@@ -47,7 +47,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             jobCategoryCode = toJobCategoryCode(),
             positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key] ?: ""),
             positionQualifications = null, // We do not have these data in a structured format
-            positionFormattedDescription = PositionFormattedDescription(properties[PropertyMapping.positionCount.key] ?: ""),
+            positionFormattedDescription = PositionFormattedDescription(properties[PropertyMapping.adtext.key] ?: ""),
             workingLanguageCode = "NO",
             positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key] ?: "na")),
             immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key] ?: ""),
@@ -56,9 +56,9 @@ private fun Ad.toPositionProfile(): PositionProfile {
     )
 }
 
-fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
+private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
     return categoryList.filter { it.categoryType?.equals("STYRK08NAV", ignoreCase = true) ?: false }
-            .map { JobCategoryCode(code = it.code ?: "INGEN") }
+            .map { JobCategoryCode(code = it.code?.substring(0..3) ?: "INGEN") }
 
 }
 
