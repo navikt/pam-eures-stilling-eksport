@@ -29,7 +29,7 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableScheduling
-@EnableSchedulerLock(defaultLockAtMostFor = "PT60S")
+@EnableSchedulerLock(defaultLockAtMostFor = "PT45M")
 @EnableRetry
 class ApiConfiguration {
     @Bean
