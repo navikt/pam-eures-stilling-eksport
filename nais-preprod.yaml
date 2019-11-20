@@ -29,7 +29,7 @@ spec:
       cpu: 200m
       memory: 2048Mi
   vault:
-    enabled: false
+    enabled: true
   webproxy: true
   prometheus:
     enabled: true
