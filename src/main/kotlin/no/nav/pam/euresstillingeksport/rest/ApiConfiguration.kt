@@ -5,9 +5,15 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
+import org.flywaydb.core.Flyway
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.ObjectProvider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.autoconfigure.data.jpa.EntityManagerFactoryDependsOnPostProcessor
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer
+import org.springframework.boot.jdbc.SchemaManagement
+import org.springframework.boot.jdbc.SchemaManagementProvider
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -68,7 +74,29 @@ class ApiConfiguration {
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
         HttpsURLConnection.setDefaultHostnameVerifier { hostname, session -> true }
     }
+
+    /* Alt som er her av flywaykonfigurasjon kan fjernes når vi går over til postgresql
+       Grunnen til at det er med er at vi må bruke gammel versjon av flyway for å støtte den
+       gamle versjonen av oracle som er i prod....
+     */
+    @Bean
+    @Primary
+    fun flywayDefaultDdlModeProvider(flyways : ObjectProvider<Flyway>) =
+            SchemaManagementProvider {
+                SchemaManagement.MANAGED
+            }
+    @Bean(initMethod = "migrate")
+    fun flyway(dataSource : DataSource) =
+            Flyway().apply { setDataSource(dataSource) }
+    @Bean
+    fun flywayInitializer(@Autowired flyway : Flyway) =
+            FlywayMigrationInitializer(flyway, null)
+
 }
+@Configuration
+class FlywayInitializerJdbcOperationsDependencyConfiguration : EntityManagerFactoryDependsOnPostProcessor("flywayInitializer") {
+}
+
 
 @ControllerAdvice
 class WebControllerErrorHandler : ResponseEntityExceptionHandler() {
