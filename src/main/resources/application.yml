@@ -12,6 +12,7 @@ spring:
   metrics.web.server.auto-time-requests: true
   main:
     banner-mode: "off"
+    allow-bean-definition-overriding: true
   profiles:
     active: ${NAIS_CLUSTER_NAME}
   h2:
