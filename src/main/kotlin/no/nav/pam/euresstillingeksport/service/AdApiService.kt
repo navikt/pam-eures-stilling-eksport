@@ -1,6 +1,8 @@
 package no.nav.pam.euresstillingeksport.service
 
 import no.nav.pam.euresstillingeksport.model.Converters
+import no.nav.pam.euresstillingeksport.model.eures.HrxmlSerializer
+import no.nav.pam.euresstillingeksport.model.eures.PositionOpening
 import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -54,13 +56,17 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
                     JvDetails(it.stillingsannonseMetadata.id,
                             it.stillingsannonseMetadata.kilde,
                             EuresStatus.fromAdStatus(it.stillingsannonseMetadata.status),
-                            it.ad.convertToPositionOpening().toString(), // Dette er ment å skulle returnere HR-XML...
+                            toXML(it.ad.convertToPositionOpening()),
                             "1.0",
                             Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.opprettetTs),
                             Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.sistEndretTs),
                             it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null
                     )
                 }))
+    }
+
+    fun toXML(positionOpening: PositionOpening): String {
+        return HrxmlSerializer.serialize(positionOpening)
     }
 }
 

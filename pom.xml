@@ -21,6 +21,7 @@
 		<logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
 		<wiremock.version>2.25.1</wiremock.version>
 		<shedlock.version>3.0.0</shedlock.version>
+		<oracle.version>19.3.0.0</oracle.version>
 	</properties>
 
 	<dependencyManagement>
@@ -54,6 +55,11 @@
 				<groupId>net.javacrumbs.shedlock</groupId>
 				<artifactId>shedlock-provider-jdbc-template</artifactId>
 				<version>${shedlock.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle.ojdbc</groupId>
+				<artifactId>ojdbc8</artifactId>
+				<version>${oracle.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -131,6 +137,12 @@
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+		</dependency>
+
 		<!-- H2 skal bare brukes inntil vi kommer opp med noe bedre -->
 		<dependency>
 			<groupId>com.h2database</groupId>

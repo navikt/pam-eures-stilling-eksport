@@ -1,2 +1,9 @@
 pam-ad:
   url: http://pam-ad.default.svc.nais.local:80/api/v1/ads
+spring:
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: jdbc:oracle:thin:@d32dbfl003.oera-t.local:1521/pameuresexp_t1
+    driverClassName: oracle.jdbc.driver.OracleDriver
