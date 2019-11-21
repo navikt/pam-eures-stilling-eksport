@@ -32,7 +32,7 @@ class StatusController(@Autowired private val feedClient: AdFeedClient,
         val ad = feedClient.getAd(uuid)
 
         // Det er litt dårlig karma å sjekke forretningslogikk her som kun burde ligge i stillingService,
-        // men det er verd det for å kunne i en ordentlig feilmelding (alternativet er "sjekk loggen")
+        // men det er verd det for å kunne gi en ordentlig feilmelding (alternativet er "sjekk loggen")
         try {
             ad.convertToPositionOpening()
         } catch (e: Exception) {
