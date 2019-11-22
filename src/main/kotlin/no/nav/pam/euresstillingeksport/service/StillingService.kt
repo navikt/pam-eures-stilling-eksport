@@ -44,10 +44,12 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
                val eksisterendeAd = objectMapper.readValue(eksisterendeStillinger[it.uuid]?.jsonAd, Ad::class.java)
                val eksisterendeMetadata = eksisterendeStillinger[it.uuid]?.stillingsannonseMetadata
 
-               if (!eksisterendeAd.equals(it) && eksisterendeMetadata != null) {
+               val nyMetadata = konverterTilStillingsannonseMetadata(it, eksisterendeMetadata)
+
+               if (eksisterendeMetadata != null && nyMetadata != null
+                       && (!eksisterendeAd.equals(it)
+                               || eksisterendeMetadata.status != nyMetadata.status)) {
                    // Reell endring i annonse
-                    val nyMetadata =
-                            konverterTilStillingsannonseMetadata(it, eksisterendeMetadata)
                    endredeAnnonser.add(StillingsannonseJson(nyMetadata, jsonAd))
                    antallModifiserteStillinger++
                    LOG.info("Annonse {} er endret. Status er {}", it.uuid, it.status)
@@ -83,8 +85,10 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     }
 
     // Konverterer en endret annonse til metadata
-    private fun konverterTilStillingsannonseMetadata(ad : Ad, eksisterende: StillingsannonseMetadata)
-            : StillingsannonseMetadata {
+    private fun konverterTilStillingsannonseMetadata(ad : Ad, eksisterende: StillingsannonseMetadata?)
+            : StillingsannonseMetadata? {
+        if (eksisterende == null)
+            return null
         val status = AdStatus.fromString(ad.status)
         val now = LocalDateTime.now()
 
