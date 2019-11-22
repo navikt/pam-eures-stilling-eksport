@@ -2,6 +2,7 @@ package no.nav.pam.euresstillingeksport.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.model.pam.*
+import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -128,5 +129,9 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
         return if (stillingsannonseJson == null) null
             else Stillingsannonse(stillingsannonseJson.stillingsannonseMetadata,
                 objectMapper.readValue(stillingsannonseJson.jsonAd, Ad::class.java))
+    }
+
+    fun hentStatistikk(fraOgMed : LocalDateTime?) : List<AnnonseStatistikk> {
+        return stillingRepository.tellStillingsannonser(fraOgMed)
     }
 }

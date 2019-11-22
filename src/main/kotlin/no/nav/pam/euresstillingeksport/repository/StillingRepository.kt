@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
 import java.sql.PreparedStatement
 import java.sql.Timestamp
+import java.time.LocalDateTime
 
 @Repository
 class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
@@ -177,4 +178,28 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         return eksisterendeAnnonser
     }
 
+    fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk>{
+        val params = MapSqlParameterSource()
+        var where = ""
+        if (fraOgMedTidspunkt != null) {
+            "where sist_endret_ts >= :fom "
+            params.addValue("fom", fraOgMedTidspunkt)
+        }
+
+        return namedJdbcTemplate.query("select status, count(*) as antall " +
+                "from stillinger " +
+                where +
+                "group by status", params,
+                RowMapper<AnnonseStatistikk>
+                { rs, rowNum ->
+                    AnnonseStatistikk(rs.getString("status"),
+                            rs.getLong("antall"))
+                }
+            )
+    }
 }
+
+data class AnnonseStatistikk(
+        val status : String,
+        val antall : Long
+)
