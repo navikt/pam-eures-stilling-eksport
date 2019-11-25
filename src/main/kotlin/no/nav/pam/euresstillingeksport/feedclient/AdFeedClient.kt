@@ -155,6 +155,9 @@ class AdFeedClient @Autowired constructor (
                 ferdig = trans.last
             }
         }
+
+        fun feedpeker() = feedRepository.hentFeedPeker()
+        fun feedpeker(sistLest: LocalDateTime) = feedRepository.oppdaterFeedPeker(sistLest)
     }
 
     @Repository
