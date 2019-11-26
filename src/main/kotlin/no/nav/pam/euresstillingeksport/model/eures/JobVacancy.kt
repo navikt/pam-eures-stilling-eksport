@@ -1,17 +1,19 @@
 package no.nav.pam.euresstillingeksport.model.eures
 
 import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
+import com.fasterxml.jackson.dataformat.xml.annotation.*
 import java.time.LocalDateTime
 
-@JacksonXmlRootElement(namespace = "http://www.hr-xml.org/3", localName = "PositionOpening")
+@JacksonXmlRootElement
 data class PositionOpening(
+        // Jackson namespace hack
+        @JacksonXmlProperty(isAttribute = true, localName = "xmlns")
+        val xmlns: String = "http://www.hr-xml.org/3",
+
         val documentId: DocumentId,
         val positionOpeningStatusCode: PositionOpeningStatusCode,
         val postingRequester: PostingRequester,
+        @JacksonXmlElementWrapper(useWrapping = false)
         val positionProfile: List<PositionProfile>,
         @JacksonXmlProperty(isAttribute = true, localName = "validFrom")
         val validFrom: String = "2019-11-05",
@@ -43,16 +45,16 @@ data class PositionOpeningStatusCode(
 )
 
 data class PostingRequester(
-        val partyId: PartyId = PartyId(),
+        val partyID: PartyId = PartyId(),
         val partyName: String? = null
 )
 
 data class PartyId(
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "schemeID")
         val schemeID: String = "NAV", // atributter // TODO verify that this is static
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyID")
         val schemeAgencyID: String = "NAV PES", // atributter // TODO verify that this is static
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyName")
         val schemeAgencyName: String = "NAV PES", // atributter // TODO verify that this is static
         @JacksonXmlText
         val partnerId: String = "9999" // Body - vår ID // TODO verify that this is static
