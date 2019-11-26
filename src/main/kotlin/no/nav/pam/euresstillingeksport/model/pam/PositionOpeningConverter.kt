@@ -19,7 +19,7 @@ enum class PropertyMapping(val key: String) {
 
 fun Ad.convertToPositionOpening(): PositionOpening {
     return PositionOpening(
-            documentId = toDocumentId(),
+            documentID = toDocumentId(),
             positionOpeningStatusCode = PositionOpeningStatusCode("Active", "Active"),
             postingRequester = PostingRequester(),
             positionProfile = asList(toPositionProfile())
