@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.model.eures.IndustryCode
 import no.nav.pam.euresstillingeksport.model.eures.OrganizationIdentifiers
-import no.nav.pam.euresstillingeksport.model.eures.OrganizationLegalID
 import no.nav.pam.euresstillingeksport.model.eures.PositionOrganization
 
 private val JSON = jacksonObjectMapper()
@@ -17,7 +16,7 @@ enum class EmployerPropertyMapping(val key: String) {
 fun Employer.toPositionOrganization(): PositionOrganization {
     return PositionOrganization(
             organizationIdentifiers = OrganizationIdentifiers(
-                    organizationLegalID = orgnr?.let { OrganizationLegalID(it) },
+                    organizationLegalID = orgnr,
                     organizationName = name ?: ""
             ),
             industryCode = toIndustryCode()

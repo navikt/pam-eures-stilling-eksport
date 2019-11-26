@@ -10,7 +10,7 @@ data class PositionOpening(
         @JacksonXmlProperty(isAttribute = true, localName = "xmlns")
         val xmlns: String = "http://www.hr-xml.org/3",
 
-        val documentId: DocumentId,
+        val documentID: DocumentId,
         val positionOpeningStatusCode: PositionOpeningStatusCode,
         val postingRequester: PostingRequester,
         @JacksonXmlElementWrapper(useWrapping = false)
@@ -38,7 +38,7 @@ data class DocumentId(
 
 data class PositionOpeningStatusCode(
 
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "name")
         val name: String,
         @JacksonXmlText
         val value: String
@@ -61,11 +61,15 @@ data class PartyId(
 )
 
 data class PositionProfile(
+        @JacksonXmlProperty(isAttribute = true, localName = "languageCode")
+        val languageCode: String = "no",
         val postingInstruction: PostingInstruction,
         val positionTitle: String,
+        @JacksonXmlElementWrapper(useWrapping = false)
         val positionLocation: List<PositionLocation>,
         val positionOrganization: PositionOrganization?,
         val positionOpenQuantity: Int,
+        @JacksonXmlElementWrapper(useWrapping = false)
         val jobCategoryCode: List<JobCategoryCode>,
         val positionOfferingTypeCode: PositionOfferingTypeCode,
         val positionQualifications: PositionQualifications?,
@@ -81,26 +85,22 @@ data class PositionProfile(
 
 data class PositionOrganization(
         val organizationIdentifiers: OrganizationIdentifiers,
+        @JacksonXmlElementWrapper(useWrapping = false)
         val industryCode: List<IndustryCode>,
         val organizationSizeCode: OrganizationSizeCode? = null // Belive we do not have this
 )
 
 data class OrganizationIdentifiers(
         val organizationName: String, // child element
-        val organizationLegalID: OrganizationLegalID?
-
-)
-
-data class OrganizationLegalID(
 //        val schemeID: String, // attribute
 //        val schemeAgencyID: String, // attribute
 //        val schemeAgencyName: String, // attribute
 //        val schemeVersionID: String, // attribute
-
-        val organizationId: String // Content
+        val organizationLegalID: String?
 )
 
 data class IndustryCode( // enum/kodeverk // TODO NACE_2  -se 4.15.17
+        @JacksonXmlText
         val code: String
 )
 
@@ -112,17 +112,14 @@ data class PositionLocation(
 
 data class Address(
         @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
-        val cityName: String?, // TODO namespace
+        val addressLine: String?,
         @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
-        val countrySubDivisionCode: String = "", // TODO kommunenummer - namespace
+        val cityName: String?,
+        @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
+        val countrySubDivisionCode: String?, // TODO kommunenummer - namespace
         val countryCode: String,
         @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
-        val postalCode: String?, // TODO namespace
-        val choice: Choice? // TODO namespace
-)
-
-data class Choice(
-        val addressLine: String?
+        val postalCode: String?
 )
 
 
@@ -222,13 +219,13 @@ data class Measure(
 class DegreeTypeCode // enum/kodeverk
 class LicenseTypeCode // enum/kodeverk
 data class JobCategoryCode(
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "listName")
         val listName: String = "ISCO2008", // Attribute
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "listVersionID")
         val listVersionID: String = "2008", // Attribute
-        @JacksonXmlProperty(isAttribute = true)
+        @JacksonXmlProperty(isAttribute = true, localName = "listURI")
         val listURI: String = "http://ec.europa.eu/esco/ConceptScheme/ISCO2008", // Attribute
-
+        @JacksonXmlText
         val code: String
 )
 

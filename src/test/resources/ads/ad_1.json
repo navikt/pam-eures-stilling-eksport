@@ -1,88 +1,145 @@
 {
-  "id": 3824,
-  "uuid": "df7146c9-bf11-4016-8d62-30074ab3fa75",
-  "created": "2018-05-23T16:45:52.297",
+  "activationOnPublishingDate": false,
+  "administration": {
+    "comments": null,
+    "id": 44806,
+    "navIdent": null,
+    "remarks": [],
+    "reportee": null,
+    "status": "RECEIVED"
+  },
+  "businessName": "Nordisk Togteknikk AS",
+  "categoryList": [
+    {
+      "categoryType": "STYRK08NAV",
+      "code": "7411.11",
+      "description": null,
+      "id": 4661,
+      "name": "Elmont\u00f8r",
+      "parentId": 4650
+    }
+  ],
+  "contactList": [
+    {
+      "email": "einar.hageskal@nortog.no",
+      "id": 602216,
+      "name": "Einar Hageskal",
+      "phone": "+47 957 66 906",
+      "role": null,
+      "title": "Daglig Leder"
+    }
+  ],
+  "created": "2019-01-19T07:20:11.999",
   "createdBy": "pam-ad",
-  "updated": "2018-10-26T10:09:58.424",
-  "updatedBy": "pam-ad",
-  "mediaList": [],
-  "contactList": [],
+  "deactivatedByExpiry": false,
+  "employer": {
+    "contactList": [],
+    "created": "2019-01-19T07:16:32.212",
+    "createdBy": "pam-ad",
+    "deactivated": null,
+    "employees": 17,
+    "id": 51974,
+    "location": {
+      "address": "Kv\u00e6rnerveien 6",
+      "city": "OSLO",
+      "country": "NORGE",
+      "county": "OSLO",
+      "latitude": null,
+      "longitude": null,
+      "municipal": "OSLO",
+      "municipalCode": "0301",
+      "postalCode": "0195"
+    },
+    "locationList": [
+      {
+        "address": "Kv\u00e6rnerveien 6",
+        "city": "OSLO",
+        "country": "NORGE",
+        "county": "OSLO",
+        "latitude": null,
+        "longitude": null,
+        "municipal": "OSLO",
+        "municipalCode": "0301",
+        "postalCode": "0195"
+      }
+    ],
+    "mediaList": [],
+    "name": "NORDISK TOGTEKNIKK AS",
+    "orgform": "BEDR",
+    "orgnr": "987938323",
+    "parentOrgnr": "914251559",
+    "properties": {
+      "nace2": "[{\"code\":\"33.170\",\"name\":\"Reparasjon og vedlikehold av andre transportmidler\"}]"
+    },
+    "publicName": "NORDISK TOGTEKNIKK AS",
+    "status": "ACTIVE",
+    "updated": "2019-03-02T01:31:08.618",
+    "updatedBy": "pam-ad",
+    "uuid": "8e72ec01-2d56-453c-84ed-a498f1d12cf7"
+  },
+  "expires": "2019-03-01T07:33:00",
+  "firstPublished": false,
+  "id": 52333,
   "location": {
-    "address": "Ammerudhellinga 47",
-    "postalCode": "0959",
-    "county": "OSLO",
-    "municipal": "OSLO",
-    "municipalCode": "0301",
+    "address": "Kv\u00e6rnerveien 6",
     "city": "OSLO",
     "country": "NORGE",
-    "latitude": null,
-    "longitude": null
+    "county": "OSLO",
+    "latitude": "59.905067443847656",
+    "longitude": "10.784148216247559",
+    "municipal": "OSLO",
+    "municipalCode": "0301",
+    "postalCode": "0195"
   },
   "locationList": [
     {
-      "address": "Ammerudhellinga 47",
-      "postalCode": "0959",
-      "county": "OSLO",
-      "municipal": "OSLO",
-      "municipalCode": "0301",
+      "address": "Kv\u00e6rnerveien 6",
       "city": "OSLO",
       "country": "NORGE",
-      "latitude": null,
-      "longitude": null
+      "county": "OSLO",
+      "latitude": "59.905067443847656",
+      "longitude": "10.784148216247559",
+      "municipal": "OSLO",
+      "municipalCode": "0301",
+      "postalCode": "0195"
     }
   ],
-  "properties": {
-    "extent": "Heltid",
-    "address": "Ammerudhellinga 47,0959 Oslo",
-    "applicationdue": "28.08.2017",
-    "keywords": "Fritidsklubb,,Ungdomsklubb,ungdomsarbeid,,fritid,kultur",
-    "positioncount": "2",
-    "author": "Bydel 10: Grorud",
-    "engagementtype": "Fast",
-    "classification_styrk08_score": "0.6713017",
-    "industry": "Kunst og kultur",
-    "employerdescription": "<p>Bydel Grorud ligger i Groruddalen nordøst i Oslo og har rundt 27.000 innbyggere. Det er variert bebyggelse og mangfoldig befolkning. Bydelen har rundt 1200 ansatte som jobber sammen for å skape gode levekår og livskvalitet for befolkningen.<br />\nSammen med nabobydelene er Bydel Grorud en del av Groruddalssatsingen. Denne satsingen er forlenget med ti nye år fra 2017.<br />\nLes mer om bydelen her: <a href=\"http://www.bydel-grorud.oslo.kommune.no\" rel=\"nofollow\">www.bydel-grorud.oslo.kommune.no</a> og <a href=\"http://www.facebook.com/bydelgrorud\" rel=\"nofollow\">www.facebook.com/bydelgrorud</a><br />\n<em>Hvis du ønsker at søknaden skal unntas offentlighet, må du begrunne dette. Du vil bli varslet dersom begrunnelsen ikke tas til følge. Arbeidsplassene i Oslo kommune skal preges av mangfold, og våre ansatte skal gjenspeile byens befolkning. Vi oppfordrer alle som er kvalifisert til å søke jobb hos oss, uansett alder, funksjonsevne, kjønn, seksuell orientering, religion eller etnisk bakgrunn. Oslo kommune legger vekt på å tilrettelegge arbeidsforholdene dersom det er behov for det.\nBydel Grorud er en røykfri arbeidsplass.</em></p>\n",
-    "externalref": "3529941843",
-    "adtext": "<p>Bydel Grorud har fire kommunale fritidsklubber som samarbeider om å videreutvikle allsidige fritidsmiljøer og skape gode rusfrie møteplasser og aktiviteter for all ungdom i bydelen mellom 9 og 18 år. Fritidsklubbene har gjennom 40 år vært en viktig del av ungdomsmiljøet i bydel Grorud. Fritidsklubbene har per i dag flere hundre brukere hver uke, og er et levende møtested med gruppevirksomhet alle dager i tillegg til tre åpne kvelder i uken. Hver klubb består av kjøkken, lobby, dansesal, digitalstudio og musikkstudio samt ulike aktivitetsrom for biljard, bordtennis, spill og hobby med mer.<br />\nStillingens størrelse angitt i prosent: 30,99% i 45 uker (arbeidsuker &#43; ferie). Fordi klubbene er stengt 12 uker i året, vil derfor stillingens lønn tilsvare 26,82% stilling pr. år.</p>\n<h2>Arbeidsoppgaver</h2>\n<ul><li>Du må kunne arbeide to faste kvelder per uke (ukedager), samt delta på personalmøte på kveldstid en gang per måned.</li><li>Stillingen innebærer ansvar for ett eller flere av senterets funksjonsområder.</li><li>I tillegg til å drive aktivt ungdomsarbeid, må du være en trygg voksenperson som kan håndtere rollene som både aktivitetsleder, omsorgsperson, grensesetter og motivator.</li></ul>\n<h2>Kvalifikasjoner</h2>\n<ul><li>Det er en fordel at du foruten allsidig livserfaring har ferdigheter innen for eksempel konfliktmegling,medvirkning, dans, musikk, forming, data, elektronikk,mat/ernæring,friluftsliv m.m....</li><li>Må ha erfaring fra ungdomsarbeid.</li><li>Bør ha dokumentert erfaring innen enten kunst,hobby, eller dj.</li><li>Bør ha fagbrev som barne- ungdomsarbeider eller tilsvarende.</li><li>Det er krav om å levere politiattest ikke eldre enn 3 mnd før stillingen kan tiltres.</li><li>Søkeren må beherske norsk skriftlig og muntlig (nivå B2)</li><li>Attester og vitnemål medbringes ved et eventuelt intervju</li></ul>\n<h2>Utdanning</h2>\n<ul><li>Videregående skole</li></ul>\n<h2>Egenskaper</h2>\n<ul><li>Vi søker en trygg, holdningssterk og engasjert medarbeider</li><li>Du er handlekraftig og har god gjennomføringsevne</li><li>Evne til å inspirere, motivere og være løsningsorientert</li><li>Personlig egnethet og god relasjonskompetanse vektlegges sterkt</li><li>Evne til å ha god kommunikasjon med alle aldersgrupper inkludert barn med spesielle behov</li><li>Målrettet og strukturert, og evne til å jobbe godt under press</li><li>Gode kommunikasjons- og samarbeidsevner.</li></ul>\n<h2>Vi tilbyr</h2>\n<ul><li>Stillingsbrøk: 26,82%</li><li>Veiledning for assistenter og barne og ungdomsarbeidere</li><li>En arbeidsplass med fokus på godt arbeidsmiljø og samarbeid</li><li>En spennende og hyggelig personalgruppe</li><li>Lønnstrinn 12-24 kr 356 450-410 500 pr år i 100% stilling etter ansiennitet i Oslo kommunes lønnsregulativ.</li></ul>\n",
-    "sourceurl": "https://www.finn.no/102185822",
-    "sourceupdated": "2017-08-14T09:53:00.000Z",
-    "searchtags": "[{\"label\":\"Menighetsarbeider\",\"score\":0.6713017},{\"label\":\"Fagarbeider barnehage\",\"score\":0.6363227},{\"label\":\"Barne- og ungdomsarbeider i skolefritidsordning\",\"score\":0.62195766},{\"label\":\"Lærling barne- og ungdomsarbeider\",\"score\":0.62195766},{\"label\":\"Arbeidsterapeut (barne- og ungdomsarbeid)\",\"score\":0.6112068}]",
-    "applicationurl": "https://www.webcruiter.no/WcMain/CvJobrespond1.aspx?oppdragsnr=3529927621&culture_id=NB-NO&company_id=1603750298&Link_source_id=1",
-    "employer": "Aktivitetsenheten",
-    "location": "Oslo",
-    "classification_input_source": "title",
-    "sector": "Offentlig"
-  },
-  "title": "Ungdomsarbeider",
-  "status": "INACTIVE",
-  "privacy": "SHOW_ALL",
-  "source": "FINN",
+  "mediaList": [],
   "medium": "FINN",
-  "reference": "102185822",
-  "published": "2017-08-21T15:27:34.099",
-  "expires": "2017-08-28T23:59:00",
-  "employer": null,
-  "categoryList": [
-    {
-      "id": 3231,
-      "code": "3413.02",
-      "categoryType": "STYRK08NAV",
-      "name": "Menighetsarbeider",
-      "description": null,
-      "parentId": 3229
-    }
-  ],
-  "administration": {
-    "id": 1639,
-    "status": "DONE",
-    "comments": null,
-    "reportee": "Tom Eirik Aasheim",
-    "remarks": [],
-    "navIdent": null
+  "privacy": "SHOW_ALL",
+  "properties": {
+    "address": "Kv\u00e6rnerveien 6,0195 Oslo",
+    "adtext": "<p>For snarlig ansettelse \u00f8nskes 2 mann med erfaring fra vedlikehold og feils\u00f8king p\u00e5 tyngre kj\u00f8ret\u00f8y eller togmateriell.</p>\n<p>Arbeidsoppgavene vil best\u00e5 i utf\u00f8relse av planlagte vedlikeholdsoppgaver samt reparasjoner av b\u00e5de dieseldrevne og elektriske lokomotiver.</p>\n<p>Det kreves god kompetanse innenfor feils\u00f8king og reparasjoner av dieseldrevne kj\u00f8ret\u00f8y samt gode kunnskaper innefor trykkluft og elektronikk.</p>\n<p>Vi tilbyr gode arbeids og l\u00f8nnsvilk\u00e5r.</p>\n",
+    "applicationdue": "Snarest",
+    "applicationemail": "einar.hageskal@nortog.no",
+    "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=138328250",
+    "author": "Privat",
+    "classification_input_source": "jobtitle",
+    "classification_styrk08_score": "0.0869034",
+    "employer": "Nordisk Togteknikk AS",
+    "employerdescription": "<p>Nordisk Togteknikk AS er den st\u00f8rste private akt\u00f8ren innenfor leveranse av vedlikeholdstjenester for Lokomotiver og Godsvogner i Norge, v\u00e5rt hovedengasjement er leveranse av preventive og korrektive vedlikeholdstjenester overfor Togoperat\u00f8rer i Norge og Sverige.</p>\n",
+    "engagementtype": "Fast",
+    "extent": "Heltid",
+    "externalref": "138328250",
+    "industry": "Industri og produksjon",
+    "jobtitle": "Vi s\u00f8ker Mekanikkere/ Elektrikkere med gode kunskaper innenfor feils\u00f8king og vedlikehold av tyngre kj\u00f8ret\u00f8y, lokomotiver eller tog.",
+    "keywords": "Erfaring,Kompetanse,N\u00f8yaktighet,Sikkerhet,Selvstendig",
+    "location": "Oslo",
+    "occupation": "Teknisk service;Teknisk personell",
+    "positioncount": "2",
+    "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.08452183},{\"label\":\"Togreparat\u00f8r\",\"score\":0.07460987},{\"label\":\"Lastebilmekaniker\",\"score\":0.073640704},{\"label\":\"Kondukt\u00f8r\",\"score\":0.060916554}]",
+    "sector": "Privat",
+    "sourceupdated": "2019-01-18T07:33:00.000Z",
+    "sourceurl": "https://www.finn.no/138328250",
+    "starttime": "01.03.2019"
   },
+  "published": "2019-01-19T07:09:22.618",
   "publishedByAdmin": null,
-  "businessName": null,
-  "firstPublished": false,
-  "deactivatedByExpiry": false,
-  "activationOnPublishingDate": false
+  "reference": "138328250",
+  "source": "FINN",
+  "status": "INACTIVE",
+  "title": "Motorkyndige Teknikkere/ Elektrikkere/ Feils\u00f8kere",
+  "updated": "2019-03-02T01:31:32.861",
+  "updatedBy": "pam-ad",
+  "uuid": "db6cc067-7f39-42f1-9866-d9ee47894ec6"
 }
