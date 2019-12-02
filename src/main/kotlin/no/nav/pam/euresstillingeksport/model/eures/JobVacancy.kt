@@ -25,15 +25,15 @@ data class PositionOpening(
 
 data class DocumentId(
         @JacksonXmlText
-        val uuid: String, // Body
+        @JacksonXmlProperty(isAttribute = true, localName = "schemeID")
+        val schemeID: String = "NAV-002",
         @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyID")
-        val schemeAgencyID: String,
+        val schemeAgencyID: String = "NAV",
         @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyName")
-        val schemeAgencyName: String,
+        val schemeAgencyName: String = "NAV public employment services",
         @JacksonXmlProperty(isAttribute = true, localName = "schemeVersionID")
         val schemeVersionID: String = "1.3",
-        @JacksonXmlProperty(isAttribute = true, localName = "schemeID")
-        val schemeID: String = "NAV-001"
+        val uuid: String
 )
 
 data class PositionOpeningStatusCode(
@@ -51,13 +51,13 @@ data class PostingRequester(
 
 data class PartyId(
         @JacksonXmlProperty(isAttribute = true, localName = "schemeID")
-        val schemeID: String = "NAV", // atributter // TODO verify that this is static
+        val schemeID: String = "NAV", // atributter
         @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyID")
-        val schemeAgencyID: String = "NAV PES", // atributter // TODO verify that this is static
+        val schemeAgencyID: String = "NAV PES", // atributter
         @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyName")
-        val schemeAgencyName: String = "NAV PES", // atributter // TODO verify that this is static
+        val schemeAgencyName: String = "Nav public employment services", // atributter
         @JacksonXmlText
-        val partnerId: String = "9999" // Body - vår ID // TODO verify that this is static
+        val partnerId: String = "9999"
 )
 
 data class PositionProfile(
