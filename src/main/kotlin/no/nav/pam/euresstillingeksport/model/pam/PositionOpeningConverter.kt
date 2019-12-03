@@ -1,10 +1,7 @@
 package no.nav.pam.euresstillingeksport.model.pam
 
 import no.nav.pam.euresstillingeksport.model.eures.*
-import java.time.format.DateTimeFormatter
 import java.util.Arrays.asList
-
-val formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD")
 
 enum class PropertyMapping(val key: String) {
     applicationdue("applicationdue"), // may be "snarest"
@@ -19,18 +16,12 @@ enum class PropertyMapping(val key: String) {
 
 fun Ad.convertToPositionOpening(): PositionOpening {
     return PositionOpening(
-            documentID = toDocumentId(),
+            documentID = DocumentId(uuid = uuid),
             positionOpeningStatusCode = PositionOpeningStatusCode("Active", "Active"),
             postingRequester = PostingRequester(),
             positionProfile = asList(toPositionProfile())
     )
 }
-
-private fun Ad.toDocumentId() = DocumentId(
-        uuid = uuid,
-        schemeAgencyID = toSchemeAgencyId(source!!, medium!!),
-        schemeAgencyName= toSchemeAgencyName(source!!, medium!!))
-
 
 private fun Ad.toPositionProfile(): PositionProfile {
     return PositionProfile(
@@ -62,7 +53,7 @@ private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
 
 }
 
-fun extentToPositionOfferingTypeCode(extent: String): PositionOfferingTypeCode { // same as PositionScheduleTypeCode...
+private fun extentToPositionOfferingTypeCode(extent: String): PositionOfferingTypeCode { // same as PositionScheduleTypeCode...
     return when(extent) {
         "Engasjement" -> PositionOfferingTypeCode.Temporary
         "Fast" -> PositionOfferingTypeCode.DirectHire
@@ -77,7 +68,7 @@ fun extentToPositionOfferingTypeCode(extent: String): PositionOfferingTypeCode {
         else -> PositionOfferingTypeCode.DirectHire
     }
 }
-fun extentToPositionScheduleTypeCode(extent: String): PositionScheduleTypeCode {
+private fun extentToPositionScheduleTypeCode(extent: String): PositionScheduleTypeCode {
     return when(extent) {
         "Heltid" -> PositionScheduleTypeCode.FullTime
         "Deltid" -> PositionScheduleTypeCode.PartTime
@@ -85,28 +76,5 @@ fun extentToPositionScheduleTypeCode(extent: String): PositionScheduleTypeCode {
     }
 }
 
-fun guessImmediatStartTime(startTime: String) = startTime.contains("snarest", ignoreCase = true)
+private fun guessImmediatStartTime(startTime: String) = startTime.contains("snarest", ignoreCase = true)
 
-fun toSchemeAgencyId(source: String, medium: String ): String {
-    return when(source) { // TODO denne er nok litt tynn
-        "FINN" -> "FINN1"
-        "STILLINGSOLR" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        "DEXI" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        "POLARIS" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        "STILLINGSREGISTRERING" -> "NAV"
-        "AMEDIA" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        else -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-    }
-}
-
-fun toSchemeAgencyName(source: String, medium: String ): String {
-    return when(source) { // TODO denne er nok også litt tynn
-        "FINN" -> "finn.no"
-        "STILLINGSOLR" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        "DEXI" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        "POLARIS" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        "STILLINGSREGISTRERING" -> "NAV PES"
-        "AMEDIA" -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-        else -> throw IllegalStateException("Ukjent mapping, $source, $medium")
-    }
-}

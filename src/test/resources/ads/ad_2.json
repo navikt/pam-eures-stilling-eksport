@@ -1,0 +1,135 @@
+{
+  "activationOnPublishingDate": false,
+  "administration": {
+    "comments": null,
+    "id": 1635,
+    "navIdent": null,
+    "remarks": [],
+    "reportee": "System",
+    "status": "DONE"
+  },
+  "businessName": "BRAVIDA NORGE AS AVD SANDEFJORD ELEKTRO",
+  "categoryList": [
+    {
+      "categoryType": "STYRK08NAV",
+      "code": "7411.01",
+      "description": null,
+      "id": 4651,
+      "name": "Elektriker",
+      "parentId": 4650
+    }
+  ],
+  "contactList": [
+    {
+      "email": null,
+      "id": 149896,
+      "name": "Tommy\u00a0Lundekvam, Tlf: +47 908 68 560",
+      "phone": null,
+      "role": null,
+      "title": null
+    }
+  ],
+  "created": "2018-11-19T12:12:08.194",
+  "createdBy": "pam-ad",
+  "deactivatedByExpiry": false,
+  "employer": {
+    "contactList": [],
+    "created": "2018-11-19T12:06:05.446",
+    "createdBy": "pam-ad",
+    "deactivated": null,
+    "employees": 74,
+    "id": 1251,
+    "location": {
+      "address": "Skolmar 31",
+      "city": "SANDEFJORD",
+      "country": "NORGE",
+      "county": "VESTFOLD",
+      "latitude": "59.13094596314014",
+      "longitude": "10.15459361671639",
+      "municipal": "SANDEFJORD",
+      "municipalCode": "0710",
+      "postalCode": "3232"
+    },
+    "locationList": [
+      {
+        "address": "Skolmar 31",
+        "city": "SANDEFJORD",
+        "country": "NORGE",
+        "county": "VESTFOLD",
+        "latitude": "59.13094596314014",
+        "longitude": "10.15459361671639",
+        "municipal": "SANDEFJORD",
+        "municipalCode": "0710",
+        "postalCode": "3232"
+      }
+    ],
+    "mediaList": [],
+    "name": "BRAVIDA NORGE AS AVD SANDEFJORD ELEKTRO",
+    "orgform": "BEDR",
+    "orgnr": "973139614",
+    "parentOrgnr": "987582561",
+    "properties": {
+      "nace2": "[{\"code\":\"43.210\",\"name\":\"Elektrisk installasjonsarbeid\"}]"
+    },
+    "publicName": "BRAVIDA NORGE AS AVD SANDEFJORD ELEKTRO",
+    "status": "ACTIVE",
+    "updated": "2019-10-07T01:31:08.401552",
+    "updatedBy": "pam-ad",
+    "uuid": "6311ba0d-1a06-49d2-a537-6d61881c736f"
+  },
+  "expires": "2018-12-02T01:00:00",
+  "firstPublished": false,
+  "id": 1982,
+  "location": {
+    "address": null,
+    "city": "SANDEFJORD",
+    "country": "NORGE",
+    "county": "VESTFOLD",
+    "latitude": null,
+    "longitude": null,
+    "municipal": "SANDEFJORD",
+    "municipalCode": "0710",
+    "postalCode": "3232"
+  },
+  "locationList": [
+    {
+      "address": null,
+      "city": "SANDEFJORD",
+      "country": "NORGE",
+      "county": "VESTFOLD",
+      "latitude": null,
+      "longitude": null,
+      "municipal": "SANDEFJORD",
+      "municipalCode": "0710",
+      "postalCode": "3232"
+    }
+  ],
+  "mediaList": [],
+  "medium": "Overf\u00f8rt fra arbeidsgiver",
+  "privacy": "SHOW_ALL",
+  "properties": {
+    "adtext": "<p>I forbindelse med \u00f8kt ordretilgang s\u00f8ker vi etter flere mont\u00f8rer til v\u00e5r avdeling i Sandefjord, b\u00e5de elektrikere (gr.L) og svakstr\u00f8msmont\u00f8rer (telekommunikasjonsmont\u00f8rer). Her f\u00e5r du alle muligheter som fagperson til \u00e5 utvikle deg. Vi har en god oppf\u00f8lging av alle ansatte og spennende, utfordrende arbeidsoppgaver. Vi har et m\u00e5l om faste fagsamlinger for \u00e5 \u00f8ke og videreutvikle kompetansen til hver enkelt ansatt. Vi skal v\u00e6re den foretrukne arbeidsgiver for elektropersonell i Vestfold. I dag best\u00e5r avdelingen av 70 dyktige medarbeidere og en omsetning p\u00e5 ca. 90 millioner kroner. Oppdragene har et geografisk spenn fra Stavern til Holmestrand. Vi har kunder innen n\u00e6ring industri, skoler, kommuner og privatpersoner.</p>\n<h3>Arbeidsoppgaver</h3>\n<p>Som mont\u00f8r arbeider du selvstendig i mange ulike typer oppdrag, store som sm\u00e5. I jobben f\u00e5r du b\u00e5de planlegge, samordne og utf\u00f8re oppdrag. Arbeidet inneb\u00e6rer b\u00e5de teknisk probleml\u00f8sning og kontakt med kunder. Du kommer ogs\u00e5 til \u00e5 v\u00e6re ansvarlig for at ethvert oppdrag er i tr\u00e5d med v\u00e5re h\u00f8ye krav til kvalitet og sikkerhet. Dine arbeidsoppgaver vil blant annet v\u00e6re:</p>\n<ul><li>Sm\u00e5 og store elektroinstallasjoner og serviceoppdrag</li><li>Oppdrag for b\u00e5de bedrifts- og privatmarkedet</li><li>\u00c5rlig vedlikehold / kontroller p\u00e5 alarm / sikkerhets anlegg (gjelder telekommunikasjonsmont\u00f8r)</li><li>Utredninger og feils\u00f8king av tekniske systemer</li><li>Mersalg</li><li>Dokumentasjon av oppdragene</li><li>Kommunikasjon mot kunder og service/prosjektleder</li></ul>\n<h3>Kvalifikasjoner</h3>\n<ul><li>Fagbrev elektriker (enten svakstr\u00f8m eller sterkstr\u00f8m)</li><li>Erfaring som elektriker, enten fra servicearbeid eller prosjekt</li><li>F\u00f8rerkort klasse B</li><li>God norsk muntlig og skriftlig formuleringsevne</li></ul>\n<h3>Personlige egenskaper</h3>\n<ul><li>Du har faglig stolthet og holder kunnskap og evnene dine ved like</li><li>Du er selvstendig og jobber strukturert og systematisk</li><li>Du er serviceinnstilt og l\u00f8sningsorientert</li><li>Du er p\u00e5litelig og ansvarsbevisst</li><li>Du samarbeider godt og er en lagspiller</li><li>Du har gode kommunikasjonsevner p\u00e5 norsk</li></ul>\n<h3>Derfor skal du jobbe hos oss</h3>\n<ul><li>En stilling i et solid selskap med h\u00f8yt kvalifiserte kollegaer</li><li>Gode muligheter for faglig og personlig videreutvikling</li><li>Konkurransedyktige l\u00f8nnsbetingelser</li><li>Gunstige pensjons- og forsikringsordninger</li><li>Mobil/nettbrett</li><li>Gode systemer som hjelper deg i arbeidshverdagen</li><li>Servicebil</li><li>Et uformelt og sosialt arbeidsmilj\u00f8 med flere fellesaktiviteter i avdelingen</li></ul>\n<h3>Interessert?</h3>\n<p>Vi ser frem til \u00e5 motta sin s\u00f8knad! S\u00f8knadsfrist for stillingen er satt til <strong>02.12.18</strong> . Vil du vite mer om hvordan det er \u00e5 jobbe hos oss, kan du f\u00f8lge oss p\u00e5 sosiale medier og bes\u00f8ke v\u00e5r <a href=\"https://www.bravida.no/jobbe-hos-oss/\" rel=\"nofollow\">hjemmeside</a>.\nLink til s\u00f8knadsskjema: <a href=\"https://www.bravida.no/jobbe-hos-oss/ledige-stillinger/?rmpage&#61;job&amp;rmjob&#61;3724\" rel=\"nofollow\">Send s\u00f8knad</a></p>\n",
+    "applicationdue": "2018-12-02T01:00",
+    "classification_input_source": "jobtitle",
+    "classification_styrk08_score": "0.94585335",
+    "employer": "Bravida",
+    "employerdescription": "<p>.</p>\n",
+    "employerhomepage": "www.bravida.no",
+    "engagementtype": "Annet",
+    "extent": "Heltid",
+    "jobtitle": "Elektriker",
+    "location": "Sandefjord",
+    "positioncount": "2",
+    "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.9393368},{\"label\":\"Elektriker - sikkerhetsmont\u00f8r\",\"score\":0.6956791},{\"label\":\"Skipselektriker\",\"score\":0.63135785},{\"label\":\"Hjelpemont\u00f8r av elektriske komponenter\",\"score\":0.6312866},{\"label\":\"Elektrikerl\u00e6rling\",\"score\":0.63116556}]",
+    "sector": "Ikke oppgitt"
+  },
+  "published": "2018-11-29T12:00:02.4",
+  "publishedByAdmin": null,
+  "reference": "9911865",
+  "source": "stillingsolr",
+  "status": "INACTIVE",
+  "title": "Elektrikere og svakstr\u00f8msmont\u00f8rer",
+  "updated": "2018-12-03T01:31:24.485",
+  "updatedBy": "pam-ad",
+  "uuid": "5e80d029-bd08-43ab-a6ce-b57a0e47f52b"
+}

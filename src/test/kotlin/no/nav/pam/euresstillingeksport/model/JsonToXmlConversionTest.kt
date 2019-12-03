@@ -25,6 +25,14 @@ class ConversionTest {
         print(xml)
     }
 
+    @Test
+    fun initialTes2t() {
+        val ad = read("src/test/resources/ads/ad_2.json").let { JSON.readValue<Ad>(it) }
+        val positionOpening = ad.convertToPositionOpening()
+        val xml = HrxmlSerializer.serialize(positionOpening)
+        print(xml)
+    }
+
     private fun read(file: String) = FileInputStream(file).bufferedReader().use { it.readText() }
 
 }
