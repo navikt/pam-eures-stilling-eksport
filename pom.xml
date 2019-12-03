@@ -177,6 +177,12 @@
 			<artifactId>wiremock-jre8</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>no.nav.pam.geography</groupId>
+			<artifactId>pam-geography</artifactId>
+			<version>1.9</version>
+		</dependency>
 	</dependencies>
 
 	<build>
