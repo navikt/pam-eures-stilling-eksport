@@ -54,7 +54,7 @@ class ApiConfiguration {
                      @Value("\${spring.datasource.url}") jdbcUrl: String) : FlywayConfigurationCustomizer =
             FlywayConfigurationCustomizer { c ->
                 if (jdbcUrl.toLowerCase().contains("jdbc:postgresql"))
-                    c.initSql("SET ROLE ${dbnavn}-admin")
+                    c.initSql("SET ROLE \"${dbnavn}-admin\"")
             }
 
     @Bean
