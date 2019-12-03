@@ -143,6 +143,10 @@
 			<artifactId>HikariCP</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 		<!-- H2 skal bare brukes inntil vi kommer opp med noe bedre -->
 		<dependency>
 			<groupId>com.h2database</groupId>
