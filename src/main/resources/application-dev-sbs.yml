@@ -5,5 +5,5 @@ spring:
     console:
       enabled: false
   datasource:
-    url: jdbc:oracle:thin:@d32dbfl003.oera-t.local:1521/pameuresexp_t1
-    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:postgresql://db27dbvl009.preprod.local:5432/pam-eures-stillingeksport-dev
+    driverClassName: org.postgresql.Driver
