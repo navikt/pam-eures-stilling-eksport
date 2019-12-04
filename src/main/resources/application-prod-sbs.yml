@@ -1,9 +1,10 @@
 pam-ad:
   url: http://pam-ad.default.svc.nais.local:80/api/v1/ads
+dbnavn: pam-eures-stillingeksport-prod
 spring:
   h2:
     console:
       enabled: false
   datasource:
-    url: jdbc:oracle:thin:@a30dbfl005.oera.no:1521/pameuresexp
-    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:postgresql://A01DBVL010.adeo.no:5432/pam-eures-stillingeksport-prod
+    driverClassName: org.postgresql.Driver
