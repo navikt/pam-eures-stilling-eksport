@@ -5,7 +5,7 @@ create table stillinger(
     opprettet_ts timestamp not null,
     sist_endret_ts timestamp not null,
     lukket_ts timestamp null,
-	json_stilling clob not null
+	json_stilling text not null
 );
 
 create table feedpeker(
