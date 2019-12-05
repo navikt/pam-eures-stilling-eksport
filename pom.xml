@@ -215,11 +215,4 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/navikt/pam-geography</url>
-		</repository>
-	</repositories>
-
 </project>
