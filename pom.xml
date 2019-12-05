@@ -215,4 +215,11 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/navikt</url>
+		</repository>
+	</repositories>
+
 </project>
