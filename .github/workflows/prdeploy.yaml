@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Build
-      run: mvn -U clean install
+      run: mvn --settings .github/workflows/.m2/settings.xml -U clean install
     - name: create docker tag
       env:
         NAME: pam-eures-stilling-eksport
