@@ -24,7 +24,6 @@ data class PositionOpening(
 )
 
 data class DocumentId(
-        @JacksonXmlText
         @JacksonXmlProperty(isAttribute = true, localName = "schemeID")
         val schemeID: String = "NAV-002",
         @JacksonXmlProperty(isAttribute = true, localName = "schemeAgencyID")
@@ -33,6 +32,7 @@ data class DocumentId(
         val schemeAgencyName: String = "NAV public employment services",
         @JacksonXmlProperty(isAttribute = true, localName = "schemeVersionID")
         val schemeVersionID: String = "1.3",
+        @JacksonXmlText
         val uuid: String
 )
 
