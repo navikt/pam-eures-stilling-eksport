@@ -6,7 +6,9 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.model.eures.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.model.pam.Ad
+import no.nav.pam.euresstillingeksport.model.pam.NaceConverter
 import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import java.io.FileInputStream
 
@@ -35,4 +37,11 @@ class ConversionTest {
 
     private fun read(file: String) = FileInputStream(file).bufferedReader().use { it.readText() }
 
+    @Test
+    fun skalKonvertereNace() {
+        Assertions.assertThat(NaceConverter.naceToEuNace("74.300")).isEqualTo("M74.3.0")
+        Assertions.assertThat(NaceConverter.naceToEuNace("743.00")).isNull()
+        Assertions.assertThat(NaceConverter.naceToEuNace("1.230")).isEqualTo("A1.2.3")
+        Assertions.assertThat(NaceConverter.naceToEuNace("2.2")).isNull()
+    }
 }
