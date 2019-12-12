@@ -36,4 +36,4 @@ spec:
     path: pam-eures-stilling-eksport/actuator/prometheus
   ingresses:
     - https://pam-eures-stilling-eksport.nais.oera-q.local
-
+    - https://tjenester-q0.nav.no/pam-eures-stilling-eksport
