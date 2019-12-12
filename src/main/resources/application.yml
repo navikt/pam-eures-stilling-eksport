@@ -37,4 +37,4 @@ server:
       enabled: true
     include-stacktrace: never
   servlet:
-    context-path: /
+    context-path: /pam-eures-stilling-eksport
