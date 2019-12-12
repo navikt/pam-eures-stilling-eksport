@@ -10,13 +10,10 @@ spec:
   port: 8080
   liveness:
     path: internal/isAlive
-    initialDelay: 130
-    timeout: 1
-    failureThreshold: 2
+    initialDelay: 20
   readiness:
     path: internal/isReady
-    initialDelay: 130
-    timeout: 1
+    initialDelay: 20
   replicas:
     min: 2
     max: 2
@@ -36,4 +33,4 @@ spec:
     path: pam-eures-stilling-eksport/actuator/prometheus
   ingresses:
     - https://pam-eures-stilling-eksport.nais.oera-q.local
-
+    - https://eures-eksport-q.nav.no
