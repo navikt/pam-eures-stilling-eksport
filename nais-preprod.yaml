@@ -9,11 +9,11 @@ spec:
   image: {{ image }}:{{ tag }}
   port: 8080
   liveness:
-    path: pam-eures-stilling-eksport/internal/isAlive
+    path: internal/isAlive
     initialDelay: 20
     failureThreshold: 2
   readiness:
-    path: pam-eures-stilling-eksport/internal/isReady
+    path: internal/isReady
     initialDelay: 20
   replicas:
     min: 2
