@@ -9,10 +9,10 @@ spec:
   image: {{ image }}:{{ tag }}
   port: 8080
   liveness:
-    path: pam-eures-stilling-eksport/internal/isAlive
+    path: internal/isAlive
     initialDelay: 20
   readiness:
-    path: pam-eures-stilling-eksport/internal/isReady
+    path: internal/isReady
     initialDelay: 20
   replicas:
     min: 2
@@ -33,4 +33,4 @@ spec:
     path: pam-eures-stilling-eksport/actuator/prometheus
   ingresses:
     - https://pam-eures-stilling-eksport.nais.oera.no
-
+    - https://eures-eksport.nav.no
