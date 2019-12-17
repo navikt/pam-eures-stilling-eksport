@@ -53,14 +53,14 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
 
         return GetDetailsResponse(stillingsannonser.associateBy({ it.stillingsannonseMetadata.id },
                 {
-                    JvDetails(
-                            reference = it.stillingsannonseMetadata.id,
-                            source = it.stillingsannonseMetadata.kilde,
-                            status = EuresStatus.fromAdStatus(it.stillingsannonseMetadata.status),
-                            content = toXML(it.ad.convertToPositionOpening()),
-                            creationTimestamp = Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.opprettetTs),
-                            lastModificationTimestamp = Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.sistEndretTs),
-                            closingTimestamp = it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null
+                    JvDetails(it.stillingsannonseMetadata.id,
+                            it.stillingsannonseMetadata.kilde,
+                            EuresStatus.fromAdStatus(it.stillingsannonseMetadata.status),
+                            toXML(it.ad.convertToPositionOpening()),
+                            "1.0",
+                            Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.opprettetTs),
+                            Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.sistEndretTs),
+                            it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null
                     )
                 }))
     }
