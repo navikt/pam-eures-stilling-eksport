@@ -49,7 +49,7 @@ data class JvDetails (
     val status: EuresStatus,
     /** Content er innholdet i stillingen serialisert til XML i HR Open */
     val content: String,
-    val contentFormatVersion : String = "1.0",
+    val contentFormatVersion : String = "1.3",
     val creationTimestamp : Long,
     val lastModificationTimestamp: Long?,
     val closingTimestamp: Long?
