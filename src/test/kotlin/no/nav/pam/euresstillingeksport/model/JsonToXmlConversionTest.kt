@@ -6,7 +6,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.model.eures.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.model.pam.Ad
-import no.nav.pam.euresstillingeksport.model.pam.NaceConverter
+import no.nav.pam.euresstillingeksport.model.pam.EuNace
 import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -35,13 +35,57 @@ class ConversionTest {
         print(xml)
     }
 
+    @Test
+    fun `that nace 2 is included`() {
+        val ad = read("src/test/resources/ads/nace/ad_with_nace.json").let { JSON.readValue<Ad>(it) }
+        val positionOpening = ad.convertToPositionOpening()
+        val xml = HrxmlSerializer.serialize(positionOpening)
+
+        val expectedXml = read("src/test/resources/ads/nace/ad_with_nace.xml")
+
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+        print(xml)
+    }
+
+    @Test
+    fun `that IndustryCode is ignored without nace 2 code`() {
+        val ad = read("src/test/resources/ads/nace/ad_without_nace.json").let { JSON.readValue<Ad>(it) }
+        val positionOpening = ad.convertToPositionOpening()
+        val xml = HrxmlSerializer.serialize(positionOpening)
+
+        val expectedXml = read("src/test/resources/ads/nace/ad_without_nace.xml")
+
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+        print(xml)
+    }
+
     private fun read(file: String) = FileInputStream(file).bufferedReader().use { it.readText() }
 
     @Test
-    fun skalKonvertereNace() {
-        Assertions.assertThat(NaceConverter.naceToEuNace("74.300")).isEqualTo("M74.3.0")
-        Assertions.assertThat(NaceConverter.naceToEuNace("743.00")).isNull()
-        Assertions.assertThat(NaceConverter.naceToEuNace("1.230")).isEqualTo("A1.2.3")
-        Assertions.assertThat(NaceConverter.naceToEuNace("2.2")).isNull()
+    fun `validity of valid nace values`() {
+        Assertions.assertThat(EuNace("74.300").isValid()).isTrue()
+        Assertions.assertThat(EuNace("1.230").isValid()).isTrue()
+        Assertions.assertThat(EuNace("09.10").isValid()).isTrue()
     }
+
+    @Test
+    fun `validity of invalid nace values`() {
+        Assertions.assertThat(EuNace("743.00").isValid()).isFalse()
+        Assertions.assertThat(EuNace("2.2").isValid()).isFalse()
+        Assertions.assertThat(EuNace("").isValid()).isFalse()
+    }
+
+    @Test
+    fun `string value of invalid nace values`() {
+        Assertions.assertThat(EuNace("743.00").code()).isEqualTo("")
+        Assertions.assertThat(EuNace("2.2").code()).isEqualTo("")
+    }
+
+    @Test
+    fun `string value value of valid nace values`() {
+        Assertions.assertThat(EuNace("74.300").code()).isEqualTo("M74.3.0")
+        Assertions.assertThat(EuNace("1.230").code()).isEqualTo("A1.2.3")
+        Assertions.assertThat(EuNace("09.109").code()).isEqualTo("B9.1.0")
+    }
+
 }

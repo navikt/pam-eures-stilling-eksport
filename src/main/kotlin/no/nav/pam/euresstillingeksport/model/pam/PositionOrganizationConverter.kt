@@ -6,11 +6,12 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.model.eures.IndustryCode
 import no.nav.pam.euresstillingeksport.model.eures.OrganizationIdentifiers
 import no.nav.pam.euresstillingeksport.model.eures.PositionOrganization
+import no.nav.pam.euresstillingeksport.model.pam.EmployerPropertyMapping.Nace2
 
 private val JSON = jacksonObjectMapper()
 
 enum class EmployerPropertyMapping(val key: String) {
-    nace2("nace2")
+    Nace2("nace2")
 }
 
 fun Employer.toPositionOrganization(): PositionOrganization {
@@ -24,36 +25,40 @@ fun Employer.toPositionOrganization(): PositionOrganization {
 }
 
 fun Employer.toIndustryCode(): List<IndustryCode> {
-    if(!properties.containsKey(EmployerPropertyMapping.nace2.key))
+    if(!properties.containsKey(Nace2.key))
         return emptyList()
 
-    return JSON.readValue<List<Nace2>>(properties.getValue(EmployerPropertyMapping.nace2.key))
-            .mapNotNull { NaceConverter.naceToEuNace(it.code)}
-            .map { IndustryCode(it) }
+    return properties.getValue(Nace2.key)
+            .let { JSON.readValue<List<NorskNace>>(it) }
+            .map { EuNace(it.code)}
+            .filter { it.isValid() }
+            .map { IndustryCode(it.code()) }
+
 }
 
-object NaceConverter {
-    // NACE kodene kommer på formatet d?d.ddd
-    // EU Nace skal på formatet Add.d.d
-    fun naceToEuNace(nace: String): String? {
+class EuNace(nace: String) {
+    private val unknown = ""
+
+    private val division: String
+    private val group: String
+    private val clazz: String
+    private val section: String get() = findSection(division)
+
+    init {
         val regex = Regex("^(\\d?\\d)\\.(\\d)(\\d).*")
-        val matchResult = regex.findAll(nace)
-        val groupValues = matchResult.map { it.groupValues }.flatten()
-
-        if (groupValues.count() < 4)
-            return null
-        val division = groupValues.elementAt(1)
-        val section = findSection(division)
-        if (section.isEmpty())
-            return null
-        val groups = groupValues.elementAt(2)
-        val classes = groupValues.elementAt(3)
-
-        return "${section}${division}.$groups.$classes"
+        val groupValues = regex.findAll(nace).map { it.groupValues }
+                .flatten()
+        division = groupValues.elementAtOrElse(1) {unknown}.trimStart('0')
+        group = groupValues.elementAtOrElse(2) {unknown}
+        clazz = groupValues.elementAtOrElse(3) {unknown}
     }
 
-    fun findSection(division: String): String =
-            when (division.toInt()) {
+    fun isValid() = listOf(division, group, clazz).contains(unknown).not()
+
+    fun code() = if(isValid()) "${section}${division}.$group.$clazz" else ""
+
+    private fun findSection(division: String): String =
+            when (division.toIntOrNull()) {
                 in 1..3 -> "A"
                 in 5..9 -> "B"
                 in 10..33 -> "C"
@@ -80,7 +85,7 @@ object NaceConverter {
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-private data class Nace2(
+private data class NorskNace(
         val code: String,
         val name: String
 )
