@@ -1,0 +1,145 @@
+{
+  "id": 521268,
+  "uuid": "4815f0f2-fa76-4d59-b784-e2e983abe962",
+  "created": "2019-12-17T07:08:35.135133",
+  "createdBy": "pam-ad",
+  "updated": "2019-12-19T08:25:30.49968",
+  "updatedBy": "nss-admin",
+  "mediaList": [],
+  "contactList": [
+    {
+      "id": 4408798,
+      "name": "Organisasjon",
+      "email": null,
+      "phone": null,
+      "role": null,
+      "title": null
+    }
+  ],
+  "location": {
+    "address": null,
+    "postalCode": "1366",
+    "county": "AKERSHUS",
+    "municipal": "BÆRUM",
+    "municipalCode": "0219",
+    "city": "LYSAKER",
+    "country": "NORGE",
+    "latitude": "59.99999999999999",
+    "longitude": "10.99999999999999"
+  },
+  "locationList": [
+    {
+      "address": null,
+      "postalCode": "1366",
+      "county": "AKERSHUS",
+      "municipal": "BÆRUM",
+      "municipalCode": "0219",
+      "city": "LYSAKER",
+      "country": "NORGE",
+      "latitude": "59.99999999999999",
+      "longitude": "10.99999999999999"
+    }
+  ],
+  "properties": {
+    "logomain": null,
+    "extent": "Heltid",
+    "occupation": "Ingeniør",
+    "applicationdue": "20.01.2020",
+    "address": "1366 Lysaker",
+    "keywords": "Subsea,Engineering,Flexible pipe,Umbilical",
+    "jobtitle": "Engineer - Flexible Pipe & Umbilical",
+    "author": "Organisasjon",
+    "engagementtype": "Fast",
+    "classification_styrk08_score": "0.053033482",
+    "industry": "Olje og gass",
+    "starttime": "Spring 2020",
+    "adtext": "tekst",
+    "externalref": "190004TQ6549617327",
+    "logolisting": "logo",
+    "sourceurl": "https://www.url.no/",
+    "sourceupdated": "2019-12-16T08:46:00.000Z",
+    "applicationemail": "epost@mail.com",
+    "searchtags": "[{\"label\":\"Røringeniør\",\"score\":1.0},{\"label\":\"Senior Røringeniør\",\"score\":0.2718777},{\"label\":\"Konstruktør\",\"score\":0.12027676},{\"label\":\"CAD konsulent\",\"score\":0.12027676}]",
+    "applicationurl": "http://www.host.com/?adid=id",
+    "employer": "Organisasjon",
+    "location": "Lysaker",
+    "classification_input_source": "categoryName",
+    "sector": "Privat"
+  },
+  "title": "Engineer - Flexible Pipe & Umbilical",
+  "status": "ACTIVE",
+  "privacy": "SHOW_ALL",
+  "source": "FINN",
+  "medium": "FINN",
+  "reference": "165666892",
+  "published": "2019-12-19T08:25:30.096069",
+  "expires": "2020-01-20T00:00:00",
+  "employer": {
+    "id": 188589,
+    "uuid": "8c8b2a67-a690-4f0c-89f9-ae0762500838",
+    "created": "2018-11-26T09:13:01.462",
+    "createdBy": "pam-ad",
+    "updated": "2019-12-06T12:19:46.192608",
+    "updatedBy": "pam-ad",
+    "mediaList": [],
+    "contactList": [],
+    "location": {
+      "address": "Adresse",
+      "postalCode": "1366",
+      "county": "AKERSHUS",
+      "municipal": "BÆRUM",
+      "municipalCode": "0219",
+      "city": "LYSAKER",
+      "country": "NORGE",
+      "latitude": "59.99999999999999",
+      "longitude": "10.99999999999999"
+    },
+    "locationList": [
+      {
+        "address": "Adresse",
+        "postalCode": "1366",
+        "county": "AKERSHUS",
+        "municipal": "BÆRUM",
+        "municipalCode": "0219",
+        "city": "LYSAKER",
+        "country": "NORGE",
+        "latitude": "59.99999999999999",
+        "longitude": "10.99999999999999"
+      }
+    ],
+    "properties": {
+
+    },
+    "name": "TECHNIP NORGE AS AVD LYSAKER",
+    "orgnr": "872147772",
+    "status": "ACTIVE",
+    "parentOrgnr": "963052944",
+    "publicName": "TECHNIP NORGE AS AVD LYSAKER",
+    "deactivated": null,
+    "orgform": "BEDR",
+    "employees": 307
+  },
+  "categoryList": [
+    {
+      "id": 2468,
+      "code": "3117.50",
+      "categoryType": "STYRK08NAV",
+      "name": "Røringeniør",
+      "description": null,
+      "parentId": 2418
+    }
+  ],
+  "administration": {
+    "id": 1358806,
+    "status": "DONE",
+    "comments": null,
+    "reportee": "Potter, Harry",
+    "remarks": [],
+    "navIdent": "E150574"
+  },
+  "publishedByAdmin": "2019-12-19T08:25:30.096069",
+  "businessName": "Organisasjon",
+  "firstPublished": true,
+  "deactivatedByExpiry": false,
+  "activationOnPublishingDate": false
+}

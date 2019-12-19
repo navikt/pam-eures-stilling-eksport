@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<PositionOpening xmlns="http://www.hr-xml.org/3" validFrom="2019-11-05" majorVersionID="3" minorVersionID="2">
+  <DocumentID schemeID="NAV-002" schemeAgencyID="NAV" schemeAgencyName="NAV public employment services" schemeVersionID="1.3">4815f0f2-fa76-4d59-b784-e2e983abe962</DocumentID>
+  <PositionOpeningStatusCode name="Active">Active</PositionOpeningStatusCode>
+  <PostingRequester>
+    <PartyID schemeID="NAV" schemeAgencyID="NAV PES" schemeAgencyName="Nav public employment services">9999</PartyID>
+  </PostingRequester>
+  <PositionProfile languageCode="no">
+    <PostingInstruction>
+      <ApplicationMethod>
+        <Instructions>http://www.host.com/?adid=id</Instructions>
+      </ApplicationMethod>
+    </PostingInstruction>
+    <PositionTitle>Engineer - Flexible Pipe &amp; Umbilical</PositionTitle>
+    <PositionLocation>
+      <Address>
+        <wstxns1:CityName xmlns:wstxns1="http://www.openapplications.org/oagis/9">LYSAKER</wstxns1:CityName>
+        <CountryCode>NO</CountryCode>
+        <wstxns2:PostalCode xmlns:wstxns2="http://www.openapplications.org/oagis/9">1366</wstxns2:PostalCode>
+      </Address>
+    </PositionLocation>
+    <PositionOrganization>
+      <OrganizationIdentifiers>
+        <OrganizationName>TECHNIP NORGE AS AVD LYSAKER</OrganizationName>
+        <OrganizationLegalID>872147772</OrganizationLegalID>
+      </OrganizationIdentifiers>
+      <IndustryCode>B9.1.0</IndustryCode>
+    </PositionOrganization>
+    <PositionOpenQuantity>1</PositionOpenQuantity>
+    <JobCategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">3117</JobCategoryCode>
+    <PositionOfferingTypeCode>DirectHire</PositionOfferingTypeCode>
+    <PositionFormattedDescription>
+      <Content><![CDATA[tekst]]></Content>
+    </PositionFormattedDescription>
+    <WorkingLanguageCode>NO</WorkingLanguageCode>
+    <PositionPeriod>
+      <StartDate>
+        <DateText>Spring 2020</DateText>
+      </StartDate>
+    </PositionPeriod>
+    <ImmediateStartIndicator>false</ImmediateStartIndicator>
+    <PositionScheduleTypeCode>FullTime</PositionScheduleTypeCode>
+    <ApplicationCloseDate>2020-01-20</ApplicationCloseDate>
+  </PositionProfile>
+</PositionOpening>
