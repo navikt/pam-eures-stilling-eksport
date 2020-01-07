@@ -19,14 +19,17 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     }
 
     @Transactional
-    fun lagreStillinger(ad: List<Ad>): Int {
+    fun lagreStillinger(ads: List<Ad>): Int {
         var antallModifiserteStillinger: Int = 0
-        val eksisterendeStillinger = stillingRepository.findStillingsannonserByIds(ad.map {it.uuid})
+        val eksisterendeStillinger = stillingRepository.findStillingsannonserByIds(ads.map {it.uuid})
                 .associateBy({it.stillingsannonseMetadata.id}, {it})
         val nyeAnnonser = ArrayList<StillingsannonseJson>()
         val endredeAnnonser = ArrayList<StillingsannonseJson>()
 
-        ad.filter {
+        ads
+                .filter { it.erIkkeIntern() }
+                .filter { it.erSaksbehandlet() }
+                .filter {
             try {
                 it.convertToPositionOpening()
                 true
@@ -79,9 +82,13 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
         val now = LocalDateTime.now()
         val closed = if (status == AdStatus.ACTIVE)
             null else now
-        return StillingsannonseMetadata(ad.uuid, ad.source ?: "NAV",
-                status,
-                now, now, closed)
+        return StillingsannonseMetadata(
+                id = ad.uuid,
+                kilde = ad.source ?: "NAV",
+                status = status,
+                opprettetTs = now,
+                sistEndretTs = now,
+                lukketTs = closed)
     }
 
     // Konverterer en endret annonse til metadata

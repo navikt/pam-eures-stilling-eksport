@@ -75,7 +75,7 @@ class PamAdTests {
 	}
 
 	@Test
-	fun skaHaandtereServerUnavailable() {
+	fun skalHaandtereServerUnavailable() {
 		Assertions.assertThrows(IOException::class.java) {
 			adClient.getAd("service_unavailable")
 		}
