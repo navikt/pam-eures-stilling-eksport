@@ -10,6 +10,7 @@ import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseMetadata
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import no.nav.pam.euresstillingeksport.service.GetAllResponse
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
@@ -52,6 +53,11 @@ class AdminApiTests {
     private fun toStillingsannonseJson(ad: Ad): StillingsannonseJson =
         StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, ad.created, ad.created, null),
                 objectMapper.writeValueAsString(ad))
+
+    @BeforeEach
+    fun cleanDb() {
+        stillingRepository.slettNyereEnn(LocalDateTime.parse("1970-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+    }
 
     @Test
     fun skalJustereFeedpeker() {

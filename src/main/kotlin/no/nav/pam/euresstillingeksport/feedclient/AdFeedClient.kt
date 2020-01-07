@@ -3,6 +3,7 @@ package no.nav.pam.euresstillingeksport.feedclient
 import net.javacrumbs.shedlock.core.SchedulerLock
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.pam.Ad
+import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import no.nav.pam.euresstillingeksport.service.StillingService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +24,6 @@ import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 import java.io.IOException
-import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -123,7 +123,8 @@ class AdFeedClient @Autowired constructor (
     @Component
     class FeedLeser(@Autowired private val feedClient: AdFeedClient,
                     @Autowired private val stillingService: StillingService,
-                    @Autowired private val feedRepository: FeedRepository) {
+                    @Autowired private val feedRepository: FeedRepository,
+                    @Autowired private val stillingRepository: StillingRepository) {
         companion object {
             private val LOG = LoggerFactory.getLogger(FeedLeser::class.java)
         }
@@ -165,7 +166,7 @@ class AdFeedClient @Autowired constructor (
         fun feedpeker(sistLest: LocalDateTime, wipeDb: Boolean = false) {
             feedRepository.oppdaterFeedPeker(sistLest)
             if (wipeDb)
-                feedRepository.slettNyereEnn(sistLest)
+                stillingRepository.slettNyereEnn(sistLest)
         }
     }
 
@@ -174,7 +175,7 @@ class AdFeedClient @Autowired constructor (
         fun hentFeedPeker(): LocalDateTime {
             try {
                 val sistLest = jdbcTemplate.queryForObject("select sist_lest from feedpeker",
-                arrayOf(), String::class.java)
+                        arrayOf(), String::class.java)
                 return LocalDateTime.parse(sistLest, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 
             } catch (e: EmptyResultDataAccessException) {
@@ -187,11 +188,6 @@ class AdFeedClient @Autowired constructor (
             jdbcTemplate.update("delete from feedpeker")
             jdbcTemplate.update("insert into feedpeker(sist_lest) values(?)",
                     sistLestStr)
-        }
-
-        fun slettNyereEnn(tidspunkt: LocalDateTime) {
-            jdbcTemplate.update("delete from stillinger where sist_endret_ts > ?",
-                    Timestamp.valueOf(tidspunkt))
         }
     }
 }

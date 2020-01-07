@@ -5,8 +5,10 @@ import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
 import no.nav.pam.euresstillingeksport.feedclient.FeedTransport
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.pam.Ad
+import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import no.nav.pam.euresstillingeksport.service.*
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.ActiveProfiles
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -24,6 +27,9 @@ class TimestampTests {
 
 	@Autowired
 	lateinit var restTemplate: TestRestTemplate
+
+	@Autowired
+	lateinit var stillingRepository: StillingRepository
 
 	@Autowired
 	lateinit var objectMapper : ObjectMapper
@@ -41,6 +47,11 @@ class TimestampTests {
 			FeedTransport::class.java)
 				.content[0]
 			.copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
+
+	@BeforeEach
+	fun cleanDb() {
+		stillingRepository.slettNyereEnn(LocalDateTime.parse("1970-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+	}
 
 	/*
 	Dette testcaset står beskrevet i EURES Functional message exchange specifications new regulation v1.3.2
