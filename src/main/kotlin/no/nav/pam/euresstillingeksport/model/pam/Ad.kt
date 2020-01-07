@@ -32,7 +32,11 @@ data class Ad(
         val firstPublished: Boolean,
         val deactivatedByExpiry: Boolean,
         val activationOnPublishingDate: Boolean
-)
+) {
+    fun erSaksbehandlet() = administration?.erSaksbehandlet() ?: false
+    fun erIntern() = privacy == null || privacy == "INTERNAL_NOT_SHOWN"
+    fun erIkkeIntern() = erIntern().not()
+}
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -66,7 +70,9 @@ data class Administration(
         val reportee: String?,
         val remarks: List<String>,
         val navIdent: String?
-)
+) {
+    fun erSaksbehandlet() = status == "DONE"
+}
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Employer(
