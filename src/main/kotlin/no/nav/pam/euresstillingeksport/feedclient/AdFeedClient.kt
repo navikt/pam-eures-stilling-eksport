@@ -17,11 +17,13 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.HttpStatusCodeException
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 import java.io.IOException
+import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -125,6 +127,7 @@ class AdFeedClient @Autowired constructor (
         companion object {
             private val LOG = LoggerFactory.getLogger(FeedLeser::class.java)
         }
+
         @Scheduled(cron = "0 */1 * * * *")
         @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT45M")
         fun lesFeed() {
@@ -157,7 +160,13 @@ class AdFeedClient @Autowired constructor (
         }
 
         fun feedpeker() = feedRepository.hentFeedPeker()
-        fun feedpeker(sistLest: LocalDateTime) = feedRepository.oppdaterFeedPeker(sistLest)
+
+        @Transactional
+        fun feedpeker(sistLest: LocalDateTime, wipeDb: Boolean = false) {
+            feedRepository.oppdaterFeedPeker(sistLest)
+            if (wipeDb)
+                feedRepository.slettNyereEnn(sistLest)
+        }
     }
 
     @Repository
@@ -174,10 +183,15 @@ class AdFeedClient @Autowired constructor (
         }
 
         fun oppdaterFeedPeker(sistLest: LocalDateTime) {
-            var sistLestStr = sistLest.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            val sistLestStr = sistLest.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
             jdbcTemplate.update("delete from feedpeker")
             jdbcTemplate.update("insert into feedpeker(sist_lest) values(?)",
                     sistLestStr)
+        }
+
+        fun slettNyereEnn(tidspunkt: LocalDateTime) {
+            jdbcTemplate.update("delete from stillinger where sist_endret_ts > ?",
+                    Timestamp.valueOf(tidspunkt))
         }
     }
 }

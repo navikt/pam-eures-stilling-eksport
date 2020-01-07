@@ -65,10 +65,12 @@ class AdminApiController(@Autowired private val feedClient: AdFeedClient,
         val sistlest = feedLeser.feedpeker()
         return ResponseEntity(sistlest.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME), HttpStatus.OK)
     }
+
     @PutMapping("/feedpeker/{sistLest}")
-    fun feedpeker(@PathVariable("sistLest") sistLest: String) : ResponseEntity<String> {
+    fun feedpeker(@PathVariable("sistLest") sistLest: String,
+                  @RequestParam("wipeDb", required = false, defaultValue = "false") wipeDb: Boolean) : ResponseEntity<String> {
         val ldt = LocalDateTime.parse(sistLest, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-        feedLeser.feedpeker(ldt)
+        feedLeser.feedpeker(ldt, wipeDb)
         return ResponseEntity("", HttpStatus.OK)
     }
 
