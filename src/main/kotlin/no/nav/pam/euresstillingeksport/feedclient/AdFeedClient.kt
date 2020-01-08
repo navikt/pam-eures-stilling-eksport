@@ -32,6 +32,7 @@ class AdFeedClient @Autowired constructor (
         @Value("\${pam-ad.url}")
         private val adApiURL : String,
         private val restTemplate : RestTemplate) {
+
     companion object {
         private val LOG = LoggerFactory.getLogger(AdFeedClient::class.java)
 
@@ -55,15 +56,18 @@ class AdFeedClient @Autowired constructor (
 
 
     fun getAd(uuid : String) : Ad =
-        retryTemplate.execute<Ad, Exception>({getAdWrapped(uuid)})
+        retryTemplate.execute<Ad, Exception> {getAdWrapped(uuid)}
 
-    fun getAdWrapped(uuid : String) : Ad {
+    fun hentPage(sistLest: LocalDateTime) : FeedTransport =
+            retryTemplate.execute<FeedTransport, Exception> {hentPageWrapped(sistLest)}
+
+    private fun getAdWrapped(uuid : String) : Ad {
         try {
             val response = restTemplate.getForEntity("${adApiURL}/feed?uuid=${uuid}", FeedTransport::class.java)
             // TODO sjekk responskode og håndter feil på en grei nok måte
             return response.body?.content.orEmpty()[0]
         } catch (e: HttpStatusCodeException) {
-            if (e.rawStatusCode >= 400 && e.rawStatusCode < 500) {
+            if (e.rawStatusCode in 400..499) {
                 LOG.error("Greide ikke å lese svar fra pam-ad ved uthenting av ad {}: {} " +
                         "HTTP feilkode: {}", uuid, e.message, e.rawStatusCode, e)
                 throw IllegalArgumentException("Greide ikke å lese respons fra pam-ad: ${e.message}", e)
@@ -84,11 +88,8 @@ class AdFeedClient @Autowired constructor (
 
     }
 
-    fun hentPage(sistLest: LocalDateTime) : FeedTransport {
-        return retryTemplate.execute<FeedTransport, Exception>({hentPageWrapped(sistLest)})
-    }
 
-    fun hentPageWrapped(sistLest: LocalDateTime) : FeedTransport {
+    private fun hentPageWrapped(sistLest: LocalDateTime) : FeedTransport {
         try {
             val uri = UriComponentsBuilder.fromUriString("${adApiURL}/feed")
                     .queryParam("size", 100)
@@ -100,7 +101,7 @@ class AdFeedClient @Autowired constructor (
             return response.body ?: throw IllegalArgumentException("Fikk ikke svar fra ad ved lesing av feed" +
                     " responskode: ${response.statusCodeValue}")
         } catch (e: HttpStatusCodeException) {
-            if (e.rawStatusCode >= 400 && e.rawStatusCode < 500) {
+            if (e.rawStatusCode in 400..499) {
                 LOG.error("Greide ikke å lese svar fra pam-ad ved uthenting av feed siden {}: {} " +
                         "HTTP feilkode: {}", sistLest, e.message, e.rawStatusCode, e)
                 throw IllegalArgumentException("Greide ikke å lese respons fra pam-ad: ${e.message}", e)
@@ -123,8 +124,8 @@ class AdFeedClient @Autowired constructor (
     @Component
     class FeedLeser(@Autowired private val feedClient: AdFeedClient,
                     @Autowired private val stillingService: StillingService,
-                    @Autowired private val feedRepository: FeedRepository,
-                    @Autowired private val stillingRepository: StillingRepository) {
+                    @Autowired private val feedRepository: FeedRepository) {
+
         companion object {
             private val LOG = LoggerFactory.getLogger(FeedLeser::class.java)
         }
@@ -166,7 +167,7 @@ class AdFeedClient @Autowired constructor (
         fun feedpeker(sistLest: LocalDateTime, wipeDb: Boolean = false) {
             feedRepository.oppdaterFeedPeker(sistLest)
             if (wipeDb)
-                stillingRepository.slettNyereEnn(sistLest)
+                stillingService.slettNyereEnn(sistLest)
         }
     }
 
