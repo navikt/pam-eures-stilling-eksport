@@ -1,4 +1,4 @@
-package no.nav.pam.euresstillingeksport.rest
+package no.nav.pam.euresstillingeksport.infrastruktur
 
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus

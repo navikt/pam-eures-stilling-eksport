@@ -1,9 +1,5 @@
-package no.nav.pam.euresstillingeksport.rest
+package no.nav.pam.euresstillingeksport.euresapi
 
-import no.nav.pam.euresstillingeksport.service.ApiService
-import no.nav.pam.euresstillingeksport.service.GetAllResponse
-import no.nav.pam.euresstillingeksport.service.GetChangesResponse
-import no.nav.pam.euresstillingeksport.service.GetDetailsResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 

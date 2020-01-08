@@ -1,12 +1,10 @@
-package no.nav.pam.euresstillingeksport.model.pam
+package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import no.nav.pam.euresstillingeksport.model.eures.IndustryCode
-import no.nav.pam.euresstillingeksport.model.eures.OrganizationIdentifiers
-import no.nav.pam.euresstillingeksport.model.eures.PositionOrganization
-import no.nav.pam.euresstillingeksport.model.pam.EmployerPropertyMapping.Nace2
+import no.nav.pam.euresstillingeksport.euresapi.EmployerPropertyMapping.Nace2
+import no.nav.pam.euresstillingeksport.model.Employer
 
 private val JSON = jacksonObjectMapper()
 
@@ -30,7 +28,7 @@ fun Employer.toIndustryCode(): List<IndustryCode> {
 
     return properties.getValue(Nace2.key)
             .let { JSON.readValue<List<NorskNace>>(it) }
-            .map { EuNace(it.code)}
+            .map { EuNace(it.code) }
             .filter { it.isValid() }
             .map { IndustryCode(it.code()) }
 

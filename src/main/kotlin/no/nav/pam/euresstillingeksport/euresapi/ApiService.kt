@@ -1,4 +1,4 @@
-package no.nav.pam.euresstillingeksport.service
+package no.nav.pam.euresstillingeksport.euresapi
 
 interface ApiService {
     fun getAll(): GetAllResponse

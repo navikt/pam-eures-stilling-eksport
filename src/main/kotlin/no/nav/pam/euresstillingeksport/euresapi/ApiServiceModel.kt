@@ -1,7 +1,7 @@
-package no.nav.pam.euresstillingeksport.service
+package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import no.nav.pam.euresstillingeksport.model.pam.AdStatus
+import no.nav.pam.euresstillingeksport.model.AdStatus
 
 /**
  * Request/responsobjekter som brukes i API'er
@@ -37,21 +37,21 @@ data class GetAllResponse (
 )
 
 data class GetChangesResponse (
-    val createdReferences : List<Stillingreferanse>,
-    val modifiedReferences : List<Stillingreferanse>,
-    val closedReferences : List<Stillingreferanse>
+        val createdReferences : List<Stillingreferanse>,
+        val modifiedReferences : List<Stillingreferanse>,
+        val closedReferences : List<Stillingreferanse>
 )
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 data class JvDetails (
-    val reference: String,
-    val source: String,
-    val status: EuresStatus,
-    val content: String,
-    val contentFormatVersion : String = "1.3",
-    val creationTimestamp : Long,
-    val lastModificationTimestamp: Long?,
-    val closingTimestamp: Long?
+        val reference: String,
+        val source: String,
+        val status: EuresStatus,
+        val content: String,
+        val contentFormatVersion : String = "1.3",
+        val creationTimestamp : Long,
+        val lastModificationTimestamp: Long?,
+        val closingTimestamp: Long?
 )
 
 data class GetDetailsResponse (

@@ -1,9 +1,9 @@
 package no.nav.pam.euresstillingeksport.repository
 
 import no.nav.pam.euresstillingeksport.model.Converters
-import no.nav.pam.euresstillingeksport.model.pam.AdStatus
-import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseJson
-import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseMetadata
+import no.nav.pam.euresstillingeksport.model.AdStatus
+import no.nav.pam.euresstillingeksport.model.StillingsannonseJson
+import no.nav.pam.euresstillingeksport.model.StillingsannonseMetadata
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.BatchPreparedStatementSetter

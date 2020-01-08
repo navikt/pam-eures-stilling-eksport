@@ -1,4 +1,4 @@
-package no.nav.pam.euresstillingeksport.model.pam
+package no.nav.pam.euresstillingeksport.model
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -120,6 +120,8 @@ enum class AdStatus {
             }
         }
     }
+
+    fun euresStatus() = if(this == ACTIVE) "ACTIVE" else "CLOSED"
 }
 
 
@@ -132,7 +134,7 @@ enum class AdStatus {
  */
 data class StillingsannonseMetadata (
         val id: String,
-        val kilde: String,
+        val kilde: String = "NAV",
         val status: AdStatus,
         val opprettetTs : LocalDateTime,
         val sistEndretTs : LocalDateTime,

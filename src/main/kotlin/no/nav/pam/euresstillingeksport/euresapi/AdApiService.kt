@@ -1,9 +1,7 @@
-package no.nav.pam.euresstillingeksport.service
+package no.nav.pam.euresstillingeksport.euresapi
 
 import no.nav.pam.euresstillingeksport.model.Converters
-import no.nav.pam.euresstillingeksport.model.eures.HrxmlSerializer
-import no.nav.pam.euresstillingeksport.model.eures.PositionOpening
-import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
+import no.nav.pam.euresstillingeksport.model.StillingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -16,7 +14,7 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
         return GetAllResponse(stillingsannonser.map {
             Stillingreferanse(Converters.localdatetimeToTimestamp(it.opprettetTs),
                     Converters.localdatetimeToTimestamp(it.sistEndretTs),
-                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts)} ?: null,
+                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null,
                     it.id,
                     it.kilde,
                     EuresStatus.fromAdStatus(it.status))
@@ -32,11 +30,11 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
 
         stillingsannonser.forEach {
             val stillingreferanse = Stillingreferanse(Converters.localdatetimeToTimestamp(it.opprettetTs),
-                Converters.localdatetimeToTimestamp(it.sistEndretTs),
-                it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts)} ?: null,
-                it.id,
-                it.kilde,
-                EuresStatus.fromAdStatus(it.status))
+                    Converters.localdatetimeToTimestamp(it.sistEndretTs),
+                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null,
+                    it.id,
+                    it.kilde,
+                    EuresStatus.fromAdStatus(it.status))
             if (it.lukketTs != null) {
                 lukket.add(stillingreferanse)
             } else if (stillingreferanse.creationTimestamp == stillingreferanse.lastModificationTimestamp) {
@@ -60,7 +58,8 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
                             content = toXML(it.ad.convertToPositionOpening()),
                             creationTimestamp = Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.opprettetTs),
                             lastModificationTimestamp = Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.sistEndretTs),
-                            closingTimestamp = it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null
+                            closingTimestamp = it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) }
+                                    ?: null
                     )
                 }))
     }

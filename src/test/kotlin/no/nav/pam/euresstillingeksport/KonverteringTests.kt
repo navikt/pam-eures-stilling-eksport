@@ -4,9 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
 import no.nav.pam.euresstillingeksport.feedclient.FeedTransport
 import no.nav.pam.euresstillingeksport.model.Converters
-import no.nav.pam.euresstillingeksport.model.pam.Ad
-import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
-import no.nav.pam.euresstillingeksport.service.*
+import no.nav.pam.euresstillingeksport.model.Ad
+import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
+import no.nav.pam.euresstillingeksport.model.StillingService
+import no.nav.pam.euresstillingeksport.euresapi.AdApiService
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance

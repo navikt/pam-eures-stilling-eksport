@@ -1,9 +1,9 @@
 package no.nav.pam.euresstillingeksport
 
 import no.nav.pam.euresstillingeksport.model.Converters
-import no.nav.pam.euresstillingeksport.service.GetAllResponse
-import no.nav.pam.euresstillingeksport.service.GetChangesResponse
-import no.nav.pam.euresstillingeksport.service.GetDetailsResponse
+import no.nav.pam.euresstillingeksport.euresapi.GetAllResponse
+import no.nav.pam.euresstillingeksport.euresapi.GetChangesResponse
+import no.nav.pam.euresstillingeksport.euresapi.GetDetailsResponse
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
