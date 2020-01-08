@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.sql.Timestamp
 import java.time.LocalDateTime
 
 @Service
@@ -75,6 +76,8 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
         stillingRepository.saveStillingsannonser(nyeAnnonser)
         return antallModifiserteStillinger
     }
+
+    fun slettNyereEnn(tidspunkt: LocalDateTime) = stillingRepository.slettNyereEnn(tidspunkt)
 
     // Konverterer en ny annonse til metadata
     private fun konverterTilStillingsannonseMetadata(ad : Ad) : StillingsannonseMetadata {

@@ -178,7 +178,12 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         return eksisterendeAnnonser
     }
 
-    fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk>{
+    fun slettNyereEnn(tidspunkt: LocalDateTime) {
+        jdbcTemplate.update("delete from stillinger where sist_endret_ts > ?",
+                Timestamp.valueOf(tidspunkt))
+    }
+
+fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk>{
         val params = MapSqlParameterSource()
         var where = ""
         if (fraOgMedTidspunkt != null) {

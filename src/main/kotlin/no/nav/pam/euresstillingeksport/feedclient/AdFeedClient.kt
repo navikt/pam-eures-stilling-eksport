@@ -3,6 +3,7 @@ package no.nav.pam.euresstillingeksport.feedclient
 import net.javacrumbs.shedlock.core.SchedulerLock
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.pam.Ad
+import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import no.nav.pam.euresstillingeksport.service.StillingService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,6 +18,7 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.HttpStatusCodeException
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
@@ -120,10 +122,9 @@ class AdFeedClient @Autowired constructor (
     }
 
     @Component
-    class FeedLeser(
-            @Autowired private val feedClient: AdFeedClient,
-            @Autowired private val stillingService: StillingService,
-            @Autowired private val feedRepository: FeedRepository) {
+    class FeedLeser(@Autowired private val feedClient: AdFeedClient,
+                    @Autowired private val stillingService: StillingService,
+                    @Autowired private val feedRepository: FeedRepository) {
 
         companion object {
             private val LOG = LoggerFactory.getLogger(FeedLeser::class.java)
@@ -161,7 +162,13 @@ class AdFeedClient @Autowired constructor (
         }
 
         fun feedpeker() = feedRepository.hentFeedPeker()
-        fun feedpeker(sistLest: LocalDateTime) = feedRepository.oppdaterFeedPeker(sistLest)
+
+        @Transactional
+        fun feedpeker(sistLest: LocalDateTime, wipeDb: Boolean = false) {
+            feedRepository.oppdaterFeedPeker(sistLest)
+            if (wipeDb)
+                stillingService.slettNyereEnn(sistLest)
+        }
     }
 
     @Repository
@@ -169,7 +176,7 @@ class AdFeedClient @Autowired constructor (
         fun hentFeedPeker(): LocalDateTime {
             try {
                 val sistLest = jdbcTemplate.queryForObject("select sist_lest from feedpeker",
-                arrayOf(), String::class.java)
+                        arrayOf(), String::class.java)
                 return LocalDateTime.parse(sistLest, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 
             } catch (e: EmptyResultDataAccessException) {
