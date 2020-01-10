@@ -27,9 +27,13 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
         val endredeAnnonser = ArrayList<StillingsannonseJson>()
 
         ads
-                .filter { it.erIkkeIntern() }
-                .filter { it.erSaksbehandlet() }
                 .filter {
+                    if (it.erIntern()) LOG.info("Avviser stillingen ${it.uuid} siden den er intern, men ${it.privacy}")
+                    it.erIkkeIntern()
+                }.filter {
+                    if(!it.erSaksbehandlet()) LOG.info("Avviser stillingen ${it.uuid} siden den ikke er saksbehandlet, men har status ${it.administration?.status}")
+                    it.erSaksbehandlet()
+                }.filter {
             try {
                 it.convertToPositionOpening()
                 true
