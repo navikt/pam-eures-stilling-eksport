@@ -1,7 +1,7 @@
 package no.nav.pam.euresstillingeksport
 
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
-import no.nav.pam.euresstillingeksport.service.StillingService
+import no.nav.pam.euresstillingeksport.model.StillingService
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

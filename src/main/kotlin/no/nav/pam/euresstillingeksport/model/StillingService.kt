@@ -1,7 +1,7 @@
-package no.nav.pam.euresstillingeksport.service
+package no.nav.pam.euresstillingeksport.model
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.model.pam.*
+import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.slf4j.LoggerFactory
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.sql.Timestamp
 import java.time.LocalDateTime
 
 @Service
@@ -115,13 +114,19 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
                 null else now
         }
 
-        return StillingsannonseMetadata(ad.uuid, ad.source ?: eksisterende.kilde,
-                status,
-                opprettet, now, closed)
+        return StillingsannonseMetadata(
+                id = ad.uuid,
+                kilde = ad.source ?: eksisterende.kilde,
+                status = status,
+                opprettetTs = opprettet,
+                sistEndretTs = now,
+                lukketTs = closed
+        )
     }
 
     fun hentAlleAktiveStillinger() : List<StillingsannonseMetadata> =
             stillingRepository.findStillingsannonserByStatus("ACTIVE", null)
+
     fun hentAlleStillinger(nyereEnnTs: Long?) : List<StillingsannonseMetadata> =
         stillingRepository.findStillingsannonserByStatus(null, nyereEnnTs)
 
@@ -133,16 +138,13 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
     }
 
     fun hentStillingsannonse(uuid: String) : Stillingsannonse? {
-        var stillingsannonseJson : StillingsannonseJson?
         try {
-            stillingsannonseJson = stillingRepository.findStillingsannonseById(uuid)
+            return stillingRepository.findStillingsannonseById(uuid)?.let {
+                Stillingsannonse(it.stillingsannonseMetadata, objectMapper.readValue(it.jsonAd, Ad::class.java))
+            }
         } catch (e: EmptyResultDataAccessException){
-            stillingsannonseJson = null
+            return null
         }
-
-        return if (stillingsannonseJson == null) null
-            else Stillingsannonse(stillingsannonseJson.stillingsannonseMetadata,
-                objectMapper.readValue(stillingsannonseJson.jsonAd, Ad::class.java))
     }
 
     fun hentStatistikk(fraOgMed : LocalDateTime?) : List<AnnonseStatistikk> {

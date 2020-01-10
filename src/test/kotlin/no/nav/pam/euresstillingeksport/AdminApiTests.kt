@@ -3,12 +3,12 @@ package no.nav.pam.euresstillingeksport
 import com.fasterxml.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
 import no.nav.pam.euresstillingeksport.feedclient.FeedTransport
-import no.nav.pam.euresstillingeksport.model.pam.Ad
-import no.nav.pam.euresstillingeksport.model.pam.AdStatus
-import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseJson
-import no.nav.pam.euresstillingeksport.model.pam.StillingsannonseMetadata
+import no.nav.pam.euresstillingeksport.model.Ad
+import no.nav.pam.euresstillingeksport.model.AdStatus
+import no.nav.pam.euresstillingeksport.model.StillingsannonseJson
+import no.nav.pam.euresstillingeksport.model.StillingsannonseMetadata
+import no.nav.pam.euresstillingeksport.euresapi.GetAllResponse
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
-import no.nav.pam.euresstillingeksport.service.GetAllResponse
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -51,8 +51,8 @@ class AdminApiTests {
                     .copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 
     private fun toStillingsannonseJson(ad: Ad): StillingsannonseJson =
-        StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, ad.created, ad.created, null),
-                objectMapper.writeValueAsString(ad))
+            StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, ad.created, ad.created, null),
+                    objectMapper.writeValueAsString(ad))
 
     @BeforeEach
     fun cleanDb() {

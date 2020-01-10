@@ -1,9 +1,9 @@
-package no.nav.pam.euresstillingeksport.rest
+package no.nav.pam.euresstillingeksport.administration
 
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
-import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
+import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
+import no.nav.pam.euresstillingeksport.model.StillingService
 import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
-import no.nav.pam.euresstillingeksport.service.*
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -16,8 +16,7 @@ import java.time.format.DateTimeFormatter
 @RequestMapping("/internal/admin")
 class AdminApiController(@Autowired private val feedClient: AdFeedClient,
                          @Autowired private val feedLeser: AdFeedClient.FeedLeser,
-                        @Autowired private val stillingService: StillingService,
-                        @Autowired private val apiService: ApiService) {
+                         @Autowired private val stillingService: StillingService) {
 
     companion object {
         private val LOG = LoggerFactory.getLogger(AdminApiController::class.java)

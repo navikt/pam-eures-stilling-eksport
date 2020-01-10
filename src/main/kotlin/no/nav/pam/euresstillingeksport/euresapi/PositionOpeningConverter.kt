@@ -1,6 +1,6 @@
-package no.nav.pam.euresstillingeksport.model.pam
+package no.nav.pam.euresstillingeksport.euresapi
 
-import no.nav.pam.euresstillingeksport.model.eures.*
+import no.nav.pam.euresstillingeksport.model.Ad
 import java.util.Arrays.asList
 
 enum class PropertyMapping(val key: String) {
@@ -36,13 +36,16 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionOrganization = employer?.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
-            positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key] ?: ""),
+            positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key]
+                    ?: ""),
             positionQualifications = null, // We do not have these data in a structured format
             positionFormattedDescription = PositionFormattedDescription(properties[PropertyMapping.adtext.key] ?: ""),
             workingLanguageCode = "NO",
             positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key] ?: "na")),
-            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key] ?: ""),
-            positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key] ?: ""),
+            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]
+                    ?: ""),
+            positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key]
+                    ?: ""),
             applicationCloseDate = expires!!
     )
 }

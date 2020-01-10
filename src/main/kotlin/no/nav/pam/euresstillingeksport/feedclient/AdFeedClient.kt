@@ -2,9 +2,8 @@ package no.nav.pam.euresstillingeksport.feedclient
 
 import net.javacrumbs.shedlock.core.SchedulerLock
 import no.nav.pam.euresstillingeksport.model.Converters
-import no.nav.pam.euresstillingeksport.model.pam.Ad
-import no.nav.pam.euresstillingeksport.repository.StillingRepository
-import no.nav.pam.euresstillingeksport.service.StillingService
+import no.nav.pam.euresstillingeksport.model.Ad
+import no.nav.pam.euresstillingeksport.model.StillingService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

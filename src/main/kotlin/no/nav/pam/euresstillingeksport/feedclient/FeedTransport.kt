@@ -1,7 +1,7 @@
 package no.nav.pam.euresstillingeksport.feedclient
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import no.nav.pam.euresstillingeksport.model.pam.Ad
+import no.nav.pam.euresstillingeksport.model.Ad
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FeedTransport (

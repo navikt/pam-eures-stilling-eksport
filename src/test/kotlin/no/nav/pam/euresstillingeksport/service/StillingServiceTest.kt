@@ -1,13 +1,46 @@
 package no.nav.pam.euresstillingeksport.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.model.pam.*
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import no.nav.pam.euresstillingeksport.model.*
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
+import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import java.time.LocalDateTime
 import java.util.*
+
+class FetchTest {
+
+    private val mockedRepo: StillingRepository = mock<StillingRepository>(StillingRepository::class.java)
+
+    private val stillingService = StillingService(mockedRepo, objectMapper)
+    @Test
+    fun `skal håndtere at stilling ikke finnes`() {
+        Mockito.`when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(null)
+
+        val res = stillingService.hentStillingsannonse(UUID.randomUUID().toString())
+
+        assertThat(res).isNull()
+    }
+
+    @Test
+    fun `at stillingsannonse mappes korrekt til Stillingsannonse`() {
+        Mockito.`when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(
+                StillingsannonseJson(
+                        stillingsannonseMetadataMother,
+                        objectMapper.writeValueAsString(adMother)))
+
+        val res = stillingService.hentStillingsannonse(UUID.randomUUID().toString())
+
+        assertThat(res).isNotNull
+        assertThat(res?.ad).isNotNull
+        assertThat(res?.stillingsannonseMetadata).isNotNull
+    }
+}
 
 class FiltreringsTest {
 
@@ -75,38 +108,53 @@ class FiltreringsTest {
         assertThat(stillingService.lagreStillinger(ads)).isEqualTo(1)
     }
 
-    private val adMother = Ad(
-            id = 1,
-            uuid = UUID.randomUUID().toString(),
-            created = LocalDateTime.now(),
-            createdBy = null,
-            updated = LocalDateTime.now(),
-            updatedBy = null,
-            locationList = listOf(),
-            properties = mapOf(),
-            title = null,
-            status = "ACTIVE",
-            privacy = "SHOW_ALL",
-            source = null,
-            medium = null,
-            reference = null,
-            published = null,
-            expires = LocalDateTime.now(),
-            employer = null,
-            categoryList = listOf(),
-            administration = Administration(
-                    id = 1,
-                    status = "DONE",
-                    comments = null,
-                    reportee = null,
-                    remarks = listOf(),
-                    navIdent = null
-            ),
-            publishedByAdmin = null,
-            businessName = null,
-            firstPublished = false,
-            deactivatedByExpiry = false,
-            activationOnPublishingDate = false
-    )
 
+}
+
+private val stillingsannonseMetadataMother = StillingsannonseMetadata(
+        id = UUID.randomUUID().toString(),
+        kilde = "NAV",
+        status = AdStatus.ACTIVE,
+        opprettetTs = LocalDateTime.now(),
+        sistEndretTs = LocalDateTime.now(),
+        lukketTs = LocalDateTime.now()
+)
+
+private val adMother = Ad(
+        id = 1,
+        uuid = UUID.randomUUID().toString(),
+        created = LocalDateTime.now(),
+        createdBy = null,
+        updated = LocalDateTime.now(),
+        updatedBy = null,
+        locationList = listOf(),
+        properties = mapOf(),
+        title = null,
+        status = "ACTIVE",
+        privacy = "SHOW_ALL",
+        source = null,
+        medium = null,
+        reference = null,
+        published = null,
+        expires = LocalDateTime.now(),
+        employer = null,
+        categoryList = listOf(),
+        administration = Administration(
+                id = 1,
+                status = "DONE",
+                comments = null,
+                reportee = null,
+                remarks = listOf(),
+                navIdent = null
+        ),
+        publishedByAdmin = null,
+        businessName = null,
+        firstPublished = false,
+        deactivatedByExpiry = false,
+        activationOnPublishingDate = false
+)
+
+private val objectMapper = ObjectMapper().apply {
+    registerModule(KotlinModule())
+    registerModule(JavaTimeModule())
 }

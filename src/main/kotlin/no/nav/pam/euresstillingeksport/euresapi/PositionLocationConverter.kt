@@ -1,7 +1,6 @@
-package no.nav.pam.euresstillingeksport.model.pam
+package no.nav.pam.euresstillingeksport.euresapi
 
-import no.nav.pam.euresstillingeksport.model.eures.Address
-import no.nav.pam.euresstillingeksport.model.eures.PositionLocation
+import no.nav.pam.euresstillingeksport.model.Location
 import no.nav.pam.geography.CountryDAO
 
 

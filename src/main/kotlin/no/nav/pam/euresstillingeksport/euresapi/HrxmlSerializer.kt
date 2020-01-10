@@ -1,4 +1,4 @@
-package no.nav.pam.euresstillingeksport.model.eures
+package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.PropertyNamingStrategy

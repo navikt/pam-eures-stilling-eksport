@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import no.nav.pam.euresstillingeksport.model.eures.HrxmlSerializer
-import no.nav.pam.euresstillingeksport.model.pam.Ad
-import no.nav.pam.euresstillingeksport.model.pam.EuNace
-import no.nav.pam.euresstillingeksport.model.pam.convertToPositionOpening
+import no.nav.pam.euresstillingeksport.euresapi.HrxmlSerializer
+import no.nav.pam.euresstillingeksport.euresapi.EuNace
+import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import java.io.FileInputStream
