@@ -18,6 +18,7 @@ class FetchTest {
     private val mockedRepo: StillingRepository = mock<StillingRepository>(StillingRepository::class.java)
 
     private val stillingService = StillingService(mockedRepo, objectMapper)
+    
     @Test
     fun `skal håndtere at stilling ikke finnes`() {
         Mockito.`when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(null)
@@ -108,7 +109,25 @@ class FiltreringsTest {
         assertThat(stillingService.lagreStillinger(ads)).isEqualTo(1)
     }
 
+    @Test
+    fun `skal filtrere bort stillinger med kilde EURES`() {
 
+        val stillingMedEuresKilde = adMother.copy(source = "EURES")
+
+        val ads = listOf(stillingMedEuresKilde)
+
+        assertThat(stillingService.lagreStillinger(ads)).isEqualTo(0)
+    }
+
+    @Test
+    fun `skal filtrere akseptere stillinger med andre kilder enn EURES`() {
+
+        val stillingRegistrertAvSaksbehandler = adMother.copy(source = "ASS")
+
+        val ads = listOf(stillingRegistrertAvSaksbehandler)
+
+        assertThat(stillingService.lagreStillinger(ads)).isEqualTo(1)
+    }
 }
 
 private val stillingsannonseMetadataMother = StillingsannonseMetadata(

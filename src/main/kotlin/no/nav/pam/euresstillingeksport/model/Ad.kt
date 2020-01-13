@@ -34,6 +34,7 @@ data class Ad(
         val activationOnPublishingDate: Boolean
 ) {
     fun erSaksbehandlet() = administration?.erSaksbehandlet() ?: false
+    fun erFraEures() = source == "EURES"
     fun erIntern() = privacy == null || privacy == "INTERNAL_NOT_SHOWN"
     fun erIkkeIntern() = erIntern().not()
 }
