@@ -181,7 +181,7 @@
 		<dependency>
 			<groupId>no.nav.pam.geography</groupId>
 			<artifactId>pam-geography</artifactId>
-			<version>1.9</version>
+			<version>2.4</version>
 		</dependency>
 	</dependencies>
 
