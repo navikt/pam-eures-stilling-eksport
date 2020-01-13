@@ -34,6 +34,10 @@ class StillingService(@Autowired private val stillingRepository: StillingReposit
                     if(!it.erSaksbehandlet()) LOG.info("Avviser stillingen ${it.uuid} siden den ikke er saksbehandlet, men har status ${it.administration?.status}")
                     it.erSaksbehandlet()
                 }.filter {
+                    if(it.erFraEures()) LOG.info("Avviser stillingen ${it.uuid} siden den stammer fra EURES, source=${it.source}")
+                    !it.erFraEures()
+                }
+                .filter {
             try {
                 it.convertToPositionOpening()
                 true
