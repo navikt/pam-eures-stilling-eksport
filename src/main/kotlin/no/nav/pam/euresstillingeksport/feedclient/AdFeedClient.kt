@@ -130,7 +130,7 @@ class AdFeedClient @Autowired constructor (
         }
 
         @Scheduled(cron = "0 */1 * * * *")
-        @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT45M")
+        @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
         fun lesFeed() {
             LOG.info("Poller ad feed for stillinger")
             val sistLest = feedRepository.hentFeedPeker()
