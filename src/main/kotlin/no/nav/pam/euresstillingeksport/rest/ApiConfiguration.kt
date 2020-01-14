@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
 import org.springframework.http.ResponseEntity
 import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.retry.annotation.EnableRetry
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.transaction.PlatformTransactionManager
@@ -58,6 +59,10 @@ class ApiConfiguration {
                 if (jdbcUrl.toLowerCase().contains("jdbc:postgresql"))
                     c.initSql("SET ROLE \"${dbnavn}-admin\"")
             }
+
+    @Bean
+    fun transactionManager(@Autowired dataSource: DataSource): PlatformTransactionManager =
+            DataSourceTransactionManager(dataSource)
 
     @Bean
     open fun lockProvider(@Autowired dataSource: DataSource, @Autowired transactionManager: PlatformTransactionManager) =
