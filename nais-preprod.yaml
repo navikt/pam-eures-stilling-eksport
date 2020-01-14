@@ -30,7 +30,7 @@ spec:
   webproxy: true
   prometheus:
     enabled: true
-    path: pam-eures-stilling-eksport/actuator/prometheus
+    path: actuator/prometheus
   ingresses:
     - https://pam-eures-stilling-eksport.nais.oera-q.local
     - https://eures-eksport-q.nav.no
