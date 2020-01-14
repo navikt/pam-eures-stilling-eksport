@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service
-class StillingService(@Autowired private val stillingRepository: StillingRepository,
+open class StillingService(@Autowired private val stillingRepository: StillingRepository,
                       @Autowired private val objectMapper: ObjectMapper) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingService::class.java)
