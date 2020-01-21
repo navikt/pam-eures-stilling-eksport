@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.HttpStatusCodeException
 import org.springframework.web.client.RestClientException
@@ -121,7 +122,7 @@ class AdFeedClient @Autowired constructor (
     }
 
     @Component
-    class FeedLeser(@Autowired private val feedClient: AdFeedClient,
+    open class FeedLeser(@Autowired private val feedClient: AdFeedClient,
                     @Autowired private val stillingService: StillingService,
                     @Autowired private val feedRepository: FeedRepository) {
 
@@ -148,16 +149,23 @@ class AdFeedClient @Autowired constructor (
                         trans.numberOfElements, msBrukt, trans.totalPages)
 
                 now = System.currentTimeMillis()
-                stillingService.lagreStillinger(trans.content)
                 trans.content.forEach {
                     if (it.updated.isAfter(nyeste))
                         nyeste = it.updated
                 }
-                feedRepository.oppdaterFeedPeker(nyeste)
+                oppdaterPeedpekerOgLagreStillinger(trans.content, nyeste)
                 msBrukt = System.currentTimeMillis() - now
                 LOG.info("Brukte {}ms på å lagre/oppdatere {} stillinger i databasen.", msBrukt, trans.content.size)
                 ferdig = trans.last
             }
+        }
+
+        @Transactional(propagation = Propagation.REQUIRES_NEW)
+        open fun oppdaterPeedpekerOgLagreStillinger(ads: List<Ad>, sistLest: LocalDateTime) {
+            val antallModifiserteStillinger = stillingService.lagreStillinger(ads)
+            feedRepository.oppdaterFeedPeker(sistLest)
+            LOG.info("Antall modifiserte stillinger: $antallModifiserteStillinger " +
+                    "ny feedpeker: {}", DateTimeFormatter.ISO_DATE_TIME.format(sistLest))
         }
 
         fun feedpeker() = feedRepository.hentFeedPeker()
