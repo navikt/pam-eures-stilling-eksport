@@ -14,8 +14,11 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
 import org.springframework.http.ResponseEntity
+import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.retry.annotation.EnableRetry
 import org.springframework.scheduling.annotation.EnableScheduling
+import org.springframework.transaction.PlatformTransactionManager
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.RestTemplate
@@ -58,8 +61,12 @@ class ApiConfiguration {
             }
 
     @Bean
-    open fun lockProvider(@Autowired dataSource: DataSource) =
-            JdbcTemplateLockProvider(dataSource)
+    fun transactionManager(@Autowired dataSource: DataSource): PlatformTransactionManager =
+            DataSourceTransactionManager(dataSource)
+
+    @Bean
+    open fun lockProvider(@Autowired dataSource: DataSource, @Autowired transactionManager: PlatformTransactionManager) =
+            JdbcTemplateLockProvider(JdbcTemplate(dataSource), transactionManager)
 
     fun disableSSLChecksDefaultHttpClient() {
         val trustManager: X509TrustManager = object: X509TrustManager {

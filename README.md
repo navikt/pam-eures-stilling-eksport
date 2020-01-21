@@ -44,6 +44,11 @@ Reset the feed pointer to a given timestamp. Timestamp use the following format:
 
 `curl -k -XPUT https://$BASE_URL/internal/admin/feedpeker/<timestamp>`
 
+An optional *wipeDb* request parameter can be added to remove all vacancies newer
+than the timestamp, i.e.:
+
+`curl -k -XPUT https://$BASE_URL/internal/admin/feedpeker/<timestamp>?wipeDb=true`
+
 *NOTE*: If the feedpointer is reset during feed-reading, the reset issued by curl
 might be overwritten be the feed-reader. Resetting the feedpointer from the admin api
 does not interact with the internal locking mechanism used by the feedreader.
