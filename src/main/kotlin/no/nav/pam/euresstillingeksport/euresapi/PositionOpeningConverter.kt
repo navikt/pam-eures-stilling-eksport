@@ -10,7 +10,7 @@ enum class PropertyMapping(val key: String) {
     starttime("starttime"), // may be "snarest"
     extent("extent"),
     engagementtype("engagementtype"),
-    applicationurl("applicationurl")
+    sourceurl("sourceurl")
 }
 
 
@@ -28,7 +28,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             postingInstruction = PostingInstruction(
                     postingOptionCode = null, // TODO add eures flag if set
                     applicationMethod = ApplicationMethod(
-                            instructions = properties[PropertyMapping.applicationurl.key] ?: "See jobdescription"
+                            instructions = properties[PropertyMapping.sourceurl.key] ?: "See jobdescription"
                     )
             ),
             positionTitle = title ?: "" ,
