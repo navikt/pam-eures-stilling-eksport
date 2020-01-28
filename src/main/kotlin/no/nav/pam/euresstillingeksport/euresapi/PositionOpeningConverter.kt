@@ -27,7 +27,7 @@ fun Ad.convertToPositionOpening(): PositionOpening {
 private fun Ad.toPositionProfile(): PositionProfile {
     return PositionProfile(
             postingInstruction = PostingInstruction(
-                    postingOptionCode = if(properties[PropertyMapping.sourceurl.key] == "true") PostingOptionCode.EURESFlag else null,
+                    postingOptionCode = if(properties[PropertyMapping.euresflagg.key] == "true") PostingOptionCode.EURESFlag else null,
                     applicationMethod = ApplicationMethod(
                             instructions = properties[PropertyMapping.sourceurl.key] ?: "See jobdescription"
                     )
