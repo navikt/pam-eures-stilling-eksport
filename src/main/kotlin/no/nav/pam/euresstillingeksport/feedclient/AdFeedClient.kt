@@ -1,5 +1,6 @@
 package no.nav.pam.euresstillingeksport.feedclient
 
+import io.micrometer.core.instrument.MeterRegistry
 import net.javacrumbs.shedlock.core.SchedulerLock
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.Ad
@@ -26,6 +27,8 @@ import org.springframework.web.util.UriComponentsBuilder
 import java.io.IOException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicLong
 
 @Service
 class AdFeedClient @Autowired constructor (
@@ -124,11 +127,14 @@ class AdFeedClient @Autowired constructor (
     @Component
     open class FeedLeser(@Autowired private val feedClient: AdFeedClient,
                     @Autowired private val stillingService: StillingService,
-                    @Autowired private val feedRepository: FeedRepository) {
+                    @Autowired private val feedRepository: FeedRepository,
+                    @Autowired private val meterRegistry: MeterRegistry) {
 
         companion object {
             private val LOG = LoggerFactory.getLogger(FeedLeser::class.java)
         }
+
+        val feedLagMeter = meterRegistry.gauge("pam.ad.feed.lag", AtomicInteger(0))
 
         @Scheduled(cron = "0 */1 * * * *")
         @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
@@ -147,6 +153,7 @@ class AdFeedClient @Autowired constructor (
                 var msBrukt = System.currentTimeMillis() - now
                 LOG.info("Leste {} elementer fra feeden på {}ms. Totalt {} sider igjen ",
                         trans.numberOfElements, msBrukt, trans.totalPages)
+                feedLagMeter?.set(trans.totalElements)
 
                 now = System.currentTimeMillis()
                 trans.content.forEach {
@@ -158,6 +165,7 @@ class AdFeedClient @Autowired constructor (
                 LOG.info("Brukte {}ms på å lagre/oppdatere {} stillinger i databasen.", msBrukt, trans.content.size)
                 ferdig = trans.last
             }
+            feedLagMeter?.getAndSet(0)
         }
 
         @Transactional(propagation = Propagation.REQUIRES_NEW)

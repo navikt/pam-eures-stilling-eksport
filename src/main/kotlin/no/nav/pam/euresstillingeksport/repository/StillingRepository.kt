@@ -183,7 +183,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 Timestamp.valueOf(tidspunkt))
     }
 
-fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk>{
+    fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk> {
         val params = MapSqlParameterSource()
         var where = ""
         if (fraOgMedTidspunkt != null) {
