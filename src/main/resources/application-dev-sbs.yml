@@ -1,5 +1,5 @@
 pam-ad:
-  url: https://pam-ad.nais.oera.no/api/v1/ads
+  url: https://pam-ad.nais.oera-q.local/api/v1/ads
 dbnavn: pam-eures-stillingeksport-dev
 spring:
   h2:
