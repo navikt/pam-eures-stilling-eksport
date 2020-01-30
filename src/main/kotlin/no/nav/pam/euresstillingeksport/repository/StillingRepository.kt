@@ -213,7 +213,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 "group by status", params,
                 RowMapper<AnnonseStatistikk>
                 { rs, rowNum ->
-                    AnnonseStatistikk(rs.getString("status") + "Flagget",
+                    AnnonseStatistikk("FlaggetAktiv",
                             rs.getLong("antall"))
                 }
         ))
