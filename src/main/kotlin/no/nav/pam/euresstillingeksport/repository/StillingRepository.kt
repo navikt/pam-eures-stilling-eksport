@@ -208,8 +208,8 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
 
         statistikk.addAll(namedJdbcTemplate.query("select status, count(*) as antall " +
                 "from stillinger " +
-                if (where == "") "where " else "and " +
-                    "status='ACTIVE' and euresflagg=1" +
+                (if (where == "") "where " else "and ") +
+                    "status='ACTIVE' and euresflagg=1 " +
                 "group by status", params,
                 RowMapper<AnnonseStatistikk>
                 { rs, rowNum ->
