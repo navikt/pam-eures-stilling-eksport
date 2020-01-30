@@ -6,6 +6,7 @@ import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.StillingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.lang.Exception
 import java.util.concurrent.atomic.AtomicInteger
 
 @Service

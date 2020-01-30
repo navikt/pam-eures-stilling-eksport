@@ -51,7 +51,7 @@ class AdminApiTests {
                     .copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 
     private fun toStillingsannonseJson(ad: Ad): StillingsannonseJson =
-            StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, ad.created, ad.created, null),
+            StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, false, ad.created, ad.created, null),
                     objectMapper.writeValueAsString(ad))
 
     @BeforeEach

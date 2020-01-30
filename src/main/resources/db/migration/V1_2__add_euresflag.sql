@@ -1,0 +1,1 @@
+alter table stillinger add column euresflagg integer not null default 0;
