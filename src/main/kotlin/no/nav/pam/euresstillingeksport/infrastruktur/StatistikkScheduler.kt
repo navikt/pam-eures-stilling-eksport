@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicLong
 class StatistikkScheduler (@Autowired private val meterRegistry: MeterRegistry,
                            @Autowired private val stillingService: StillingService){
     private val statistikkMetrikker : Map<String, AtomicLong?> =
-            listOf("DELETED", "STOPPED", "ACTIVE", "REJECTED", "INACTIVE")
+            listOf("DELETED", "STOPPED", "ACTIVE", "REJECTED", "INACTIVE", "ACTIVEFlagget")
                     .map {
                         it to meterRegistry.gauge("pam.eures.stilling.antall", Tags.of("status", it), AtomicLong(0))
                     }
