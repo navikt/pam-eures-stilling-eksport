@@ -8,6 +8,7 @@ import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import no.nav.pam.euresstillingeksport.model.StillingService
 import no.nav.pam.euresstillingeksport.euresapi.AdApiService
+import no.nav.pam.euresstillingeksport.euresapi.PropertyMapping
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -56,5 +57,12 @@ class KonverteringTests {
 		Assertions.assertTrue(po.positionOpeningStatusCode.name == "Active")
 		//System.out.println(adApi.toXML(po))
 
+	}
+
+	@Test
+	fun skalIkkeTaMedUtlysningstekstForFinnAnnonser() {
+		val ad = initAd().copy(source = "FINN")
+		val po = ad.convertToPositionOpening()
+		Assertions.assertTrue(po.positionProfile[0].positionFormattedDescription.content.contains("" + ad.properties[PropertyMapping.sourceurl.key]))
 	}
 }

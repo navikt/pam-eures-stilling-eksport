@@ -40,7 +40,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key]
                     ?: ""),
             positionQualifications = null, // We do not have these data in a structured format
-            positionFormattedDescription = PositionFormattedDescription(properties[PropertyMapping.adtext.key] ?: ""),
+            positionFormattedDescription = toFormattedDescription(),
             workingLanguageCode = "NO",
             positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key] ?: "na")),
             immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]
@@ -49,6 +49,16 @@ private fun Ad.toPositionProfile(): PositionProfile {
                     ?: ""),
             applicationCloseDate = expires!!
     )
+}
+
+private fun Ad.toFormattedDescription(): PositionFormattedDescription {
+    if (erFinnAnnonse()) {
+        val finnURL = properties[PropertyMapping.sourceurl.key]
+        return PositionFormattedDescription("For fullstendig annonsetekst, se annonsen hos finn.no: " +
+                "<a href=\"$finnURL\">$finnURL</a>.")
+    } else {
+        return PositionFormattedDescription(properties[PropertyMapping.adtext.key] ?: "")
+    }
 }
 
 private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
