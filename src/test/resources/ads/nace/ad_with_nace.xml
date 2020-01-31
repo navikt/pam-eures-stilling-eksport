@@ -30,7 +30,7 @@
     <JobCategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">3117</JobCategoryCode>
     <PositionOfferingTypeCode>DirectHire</PositionOfferingTypeCode>
     <PositionFormattedDescription>
-      <Content><![CDATA[tekst]]></Content>
+      <Content><![CDATA[For fullstendig annonsetekst, se annonsen hos finn.no: <a href="https://www.url.no/">https://www.url.no/</a>.]]></Content>
     </PositionFormattedDescription>
     <WorkingLanguageCode>NO</WorkingLanguageCode>
     <PositionPeriod>

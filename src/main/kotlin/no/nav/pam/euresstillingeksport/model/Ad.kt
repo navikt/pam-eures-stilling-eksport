@@ -39,6 +39,7 @@ data class Ad(
     fun erIntern() = privacy == null || privacy == "INTERNAL_NOT_SHOWN"
     fun erIkkeIntern() = erIntern().not()
     fun erEuresFlagget() = properties[PropertyMapping.euresflagg.key] == "true"
+    fun erFinnAnnonse() = source == "FINN"
 }
 
 
