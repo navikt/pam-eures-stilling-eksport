@@ -7,10 +7,12 @@ management:
   metrics:
     web.server.auto-time-requests: true
     distribution.percentiles-histogram.http.server.requests: true
+    distribution.percentiles-histogram.http.client.requests: true
 
 dbnavn: stillingdb
 spring:
   metrics.web.server.auto-time-requests: true
+  task.scheduling.pool.size: 5
   main:
     banner-mode: "off"
     allow-bean-definition-overriding: true

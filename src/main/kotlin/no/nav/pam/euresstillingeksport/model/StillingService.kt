@@ -96,6 +96,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                 id = ad.uuid,
                 kilde = ad.source ?: "NAV",
                 status = status,
+                euresFlagget = ad.erEuresFlagget(),
                 opprettetTs = now,
                 sistEndretTs = now,
                 lukketTs = closed)
@@ -126,6 +127,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                 id = ad.uuid,
                 kilde = ad.source ?: eksisterende.kilde,
                 status = status,
+                euresFlagget = ad.erEuresFlagget(),
                 opprettetTs = opprettet,
                 sistEndretTs = now,
                 lukketTs = closed

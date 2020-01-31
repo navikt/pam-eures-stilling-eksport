@@ -2,6 +2,7 @@ package no.nav.pam.euresstillingeksport.model
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import no.nav.pam.euresstillingeksport.euresapi.PropertyMapping
 import java.time.LocalDateTime
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -37,6 +38,7 @@ data class Ad(
     fun erFraEures() = source == "EURES"
     fun erIntern() = privacy == null || privacy == "INTERNAL_NOT_SHOWN"
     fun erIkkeIntern() = erIntern().not()
+    fun erEuresFlagget() = properties[PropertyMapping.euresflagg.key] == "true"
 }
 
 
@@ -137,6 +139,7 @@ data class StillingsannonseMetadata (
         val id: String,
         val kilde: String = "NAV",
         val status: AdStatus,
+        val euresFlagget: Boolean = false,
         val opprettetTs : LocalDateTime,
         val sistEndretTs : LocalDateTime,
         val lukketTs: LocalDateTime?

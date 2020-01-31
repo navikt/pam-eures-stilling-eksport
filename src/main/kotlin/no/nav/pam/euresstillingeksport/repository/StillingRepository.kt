@@ -23,13 +23,14 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     }
 
     private val namedJdbcTemplate = NamedParameterJdbcTemplate(jdbcTemplate)
-    private val stillingFelter = "id, kilde, status, opprettet_ts, sist_endret_ts, lukket_ts, json_stilling"
+    private val stillingFelter = "id, kilde, status, euresflagg, opprettet_ts, sist_endret_ts, lukket_ts, json_stilling"
 
     private val stillingsannonseRowMapper = RowMapper<StillingsannonseMetadata>
     { rs, rowNum ->
         StillingsannonseMetadata(rs.getString("id"),
                 rs.getString("kilde"),
                 AdStatus.valueOf(rs.getString("status")),
+                rs.getInt("euresflagg") == 1,
                 rs.getTimestamp("opprettet_ts").toLocalDateTime(),
                 rs.getTimestamp("sist_endret_ts").toLocalDateTime(),
                 rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() } ?: null)
@@ -40,6 +41,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         StillingsannonseJson(StillingsannonseMetadata(rs.getString("id"),
                 rs.getString("kilde"),
                 AdStatus.valueOf(rs.getString("status")),
+                rs.getInt("euresflagg") == 1,
                 rs.getTimestamp("opprettet_ts").toLocalDateTime(),
                 rs.getTimestamp("sist_endret_ts").toLocalDateTime(),
                 rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() } ?: null),
@@ -104,7 +106,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     fun updateStillingsannonser(stillingsannonser: List<StillingsannonseJson>): Int {
         val sqlUpdate = "update stillinger " +
                 "set json_stilling=?," +
-                "kilde=?, status=?, opprettet_ts=?, sist_endret_ts=?, lukket_ts=? " +
+                "kilde=?, status=?, opprettet_ts=?, sist_endret_ts=?, lukket_ts=?, euresflagg=? " +
                 "where id=?"
 
         val antOppdatert = batchUpdateAds(sqlUpdate, stillingsannonser)
@@ -114,8 +116,8 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
     fun saveStillingsannonser(stillingsannonser: List<StillingsannonseJson>): Int {
         val sqlInsert = "insert into " +
                 "stillinger(id, json_stilling, kilde, status," +
-                "opprettet_ts, sist_endret_ts, lukket_ts) " +
-                "values(?, ?, ?, ?, ?, ?, ?)"
+                "opprettet_ts, sist_endret_ts, lukket_ts, euresflagg) " +
+                "values(?, ?, ?, ?, ?, ?, ?, ?)"
         val antInserted = batchInsertAds(sqlInsert, stillingsannonser)
 
         return antInserted
@@ -126,7 +128,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 object : BatchPreparedStatementSetter {
                     override fun getBatchSize(): Int = adsSomSkalOppdateres.size
                     override fun setValues(pstmt: PreparedStatement, idx: Int) {
-                        pstmt.setString(7, adsSomSkalOppdateres[idx].stillingsannonseMetadata.id)
+                        pstmt.setString(8, adsSomSkalOppdateres[idx].stillingsannonseMetadata.id)
                         pstmt.setString(1, adsSomSkalOppdateres[idx].jsonAd)
                         pstmt.setString(2, adsSomSkalOppdateres[idx].stillingsannonseMetadata.kilde)
                         pstmt.setString(3, adsSomSkalOppdateres[idx].stillingsannonseMetadata.status.toString())
@@ -135,6 +137,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                         pstmt.setTimestamp(6,
                                 if (adsSomSkalOppdateres[idx].stillingsannonseMetadata.lukketTs == null) null
                                 else Timestamp.valueOf(adsSomSkalOppdateres[idx].stillingsannonseMetadata.lukketTs))
+                        pstmt.setInt(7, if (adsSomSkalOppdateres[idx].stillingsannonseMetadata.euresFlagget) 1 else 0)
                     }
                 }
         )
@@ -155,6 +158,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                         pstmt.setTimestamp(7,
                                 if (adsSomSkalInsertes[idx].stillingsannonseMetadata.lukketTs == null) null
                                 else Timestamp.valueOf(adsSomSkalInsertes[idx].stillingsannonseMetadata.lukketTs))
+                        pstmt.setInt(8, if (adsSomSkalInsertes[idx].stillingsannonseMetadata.euresFlagget) 1 else 0)
                     }
                 }
         )
@@ -183,7 +187,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 Timestamp.valueOf(tidspunkt))
     }
 
-fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk>{
+    fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStatistikk> {
         val params = MapSqlParameterSource()
         var where = ""
         if (fraOgMedTidspunkt != null) {
@@ -191,7 +195,7 @@ fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStati
             params.addValue("fom", fraOgMedTidspunkt)
         }
 
-        return namedJdbcTemplate.query("select status, count(*) as antall " +
+        val statistikk: MutableList<AnnonseStatistikk> = namedJdbcTemplate.query("select status, count(*) as antall " +
                 "from stillinger " +
                 where +
                 "group by status", params,
@@ -200,7 +204,20 @@ fun tellStillingsannonser(fraOgMedTidspunkt: LocalDateTime?) : List<AnnonseStati
                     AnnonseStatistikk(rs.getString("status"),
                             rs.getLong("antall"))
                 }
-            )
+            ).toMutableList()
+
+        statistikk.addAll(namedJdbcTemplate.query("select status, count(*) as antall " +
+                "from stillinger " +
+                (if (where == "") "where " else "and ") +
+                    "status='ACTIVE' and euresflagg=1 " +
+                "group by status", params,
+                RowMapper<AnnonseStatistikk>
+                { rs, rowNum ->
+                    AnnonseStatistikk("FlaggetAktiv",
+                            rs.getLong("antall"))
+                }
+        ))
+        return statistikk.toList()
     }
 }
 

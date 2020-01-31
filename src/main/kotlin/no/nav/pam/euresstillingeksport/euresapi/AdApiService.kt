@@ -1,12 +1,24 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
+import io.micrometer.core.instrument.MeterRegistry
+import io.micrometer.core.instrument.Tags
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.StillingService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.lang.Exception
+import java.util.concurrent.atomic.AtomicInteger
 
 @Service
-class AdApiService(@Autowired private val stillingService: StillingService) : ApiService {
+class AdApiService(@Autowired private val stillingService: StillingService,
+                   @Autowired private val meterRegistry: MeterRegistry) : ApiService {
+
+    private val euresLagMeter = meterRegistry.gauge("eures.lag.hours", AtomicInteger(0))
+    private val euresLastPollMeter = mapOf<String, AtomicInteger?>(
+            Pair("Opprettet", meterRegistry.gauge("eures.last.poll", Tags.of("type", "Opprettet"), AtomicInteger(0))),
+            Pair("Endret", meterRegistry.gauge("eures.last.poll", Tags.of("type", "Endret"), AtomicInteger(0))),
+            Pair("Lukket", meterRegistry.gauge("eures.last.poll", Tags.of("type", "Lukket"), AtomicInteger(0))))
+
     /** Kun referanser til aktive stillingsannonser skal returneres */
     override fun getAll(): GetAllResponse {
         val stillingsannonser = stillingService.hentAlleAktiveStillinger()
@@ -22,6 +34,9 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
     }
 
     override fun getChanges(ts: Long): GetChangesResponse {
+        val lagInHours = (System.currentTimeMillis() - ts)/3600000
+        euresLagMeter?.set(lagInHours.toInt())
+
         val stillingsannonser = stillingService.hentAlleStillinger(ts)
 
         val opprettet = ArrayList<Stillingreferanse>()
@@ -43,6 +58,10 @@ class AdApiService(@Autowired private val stillingService: StillingService) : Ap
                 endret.add(stillingreferanse)
             }
         }
+        euresLastPollMeter["Opprettet"]?.set(opprettet.size)
+        euresLastPollMeter["Endret"]?.set(endret.size)
+        euresLastPollMeter["Lukket"]?.set(lukket.size)
+
         return GetChangesResponse(opprettet, endret, lukket)
     }
 

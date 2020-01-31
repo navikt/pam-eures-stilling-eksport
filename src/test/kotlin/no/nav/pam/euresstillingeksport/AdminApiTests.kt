@@ -8,6 +8,7 @@ import no.nav.pam.euresstillingeksport.model.AdStatus
 import no.nav.pam.euresstillingeksport.model.StillingsannonseJson
 import no.nav.pam.euresstillingeksport.model.StillingsannonseMetadata
 import no.nav.pam.euresstillingeksport.euresapi.GetAllResponse
+import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -51,7 +52,7 @@ class AdminApiTests {
                     .copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 
     private fun toStillingsannonseJson(ad: Ad): StillingsannonseJson =
-            StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, ad.created, ad.created, null),
+            StillingsannonseJson(StillingsannonseMetadata(ad.uuid, "test", AdStatus.ACTIVE, false, ad.created, ad.created, null),
                     objectMapper.writeValueAsString(ad))
 
     @BeforeEach
@@ -62,7 +63,8 @@ class AdminApiTests {
     @Test
     fun skalJustereFeedpeker() {
         val ad1 = initAd().copy(created = LocalDateTime.parse("2019-12-01T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
-        val ad2 = initAd().copy(created = LocalDateTime.parse("2019-12-03T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+        val ad2 = initAd().copy(properties= mapOf("euresflagg" to "true"),
+                created = LocalDateTime.parse("2019-12-03T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
         stillingRepository.saveStillingsannonser(
                 listOf(toStillingsannonseJson(ad1), toStillingsannonseJson(ad2))
         )
@@ -87,5 +89,16 @@ class AdminApiTests {
         // Se at dette har påvirket antall stillinger i databasen
         alleResponse = restTemplate.getForEntity("$apiRoot/getAll", GetAllResponse::class.java)
         Assertions.assertTrue(alleResponse.body!!.allReferences.size == 1)
+    }
+
+    @Test
+    fun skalHenteStatistikk() {
+        val ad1 = initAd().copy(created = LocalDateTime.parse("2019-12-01T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+        val ad2 = initAd().copy(created = LocalDateTime.parse("2019-12-03T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+        stillingRepository.saveStillingsannonser(
+                listOf(toStillingsannonseJson(ad1), toStillingsannonseJson(ad2))
+        )
+
+        var statistikkResponse = restTemplate.getForEntity("$root/statistikk", Any::class.java)
     }
 }
