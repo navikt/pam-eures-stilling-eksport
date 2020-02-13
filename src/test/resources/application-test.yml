@@ -1,6 +1,6 @@
 dbnavn: stillingdb
 pam-ad:
-  url: http://localhost:9001/api/v1/ads
+  url: http://localhost:8081/api/v1/ads
 spring:
   h2:
     console:
