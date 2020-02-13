@@ -6,6 +6,12 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.micrometer.core.instrument.Tag
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
+import org.apache.http.HttpHost
+import org.apache.http.client.config.RequestConfig
+import org.apache.http.conn.ssl.DefaultHostnameVerifier
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
+import org.elasticsearch.client.RestClient
+import org.elasticsearch.client.RestClientBuilder
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -29,6 +35,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+import java.net.URL
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.*
@@ -50,9 +57,26 @@ class ApiConfiguration {
                 registerModule(JavaTimeModule())
             }
 
+    @Bean("safeElasticClientBuilder")
+    fun safeElasticClientBuilder(@Value("\${elasticsearch.url}") elasticsearchUrl: URL? = null): RestClientBuilder {
+        return RestClient.builder(HttpHost.create(elasticsearchUrl.toString()))
+                .setRequestConfigCallback { requestConfigBuilder: RequestConfig.Builder ->
+                    requestConfigBuilder
+                            .setConnectionRequestTimeout(5000)
+                            .setConnectTimeout(10000)
+                            .setSocketTimeout(20000)
+                }
+                .setHttpClientConfigCallback { httpAsyncClientBuilder: HttpAsyncClientBuilder ->
+                    httpAsyncClientBuilder // Fix SSL hostname verification for *.local domains:
+                            .setSSLHostnameVerifier(DefaultHostnameVerifier())
+                            .setMaxConnTotal(256)
+                            .setMaxConnPerRoute(256)
+                }
+    }
+
     @Bean
-    open fun restTemplate(@Autowired restTemplateBuilder : RestTemplateBuilder,
-                          @Value("\${spring.profiles.active}") profil: String) : RestTemplate {
+    open fun restTemplate(@Autowired restTemplateBuilder: RestTemplateBuilder,
+                          @Value("\${spring.profiles.active}") profil: String): RestTemplate {
         if ("dev" == profil)
             disableSSLChecksDefaultHttpClient()
         return restTemplateBuilder.build()
@@ -60,7 +84,7 @@ class ApiConfiguration {
 
     @Bean
     fun flywayConfig(@Value("\${dbnavn}") dbnavn: String,
-                     @Value("\${spring.datasource.url}") jdbcUrl: String) : FlywayConfigurationCustomizer =
+                     @Value("\${spring.datasource.url}") jdbcUrl: String): FlywayConfigurationCustomizer =
             FlywayConfigurationCustomizer { c ->
                 if (jdbcUrl.toLowerCase().contains("jdbc:postgresql"))
                     c.initSql("SET ROLE \"${dbnavn}-admin\"")
@@ -75,11 +99,13 @@ class ApiConfiguration {
             JdbcTemplateLockProvider(JdbcTemplate(dataSource), transactionManager)
 
     fun disableSSLChecksDefaultHttpClient() {
-        val trustManager: X509TrustManager = object: X509TrustManager {
+        val trustManager: X509TrustManager = object : X509TrustManager {
             override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
             }
+
             override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
             }
+
             override fun getAcceptedIssuers(): Array<X509Certificate> =
                     emptyArray()
         }
@@ -114,7 +140,8 @@ class WebControllerErrorHandler : ResponseEntityExceptionHandler() {
     companion object {
         private val LOG = LoggerFactory.getLogger(WebControllerErrorHandler::class.java)
     }
-    @ExceptionHandler(value=[(Exception::class)])
+
+    @ExceptionHandler(value = [(Exception::class)])
     fun loggingExceptionHandler(e: Exception, wr: WebRequest): ResponseEntity<Any>? {
         LOG.info("Uhåndtert feil propagerte til webserver: {}", e.message, e)
         return handleException(e, wr)
