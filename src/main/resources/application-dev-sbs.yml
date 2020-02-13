@@ -1,10 +1,4 @@
-pam-ad:
-  url: https://pam-ad.nais.oera-q.local/api/v1/ads
 dbnavn: pam-eures-stillingeksport-dev
 spring:
-  h2:
-    console:
-      enabled: false
   datasource:
     url: jdbc:postgresql://b27dbvl009.preprod.local:5432/${dbnavn}
-    driverClassName: org.postgresql.Driver
