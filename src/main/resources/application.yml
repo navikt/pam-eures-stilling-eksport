@@ -17,7 +17,7 @@ spring:
     banner-mode: "off"
     allow-bean-definition-overriding: true
   profiles:
-    active: ${NAIS_CLUSTER_NAME}
+    active: ${NAIS_CLUSTER_NAME:dev}
   h2:
     console:
       enabled: true
@@ -40,3 +40,8 @@ server:
     include-stacktrace: never
   servlet:
     context-path: /
+
+elasticsearch:
+  url: ${ELASTIC_URL:http://localhost:9200}
+#pam-ad:
+#  url: ${PAM_AD_URL:http://localhost:9001}
