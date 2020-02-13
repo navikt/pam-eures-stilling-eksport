@@ -22,7 +22,7 @@ class FeedAdProvider (
 ): AdProvider  {
 
     companion object {
-        private val LOG = LoggerFactory.getLogger(AdFeedClient::class.java)
+        private val LOG = LoggerFactory.getLogger(FeedAdProvider::class.java)
     }
     override fun `fetch updated after`(sistLest: LocalDateTime): FeedTransport {
         try {

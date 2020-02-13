@@ -1,5 +1,0 @@
-pam-ad:
-  url: http://localhost:8081/api/v1/ads
-spring:
-  main:
-    allow-bean-definition-overriding: true

@@ -75,10 +75,7 @@ class ApiConfiguration {
     }
 
     @Bean
-    open fun restTemplate(@Autowired restTemplateBuilder: RestTemplateBuilder,
-                          @Value("\${spring.profiles.active}") profil: String): RestTemplate {
-        if ("dev" == profil)
-            disableSSLChecksDefaultHttpClient()
+    open fun restTemplate(@Autowired restTemplateBuilder: RestTemplateBuilder): RestTemplate {
         return restTemplateBuilder.build()
     }
 
@@ -97,25 +94,6 @@ class ApiConfiguration {
     @Bean
     open fun lockProvider(@Autowired dataSource: DataSource, @Autowired transactionManager: PlatformTransactionManager) =
             JdbcTemplateLockProvider(JdbcTemplate(dataSource), transactionManager)
-
-    fun disableSSLChecksDefaultHttpClient() {
-        val trustManager: X509TrustManager = object : X509TrustManager {
-            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
-            }
-
-            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
-            }
-
-            override fun getAcceptedIssuers(): Array<X509Certificate> =
-                    emptyArray()
-        }
-
-        val sslContext: SSLContext = SSLContext.getInstance("TLS")
-        sslContext.init(null, arrayOf(trustManager), SecureRandom())
-
-        HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
-        HttpsURLConnection.setDefaultHostnameVerifier { hostname, session -> true }
-    }
 
     @Bean
     fun restTemplateTagConfigurer(): RestTemplateExchangeTagsProvider? {

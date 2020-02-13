@@ -13,4 +13,6 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
+  main:
+    allow-bean-definition-overriding: true
 
