@@ -8,7 +8,9 @@ management:
     web.server.auto-time-requests: true
     distribution.percentiles-histogram.http.server.requests: true
     distribution.percentiles-histogram.http.client.requests: true
-
+  health:
+    elasticsearch:
+      enabled: false
 spring:
   metrics.web.server.auto-time-requests: true
   task.scheduling.pool.size: 5
@@ -30,7 +32,7 @@ server:
   servlet:
     context-path: /
 
-elasticsearch:
-  url: ${ELASTIC_URL:http://localhost:9200}
+internalad-search-api:
+  url: http://pam-internal-search-api.default
 pam-ad:
   url: http://pam-ad.default/api/v1/ads

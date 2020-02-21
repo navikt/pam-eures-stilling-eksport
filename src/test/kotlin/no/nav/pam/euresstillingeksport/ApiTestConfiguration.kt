@@ -2,11 +2,13 @@ package no.nav.pam.euresstillingeksport
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.*
+import com.github.tomakehurst.wiremock.matching.ContentPattern
 import org.apache.http.conn.ssl.NoopHostnameVerifier
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClients
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.TestConfiguration
+import org.springframework.boot.test.json.JsonContent
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Primary
@@ -40,45 +42,33 @@ open class ApiTestConfiguration {
         fun wiremockServer(port : Int) : WireMockServer {
             val wms = WireMockServer(port)
 
-            wms.stubFor(get(urlPathEqualTo("/api/v1/ads/feed"))
-                    .withQueryParam("uuid", equalTo("db6cc067-7f39-42f1-9866-d9ee47894ec6"))
+            wms.stubFor(post(urlPathEqualTo("/eures/internalad/_search"))
+                    .withRequestBody(matchingJsonPath("$.query.bool.must[0].term.uuid.value",
+                            equalTo("db6cc067-7f39-42f1-9866-d9ee47894ec6")))
                     .willReturn(aResponse().withStatus(200)
                             .withHeader("Content-Type", "application/json")
-                            .withBody(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json").readText()
+                            .withBody(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6_with-elastic-metadata.json").readText()
                             )))
 
-            wms.stubFor(get(urlPathEqualTo("/api/v1/ads/feed"))
-                    .withQueryParam("uuid", equalTo("not_found"))
+            wms.stubFor(post(urlPathEqualTo("/eures/internalad/_search"))
+                    .withRequestBody(matchingJsonPath("$.query.bool.must[0].term.uuid.value", equalTo("not_found")))
                     .willReturn(aResponse().withStatus(404)
                             .withHeader("Content-Type", "text/plain")
                             .withBody("Finner ikke stillingsannonse"
                             )))
 
-            wms.stubFor(get(urlPathEqualTo("/api/v1/ads/feed"))
-                    .withQueryParam("uuid", equalTo("bad_request"))
+            wms.stubFor(post(urlPathEqualTo("/eures/internalad/_search"))
+                    .withRequestBody(matchingJsonPath("$.query.bool.must[0].term.uuid.value", equalTo("bad_request")))
                     .willReturn(aResponse().withStatus(400)
                             .withHeader("Content-Type", "text/plain")
                             .withBody("Dårlig EDB"
                             )))
-            wms.stubFor(get(urlPathEqualTo("/api/v1/ads/feed"))
-                    .withQueryParam("uuid", equalTo("service_unavailable"))
+
+            wms.stubFor(post(urlPathEqualTo("/eures/internalad/_search"))
+                    .withRequestBody(matchingJsonPath("$.query.bool.must[0].term.uuid.value", equalTo("service_unavailable")))
                     .willReturn(aResponse().withStatus(503)
                             .withHeader("Content-Type", "text/plain")
                             .withBody("Utilgjengelig"
-                            )))
-
-            wms.stubFor(get(urlPathEqualTo("/api/v1/ads/feed"))
-                    .withQueryParam("title", equalTo("Elektriker"))
-                    .willReturn(aResponse().withStatus(200)
-                            .withHeader("Content-Type", "application/json")
-                            .withBody(javaClass.getResource("/mockdata/elektriker_page1.json").readText()
-                            )))
-            wms.stubFor(get(urlPathEqualTo("/api/v1/ads/feed"))
-                    .withQueryParam("title", equalTo("Elektriker"))
-                    .withQueryParam("page", equalTo("2"))
-                    .willReturn(aResponse().withStatus(200)
-                            .withHeader("Content-Type", "application/json")
-                            .withBody(javaClass.getResource("/mockdata/elektriker_page2.json").readText()
                             )))
 
             return wms

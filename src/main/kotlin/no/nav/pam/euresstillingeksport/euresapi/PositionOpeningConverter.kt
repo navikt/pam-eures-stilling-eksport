@@ -29,23 +29,23 @@ private fun Ad.toPositionProfile(): PositionProfile {
             postingInstruction = PostingInstruction(
                     postingOptionCode = if(properties[PropertyMapping.euresflagg.key] == "true") PostingOptionCode.EURESFlag else null,
                     applicationMethod = ApplicationMethod(
-                            instructions = properties[PropertyMapping.sourceurl.key] ?: "See jobdescription"
+                            instructions = properties[PropertyMapping.sourceurl.key].toString() ?: "See jobdescription"
                     )
             ),
             positionTitle = title ?: "" ,
             positionLocation = locationList.map { it.toPositionLocation() },
             positionOrganization = employer?.toPositionOrganization(),
-            positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toInt() ?: 1,
+            positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toString()?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
-            positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key]
+            positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key].toString()
                     ?: ""),
             positionQualifications = null, // We do not have these data in a structured format
             positionFormattedDescription = toFormattedDescription(),
             workingLanguageCode = "NO",
-            positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key] ?: "na")),
-            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]
+            positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key].toString() ?: "na")),
+            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key].toString()
                     ?: ""),
-            positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key]
+            positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()
                     ?: ""),
             applicationCloseDate = expires!!
     )
@@ -57,14 +57,21 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
         return PositionFormattedDescription("For fullstendig annonsetekst, se annonsen hos finn.no: " +
                 "<a href=\"$finnURL\">$finnURL</a>.")
     } else {
-        return PositionFormattedDescription(properties[PropertyMapping.adtext.key] ?: "")
+        return PositionFormattedDescription(properties[PropertyMapping.adtext.key].toString() ?: "")
     }
 }
 
 private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
-    return categoryList.filter { it.categoryType?.equals("STYRK08NAV", ignoreCase = true) ?: false }
-            .map { JobCategoryCode(code = it.code?.substring(0..3) ?: "INGEN") }
+    return categoryList
+            .filter { it.categoryType?.equals("STYRK08NAV", ignoreCase = true) ?: false }
+            .map { JobCategoryCode(code = styrkToEsco(it.code)) }
 
+}
+
+private fun styrkToEsco(styrk: String?) : String {
+    if(styrk == null) return "INGEN"
+    if(styrk.length < 3) return "INGEN"
+    return styrk.substring(0..3)
 }
 
 private fun extentToPositionOfferingTypeCode(extent: String): PositionOfferingTypeCode { // same as PositionScheduleTypeCode...

@@ -69,7 +69,12 @@
     "orgnr": "987938323",
     "parentOrgnr": "914251559",
     "properties": {
-      "nace2": "[{\"code\":\"33.170\",\"name\":\"Reparasjon og vedlikehold av andre transportmidler\"}]"
+      "nace2": [
+        {
+          "code":"33.170",
+          "name":"Reparasjon og vedlikehold av andre transportmidler"
+        }
+      ]
     },
     "publicName": "NORDISK TOGTEKNIKK AS",
     "status": "ACTIVE",

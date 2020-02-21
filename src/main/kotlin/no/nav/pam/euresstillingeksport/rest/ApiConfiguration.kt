@@ -58,8 +58,9 @@ class ApiConfiguration {
             }
 
     @Bean("safeElasticClientBuilder")
-    fun safeElasticClientBuilder(@Value("\${elasticsearch.url}") elasticsearchUrl: URL? = null): RestClientBuilder {
+    fun safeElasticClientBuilder(@Value("\${internalad-search-api.url}") elasticsearchUrl: URL? = null): RestClientBuilder {
         return RestClient.builder(HttpHost.create(elasticsearchUrl.toString()))
+                .setPathPrefix("/eures/internalad")
                 .setRequestConfigCallback { requestConfigBuilder: RequestConfig.Builder ->
                     requestConfigBuilder
                             .setConnectionRequestTimeout(5000)

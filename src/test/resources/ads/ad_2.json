@@ -69,7 +69,12 @@
     "orgnr": "973139614",
     "parentOrgnr": "987582561",
     "properties": {
-      "nace2": "[{\"code\":\"43.210\",\"name\":\"Elektrisk installasjonsarbeid\"}]"
+      "nace2": [
+        {
+          "code": "43.210",
+          "name": "Elektrisk installasjonsarbeid"
+        }
+      ]
     },
     "publicName": "BRAVIDA NORGE AS AVD SANDEFJORD ELEKTRO",
     "status": "ACTIVE",

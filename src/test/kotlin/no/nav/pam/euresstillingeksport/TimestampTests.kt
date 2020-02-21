@@ -41,15 +41,11 @@ class TimestampTests {
 	@Autowired
 	lateinit var stillingService : StillingService
 
-	@MockBean
-	lateinit var adClient: AdFeedClient
-
 	val root = "/input/api/jv/v0.1"
 
 	fun initAd() : Ad =
-		objectMapper.readValue<FeedTransport>(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"),
-			FeedTransport::class.java)
-				.content[0]
+		objectMapper.readValue<Ad>(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"),
+				Ad::class.java)
 			.copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 
 	@BeforeEach

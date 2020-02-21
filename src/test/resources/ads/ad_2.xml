@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<PositionOpening xmlns="http://www.hr-xml.org/3" validFrom="2019-11-05" majorVersionID="3" minorVersionID="2">
+  <DocumentID schemeID="NAV-002" schemeAgencyID="NAV" schemeAgencyName="NAV public employment services" schemeVersionID="1.3">5e80d029-bd08-43ab-a6ce-b57a0e47f52b</DocumentID>
+  <PositionOpeningStatusCode name="Active">Active</PositionOpeningStatusCode>
+  <PostingRequester>
+    <PartyID schemeID="NAV" schemeAgencyID="NAV PES" schemeAgencyName="Nav public employment services">9999</PartyID>
+  </PostingRequester>
+  <PositionProfile languageCode="no">
+    <PostingInstruction>
+      <ApplicationMethod>
+        <Instructions>null</Instructions>
+      </ApplicationMethod>
+    </PostingInstruction>
+    <PositionTitle>Elektrikere og svakstrømsmontører</PositionTitle>
+    <PositionLocation>
+      <Address>
+        <wstxns1:CityName xmlns:wstxns1="http://www.openapplications.org/oagis/9">SANDEFJORD</wstxns1:CityName>
+        <CountryCode>NO</CountryCode>
+        <wstxns2:PostalCode xmlns:wstxns2="http://www.openapplications.org/oagis/9">3232</wstxns2:PostalCode>
+      </Address>
+    </PositionLocation>
+    <PositionOrganization>
+      <OrganizationIdentifiers>
+        <OrganizationName>BRAVIDA NORGE AS AVD SANDEFJORD ELEKTRO</OrganizationName>
+        <OrganizationLegalID>973139614</OrganizationLegalID>
+      </OrganizationIdentifiers>
+      <IndustryCode>F43.2.1</IndustryCode>
+    </PositionOrganization>
+    <PositionOpenQuantity>2</PositionOpenQuantity>
+    <JobCategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">7411</JobCategoryCode>
+    <PositionOfferingTypeCode>DirectHire</PositionOfferingTypeCode>
+    <PositionFormattedDescription>
+      <Content><![CDATA[<p>I forbindelse med økt ordretilgang søker vi etter flere montører til vår avdeling i Sandefjord, både elektrikere (gr.L) og svakstrømsmontører (telekommunikasjonsmontører). Her får du alle muligheter som fagperson til å utvikle deg. Vi har en god oppfølging av alle ansatte og spennende, utfordrende arbeidsoppgaver. Vi har et mål om faste fagsamlinger for å øke og videreutvikle kompetansen til hver enkelt ansatt. Vi skal være den foretrukne arbeidsgiver for elektropersonell i Vestfold. I dag består avdelingen av 70 dyktige medarbeidere og en omsetning på ca. 90 millioner kroner. Oppdragene har et geografisk spenn fra Stavern til Holmestrand. Vi har kunder innen næring industri, skoler, kommuner og privatpersoner.</p>
+<h3>Arbeidsoppgaver</h3>
+<p>Som montør arbeider du selvstendig i mange ulike typer oppdrag, store som små. I jobben får du både planlegge, samordne og utføre oppdrag. Arbeidet innebærer både teknisk problemløsning og kontakt med kunder. Du kommer også til å være ansvarlig for at ethvert oppdrag er i tråd med våre høye krav til kvalitet og sikkerhet. Dine arbeidsoppgaver vil blant annet være:</p>
+<ul><li>Små og store elektroinstallasjoner og serviceoppdrag</li><li>Oppdrag for både bedrifts- og privatmarkedet</li><li>Årlig vedlikehold / kontroller på alarm / sikkerhets anlegg (gjelder telekommunikasjonsmontør)</li><li>Utredninger og feilsøking av tekniske systemer</li><li>Mersalg</li><li>Dokumentasjon av oppdragene</li><li>Kommunikasjon mot kunder og service/prosjektleder</li></ul>
+<h3>Kvalifikasjoner</h3>
+<ul><li>Fagbrev elektriker (enten svakstrøm eller sterkstrøm)</li><li>Erfaring som elektriker, enten fra servicearbeid eller prosjekt</li><li>Førerkort klasse B</li><li>God norsk muntlig og skriftlig formuleringsevne</li></ul>
+<h3>Personlige egenskaper</h3>
+<ul><li>Du har faglig stolthet og holder kunnskap og evnene dine ved like</li><li>Du er selvstendig og jobber strukturert og systematisk</li><li>Du er serviceinnstilt og løsningsorientert</li><li>Du er pålitelig og ansvarsbevisst</li><li>Du samarbeider godt og er en lagspiller</li><li>Du har gode kommunikasjonsevner på norsk</li></ul>
+<h3>Derfor skal du jobbe hos oss</h3>
+<ul><li>En stilling i et solid selskap med høyt kvalifiserte kollegaer</li><li>Gode muligheter for faglig og personlig videreutvikling</li><li>Konkurransedyktige lønnsbetingelser</li><li>Gunstige pensjons- og forsikringsordninger</li><li>Mobil/nettbrett</li><li>Gode systemer som hjelper deg i arbeidshverdagen</li><li>Servicebil</li><li>Et uformelt og sosialt arbeidsmiljø med flere fellesaktiviteter i avdelingen</li></ul>
+<h3>Interessert?</h3>
+<p>Vi ser frem til å motta sin søknad! Søknadsfrist for stillingen er satt til <strong>02.12.18</strong> . Vil du vite mer om hvordan det er å jobbe hos oss, kan du følge oss på sosiale medier og besøke vår <a href="https://www.bravida.no/jobbe-hos-oss/" rel="nofollow">hjemmeside</a>.
+Link til søknadsskjema: <a href="https://www.bravida.no/jobbe-hos-oss/ledige-stillinger/?rmpage&#61;job&amp;rmjob&#61;3724" rel="nofollow">Send søknad</a></p>
+]]></Content>
+    </PositionFormattedDescription>
+    <WorkingLanguageCode>NO</WorkingLanguageCode>
+    <PositionPeriod>
+      <StartDate>
+        <DateText>null</DateText>
+      </StartDate>
+    </PositionPeriod>
+    <ImmediateStartIndicator>false</ImmediateStartIndicator>
+    <PositionScheduleTypeCode>FullTime</PositionScheduleTypeCode>
+    <ApplicationCloseDate>2018-12-02</ApplicationCloseDate>
+  </PositionProfile>
+</PositionOpening>

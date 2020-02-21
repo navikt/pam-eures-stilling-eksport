@@ -1,4 +1,3 @@
-dbnavn: pam-eures-stillingeksport-dev
 spring:
   datasource:
-    url: jdbc:postgresql://b27dbvl009.preprod.local:5432/${dbnavn}
+    url: jdbc:postgresql://b27dbvl009.preprod.local:5432/pam-eures-stillingeksport-dev

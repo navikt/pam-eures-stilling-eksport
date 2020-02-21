@@ -23,7 +23,7 @@ class ElasticAdProvider(
         @Qualifier("safeElasticClientBuilder") private val clientBuilder: RestClientBuilder,
         @Qualifier("objectMapper") private val mapper: ObjectMapper) : AdProvider {
 
-    val pageSize = 100;
+    val pageSize = 1000;
 
     override fun `fetch updated after`(sistLest: LocalDateTime): FeedTransport {
 
@@ -33,10 +33,12 @@ class ElasticAdProvider(
                 .sort("updated", SortOrder.ASC)
                 .size(pageSize)
                 .query(QueryBuilders.boolQuery().filter(
-                        QueryBuilders.rangeQuery("updated").gte(sistLest)
+                        QueryBuilders.rangeQuery("updated").gt(sistLest)
                 ))
 
         val request = SearchRequest().source(searchSourceBuilder)
+        request.isCcsMinimizeRoundtrips = false
+
 
         val response = client.search(request, RequestOptions.DEFAULT)
 
@@ -52,7 +54,9 @@ class ElasticAdProvider(
                 number = 0,
                 first = true,
                 numberOfElements = totalHits,
-                content = response.hits.hits.map { mapper.readValue(it.sourceAsString, Ad::class.java ) }
+                content = response.hits.hits.map {
+                    mapper.readValue(it.sourceAsString, Ad::class.java )
+                }
         )
 
 
