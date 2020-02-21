@@ -1,0 +1,122 @@
+{
+  "id": 521268,
+  "uuid": "4815f0f2-fa76-4d59-b784-e2e983abe962",
+  "createdBy": "pam-ad",
+  "updatedBy": "nss-admin",
+  "created": "2019-12-17T07:08:32.135133",
+  "updated": "2020-01-21T00:00:37.031433",
+  "contactList": [
+    {
+      "name": "TechnipFMC"
+    }
+  ],
+  "mediaList": [],
+  "locationList": [
+    {
+      "postalCode": "1366",
+      "country": "NORGE",
+      "county": "VIKEN",
+      "municipal": "BÆRUM",
+      "city": "LYSAKER",
+      "latitude": "59.912899017333984",
+      "longitude": "10.640403747558594"
+    }
+  ],
+  "properties": {
+    "extent": "Heltid",
+    "logomain": "https://images.finncdn.no/mmo/logo/object/731237183/iad_4473306336271451608technipfmc_h_rgb_2017.png",
+    "occupation": "Ingeniør",
+    "applicationdue": "20.01.2020",
+    "address": "1366 Lysaker",
+    "jobtitle": "Engineer - Flexible Pipe & Umbilical",
+    "keywords": "Subsea,Engineering,Flexible pipe,Umbilical",
+    "author": "FMC Kongsberg Subsea AS",
+    "engagementtype": "Fast",
+    "classification_styrk08_score": "0.053033482",
+    "industry": "Olje og gass",
+    "starttime": "Spring 2020",
+    "adtext": "<h2>Engineer - Flexible Pipe &amp; Umbilical</h2>\n<p><strong>Introduction to the Job</strong></p>\n<p>At TechnipFMC, we deliver critical projects of a scale, scope and difficulty that you simply won&#39;t find anywhere else. We are looking for a junior engineer to the Flexible &amp; Umbilical Engineering department who can strengthen our multicultural team in Lysaker, Norway.</p>\n<p>The Engineer in the Flexible &amp; Umbilical Engineering department is to execute engineering tasks within the discipline and for Subsea Projects during all phases from early business development through to project execution and through life of field.\n<strong>Job description</strong></p>\n<ul><li>Perform engineering work related to static and dynamic flexible pipe design and analysis</li><li>Prepare technical documentation and design reports for flexible pipe and end-fittings</li><li>Prepare technical specifications for flexible pipe ancillary equipment</li><li>Provide conceptual and/or detail designs in accordance with internal procedures, industry standards and Client requirements</li><li>Quality surveillance and supplier follow-up for flexible pipe ancillary equipment</li><li>Quality surveillance and follow-up of umbilical manufacturing</li><li>Ensure high focus on HSE and Quality in all activities within department</li><li>Travel may be required</li><li>Job location: Lysaker</li></ul>\n<p>Functionally reports to: Manager Flexible &amp; Umbilical Engineering</p>\n<p>Operationally reports to: Lead Engineer / Project Manager</p>\n<p>Internal key interactions: Projects, Engineering</p>\n<p><strong>You are meant for this job if</strong></p>\n<ul><li>You have an Engineering degree (M.Sc., B.Sc. or equivalent)</li><li>0-2 years&#39; experience</li><li>Fluent verbal and written English</li><li>Good communication skills both written and verbally</li><li>Positive and able to adapt to new technology and different cultures</li><li>Flexible and able to handle stress</li></ul>\n<p><strong>Your future at TechnipFMC</strong></p>\n<ul><li>Training and professional development opportunities</li><li>Global mobility opportunities</li><li>Offshore/installation work opportunities</li></ul>\n<p>Start Date: Spring 2020 / to be agreed</p>\n<p>Application deadline is 20.01.2020.</p>\n<p>For further information, please contact Eivind Rose Nilsen eivindrose.nilsen&#64;technipfmc.com</p>\n",
+    "externalref": "190004TQ6549617327",
+    "logolisting": "https://images.finncdn.no/mmo/logo/result/731237183/iad_2878429504657622705technipfmc_h_rgb_2017.png",
+    "sourceurl": "https://www.url.no/",
+    "applicationemail": "NorwayJobPosting.65496.1317@technip.aplitrak.com",
+    "sourceupdated": "2019-12-16T08:46:00.000Z",
+    "searchtags": [
+      {
+        "label": "Røringeniør",
+        "score": 1
+      }
+    ],
+    "applicationurl": "http://www.aplitrak.com/?adid=Tm9yd2F5Sm9iUG9zdGluZy42NTQ5Ni4xMzE3QHRlY2huaXAuYXBsaXRyYWsuY29t",
+    "employer": "TechnipFMC",
+    "location": "Lysaker",
+    "classification_input_source": "categoryName",
+    "sector": "Privat"
+  },
+  "title": "Engineer - Flexible Pipe & Umbilical",
+  "status": "INACTIVE",
+  "privacy": "SHOW_ALL",
+  "source": "FINN",
+  "medium": "FINN",
+  "reference": "165666892",
+  "published": "2019-12-19T08:25:30.096069",
+  "expires": "2020-01-20T00:00:00",
+  "employer": {
+    "id": 188589,
+    "uuid": "8c8b2a67-a690-4f0c-89f9-ae0762500838",
+    "createdBy": "pam-ad",
+    "updatedBy": "pam-ad",
+    "created": "2018-11-26T09:13:01.462",
+    "updated": "2019-12-06T12:19:46.192608",
+    "contactList": [],
+    "mediaList": [],
+    "locationList": [
+      {
+        "address": "Philip Pedersens vei 7",
+        "postalCode": "1366",
+        "country": "NORGE",
+        "county": "AKERSHUS",
+        "municipal": "BÆRUM",
+        "city": "LYSAKER",
+        "latitude": "59.90899193117833",
+        "longitude": "10.622596459591533"
+      }
+    ],
+    "properties": {
+      "nace2": [
+        {
+          "code": "09.109",
+          "name": "Andre tjenester tilknyttet utvinning av råolje og naturgass"
+        }
+      ]
+    },
+    "name": "TECHNIP NORGE AS AVD LYSAKER",
+    "orgnr": "872147772",
+    "status": "ACTIVE",
+    "parentOrgnr": "963052944",
+    "publicName": "TECHNIP NORGE AS AVD LYSAKER",
+    "orgform": "BEDR",
+    "employees": 307
+  },
+  "categoryList": [
+    {
+      "id": 2468,
+      "code": "3117.50",
+      "categoryType": "STYRK08NAV",
+      "name": "Røringeniør",
+      "parentId": 2418
+    }
+  ],
+  "businessName": "TechnipFMC",
+  "administration": {
+    "status": "DONE",
+    "reportee": "Ellingsen, Ailin",
+    "remarks": [],
+    "navIdent": "E150574"
+  },
+  "publishedByAdmin": "2019-12-19T08:25:30.096069",
+  "geopoint": {
+    "lat": 59.912899017333984,
+    "lon": 10.640403747558594
+  }
+}

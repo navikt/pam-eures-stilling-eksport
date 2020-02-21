@@ -1,0 +1,121 @@
+{
+  "took": 571,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": 10.17015,
+    "hits": [
+      {
+        "_index": "internalad_20200109_124806",
+        "_type": "_doc",
+        "_id": "c6d9fe0d-3a06-4314-b772-730d50481a45",
+        "_score": 10.17015,
+        "_source": {
+          "id": 6936,
+          "uuid": "c6d9fe0d-3a06-4314-b772-730d50481a45",
+          "createdBy": "pam-ad",
+          "updatedBy": "nss-admin",
+          "created": "2018-11-20T12:53:28.494",
+          "updated": "2020-01-01T00:00:00.070142",
+          "contactList": [],
+          "mediaList": [],
+          "locationList": [
+            {
+              "postalCode": "1423",
+              "country": "NORGE",
+              "county": "VIKEN",
+              "municipal": "NORDRE FOLLO",
+              "city": "SKI"
+            }
+          ],
+          "properties": {
+            "extent": "Heltid",
+            "applicationdue": "31.12.18",
+            "author": "Os kommune",
+            "engagementtype": "Annet",
+            "classification_styrk08_score": "0.1785958",
+            "employerdescription": "<p>Os kommune ligg sør på Bergenshalvøya, der kyst- og fjordlandskapet møtest. Kommunen kan by på dei vakraste natur- og kulturopplevingar, og elles dei fleste tenester både fastbuande og tilreisande har bruk for. Os er ein inspirerande kommune med stor vekst og utvikling. Vi treng medarbeidarar som meiner entusiasme inspirerer, som lyttar med respekt, gjer det dei seier og skaper resultat.</p>\n",
+            "adtext": "<p>Pleie - og omsorgstenesta i Os kommune har behov for tilkallingsvikarar som kan arbeide dag-, kveld,- og nattskift.</p>\n<p>Som tilkallingsvikar kan vi tilby arbeid/vakter ved fråvær pga av sjukdom, ferie eller andre mellombels høve som fører til behov for midlertidig arbeidskraft. Tilkallingsvikarar har ikkje rett til å bli tilbudt arbeid eller plikt til å påta seg tilbudt arbeid.</p>\n<h3><strong>Arbeidsstad</strong></h3>\n<p>Pleie- og omsorgstenesta; Luranetunet /Heimebasert omsorg<br />\nLuranetunet har 2 korttidsavdelingar, 7 langtidsavdelingar, dagsenter, ressurssenter, base for heimetenester og<br />\nserviceavdelingar. Ønskjer du meir informasjon om Luranetunet, viser vi til heimesida vår på facebook.com eller oskommune.no</p>\n<h3><strong>Arbeidsoppgåver</strong></h3>\n<p>Arbeid i behandlings-, pleie- og omsorgsarbeid ved sengepostane og i heimebasert omsorg.<br />\nDet er også behov for vikarer i reinhalds- og vaskeriavdeling.</p>\n<h3><strong>Kvalifikasjonar</strong></h3>\n<p>Som tilkallingsvikar ønskjer vi at du har du har relevant utdanning eller er i eit utdanningsløp men dette er ikkje eit krav.<br />\nEr du ufaglært og har interesse for arbeid med menneske er du også velkomen til å søkja, og din relevante erfaring blir lagt vekt på.<br />\nDet blir og lagt vekt på personlege eigenskapar;</p>\n<ul><li>du har gode kommunikasjons- og samarbeidsevner</li><li>du er positiv og lærevillig</li><li>du er bevisst dine haldningar og prioriterer høgt verdiar som respekt, lojalitet og etikk.<br />\nUtanlandsk utdanning må vere NOKUT godkjent<br />\nSøkjarar utanfor Norden må legge fram dokumentasjon på gode norskkunsskapar og gjennomført norsktest på B1/B2 nivå</li></ul>\n<p>Vi gjer merksam på at du må leggja fram politiattest.</p>\n<h3><strong>Vi tilbyr</strong></h3>\n<p>Faglege og personlege utfordringar i eit godt og inspirerande arbeidsmiljø, og løn etter avtaleverk.<br />\nGode pensjons- og forsikringsordningar.<br />\nDet blir gjev tillegg i løn for arbeid på natt.</p>\n<h3><strong>Slik søkjer du</strong></h3>\n<p>Klikk på &#34;søk på stilling&#34; og følg vidare instruksjonar.</p>\n<p>Eksterne søkjarar må oppretta brukarnamn og passord før dei loggar seg på første gang.</p>\n<p>Tilsette i kommunen er allereie definert som brukar i systemet, og skal ikkje registere seg på nytt. Dersom du ikkje har internt brukarnamn og passord, kan du få dette tilsendt på e-post via funksjonen &#34;Glemt brukernamn/passord&#34; eller ta kontakt med personalkontoret.</p>\n",
+            "externalref": "2537/SVE",
+            "sourceurl": "https://jobb.oskommune.no/recruitment/opening?18",
+            "employer": "Os kommune",
+            "location": "Luranetunet",
+            "classification_input_source": "title",
+            "sector": "Offentlig"
+          },
+          "title": "Tilkallingsvikarar - Pleie- og omsorgstenesta",
+          "status": "INACTIVE",
+          "privacy": "SHOW_ALL",
+          "source": "DEXI",
+          "medium": "Kommuner-Visma-Vest",
+          "reference": "jobb.oskommune.no/recruitment/opening?0?2537/SVE",
+          "published": "2019-11-28T14:11:57.721476",
+          "expires": "2019-12-31T02:00:00",
+          "employer": {
+            "id": 207334,
+            "uuid": "d77f3466-b05d-4668-a808-b60952698534",
+            "createdBy": "pam-ad",
+            "updatedBy": "pam-ad",
+            "created": "2019-11-28T14:11:57.69744",
+            "updated": "2019-11-28T14:11:57.69744",
+            "contactList": [],
+            "mediaList": [],
+            "locationList": [
+              {
+                "address": "Lensmannsbakken 15",
+                "postalCode": "3267",
+                "country": "NORGE",
+                "county": "VESTFOLD",
+                "municipal": "LARVIK",
+                "city": "LARVIK",
+                "latitude": "59.028324331221015",
+                "longitude": "9.959012186011677"
+              }
+            ],
+            "properties": {
+              "nace2": [
+                {
+                  "code": "74.101",
+                  "name": "Industridesign, produktdesign og annen teknisk designvirksomhet"
+                }
+              ]
+            },
+            "name": "KJOLEKOMPANIET",
+            "orgnr": "916277326",
+            "status": "ACTIVE",
+            "parentOrgnr": "916206704",
+            "publicName": "KJOLEKOMPANIET",
+            "orgform": "BEDR",
+            "employees": 0
+          },
+          "categoryList": [
+            {
+              "id": 4047,
+              "code": "53",
+              "categoryType": "STYRK08NAV",
+              "name": "Pleie- og omsorgsarbeidere",
+              "parentId": 3734
+            }
+          ],
+          "businessName": "KJOLEKOMPANIET",
+          "administration": {
+            "status": "DONE",
+            "comments": "kommentar",
+            "reportee": "F_Z990612 E_Z990612",
+            "remarks": [],
+            "navIdent": "Z990612"
+          }
+        }
+      }
+    ]
+  }
+}

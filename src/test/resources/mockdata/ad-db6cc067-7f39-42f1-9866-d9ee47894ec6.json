@@ -1,174 +1,96 @@
 {
-    "content": [
-        {
-            "activationOnPublishingDate": false,
-            "administration": {
-                "comments": null,
-                "id": 44806,
-                "navIdent": null,
-                "remarks": [],
-                "reportee": null,
-                "status": "DONE"
-            },
-            "businessName": "Nordisk Togteknikk AS",
-            "categoryList": [
-                {
-                    "categoryType": "STYRK08NAV",
-                    "code": "7411.11",
-                    "description": null,
-                    "id": 4661,
-                    "name": "Elmont\u00f8r",
-                    "parentId": 4650
-                }
-            ],
-            "contactList": [
-                {
-                    "email": "einar.hageskal@nortog.no",
-                    "id": 602216,
-                    "name": "Einar Hageskal",
-                    "phone": "+47 957 66 906",
-                    "role": null,
-                    "title": "Daglig Leder"
-                }
-            ],
-            "created": "2019-01-19T07:20:11.999",
-            "createdBy": "pam-ad",
-            "deactivatedByExpiry": false,
-            "employer": {
-                "contactList": [],
-                "created": "2019-01-19T07:16:32.212",
-                "createdBy": "pam-ad",
-                "deactivated": null,
-                "employees": 17,
-                "id": 51974,
-                "location": {
-                    "address": "Kv\u00e6rnerveien 6",
-                    "city": "OSLO",
-                    "country": "NORGE",
-                    "county": "OSLO",
-                    "latitude": null,
-                    "longitude": null,
-                    "municipal": "OSLO",
-                    "municipalCode": "0301",
-                    "postalCode": "0195"
-                },
-                "locationList": [
-                    {
-                        "address": "Kv\u00e6rnerveien 6",
-                        "city": "OSLO",
-                        "country": "NORGE",
-                        "county": "OSLO",
-                        "latitude": null,
-                        "longitude": null,
-                        "municipal": "OSLO",
-                        "municipalCode": "0301",
-                        "postalCode": "0195"
-                    }
-                ],
-                "mediaList": [],
-                "name": "NORDISK TOGTEKNIKK AS",
-                "orgform": "BEDR",
-                "orgnr": "987938323",
-                "parentOrgnr": "914251559",
-                "properties": {
-                    "nace2": "[{\"code\":\"33.170\",\"name\":\"Reparasjon og vedlikehold av andre transportmidler\"}]"
-                },
-                "publicName": "NORDISK TOGTEKNIKK AS",
-                "status": "ACTIVE",
-                "updated": "2019-03-02T01:31:08.618",
-                "updatedBy": "pam-ad",
-                "uuid": "8e72ec01-2d56-453c-84ed-a498f1d12cf7"
-            },
-            "expires": "2019-03-01T07:33:00",
-            "firstPublished": false,
-            "id": 52333,
-            "location": {
-                "address": "Kv\u00e6rnerveien 6",
-                "city": "OSLO",
-                "country": "NORGE",
-                "county": "OSLO",
-                "latitude": "59.905067443847656",
-                "longitude": "10.784148216247559",
-                "municipal": "OSLO",
-                "municipalCode": "0301",
-                "postalCode": "0195"
-            },
-            "locationList": [
-                {
-                    "address": "Kv\u00e6rnerveien 6",
-                    "city": "OSLO",
-                    "country": "NORGE",
-                    "county": "OSLO",
-                    "latitude": "59.905067443847656",
-                    "longitude": "10.784148216247559",
-                    "municipal": "OSLO",
-                    "municipalCode": "0301",
-                    "postalCode": "0195"
-                }
-            ],
-            "mediaList": [],
-            "medium": "FINN",
-            "privacy": "SHOW_ALL",
-            "properties": {
-                "address": "Kv\u00e6rnerveien 6,0195 Oslo",
-                "adtext": "<p>For snarlig ansettelse \u00f8nskes 2 mann med erfaring fra vedlikehold og feils\u00f8king p\u00e5 tyngre kj\u00f8ret\u00f8y eller togmateriell.</p>\n<p>Arbeidsoppgavene vil best\u00e5 i utf\u00f8relse av planlagte vedlikeholdsoppgaver samt reparasjoner av b\u00e5de dieseldrevne og elektriske lokomotiver.</p>\n<p>Det kreves god kompetanse innenfor feils\u00f8king og reparasjoner av dieseldrevne kj\u00f8ret\u00f8y samt gode kunnskaper innefor trykkluft og elektronikk.</p>\n<p>Vi tilbyr gode arbeids og l\u00f8nnsvilk\u00e5r.</p>\n",
-                "applicationdue": "Snarest",
-                "applicationemail": "einar.hageskal@nortog.no",
-                "applicationurl": "https://www.finn.no/recruitment/hired/frontend/applynow/input.action?adId=138328250",
-                "author": "Privat",
-                "classification_input_source": "jobtitle",
-                "classification_styrk08_score": "0.0869034",
-                "employer": "Nordisk Togteknikk AS",
-                "employerdescription": "<p>Nordisk Togteknikk AS er den st\u00f8rste private akt\u00f8ren innenfor leveranse av vedlikeholdstjenester for Lokomotiver og Godsvogner i Norge, v\u00e5rt hovedengasjement er leveranse av preventive og korrektive vedlikeholdstjenester overfor Togoperat\u00f8rer i Norge og Sverige.</p>\n",
-                "engagementtype": "Fast",
-                "extent": "Heltid",
-                "externalref": "138328250",
-                "industry": "Industri og produksjon",
-                "jobtitle": "Vi s\u00f8ker Mekanikkere/ Elektrikkere med gode kunskaper innenfor feils\u00f8king og vedlikehold av tyngre kj\u00f8ret\u00f8y, lokomotiver eller tog.",
-                "keywords": "Erfaring,Kompetanse,N\u00f8yaktighet,Sikkerhet,Selvstendig",
-                "location": "Oslo",
-                "occupation": "Teknisk service;Teknisk personell",
-                "positioncount": "2",
-                "searchtags": "[{\"label\":\"Elektriker\",\"score\":0.08452183},{\"label\":\"Togreparat\u00f8r\",\"score\":0.07460987},{\"label\":\"Lastebilmekaniker\",\"score\":0.073640704},{\"label\":\"Kondukt\u00f8r\",\"score\":0.060916554}]",
-                "sector": "Privat",
-                "sourceupdated": "2019-01-18T07:33:00.000Z",
-                "sourceurl": "https://www.finn.no/138328250",
-                "starttime": "01.03.2019"
-            },
-            "published": "2019-01-19T07:09:22.618",
-            "publishedByAdmin": null,
-            "reference": "138328250",
-            "source": "FINN",
-            "status": "INACTIVE",
-            "title": "Motorkyndige Teknikkere/ Elektrikkere/ Feils\u00f8kere",
-            "updated": "2019-03-02T01:31:32.861",
-            "updatedBy": "pam-ad",
-            "uuid": "db6cc067-7f39-42f1-9866-d9ee47894ec6"
-        }
+  "id": 6936,
+  "uuid": "c6d9fe0d-3a06-4314-b772-730d50481a45",
+  "createdBy": "pam-ad",
+  "updatedBy": "nss-admin",
+  "created": "2018-11-20T12:53:28.494",
+  "updated": "2020-01-01T00:00:00.070142",
+  "contactList": [],
+  "mediaList": [],
+  "locationList": [
+    {
+      "postalCode": "1423",
+      "country": "NORGE",
+      "county": "VIKEN",
+      "municipal": "NORDRE FOLLO",
+      "city": "SKI"
+    }
+  ],
+  "properties": {
+    "extent": "Heltid",
+    "applicationdue": "31.12.18",
+    "author": "Os kommune",
+    "engagementtype": "Annet",
+    "classification_styrk08_score": "0.1785958",
+    "employerdescription": "<p>Os kommune ligg sør på Bergenshalvøya, der kyst- og fjordlandskapet møtest. Kommunen kan by på dei vakraste natur- og kulturopplevingar, og elles dei fleste tenester både fastbuande og tilreisande har bruk for. Os er ein inspirerande kommune med stor vekst og utvikling. Vi treng medarbeidarar som meiner entusiasme inspirerer, som lyttar med respekt, gjer det dei seier og skaper resultat.</p>\n",
+    "adtext": "<p>Pleie - og omsorgstenesta i Os kommune har behov for tilkallingsvikarar som kan arbeide dag-, kveld,- og nattskift.</p>\n<p>Som tilkallingsvikar kan vi tilby arbeid/vakter ved fråvær pga av sjukdom, ferie eller andre mellombels høve som fører til behov for midlertidig arbeidskraft. Tilkallingsvikarar har ikkje rett til å bli tilbudt arbeid eller plikt til å påta seg tilbudt arbeid.</p>\n<h3><strong>Arbeidsstad</strong></h3>\n<p>Pleie- og omsorgstenesta; Luranetunet /Heimebasert omsorg<br />\nLuranetunet har 2 korttidsavdelingar, 7 langtidsavdelingar, dagsenter, ressurssenter, base for heimetenester og<br />\nserviceavdelingar. Ønskjer du meir informasjon om Luranetunet, viser vi til heimesida vår på facebook.com eller oskommune.no</p>\n<h3><strong>Arbeidsoppgåver</strong></h3>\n<p>Arbeid i behandlings-, pleie- og omsorgsarbeid ved sengepostane og i heimebasert omsorg.<br />\nDet er også behov for vikarer i reinhalds- og vaskeriavdeling.</p>\n<h3><strong>Kvalifikasjonar</strong></h3>\n<p>Som tilkallingsvikar ønskjer vi at du har du har relevant utdanning eller er i eit utdanningsløp men dette er ikkje eit krav.<br />\nEr du ufaglært og har interesse for arbeid med menneske er du også velkomen til å søkja, og din relevante erfaring blir lagt vekt på.<br />\nDet blir og lagt vekt på personlege eigenskapar;</p>\n<ul><li>du har gode kommunikasjons- og samarbeidsevner</li><li>du er positiv og lærevillig</li><li>du er bevisst dine haldningar og prioriterer høgt verdiar som respekt, lojalitet og etikk.<br />\nUtanlandsk utdanning må vere NOKUT godkjent<br />\nSøkjarar utanfor Norden må legge fram dokumentasjon på gode norskkunsskapar og gjennomført norsktest på B1/B2 nivå</li></ul>\n<p>Vi gjer merksam på at du må leggja fram politiattest.</p>\n<h3><strong>Vi tilbyr</strong></h3>\n<p>Faglege og personlege utfordringar i eit godt og inspirerande arbeidsmiljø, og løn etter avtaleverk.<br />\nGode pensjons- og forsikringsordningar.<br />\nDet blir gjev tillegg i løn for arbeid på natt.</p>\n<h3><strong>Slik søkjer du</strong></h3>\n<p>Klikk på &#34;søk på stilling&#34; og følg vidare instruksjonar.</p>\n<p>Eksterne søkjarar må oppretta brukarnamn og passord før dei loggar seg på første gang.</p>\n<p>Tilsette i kommunen er allereie definert som brukar i systemet, og skal ikkje registere seg på nytt. Dersom du ikkje har internt brukarnamn og passord, kan du få dette tilsendt på e-post via funksjonen &#34;Glemt brukernamn/passord&#34; eller ta kontakt med personalkontoret.</p>\n",
+    "externalref": "2537/SVE",
+    "sourceurl": "https://jobb.oskommune.no/recruitment/opening?18",
+    "employer": "Os kommune",
+    "location": "Luranetunet",
+    "classification_input_source": "title",
+    "sector": "Offentlig"
+  },
+  "title": "Tilkallingsvikarar - Pleie- og omsorgstenesta",
+  "status": "INACTIVE",
+  "privacy": "SHOW_ALL",
+  "source": "DEXI",
+  "medium": "Kommuner-Visma-Vest",
+  "reference": "jobb.oskommune.no/recruitment/opening?0?2537/SVE",
+  "published": "2019-11-28T14:11:57.721476",
+  "expires": "2019-12-31T02:00:00",
+  "employer": {
+    "id": 207334,
+    "uuid": "d77f3466-b05d-4668-a808-b60952698534",
+    "createdBy": "pam-ad",
+    "updatedBy": "pam-ad",
+    "created": "2019-11-28T14:11:57.69744",
+    "updated": "2019-11-28T14:11:57.69744",
+    "contactList": [],
+    "mediaList": [],
+    "locationList": [
+      {
+        "address": "Lensmannsbakken 15",
+        "postalCode": "3267",
+        "country": "NORGE",
+        "county": "VESTFOLD",
+        "municipal": "LARVIK",
+        "city": "LARVIK",
+        "latitude": "59.028324331221015",
+        "longitude": "9.959012186011677"
+      }
     ],
-    "empty": false,
-    "first": true,
-    "last": true,
-    "number": 0,
-    "numberOfElements": 1,
-    "pageable": {
-        "offset": 0,
-        "pageNumber": 0,
-        "pageSize": 20,
-        "paged": true,
-        "sort": {
-            "empty": true,
-            "sorted": false,
-            "unsorted": true
-        },
-        "unpaged": false
+    "properties": {
+      "nace2": [
+        {
+          "code": "74.101",
+          "name": "Industridesign, produktdesign og annen teknisk designvirksomhet"
+        }
+      ]
     },
-    "size": 20,
-    "sort": {
-        "empty": true,
-        "sorted": false,
-        "unsorted": true
-    },
-    "totalElements": 1,
-    "totalPages": 1
+    "name": "KJOLEKOMPANIET",
+    "orgnr": "916277326",
+    "status": "ACTIVE",
+    "parentOrgnr": "916206704",
+    "publicName": "KJOLEKOMPANIET",
+    "orgform": "BEDR",
+    "employees": 0
+  },
+  "categoryList": [
+    {
+      "id": 4047,
+      "code": "53",
+      "categoryType": "STYRK08NAV",
+      "name": "Pleie- og omsorgsarbeidere",
+      "parentId": 3734
+    }
+  ],
+  "businessName": "KJOLEKOMPANIET",
+  "administration": {
+    "status": "DONE",
+    "comments": "kommentar",
+    "reportee": "F_Z990612 E_Z990612",
+    "remarks": [],
+    "navIdent": "Z990612"
+  }
 }

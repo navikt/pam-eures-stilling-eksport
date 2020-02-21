@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 import java.util.concurrent.atomic.AtomicInteger
 
 @Service
-class AdFeedClient (@Qualifier("pam-ad-feed-provider") private val adProvider: AdProvider) {
+class AdFeedClient (@Qualifier("pam-ad-elastic-provider") private val adProvider: AdProvider) {
 
     companion object {
         private val retryTemplate = initRetryTemplate()
@@ -64,7 +64,7 @@ class AdFeedClient (@Qualifier("pam-ad-feed-provider") private val adProvider: A
 
         val feedLagMeter = meterRegistry.gauge("pam.ad.feed.lag", AtomicInteger(0))
 
-        @Scheduled(cron = "0 */1 * * * *")
+        @Scheduled(cron = "*/10 * * * * *")
         @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
         fun lesFeed() {
             LOG.info("Poller ad feed for stillinger")

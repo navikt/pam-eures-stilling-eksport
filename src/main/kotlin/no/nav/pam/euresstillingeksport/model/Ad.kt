@@ -16,7 +16,7 @@ data class Ad(
         //val mediaList: [],
         //val contactList [],
         val locationList: List<Location>,
-        val properties: Map<String, String>,
+        val properties: Map<String, Any>,
         val title: String?,
         val status: String?,
         val privacy: String?,
@@ -90,7 +90,7 @@ data class Employer(
         // val contactList: [],
         val locationList: List<Location>,
         // Key er key (f.eks nace2, value er en json string)
-        val properties: Map<String, String>,
+        val properties: Map<String, Any>,
         val name: String?,
         val orgnr: String?,
         val status: String?,

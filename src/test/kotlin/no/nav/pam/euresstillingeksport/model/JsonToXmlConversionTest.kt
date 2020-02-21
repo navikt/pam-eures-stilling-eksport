@@ -23,12 +23,26 @@ class ConversionTest {
         val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
         val positionOpening = ad.convertToPositionOpening()
         val xml = HrxmlSerializer.serialize(positionOpening)
-        print(xml)
+
+        val expectedXml = read("src/test/resources/ads/ad_1.xml")
+
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
     }
 
     @Test
-    fun initialTes2t() {
+    fun initialTest2() {
         val ad = read("src/test/resources/ads/ad_2.json").let { JSON.readValue<Ad>(it) }
+        val positionOpening = ad.convertToPositionOpening()
+        val xml = HrxmlSerializer.serialize(positionOpening)
+
+        val expectedXml = read("src/test/resources/ads/ad_2.xml")
+
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+    }
+
+    @Test
+    fun `that 2 digit STYRK codes does not crash`() {
+        val ad = read("src/test/resources/ads/ad_with_short_styrk.json").let { JSON.readValue<Ad>(it) }
         val positionOpening = ad.convertToPositionOpening()
         val xml = HrxmlSerializer.serialize(positionOpening)
         print(xml)
@@ -36,14 +50,13 @@ class ConversionTest {
 
     @Test
     fun `that nace 2 is included`() {
-        val ad = read("src/test/resources/ads/nace/ad_with_nace.json").let { JSON.readValue<Ad>(it) }
+        val ad = read("src/test/resources/ads/nace/ad_with_json_formatted_nace.json").let { JSON.readValue<Ad>(it) }
         val positionOpening = ad.convertToPositionOpening()
         val xml = HrxmlSerializer.serialize(positionOpening)
 
         val expectedXml = read("src/test/resources/ads/nace/ad_with_nace.xml")
 
         Assertions.assertThat(xml).isEqualTo(expectedXml)
-        print(xml)
     }
 
     @Test
@@ -55,7 +68,6 @@ class ConversionTest {
         val expectedXml = read("src/test/resources/ads/nace/ad_without_nace.xml")
 
         Assertions.assertThat(xml).isEqualTo(expectedXml)
-        print(xml)
     }
 
     private fun read(file: String) = FileInputStream(file).bufferedReader().use { it.readText() }

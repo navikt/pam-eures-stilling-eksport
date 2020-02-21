@@ -3,6 +3,7 @@ package no.nav.pam.euresstillingeksport
 import com.github.tomakehurst.wiremock.WireMockServer
 import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
 import no.nav.pam.euresstillingeksport.service.ApiServiceStub
+import org.elasticsearch.ElasticsearchStatusException
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -54,28 +55,28 @@ class PamAdTests {
 
 	@Test
 	fun skaHaandtereNotFound() {
-		Assertions.assertThrows(IllegalArgumentException::class.java) {
+		Assertions.assertThrows(ElasticsearchStatusException::class.java) {
 			adClient.getAd("not_found")
 		}
 	}
 
 	@Test
 	fun skaHaandtereUgyldigJSONRespons() {
-		Assertions.assertThrows(IllegalArgumentException::class.java) {
+		Assertions.assertThrows(ElasticsearchStatusException::class.java) {
 			adClient.getAd("ad-ugyldig_json")
 		}
 	}
 
 	@Test
 	fun skalHaandtereBadRequest() {
-		Assertions.assertThrows(IllegalArgumentException::class.java) {
+		Assertions.assertThrows(ElasticsearchStatusException::class.java) {
 			adClient.getAd("bad_request")
 		}
 	}
 
 	@Test
 	fun skalHaandtereServerUnavailable() {
-		Assertions.assertThrows(IOException::class.java) {
+		Assertions.assertThrows(ElasticsearchStatusException::class.java) {
 			adClient.getAd("service_unavailable")
 		}
 	}

@@ -3,23 +3,23 @@
 
   <appender name="stdout_json" class="ch.qos.logback.core.ConsoleAppender">
 
-<!--    <encoder>-->
-<!--      <pattern>%green(%d{HH:mm:ss}) %cyan([%-5.5t]) %boldCyan(%0.-5p) %yellow(%-20.20logger{19}) %cyan(:) %m%n-->
-<!--      </pattern>-->
-<!--    </encoder>-->
-    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-      <providers>
-        <mdc/>
-        <timestamp/>
-        <message/>
-        <loggerName/>
-        <threadName/>
-        <logLevel/>
-        <callerData/>
-        <arguments/>
-        <stackTrace/>
-      </providers>
+    <encoder>
+      <pattern>%green(%d{HH:mm:ss}) %cyan([%-5.5t]) %boldCyan(%0.-5p) %yellow(%-20.20logger{19}) %cyan(:) %m%n
+      </pattern>
     </encoder>
+<!--    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--      <providers>-->
+<!--        <mdc/>-->
+<!--        <timestamp/>-->
+<!--        <message/>-->
+<!--        <loggerName/>-->
+<!--        <threadName/>-->
+<!--        <logLevel/>-->
+<!--        <callerData/>-->
+<!--        <arguments/>-->
+<!--        <stackTrace/>-->
+<!--      </providers>-->
+<!--    </encoder>-->
   </appender>
 
 

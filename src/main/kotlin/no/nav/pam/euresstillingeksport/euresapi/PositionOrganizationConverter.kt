@@ -5,11 +5,29 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.euresapi.EmployerPropertyMapping.Nace2
 import no.nav.pam.euresstillingeksport.model.Employer
+import org.slf4j.LoggerFactory
 
 private val JSON = jacksonObjectMapper()
 
 enum class EmployerPropertyMapping(val key: String) {
     Nace2("nace2")
+}
+
+private class Nace2Converter {
+    fun convert(value: Any): List<NorskNace> {
+        try {
+            val map = (value as List<*>)
+                    .map {
+                        it as Map<*, *>;
+                        NorskNace(it["code"] as String, it["name"] as String)
+                    }
+
+            return map
+        } catch (e: TypeCastException) {
+            LoggerFactory.getLogger(Nace2Converter::class.java).error(e.message, e)
+            return emptyList()
+        }
+    }
 }
 
 fun Employer.toPositionOrganization(): PositionOrganization {
@@ -27,7 +45,7 @@ fun Employer.toIndustryCode(): List<IndustryCode> {
         return emptyList()
 
     return properties.getValue(Nace2.key)
-            .let { JSON.readValue<List<NorskNace>>(it) }
+            .let { Nace2Converter().convert(it) }
             .map { EuNace(it.code) }
             .filter { it.isValid() }
             .map { IndustryCode(it.code()) }
