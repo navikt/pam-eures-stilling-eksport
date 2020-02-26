@@ -19,7 +19,6 @@ class ConversionTest {
         configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true)
     }
 
-    @Disabled
     @Test
     fun initialTest() {
         val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
@@ -31,7 +30,6 @@ class ConversionTest {
         Assertions.assertThat(xml).isEqualTo(expectedXml)
     }
 
-    @Disabled
     @Test
     fun initialTest2() {
         val ad = read("src/test/resources/ads/ad_2.json").let { JSON.readValue<Ad>(it) }

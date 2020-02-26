@@ -30,14 +30,13 @@ private class Nace2Converter {
     }
 }
 
-fun Employer.toPositionOrganization(description: String?): PositionOrganization {
+fun Employer.toPositionOrganization(): PositionOrganization {
     return PositionOrganization(
             organizationIdentifiers = OrganizationIdentifiers(
                     organizationLegalID = orgnr,
                     organizationName = name ?: ""
             ),
-            industryCode = toIndustryCode(),
-            description = description
+            industryCode = toIndustryCode()
     )
 }
 

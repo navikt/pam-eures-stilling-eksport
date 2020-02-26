@@ -35,7 +35,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             ),
             positionTitle = title ?: "" ,
             positionLocation = locationList.map { it.toPositionLocation() },
-            positionOrganization = employer?.toPositionOrganization(properties[PropertyMapping.employerDescription.key] as String?),
+            positionOrganization = employer?.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toString()?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
             positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key].toString()
@@ -58,7 +58,10 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
         return PositionFormattedDescription("For fullstendig annonsetekst, se annonsen hos finn.no: " +
                 "<a href=\"$finnURL\">$finnURL</a>.")
     } else {
-        return PositionFormattedDescription(properties[PropertyMapping.adtext.key].toString() ?: "")
+        val arbeidsgiverBeskrivelse = (properties[PropertyMapping.employerDescription.key] as String?)
+                .let { "<p><b>Om arbeidsgiveren:</b></p>$it" }
+        val content = properties[PropertyMapping.adtext.key] as String? ?: ""
+        return PositionFormattedDescription("$content$arbeidsgiverBeskrivelse")
     }
 }
 
