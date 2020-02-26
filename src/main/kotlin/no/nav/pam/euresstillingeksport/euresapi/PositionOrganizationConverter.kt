@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory
 private val JSON = jacksonObjectMapper()
 
 enum class EmployerPropertyMapping(val key: String) {
+    employerDescription("employerdescription"),
     Nace2("nace2")
 }
 
@@ -36,7 +37,8 @@ fun Employer.toPositionOrganization(): PositionOrganization {
                     organizationLegalID = orgnr,
                     organizationName = name ?: ""
             ),
-            industryCode = toIndustryCode()
+            industryCode = toIndustryCode(),
+            description = properties[EmployerPropertyMapping.employerDescription.key] as String?
     )
 }
 
