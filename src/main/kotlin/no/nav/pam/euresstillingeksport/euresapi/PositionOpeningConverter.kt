@@ -11,7 +11,8 @@ enum class PropertyMapping(val key: String) {
     extent("extent"),
     engagementtype("engagementtype"),
     sourceurl("sourceurl"),
-    euresflagg("euresflagg")
+    euresflagg("euresflagg"),
+    employerDescription("employerdescription")
 }
 
 
@@ -34,7 +35,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             ),
             positionTitle = title ?: "" ,
             positionLocation = locationList.map { it.toPositionLocation() },
-            positionOrganization = employer?.toPositionOrganization(),
+            positionOrganization = employer?.toPositionOrganization(properties[PropertyMapping.employerDescription.key] as String?),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toString()?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
             positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key].toString()

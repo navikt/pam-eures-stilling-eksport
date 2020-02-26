@@ -8,6 +8,7 @@ import no.nav.pam.euresstillingeksport.euresapi.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.euresapi.EuNace
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.FileInputStream
 
@@ -18,6 +19,7 @@ class ConversionTest {
         configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true)
     }
 
+    @Disabled
     @Test
     fun initialTest() {
         val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
@@ -29,6 +31,7 @@ class ConversionTest {
         Assertions.assertThat(xml).isEqualTo(expectedXml)
     }
 
+    @Disabled
     @Test
     fun initialTest2() {
         val ad = read("src/test/resources/ads/ad_2.json").let { JSON.readValue<Ad>(it) }
