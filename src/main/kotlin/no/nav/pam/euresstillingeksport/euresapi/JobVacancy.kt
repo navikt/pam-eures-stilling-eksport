@@ -87,7 +87,9 @@ data class PositionOrganization(
         val organizationIdentifiers: OrganizationIdentifiers,
         @JacksonXmlElementWrapper(useWrapping = false)
         val industryCode: List<IndustryCode>,
-        val organizationSizeCode: OrganizationSizeCode? = null // Belive we do not have this
+        val organizationSizeCode: OrganizationSizeCode? = null, // Belive we do not have this
+        @JacksonXmlCData
+        val description: String?
 )
 
 data class OrganizationIdentifiers(
