@@ -30,7 +30,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
             postingInstruction = PostingInstruction(
                     postingOptionCode = if(properties[PropertyMapping.euresflagg.key] == "true") PostingOptionCode.EURESFlag else null,
                     applicationMethod = ApplicationMethod(
-                            instructions = properties[PropertyMapping.sourceurl.key]?.toString() ?: "https://arbeidsplassen.nav.no/stillinger/stilling/$uuid"
+                            instructions = properties[PropertyMapping.sourceurl.key]?.toString() ?: "<a href=\"https://arbeidsplassen.nav.no/stillinger/stilling/$uuid\" rel=\"nofollow\">Link to the vacancy on the Norwegian job board</a>"
                     )
             ),
             positionTitle = title ?: "" ,
