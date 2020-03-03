@@ -133,6 +133,7 @@ enum class PostingOptionCode {
 }
 
 data class ApplicationMethod(
+        @JacksonXmlCData
         val instructions: String = "See jobdescription"
 )
 

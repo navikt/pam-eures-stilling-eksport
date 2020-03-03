@@ -8,7 +8,7 @@
   <PositionProfile languageCode="no">
     <PostingInstruction>
       <ApplicationMethod>
-        <Instructions>https://www.url.no/</Instructions>
+        <Instructions><![CDATA[https://www.url.no/]]></Instructions>
       </ApplicationMethod>
     </PostingInstruction>
     <PositionTitle>Engineer - Flexible Pipe &amp; Umbilical</PositionTitle>
