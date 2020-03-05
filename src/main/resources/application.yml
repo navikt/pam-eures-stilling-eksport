@@ -23,6 +23,9 @@ spring:
     driverClassName: org.postgresql.Driver
     username: sa
     password:
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 3
 
 server:
   error:
