@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teampam
 spec:
-  image: {{ image }}:{{ tag }}
+  image: {{ image }}
   port: 8080
   liveness:
     path: internal/isAlive
@@ -32,5 +32,6 @@ spec:
     enabled: true
     path: actuator/prometheus
   ingresses:
-    - https://pam-eures-stilling-eksport.nais.oera-q.local
-    - https://eures-eksport-q.nav.no
+  {{#each ingress as |url|}}
+     - {{url}}
+  {{/each}}
