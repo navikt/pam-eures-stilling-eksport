@@ -23,6 +23,7 @@
 		<shedlock.version>3.0.0</shedlock.version>
 		<postgresql.version>42.2.8</postgresql.version>
 		<elastic-client>7.4.0</elastic-client>
+		<pam-geography.version>1.20200302-6fb72e0c</pam-geography.version>
 	</properties>
 
 	<dependencyManagement>
@@ -197,7 +198,7 @@
 		<dependency>
 			<groupId>no.nav.pam.geography</groupId>
 			<artifactId>pam-geography</artifactId>
-			<version>2.4</version>
+			<version>${pam-geography.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -230,5 +231,27 @@
 			</plugin>
 		</plugins>
 	</build>
+	<scm>
+	    <connection>scm:git:https://github.com/navikt/pam-eures-stilling-eksport.git</connection>
+	    <developerConnection>scm:git:https://github.com/navikt/pam-eures-stilling-eksport.git</developerConnection>
+	    <tag>HEAD</tag>
+	</scm>
+	    <repositories>
+	        <repository>
+	            <id>central</id>
+	            <name>maven central</name>
+	            <url>https://repo.maven.apache.org/maven2/</url>
+	        </repository>
+	        <repository>
+	            <id>confluent</id>
+	            <name>confluent</name>
+	            <url>http://packages.confluent.io/maven/</url>
+	        </repository>
+	        <repository>
+	            <id>github</id>
+	            <name>nav github</name>
+	            <url>https://github-package-registry-mirror.gc.nav.no/cached/maven-release</url>
+	        </repository>
+	    </repositories>
 
 </project>
