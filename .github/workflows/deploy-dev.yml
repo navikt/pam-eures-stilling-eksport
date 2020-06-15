@@ -7,7 +7,7 @@ on:
       - "LICENCE"
       - "CODEOWNERS"
     branches:
-      - FellesNaiserator
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
