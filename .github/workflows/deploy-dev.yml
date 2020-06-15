@@ -23,7 +23,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: build and test
-        run: mvn clean install --settings .github/workflows/.m2/settings.xml
+        run: mvn clean install
       - name: pre-deploy
         uses: navikt/pam-deploy/actions/pre-deploy@v1
         env:
