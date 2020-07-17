@@ -39,3 +39,6 @@ internalad-search-api:
   url: http://pam-internal-search-api.default
 pam-ad:
   url: http://pam-ad.default/api/v1/ads
+vault:
+  dbcreds.url: https://vault.adeo.no/v1/postgresql/preprod-fss/static-creds/pam-eures-stillingeksport-prod-static-admin
+  auth.url: https://vault.adeo.no/v1/auth/kubernetes/preprod/fss/login
