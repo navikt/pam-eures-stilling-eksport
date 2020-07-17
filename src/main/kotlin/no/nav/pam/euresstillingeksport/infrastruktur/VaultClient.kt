@@ -1,6 +1,9 @@
 package no.nav.pam.euresstillingeksport.infrastruktur
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.slf4j.LoggerFactory
@@ -19,12 +22,17 @@ data class Credential(val username: String, val password: String, val ttl: Int)
 
 @Component
 @Profile("prod-sbs |dev-sbs")
-class VaultClient(@Autowired private val objectMapper: ObjectMapper,
-    @Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: String,
+class VaultClient(@Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: String,
                   @Value("\${vault.auth.url}") private val vaultLoginUrl: String) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingRepository::class.java)
     }
+    private val objectMapper = ObjectMapper().apply {
+            registerModule(KotlinModule())
+            registerModule(JavaTimeModule())
+            configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false)
+        }
+
     private val vaultToken by lazy {
         fromOptionalFile(File("/var/run/secrets/nais.io/vault/vault_token"))
                 ?: throw VaultTokenNotFoundException()
