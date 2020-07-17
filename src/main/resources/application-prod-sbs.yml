@@ -4,4 +4,4 @@ spring:
     url: jdbc:postgresql://A01DBVL010.adeo.no:5432/${dbnavn}
 vault:
   dbcreds.url: https://vault.adeo.no/v1/postgresql/prod-fss/static-creds/${dbnavn}-static-admin
-  auth.url: https://vault.adeo.no/v1/auth/kubernetes/prod/fss/login
+  auth.url: https://vault.adeo.no/v1/auth/kubernetes/prod/sbs/login
