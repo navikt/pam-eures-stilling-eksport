@@ -1,5 +1,6 @@
 package no.nav.pam.euresstillingeksport.infrastruktur
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -62,9 +63,13 @@ class VaultClient(@Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: 
         return vaultCreds.data
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     data class VaultDatabaseCredential(val data: Credential)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     data class VaultKubernetesLoginRequest(val jwt: String, val role: String)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     data class VaultAuth(val auth: Auth) {
+        @JsonIgnoreProperties(ignoreUnknown = true)
         data class Auth(val client_token: String)
     }
 
