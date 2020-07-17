@@ -79,7 +79,7 @@ class ApiConfiguration {
                    @Value("\${spring.datasource.hikari.maximum-pool-size}") maxPoolSize: Int = 3,
                    @Autowired vaultClient: VaultClient
     ): DataSource {
-        val auth = vaultClient.getVaultToken(role = "static-creds")
+        val auth = vaultClient.getVaultToken(role = "pam-eures-stilling-eksport")
         val creds = vaultClient.getDbCredentials(vaultToken = auth)
         LOG.info("Got db credentials from vault. TTL: ${creds.ttl}")
 
