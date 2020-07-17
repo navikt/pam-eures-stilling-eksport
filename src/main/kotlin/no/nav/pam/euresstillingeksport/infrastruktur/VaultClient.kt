@@ -19,6 +19,7 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Duration
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class Credential(val username: String, val password: String, val ttl: Int)
 
 @Component
