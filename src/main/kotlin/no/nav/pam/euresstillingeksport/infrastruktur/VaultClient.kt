@@ -8,7 +8,6 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
@@ -49,8 +48,6 @@ class VaultClient(@Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: 
         val loginRequest = VaultKubernetesLoginRequest(jwt, role)
         val loginRequestAsJson = objectMapper.writeValueAsString(loginRequest)
         val authAsJson = httpPost(url, loginRequestAsJson, "application/json")
-        // NB: DENNE LOGGINGEN MÅ BORT FØR VI KOMMER TIL PROD!
-        LOG.info("Auth token: ${authAsJson}")
         val auth : VaultAuth = objectMapper.readValue<VaultAuth>(authAsJson)
         return auth.auth.client_token
     }
@@ -58,8 +55,6 @@ class VaultClient(@Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: 
 
     fun getDbCredentials(url: String = this.dbCredentialsUrl, vaultToken: String = this.vaultToken): Credential {
         val credsAsJson = httpGet(url, Pair("X-VAULT-TOKEN", vaultToken))
-        // NB: DENNE LOGGINGEN MÅ BORT FØR VI KOMMER TIL PROD!
-        LOG.info("DB creds token: ${credsAsJson}")
         val vaultCreds = objectMapper.readValue<VaultDatabaseCredential>(credsAsJson)
         return vaultCreds.data
     }
@@ -92,7 +87,7 @@ class VaultClient(@Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: 
         if (header != null) requestBuilder.header(header.first, header.second)
 
         val response = client.send(requestBuilder.build(), HttpResponse.BodyHandlers.ofString())
-        if (response.statusCode() >= 300)
+        if (response.statusCode() >= 300) // TODO Throw exception instead of logging here?
             LOG.info("Failed to get url ${url}: ${response.body()}")
         return response.body()
     }
@@ -109,7 +104,7 @@ class VaultClient(@Value("\${vault.dbcreds.url}") private val dbCredentialsUrl: 
         if (header != null) requestBuilder.header(header.first, header.second)
 
         val response = client.send(requestBuilder.build(), HttpResponse.BodyHandlers.ofString())
-        if (response.statusCode() >= 300)
+        if (response.statusCode() >= 300) // TODO Throw exception instead of logging here?
             LOG.info("Failed to post to url ${url}: ${response.body()}")
         return response.body()
     }
