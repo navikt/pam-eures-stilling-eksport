@@ -78,6 +78,8 @@ class VaultClient(@Autowired private val objectMapper: ObjectMapper,
         if (header != null) requestBuilder.header(header.first, header.second)
 
         val response = client.send(requestBuilder.build(), HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode() >= 300)
+            LOG.info("Failed to get url ${url}: ${response.body()}")
         return response.body()
     }
 
@@ -93,6 +95,8 @@ class VaultClient(@Autowired private val objectMapper: ObjectMapper,
         if (header != null) requestBuilder.header(header.first, header.second)
 
         val response = client.send(requestBuilder.build(), HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode() >= 300)
+            LOG.info("Failed to post to url ${url}: ${response.body()}")
         return response.body()
     }
 
