@@ -37,7 +37,7 @@ spec:
   {{/each}}
   gcp:
     sqlInstances:
-      name: pam-eures-eksport
+      - name: pam-eures-eksport
         type: POSTGRES_11
         diskType: SSD
         highAvailability: true
@@ -45,7 +45,7 @@ spec:
         diskAutoresize: true
         autoBackupTime: "03:30"
         databases:
-          name: pameuresexp
+          - name: pameuresexp
             envVarPrefix: DB
         cascadingDelete: false
 #  filesFrom:
