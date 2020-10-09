@@ -1,0 +1,6 @@
+dbnavn: ${DB_DATABASE}
+internalad-search-api:
+  url: https://pam-internal-search-api
+spring:
+  datasource:
+    url: jdbc:${DB_URL}
