@@ -1,3 +1,3 @@
 {
-  "ingress": ["https://pam-eures-stilling-eksport.dev-gcp.nais.io", "https://eures-eksport.dev.nav.no", "https://pam-eures-stilling-eksport.ekstern.dev.nav.no"]
+  "ingress": ["https://pam-eures-stilling-eksport.dev-gcp.nais.io", "https://eures-eksport.dev.nav.no", "https://eures-eksport.ekstern.dev.nav.no"]
 }
