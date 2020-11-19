@@ -122,7 +122,9 @@ class ApiConfiguration {
 class DenyEksternFilter : HttpFilter() {
     override protected fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
         if (req != null &&
-                req.getHeader("host").contains(".ekstern.", true)) {
+                (req.getHeader("host").contains(".ekstern.", true) ||
+                    req.getHeader("host").contains("eures-eksport-gcp.nav.no", true))
+                        ) {
             res!!.status = HttpServletResponse.SC_FORBIDDEN
             return
         }
