@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider
 import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
@@ -36,6 +37,10 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import java.net.URL
 import java.util.*
+import javax.servlet.FilterChain
+import javax.servlet.http.HttpFilter
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.sql.DataSource
 
 @Configuration
@@ -102,8 +107,28 @@ class ApiConfiguration {
                     RestTemplateExchangeTags.clientName(request))
         }
     }
+
+    @Bean
+    fun denyInternalFilter() : FilterRegistrationBean<HttpFilter> {
+        val reg = FilterRegistrationBean<HttpFilter>();
+        reg.filter = DenyEksternFilter()
+        reg.setName("DenyAccessToInternalFromEkstern")
+        reg.addUrlPatterns("/actuator/*", "/internal/*")
+        reg.order = 1
+        return reg;
+    }
 }
 
+class DenyEksternFilter : HttpFilter() {
+    override protected fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
+        if (req != null &&
+                req.getHeader("host").contains(".ekstern.", true)) {
+            res!!.status = HttpServletResponse.SC_FORBIDDEN
+            return
+        }
+        super.doFilter(req, res, chain)
+    }
+}
 
 @ControllerAdvice
 class WebControllerErrorHandler : ResponseEntityExceptionHandler() {
