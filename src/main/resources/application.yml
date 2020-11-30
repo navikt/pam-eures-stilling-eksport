@@ -3,7 +3,7 @@ management:
   endpoints:
     prometheus.enabled: true
     prometheus.web.enabled: true
-    web.exposure.include: health,info,status,metrics,prometheus,configprops,env,conditions,beans,auditevents,mappings
+    web.exposure.include: health,info,status,metrics,prometheus,configprops,env,beans,mappings
   metrics:
     web.server.auto-time-requests: true
     distribution.percentiles-histogram.http.server.requests: true

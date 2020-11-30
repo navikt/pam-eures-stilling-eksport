@@ -3,12 +3,9 @@ package no.nav.pam.euresstillingeksport.rest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.zaxxer.hikari.HikariDataSource
 import io.micrometer.core.instrument.Tag
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
-import no.nav.pam.euresstillingeksport.infrastruktur.VaultClient
-import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.apache.http.HttpHost
 import org.apache.http.client.config.RequestConfig
 import org.apache.http.conn.ssl.DefaultHostnameVerifier
@@ -20,13 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags
 import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider
-import org.springframework.boot.autoconfigure.flyway.FlywayConfigurationCustomizer
-import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.boot.web.client.RestTemplateBuilder
+import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
-import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.http.client.ClientHttpResponse
@@ -34,25 +29,18 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.retry.annotation.EnableRetry
 import org.springframework.scheduling.annotation.EnableScheduling
-import org.springframework.stereotype.Component
 import org.springframework.transaction.PlatformTransactionManager
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import java.io.File
-import java.net.URI
 import java.net.URL
-import java.net.http.HttpClient
-import java.net.http.HttpResponse
-import java.security.SecureRandom
-import java.security.cert.X509Certificate
-import java.time.Duration
 import java.util.*
-import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLContext
-import javax.net.ssl.X509TrustManager
+import javax.servlet.FilterChain
+import javax.servlet.http.HttpFilter
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.sql.DataSource
 
 @Configuration
@@ -72,25 +60,6 @@ class ApiConfiguration {
                 registerModule(JavaTimeModule())
             }
 
-    @Bean()
-    @Profile("prod-sbs |dev-sbs")
-    fun dataSource(@Value("\${spring.datasource.url}") url: String,
-                   @Value("\${spring.datasource.hikari.minimum-idle}") minimumIdle: Int = 1,
-                   @Value("\${spring.datasource.hikari.maximum-pool-size}") maxPoolSize: Int = 3,
-                   @Autowired vaultClient: VaultClient
-    ): DataSource {
-        val auth = vaultClient.getVaultToken(role = "pam-eures-stilling-eksport")
-        val creds = vaultClient.getDbCredentials(vaultToken = auth)
-        LOG.info("Got db credentials from vault. TTL: ${creds.ttl}")
-
-        val dsb = HikariDataSource()
-        dsb.jdbcUrl = url
-        dsb.username = creds.username
-        dsb.password = creds.password
-        dsb.minimumIdle = minimumIdle
-        dsb.maximumPoolSize = maxPoolSize
-        return dsb
-    }
 
     @Bean("safeElasticClientBuilder")
     fun safeElasticClientBuilder(@Value("\${internalad-search-api.url}") elasticsearchUrl: URL? = null): RestClientBuilder {
@@ -116,14 +85,6 @@ class ApiConfiguration {
     }
 
     @Bean
-    fun flywayConfig(@Value("\${dbnavn}") dbnavn: String,
-                     @Value("\${spring.datasource.url}") jdbcUrl: String): FlywayConfigurationCustomizer =
-            FlywayConfigurationCustomizer { c ->
-                if (jdbcUrl.toLowerCase().contains("jdbc:postgresql"))
-                    c.initSql("SET ROLE \"${dbnavn}-admin\"")
-            }
-
-    @Bean
     fun transactionManager(@Autowired dataSource: DataSource): PlatformTransactionManager =
             DataSourceTransactionManager(dataSource)
 
@@ -146,8 +107,30 @@ class ApiConfiguration {
                     RestTemplateExchangeTags.clientName(request))
         }
     }
+
+    @Bean
+    fun denyInternalFilter() : FilterRegistrationBean<HttpFilter> {
+        val reg = FilterRegistrationBean<HttpFilter>();
+        reg.filter = DenyEksternFilter()
+        reg.setName("DenyAccessToInternalFromEkstern")
+        reg.addUrlPatterns("/actuator/*", "/internal/*")
+        reg.order = 1
+        return reg;
+    }
 }
 
+class DenyEksternFilter : HttpFilter() {
+    override protected fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
+        if (req != null &&
+                (req.getHeader("host").contains(".ekstern.", true) ||
+                    req.getHeader("host").contains("eures-eksport-gcp.nav.no", true))
+                        ) {
+            res!!.status = HttpServletResponse.SC_FORBIDDEN
+            return
+        }
+        super.doFilter(req, res, chain)
+    }
+}
 
 @ControllerAdvice
 class WebControllerErrorHandler : ResponseEntityExceptionHandler() {
