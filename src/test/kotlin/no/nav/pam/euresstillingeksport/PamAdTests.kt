@@ -17,6 +17,7 @@ import java.util.*
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled("Midlertidig mens vi tester pam-ad feed")
 class PamAdTests {
 
 	@Autowired
