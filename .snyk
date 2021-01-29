@@ -10,4 +10,8 @@ ignore:
     - '*':
         reason: No fix available for the corresponding ES backend version
         expires: 2025-07-08T06:14:39.494Z
+  SNYK-JAVA-COMFASTERXMLJACKSONDATAFORMAT-1047329:
+    - '*':
+        reason: No fix available for the corresponding ES backend version
+        expires: 2025-07-08T06:14:39.494Z
 patch: {}
