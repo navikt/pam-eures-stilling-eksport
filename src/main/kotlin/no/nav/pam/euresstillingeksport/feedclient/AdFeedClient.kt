@@ -21,8 +21,7 @@ import java.time.format.DateTimeFormatter
 import java.util.concurrent.atomic.AtomicInteger
 
 @Service
-class AdFeedClient (@Qualifier("pam-ad-feed-provider") private val adProvider: AdProvider) {
-//class AdFeedClient (@Qualifier("pam-ad-elastic-provider") private val adProvider: AdProvider) {
+class AdFeedClient (@Qualifier("pam-ad-elastic-provider") private val adProvider: AdProvider) {
 
     companion object {
         private val retryTemplate = initRetryTemplate()

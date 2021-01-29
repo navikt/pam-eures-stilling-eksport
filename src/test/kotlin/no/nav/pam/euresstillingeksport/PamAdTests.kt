@@ -11,13 +11,11 @@ import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.context.annotation.Bean
 import org.springframework.test.context.ActiveProfiles
-import java.io.IOException
 import java.util.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@Disabled("Midlertidig mens vi tester pam-ad feed")
 class PamAdTests {
 
 	@Autowired
