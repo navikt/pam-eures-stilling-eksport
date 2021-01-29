@@ -32,9 +32,7 @@ class ElasticAdProvider(
         val searchSourceBuilder = SearchSourceBuilder()
                 .sort("updated", SortOrder.ASC)
                 .size(pageSize)
-                .query(QueryBuilders.boolQuery().filter(
-                        QueryBuilders.rangeQuery("updated").gt(sistLest)
-                ))
+                .query(QueryBuilders.rangeQuery("updated").gte(sistLest))
 
         val request = SearchRequest().source(searchSourceBuilder)
         request.isCcsMinimizeRoundtrips = false
