@@ -72,7 +72,9 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                 if (AdStatus.fromString(it.status) == AdStatus.ACTIVE) {
                     nyeAnnonser.add(StillingsannonseJson(konverterTilStillingsannonseMetadata(it), jsonAd))
                     antallModifiserteStillinger++
-                    LOG.info("Ny annonse {}", it.uuid)
+                    LOG.info("Ny annonse {} ESCO koder: ", it.uuid, // Fjern loggingen under når vi ser at det funker
+                            it.convertToPositionOpening().positionProfile.joinToString { p ->
+                                p.jobCategoryCode.joinToString { c -> "${c.listName} / ${c.code}" } })
                } else {
                    LOG.info("Ny annonse {} har status {}, blir ikke lagt til", it.uuid, it.status)
                }
