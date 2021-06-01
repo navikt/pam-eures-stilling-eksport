@@ -15,7 +15,6 @@ enum class PropertyMapping(val key: String) {
     employerDescription("employerdescription")
 }
 
-
 fun Ad.convertToPositionOpening(): PositionOpening {
     return PositionOpening(
             documentID = DocumentId(uuid = uuid),
@@ -66,10 +65,22 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
 }
 
 private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
-    return categoryList
-            .filter { it.categoryType?.equals("STYRK08NAV", ignoreCase = true) ?: false }
-            .map { JobCategoryCode(code = styrkToEsco(it.code)) }
-
+    val euresCodes: MutableList<JobCategoryCode> = mutableListOf()
+    properties["classification_esco_code"]?.let {
+        euresCodes.add(JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal",
+                    code = it.toString()))
+    }
+    categoryList.forEach { c ->
+        if (c.categoryType?.equals("STYRK08NAV", ignoreCase = true) == true) {
+            euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
+        } else if (c.categoryType?.equals("STYRK08", ignoreCase = true) == true) {
+            euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
+        } else if (c.categoryType?.equals("ESCO", ignoreCase = true) == true) {
+            euresCodes.add(JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal",
+                    code = c.code ?:"INGEN"))
+        }
+    }
+    return euresCodes
 }
 
 private fun styrkToEsco(styrk: String?) : String {

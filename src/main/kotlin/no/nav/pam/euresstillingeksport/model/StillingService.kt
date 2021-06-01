@@ -72,7 +72,6 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                 if (AdStatus.fromString(it.status) == AdStatus.ACTIVE) {
                     nyeAnnonser.add(StillingsannonseJson(konverterTilStillingsannonseMetadata(it), jsonAd))
                     antallModifiserteStillinger++
-                    LOG.info("Ny annonse {}", it.uuid)
                } else {
                    LOG.info("Ny annonse {} har status {}, blir ikke lagt til", it.uuid, it.status)
                }
