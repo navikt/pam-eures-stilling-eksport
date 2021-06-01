@@ -7,7 +7,7 @@ on:
       - "LICENCE"
       - "CODEOWNERS"
     branches:
-      - esco
+      - master
 jobs:
   security:
     runs-on: ubuntu-latest
