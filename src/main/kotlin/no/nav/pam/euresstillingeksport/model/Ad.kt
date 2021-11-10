@@ -2,7 +2,9 @@ package no.nav.pam.euresstillingeksport.model
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import no.nav.pam.euresstillingeksport.administration.AdminApiController
 import no.nav.pam.euresstillingeksport.euresapi.PropertyMapping
+import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -40,6 +42,11 @@ data class Ad(
     fun erIkkeIntern() = erIntern().not()
     fun erEuresFlagget() = properties[PropertyMapping.euresflagg.key] == "true"
     fun erFinnAnnonse() = source == "FINN"
+
+    companion object {
+        val LOG = LoggerFactory.getLogger(Ad::class.java)
+    }
+
 }
 
 
