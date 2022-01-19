@@ -62,12 +62,7 @@
       }
     ],
     "properties": {
-      "nace2": [
-        {
-          "code": "74.101",
-          "name": "Industridesign, produktdesign og annen teknisk designvirksomhet"
-        }
-      ]
+      "nace2": "[\n        {\n          \"code\": \"74.101\",\n          \"name\": \"Industridesign, produktdesign og annen teknisk designvirksomhet\"\n        }\n      ]"
     },
     "name": "KJOLEKOMPANIET",
     "orgnr": "916277326",

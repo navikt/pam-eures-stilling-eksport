@@ -15,7 +15,11 @@ enum class EmployerPropertyMapping(val key: String) {
 }
 
 private class Nace2Converter {
-    fun convert(value: Any): List<NorskNace> {
+    fun convert(v: Any): List<NorskNace> {
+        val value = if (v is String)
+                jacksonObjectMapper().readValue(v)
+            else
+                v
         try {
             val map = (value as List<*>)
                     .map {
