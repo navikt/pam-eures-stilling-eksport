@@ -7,7 +7,7 @@ on:
       - "LICENCE"
       - "CODEOWNERS"
     branches:
-      - endre_feed
+      - master
 jobs:
   security:
     runs-on: ubuntu-latest
