@@ -87,7 +87,7 @@ private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
 
 private fun styrkToEsco(styrk: String?) : String {
     if(styrk == null) return "INGEN"
-    if(styrk.length < 3) return "INGEN"
+    if(styrk.length < 4) return "INGEN"
     return styrk.substring(0..3)
 }
 
