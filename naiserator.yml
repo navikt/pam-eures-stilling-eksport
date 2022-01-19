@@ -54,4 +54,5 @@ spec:
   accessPolicy:
     outbound:
       rules:
+        - application: pam-ad
         - application: pam-internal-search-api
