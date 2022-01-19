@@ -24,7 +24,7 @@ private class Nace2Converter {
 
             return map
         } catch (e: TypeCastException) {
-            LoggerFactory.getLogger(Nace2Converter::class.java).error(e.message, e)
+            LoggerFactory.getLogger(Nace2Converter::class.java).error("Greide ikke å konvertere nacekode $value : ${e.message}", e)
             return emptyList()
         }
     }
