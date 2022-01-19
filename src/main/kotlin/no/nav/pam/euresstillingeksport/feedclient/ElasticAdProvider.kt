@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import no.nav.pam.euresstillingeksport.model.Ad
+import org.elasticsearch.ElasticsearchStatusException
 import org.elasticsearch.action.search.SearchRequest
 import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestClientBuilder
@@ -61,20 +62,24 @@ class ElasticAdProvider(
     }
 
     override fun fetch(uuid: String): Ad {
-        val client = RestHighLevelClient(clientBuilder)
+        try {
+            val client = RestHighLevelClient(clientBuilder)
 
-        val searchSourceBuilder = SearchSourceBuilder()
-                .query(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("uuid", uuid)))
+            val searchSourceBuilder = SearchSourceBuilder()
+                    .query(QueryBuilders.boolQuery().must(QueryBuilders.termQuery("uuid", uuid)))
 
-        val request = SearchRequest().source(searchSourceBuilder)
+            val request = SearchRequest().source(searchSourceBuilder)
 
-        val response = client.search(request, RequestOptions.DEFAULT)
+            val response = client.search(request, RequestOptions.DEFAULT)
 
-        if(response.hits.hits.size != 1) throw IllegalArgumentException("Ad not found")
+            if (response.hits.hits.size != 1) throw IllegalArgumentException("Ad not found")
 
-        client.close()
+            client.close()
 
-        return mapper.readValue(response.hits.hits[0].sourceAsString, Ad::class.java )
+            return mapper.readValue(response.hits.hits[0].sourceAsString, Ad::class.java)
+        } catch (e: ElasticsearchStatusException) {
+            throw IllegalArgumentException("Greide ikke å lese respons fra elastic search: ${e.message}", e)
+        }
     }
 }
 

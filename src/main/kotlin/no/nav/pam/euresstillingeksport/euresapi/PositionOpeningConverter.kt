@@ -66,9 +66,7 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
 
 private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
     val euresCodes: MutableList<JobCategoryCode> = mutableListOf()
-    // classification_esco_code
-    if (uuid == "217cec17-de07-49b7-9b44-3a66632aa7fe")
-        Ad.LOG.info("$uuid classification_esco_code {}", properties["classification_esco_code"])
+
     properties["classification_esco_code"]?.let {
         euresCodes.add(JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal",
                     code = it.toString()))

@@ -29,6 +29,7 @@
     "employer": "Os kommune",
     "location": "Luranetunet",
     "classification_input_source": "title",
+    "classification_esco_code" : "http://data.europa.eu/esco/occupation/0ce5a9f4-e00a-4bbe-b255-3c63407167a4",
     "sector": "Offentlig"
   },
   "title": "Tilkallingsvikarar - Pleie- og omsorgstenesta",
