@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.euresapi.EmployerPropertyMapping.Nace2
 import no.nav.pam.euresstillingeksport.model.Employer
 import org.slf4j.LoggerFactory
+import java.lang.ClassCastException
 
 private val JSON = jacksonObjectMapper()
 
@@ -14,7 +15,11 @@ enum class EmployerPropertyMapping(val key: String) {
 }
 
 private class Nace2Converter {
-    fun convert(value: Any): List<NorskNace> {
+    fun convert(v: Any): List<NorskNace> {
+        val value = if (v is String)
+                JSON.readValue(v)
+            else
+                v
         try {
             val map = (value as List<*>)
                     .map {
@@ -23,8 +28,8 @@ private class Nace2Converter {
                     }
 
             return map
-        } catch (e: TypeCastException) {
-            LoggerFactory.getLogger(Nace2Converter::class.java).error(e.message, e)
+        } catch (e: ClassCastException) {
+            LoggerFactory.getLogger(Nace2Converter::class.java).error("Greide ikke å konvertere nacekode $value : ${e.message}", e)
             return emptyList()
         }
     }

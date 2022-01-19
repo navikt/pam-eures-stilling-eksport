@@ -27,7 +27,7 @@ class FeedAdProvider (
     override fun `fetch updated after`(sistLest: LocalDateTime): FeedTransport {
         try {
             val uri = UriComponentsBuilder.fromUriString("${adApiURL}/feed")
-                    .queryParam("size", 100)
+                    .queryParam("size", 150)
                     .queryParam("sort", "updated,asc")
                     .queryParam("updatedSince", sistLest.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                     .build()

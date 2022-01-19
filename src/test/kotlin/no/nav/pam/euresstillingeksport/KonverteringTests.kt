@@ -9,6 +9,7 @@ import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import no.nav.pam.euresstillingeksport.model.StillingService
 import no.nav.pam.euresstillingeksport.euresapi.AdApiService
 import no.nav.pam.euresstillingeksport.euresapi.PropertyMapping
+import no.nav.pam.euresstillingeksport.euresapi.toIndustryCode
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -53,6 +54,8 @@ class KonverteringTests {
 		val ad = initAd()
 		val po = ad.convertToPositionOpening()
 		// Mulig vi trenger *litt* mer testing på om vi konverterer til riktig HR-XML
+		val nace = ad.employer?.toIndustryCode()
+		//println(nace)
 		Assertions.assertTrue(po.positionOpeningStatusCode.name == "Active")
 	}
 
