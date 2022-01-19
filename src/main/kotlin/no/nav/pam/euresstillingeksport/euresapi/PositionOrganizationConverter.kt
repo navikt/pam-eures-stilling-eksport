@@ -17,7 +17,7 @@ enum class EmployerPropertyMapping(val key: String) {
 private class Nace2Converter {
     fun convert(v: Any): List<NorskNace> {
         val value = if (v is String)
-                jacksonObjectMapper().readValue(v)
+                JSON.readValue(v)
             else
                 v
         try {
