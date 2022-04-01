@@ -47,7 +47,7 @@ class FiltreringsTest {
 
     private val mockedRepo: StillingRepository = mock<StillingRepository>(StillingRepository::class.java)
 
-    private val stillingService = StillingService(mockedRepo, ObjectMapper())
+    private val stillingService = StillingService(mockedRepo, objectMapper)
 
     @Test
     fun `skal filtrere bort stillinger som ikke er saksbehandlet ferdig`() {

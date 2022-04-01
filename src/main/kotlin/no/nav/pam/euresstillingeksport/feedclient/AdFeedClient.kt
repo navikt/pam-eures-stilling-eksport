@@ -36,7 +36,7 @@ class AdFeedClient (@Qualifier("pam-ad-feed-provider") private val adProvider: A
             })
             retryTemplate.setThrowLastExceptionOnExhausted(true)
             retryTemplate.setRetryPolicy(SimpleRetryPolicy(3,
-                    mapOf(IOException::class.java to true)))
+                    mapOf(IOException::class.java to true),false))
             return retryTemplate
         }
 
