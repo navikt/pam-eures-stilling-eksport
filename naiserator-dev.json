@@ -1,3 +1,4 @@
 {
-  "ingress": ["https://pam-eures-stilling-eksport.dev-gcp.nais.io", "https://eures-eksport.dev.nav.no", "https://eures-eksport.ekstern.dev.nav.no"]
+  "ingress": ["https://pam-eures-stilling-eksport.dev-gcp.nais.io", "https://eures-eksport.dev.nav.no", "https://eures-eksport.ekstern.dev.nav.no"],
+  "cloudsql_tier": "db-f1-micro"
 }

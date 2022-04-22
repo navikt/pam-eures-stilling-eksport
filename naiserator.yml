@@ -39,6 +39,7 @@ spec:
     sqlInstances:
       - name: pam-eures-eksport
         type: POSTGRES_11
+        tier: "{{ cloudsql_tier }}"
         diskType: SSD
         highAvailability: true
         diskSize: 50
