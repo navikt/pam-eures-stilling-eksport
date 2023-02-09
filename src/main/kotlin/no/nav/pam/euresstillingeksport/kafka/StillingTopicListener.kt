@@ -44,10 +44,10 @@ class StillingTopicListener(
                     }
                     val record = records.first()
                     LOG.info(
-                        "Leste ${records.count()} rader fra $inboundTopic. Keys: {}. Offset: ${records.first().offset()}",
+                        "Leste fra $inboundTopic. Keys: {}. Offset: ${record.offset()}",
                         records.records(inboundTopic).map { it.key() }.joinToString()
                     )
-                    handleRecord(records.first())
+                    handleRecord(record)
                     //TODO: Legg tilbake commitSync
 //                    kafkaConsumer.commitSync()
                 }
