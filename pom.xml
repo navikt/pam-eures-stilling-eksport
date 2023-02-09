@@ -200,8 +200,17 @@
 			<artifactId>pam-geography</artifactId>
 			<version>${pam-geography.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>3.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.13</artifactId>
+			<version>3.2.3</version>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>

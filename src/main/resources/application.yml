@@ -42,3 +42,20 @@ pam-ad:
 vault:
   dbcreds.url: https://vault.adeo.no/v1/postgresql/preprod-fss/static-creds/pam-eures-stillingeksport-prod-static-admin
   auth.url: https://vault.adeo.no/v1/auth/kubernetes/preprod/sbs/login
+
+kafka:
+  bootstrapServers: ${KAFKA_BROKERS:localhost}
+  securityProtocol: SSL
+  registryUser: ${KAFKA_SCHEMA_REGISTRY_USER:user}
+  registryPassword: ${KAFKA_SCHEMA_REGISTRY_PASSWORD:pwd}
+  certificate: ${KAFKA_CERTIFICATE:cert}
+  certificatePath: ${KAFKA_CERTIFICATE_PATH:/dev/zero}
+  privateKey: ${KAFKA_PRIVATE_KEY:key}
+  privateKeyPath: ${KAFKA_PRIVATE_KEY_PATH:/dev/zero}
+  ca: ${KAFKA_CA:ca}
+  caPath: ${KAFKA_CA_PATH}
+  keystorePath: ${KAFKA_KEYSTORE_PATH:/dev/zero}
+  truststorePath: ${KAFKA_TRUSTSTORE_PATH:/dev/zero}
+  credstorePassword: ${KAFKA_CREDSTORE_PASSWORD:pwd}
+  inboundGroupId: pam-eures-stilling-eksport-1
+  inboundTopic: teampam.stilling-intern-1
