@@ -35,9 +35,9 @@ class StillingTopicListener(
         var records: ConsumerRecords<String?, ByteArray?>? = null
         val rollbackCounter = AtomicInteger(0)
         while (topicBridgeHealthService.isHealthy() && rollbackCounter.get() < 10) {
-            LOG.info("Poll ..")
             try {
                 records = kafkaConsumer.poll(Duration.ofMillis(50))
+                LOG.info("Fikk ${records.count()} verdier.")
                 if (records.count() > 0) {
                     LOG.info(
                         "Leste ${records.count()} rader fra $inboundTopic. Keys: {}",
