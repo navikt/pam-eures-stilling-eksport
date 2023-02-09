@@ -48,7 +48,7 @@ class StillingTopicListener(
                         records.records(inboundTopic).map { it.key() }.joinToString()
                     )
                     handleRecord(record)
-                    kafkaConsumer.commitSync()
+                    //kafkaConsumer.commitSync()
                 }
             } catch (e: AuthorizationException) {
                 LOG.error("AuthorizationException i consumerloop, restarter app ${e.message}", e)
