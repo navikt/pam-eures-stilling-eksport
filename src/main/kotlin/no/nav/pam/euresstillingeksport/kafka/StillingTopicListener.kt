@@ -36,17 +36,18 @@ class StillingTopicListener(
         val rollbackCounter = AtomicInteger(0)
         while (topicBridgeHealthService.isHealthy() && rollbackCounter.get() < 10) {
             try {
-                records = kafkaConsumer.poll(Duration.ofMillis(50))
-                LOG.info("Fikk ${records.count()} verdier.")
+                records = kafkaConsumer.poll(Duration.ofSeconds(10))
+                LOG.info("Fikk ${records.count()} verdier. ")
                 if (records.count() > 0) {
-                    LOG.info(
-                        "Leste ${records.count()} rader fra $inboundTopic. Keys: {}",
-                        records.records(inboundTopic).map { it.key() }.joinToString()
-                    )
                     if (records.count() > 1) {
                         error("Skal bare få inn en record om gangen")
                     }
-                    handleRecord(records.iterator().next())
+                    val record = records.first()
+                    LOG.info(
+                        "Leste ${records.count()} rader fra $inboundTopic. Keys: {}. Offset: ${records.first().offset()}",
+                        records.records(inboundTopic).map { it.key() }.joinToString()
+                    )
+                    handleRecord(records.first())
                     //TODO: Legg tilbake commitSync
 //                    kafkaConsumer.commitSync()
                 }
