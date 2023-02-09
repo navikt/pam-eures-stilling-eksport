@@ -80,8 +80,7 @@ class StillingTopicListener(
         val stilling = objectMapper.readValue(record.value(), Ad::class.java)
 
         LOG.info("Stilling ${stilling.uuid} parset OK")
-    //TODO: Kommentert ut for å teste at Kafka lesing og deserealisering går OK
-    //     stillingService.lagreStillinger(listOf(stilling))
+        stillingService.lagreStillinger(listOf(stilling))
     }
 
     private fun rollback(
