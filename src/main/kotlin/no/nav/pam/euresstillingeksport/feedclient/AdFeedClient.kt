@@ -64,8 +64,9 @@ class AdFeedClient (@Qualifier("pam-ad-feed-provider") private val adProvider: A
 
         val feedLagMeter = meterRegistry.gauge("pam.ad.feed.lag", AtomicInteger(0))
 
-        @Scheduled(cron = "*/20 * * * * *")
-        @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
+        // TODO: Slett denne klassen. Vi går over til å bruke Kafka, men kommenter kun ut scheduleringen for nå
+//        @Scheduled(cron = "*/20 * * * * *")
+//        @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
         fun lesFeed() {
             LOG.info("Poller ad feed for stillinger")
             val sistLest = feedRepository.hentFeedPeker()

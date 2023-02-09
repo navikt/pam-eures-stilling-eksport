@@ -1,5 +1,6 @@
 package no.nav.pam.euresstillingeksport.infrastruktur
 
+import no.nav.pam.euresstillingeksport.kafka.TopicBridgeHealthService
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,13 +20,20 @@ class StatusController(@Autowired private val repo: StillingRepository) {
     }
 
     @RequestMapping("/isAlive")
-    public fun isAlive(): ResponseEntity<String> {
+    public fun isAlive(@Autowired topicBridgeHealthService: TopicBridgeHealthService): ResponseEntity<String> {
         try {
             repo.findStillingsannonserByIds(listOf("finnes_ikke"))
         } catch (e: Exception) {
             LOG.info("Failed to connect to database", e)
             return ResponseEntity("Not OK", HttpStatus.SERVICE_UNAVAILABLE)
         }
+
+        if (topicBridgeHealthService.isHealthy())
+            ResponseEntity("OK", HttpStatus.OK)
+        else
+            ResponseEntity("Not OK", HttpStatus.SERVICE_UNAVAILABLE)
+
+
         return ResponseEntity("OK", HttpStatus.OK)
     }
 

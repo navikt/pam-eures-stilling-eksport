@@ -107,6 +107,7 @@ class KafkaConfig {
             props[ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG] = maxPollIntervalMs
             props[ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG] = 10000
             props[ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG] = 3000
+            props[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] = 1
 
             LOG.info("Logger kafkaproperties:  ${props}")
             return props

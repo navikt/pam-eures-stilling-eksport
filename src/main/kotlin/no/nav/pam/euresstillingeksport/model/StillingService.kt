@@ -20,6 +20,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
 
     @Transactional
     fun lagreStillinger(ads: List<Ad>): Int {
+        LOG.debug("Lagrer antall stillinger: ${ads.size}")
         var antallModifiserteStillinger: Int = 0
         val eksisterendeStillinger = stillingRepository.findStillingsannonserByIds(ads.map {it.uuid})
                 .associateBy({it.stillingsannonseMetadata.id}, {it})
