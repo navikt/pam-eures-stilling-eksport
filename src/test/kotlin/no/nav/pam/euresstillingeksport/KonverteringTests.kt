@@ -1,8 +1,6 @@
 package no.nav.pam.euresstillingeksport
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
-import no.nav.pam.euresstillingeksport.feedclient.FeedTransport
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
@@ -38,8 +36,6 @@ class KonverteringTests {
 	@Autowired
 	lateinit var adApi : AdApiService
 
-	@MockBean
-	lateinit var adClient: AdFeedClient
 
 	val root = "/input/api/jv/v0.1"
 

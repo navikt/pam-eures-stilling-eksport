@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger
 @Profile("!test")
 class StillingTopicListener(
     @Autowired private val kafkaConsumer: KafkaConsumer<String?, ByteArray?>,
-    @Autowired private val topicBridgeHealthService: TopicBridgeHealthService,
+    @Autowired private val kafkaHealthService: KafkaHealthService,
     @Autowired private val objectMapper: ObjectMapper,
     @Value("\${kafka.inboundTopic}") private val inboundTopic: String,
     @Autowired private val stillingService: StillingService
@@ -34,7 +34,7 @@ class StillingTopicListener(
         LOG.info("Starter kafka listener...")
         var records: ConsumerRecords<String?, ByteArray?>? = null
         val rollbackCounter = AtomicInteger(0)
-        while (topicBridgeHealthService.isHealthy() && rollbackCounter.get() < 10) {
+        while (kafkaHealthService.isHealthy() && rollbackCounter.get() < 10) {
             try {
                 records = kafkaConsumer.poll(Duration.ofSeconds(10))
                 LOG.info("Fikk ${records.count()} verdier. ")
@@ -44,16 +44,15 @@ class StillingTopicListener(
                     }
                     val record = records.first()
                     LOG.info(
-                        "Leste fra $inboundTopic. Keys: {}. Offset: ${record.offset()}",
+                        "Leste fra $inboundTopic. Keys: {}. Offset: ${record.offset()} . Partition: ${record.partition()}",
                         records.records(inboundTopic).map { it.key() }.joinToString()
                     )
                     handleRecord(record)
-                    //TODO: Legg tilbake commitSync
-//                    kafkaConsumer.commitSync()
+                    kafkaConsumer.commitSync()
                 }
             } catch (e: AuthorizationException) {
                 LOG.error("AuthorizationException i consumerloop, restarter app ${e.message}", e)
-                topicBridgeHealthService.addUnhealthyVote()
+                kafkaHealthService.addUnhealthyVote()
             } catch (ke: KafkaException) {
                 LOG.error("KafkaException occurred in consumeLoop", ke)
                 // Enten så ruller vi tilbake, eller så dreper vi appen - uvisst hva som er best strategi?
@@ -61,18 +60,18 @@ class StillingTopicListener(
                 // Har derfor lagt inn en grense på 10 rollback før appen omstartes. Det er fortsatt potensiale
                 // for å publisere svært mange meldinger, men det går ikke like fort...
                 if (ke.cause != null && ke.cause is AuthorizationException)
-                    topicBridgeHealthService.addUnhealthyVote()
+                    kafkaHealthService.addUnhealthyVote()
                 else
                     rollback(records!!, kafkaConsumer, rollbackCounter)
             } catch (e: Exception) {
                 // Catchall - impliserer at vi skal restarte app
                 LOG.error("Uventet Exception i consumerloop, restarter app ${e.message}", e)
-                topicBridgeHealthService.addUnhealthyVote()
+                kafkaHealthService.addUnhealthyVote()
             }
 
         }
-        LOG.info("Closing KafkaConsumer. Helsestatus: ${topicBridgeHealthService.isHealthy()}")
-        topicBridgeHealthService.addUnhealthyVote()
+        LOG.info("Closing KafkaConsumer. Helsestatus: ${kafkaHealthService.isHealthy()}")
+        kafkaHealthService.addUnhealthyVote()
         kafkaConsumer.close()
     }
 
@@ -80,7 +79,7 @@ class StillingTopicListener(
         val stilling = objectMapper.readValue(record.value(), Ad::class.java)
 
         LOG.info("Stilling ${stilling.uuid} parset OK")
-        stillingService.lagreStillinger(listOf(stilling))
+        stillingService.lagreStillinger(stilling)
     }
 
     private fun rollback(
@@ -106,19 +105,17 @@ class StillingTopicListener(
             rollbackCounter.addAndGet(1)
         } catch (e: Exception) {
             LOG.error("Rollback feilet, restarter appen", e)
-            topicBridgeHealthService.addUnhealthyVote()
+            kafkaHealthService.addUnhealthyVote()
         }
     }
 }
 
 @Service
-class TopicBridgeHealthService {
+class KafkaHealthService {
     private val unhealthyVotes = AtomicInteger(0)
 
     fun addUnhealthyVote() =
         unhealthyVotes.addAndGet(1)
-
-    fun unhealthyVotes() = unhealthyVotes.get()
 
     fun isHealthy() = unhealthyVotes.get() == 0
 }

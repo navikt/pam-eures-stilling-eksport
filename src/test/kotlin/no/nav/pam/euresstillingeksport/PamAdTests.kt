@@ -1,9 +1,7 @@
 package no.nav.pam.euresstillingeksport
 
 import com.github.tomakehurst.wiremock.WireMockServer
-import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
 import no.nav.pam.euresstillingeksport.service.ApiServiceStub
-import org.elasticsearch.ElasticsearchStatusException
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -20,9 +18,6 @@ class PamAdTests {
 
 	@Autowired
 	lateinit var restTemplate: TestRestTemplate
-
-	@Autowired
-	lateinit var adClient: AdFeedClient
 
 	val root = "/input/api/jv/v0.1"
 	var wireMockServer : WireMockServer? = null
@@ -45,7 +40,7 @@ class PamAdTests {
 	fun shutdownWiremock() {
 		wireMockServer!!.stop()
 	}
-
+/*
 	@Test
 	@Disabled("Wiremock data er ikke oppdatert til å håndtere polling mot pam-ad")
 	fun skaHenteAd() {
@@ -95,4 +90,6 @@ class PamAdTests {
 
 
 	}
+
+ */
 }

@@ -1,6 +1,5 @@
 package no.nav.pam.euresstillingeksport
 
-import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
 import no.nav.pam.euresstillingeksport.model.StillingService
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,9 +22,6 @@ class PamAdITests {
 	lateinit var restTemplate: TestRestTemplate
 
 	@Autowired
-	lateinit var adClient: AdFeedClient
-
-	@Autowired
 	lateinit var stillingService: StillingService
 
 	val root = "/input/api/jv/v0.1"
@@ -39,7 +35,7 @@ class PamAdITests {
 	fun disableSSLChecks() {
 		ApiTestConfiguration.disableSSLChecksDefaultHttpClient()
 	}
-
+/*
 	@Test
 	fun skaHenteAd() {
 		val ad = adClient.getAd("db6cc067-7f39-42f1-9866-d9ee47894ec6")
@@ -53,4 +49,6 @@ class PamAdITests {
 		val stillingsannonse = stillingService.hentStillingsannonse(ad.uuid)
 		Assertions.assertNotNull(stillingsannonse?.ad)
 	}
+
+ */
 }
