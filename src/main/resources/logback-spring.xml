@@ -26,4 +26,9 @@
   <root level="info">
     <appender-ref ref="stdout_json" />
   </root>
+
+  <logger name="no.nav.pam.euresstillingeksport" level="DEBUG">
+    <appender-ref ref="stdout_json" />
+  </logger>
+
 </configuration>
