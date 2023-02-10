@@ -79,7 +79,7 @@ class StillingTopicListener(
         val stilling = objectMapper.readValue(record.value(), Ad::class.java)
 
         LOG.info("Stilling ${stilling.uuid} parset OK")
-        stillingService.lagreStillinger(stilling)
+        stillingService.lagreStilling(stilling)
     }
 
     private fun rollback(

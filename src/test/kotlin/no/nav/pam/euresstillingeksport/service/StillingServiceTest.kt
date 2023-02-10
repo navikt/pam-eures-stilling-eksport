@@ -18,7 +18,7 @@ class FetchTest {
     private val mockedRepo: StillingRepository = mock<StillingRepository>(StillingRepository::class.java)
 
     private val stillingService = StillingService(mockedRepo, objectMapper)
-    
+
     @Test
     fun `skal håndtere at stilling ikke finnes`() {
         Mockito.`when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(null)
@@ -116,7 +116,7 @@ class FiltreringsTest {
 
         val ad = stillingMedEuresKilde
 
-        assertThat(stillingService.lagreStillinger(ad)).isEqualTo(0)
+        assertThat(stillingService.lagreStilling(ad)).isEqualTo(0)
     }
 
     @Test
@@ -126,7 +126,7 @@ class FiltreringsTest {
 
         val ad = stillingRegistrertAvSaksbehandler
 
-        assertThat(stillingService.lagreStillinger(ad)).isEqualTo(1)
+        assertThat(stillingService.lagreStilling(ad)).isEqualTo(1)
     }
 }
 

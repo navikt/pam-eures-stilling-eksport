@@ -19,13 +19,15 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
     }
 
     @Transactional
-    fun lagreStillinger(stilling: Ad): Int {
+    fun lagreStilling(stilling: Ad): Int {
         val eksisterendeStilling = stillingRepository.findStillingsannonseById(stilling.uuid)
         val skalSendestilEures = skalStillingSendesTilEures(stilling)
+        LOG.debug("Stilling ${stilling.uuid} skal sendes til Eures: ${skalSendestilEures} eksisterende stilling: ${eksisterendeStilling}")
 
         if (eksisterendeStilling == null && skalSendestilEures) {
             if (AdStatus.fromString(stilling.status) == AdStatus.ACTIVE) {
                 val jsonAd = objectMapper.writeValueAsString(stilling)
+                LOG.debug("Lagrer ny stilling ${stilling.uuid}")
                 stillingRepository.saveStillingsannonser(
                     listOf(
                         StillingsannonseJson(
@@ -51,6 +53,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                         || eksisterendeMetadata.status != nyMetadata.status)
             ) {
                 // Reell endring i annonse
+                LOG.debug("Oppdaterer eksisterende stilling ${stilling.uuid}")
                 stillingRepository.updateStillingsannonser(listOf(StillingsannonseJson(nyMetadata, jsonAd)))
                 LOG.info("Annonse {} er endret. Status er {}", stilling.uuid, stilling.status)
                 return 1
@@ -59,6 +62,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
             }
         }
         if (eksisterendeStilling != null && !skalSendestilEures && AdStatus.ACTIVE.equals(eksisterendeStilling?.stillingsannonseMetadata?.status)) {
+            LOG.debug("Setter eksisterende stilling ${stilling.uuid} til inaktiv, da den ikke skal vises hos Eures")
             val nyMetadata = eksisterendeStilling.stillingsannonseMetadata.copy(status=AdStatus.INACTIVE, sistEndretTs = stilling.updated, lukketTs = LocalDateTime.now())
             val annonseSattInaktiv = eksisterendeStilling.copy(stillingsannonseMetadata = nyMetadata)
             stillingRepository.updateStillingsannonser(listOf(annonseSattInaktiv))
