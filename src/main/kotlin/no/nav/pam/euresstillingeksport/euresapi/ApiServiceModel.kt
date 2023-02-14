@@ -37,9 +37,9 @@ data class GetAllResponse (
 )
 
 data class GetChangesResponse (
-        val createdReferences : List<Stillingreferanse>,
-        val modifiedReferences : List<Stillingreferanse>,
-        val closedReferences : List<Stillingreferanse>
+    val createdReferences : List<Stillingreferanse> = emptyList(),
+    val modifiedReferences : List<Stillingreferanse> = emptyList(),
+    val closedReferences : List<Stillingreferanse> = emptyList()
 )
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
