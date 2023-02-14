@@ -25,7 +25,9 @@ class ApiController {
      */
     @GetMapping("/getChanges/{timestamp}", produces = ["application/json"])
     fun getChanges(@PathVariable("timestamp") ts: Long): GetChangesResponse =
-            apiService.getChanges(ts)
+        // apiService.getChanges(ts)
+        // TODO: Legg tilbake service kall - dette er for at Eures ikke skal slette alt mens vi repopulerer databasen
+        GetChangesResponse()
 
     /**
      * Henter detaljer om en stilling
