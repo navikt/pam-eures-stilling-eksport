@@ -57,3 +57,5 @@ spec:
       rules:
         - application: pam-ad
         - application: pam-internal-search-api
+  kafka:
+    pool: {{kafka_pool}}
