@@ -57,7 +57,6 @@ class TimestampTests {
 	 */
 
 	@Test
-	@Disabled("Legg tilbake etter vi har lagt tilbake tomt resultat i getChanges")
 	fun skalHandtereTimestamps() {
 		// Eksempel 1
 		val now = Converters.localdatetimeToTimestamp(LocalDateTime.now())
@@ -122,6 +121,4 @@ class TimestampTests {
 		val ex4ResponseChanges = restTemplate.getForEntity("$root/getChanges/$nyereEnn", GetChangesResponse::class.java)
 		Assertions.assertTrue(ex4ResponseChanges.body!!.modifiedReferences[0].lastModificationTimestamp >= nyereEnn)
 	}
-
-
 }
