@@ -64,8 +64,8 @@ class AdFeedClient (@Qualifier("pam-ad-feed-provider") private val adProvider: A
 
         val feedLagMeter = meterRegistry.gauge("pam.ad.feed.lag", AtomicInteger(0))
 
-        @Scheduled(cron = "*/20 * * * * *")
-        @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
+//        @Scheduled(cron = "*/20 * * * * *")
+//        @SchedulerLock(name = "adFeedLock", lockAtMostForString = "PT90M")
         fun lesFeed() {
             LOG.info("Poller ad feed for stillinger")
             val sistLest = feedRepository.hentFeedPeker()
