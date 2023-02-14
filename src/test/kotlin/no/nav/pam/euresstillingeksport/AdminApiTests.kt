@@ -1,14 +1,11 @@
 package no.nav.pam.euresstillingeksport
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
-import no.nav.pam.euresstillingeksport.feedclient.FeedTransport
 import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.model.AdStatus
 import no.nav.pam.euresstillingeksport.model.StillingsannonseJson
 import no.nav.pam.euresstillingeksport.model.StillingsannonseMetadata
 import no.nav.pam.euresstillingeksport.euresapi.GetAllResponse
-import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -39,10 +36,6 @@ class AdminApiTests {
     @Autowired
     lateinit var stillingRepository: StillingRepository
 
-    @MockBean
-    lateinit var adClient: AdFeedClient
-
-    val apiRoot = "/input/api/jv/v0.1"
     val root = "/internal/admin"
 
     fun initAd() : Ad =
@@ -57,37 +50,6 @@ class AdminApiTests {
     @BeforeEach
     fun cleanDb() {
         stillingRepository.slettNyereEnn(LocalDateTime.parse("1970-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
-    }
-
-    @Test
-    fun skalJustereFeedpeker() {
-        val ad1 = initAd().copy(created = LocalDateTime.parse("2019-12-01T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
-        val ad2 = initAd().copy(properties= mapOf("euresflagg" to "true"),
-                created = LocalDateTime.parse("2019-12-03T12:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
-        stillingRepository.saveStillingsannonser(
-                listOf(toStillingsannonseJson(ad1), toStillingsannonseJson(ad2))
-        )
-
-        var alleResponse = restTemplate.getForEntity("$apiRoot/getAll", GetAllResponse::class.java)
-        Assertions.assertTrue(alleResponse.body!!.allReferences.size == 2)
-
-        // Skru tilbake feedpeker uten å wipe database
-        var feedpekerResponse = restTemplate.exchange("$root/feedpeker/2019-12-02T14:00:00", HttpMethod.PUT, HttpEntity.EMPTY,
-                Any::class.java, emptyMap<String, String>())
-        Assertions.assertEquals(200, feedpekerResponse.statusCodeValue)
-
-        // Se at dette ikke har påvirket antall stillinger i databasen
-        alleResponse = restTemplate.getForEntity("$apiRoot/getAll", GetAllResponse::class.java)
-        Assertions.assertTrue(alleResponse.body!!.allReferences.size == 2)
-
-        // Skru tilbake feedpeke, samt wipe database
-        feedpekerResponse = restTemplate.exchange("$root/feedpeker/2019-12-02T14:00:00?wipeDb=true", HttpMethod.PUT, HttpEntity.EMPTY,
-                Any::class.java, emptyMap<String, String>())
-        Assertions.assertEquals(200, feedpekerResponse.statusCodeValue)
-
-        // Se at dette har påvirket antall stillinger i databasen
-        alleResponse = restTemplate.getForEntity("$apiRoot/getAll", GetAllResponse::class.java)
-        Assertions.assertTrue(alleResponse.body!!.allReferences.size == 1)
     }
 
     @Test

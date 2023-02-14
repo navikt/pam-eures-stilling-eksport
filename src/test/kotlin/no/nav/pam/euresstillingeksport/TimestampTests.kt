@@ -1,8 +1,6 @@
 package no.nav.pam.euresstillingeksport
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.feedclient.AdFeedClient
-import no.nav.pam.euresstillingeksport.feedclient.FeedTransport
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.model.StillingService
@@ -18,7 +16,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.ActiveProfiles
 import java.time.LocalDateTime
@@ -58,13 +55,14 @@ class TimestampTests {
 	Dette testcaset står beskrevet i EURES Functional message exchange specifications new regulation v1.3.2
 	Kapittel 2.2.1, eksempel 1-4
 	 */
+
 	@Test
 	@Disabled("Legg tilbake etter vi har lagt tilbake tomt resultat i getChanges")
 	fun skalHandtereTimestamps() {
 		// Eksempel 1
 		val now = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		val ad = initAd()
-		stillingService.lagreStillinger(listOf(ad))
+		stillingService.lagreStilling(ad)
 
 		val ex1Response = restTemplate.getForEntity("$root/getAll", GetAllResponse::class.java)
 		Assertions.assertTrue(ex1Response.body!!.allReferences[0].creationTimestamp >= now)
@@ -78,7 +76,7 @@ class TimestampTests {
 		// fremstå som lukket for EURES, og ikke finnes i getAll
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		val adEx2 = ad.copy(status="INACTIVE")
-		stillingService.lagreStillinger(listOf(adEx2))
+		stillingService.lagreStilling(adEx2)
 		val ex2Response = restTemplate.getForEntity("$root/getAll", GetAllResponse::class.java)
 		Assertions.assertTrue(ex2Response.body!!.allReferences.isEmpty())
 
@@ -97,7 +95,7 @@ class TimestampTests {
 		val adEx3 = adEx2.copy(status="ACTIVE")
 		Thread.sleep(1L)
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
-		stillingService.lagreStillinger(listOf(adEx3))
+		stillingService.lagreStilling(adEx3)
 		val ex3ResponseDetaljer = restTemplate.postForEntity("$root/getDetails",
 				listOf(adEx3.uuid), GetDetailsResponse::class.java)
 		val ex3Ad = ex3ResponseDetaljer.body!!.details[adEx3.uuid]!!
@@ -113,7 +111,7 @@ class TimestampTests {
 		val adEx4 = adEx3.copy(medium = UUID.randomUUID().toString())
 		Thread.sleep(1L)
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
-		stillingService.lagreStillinger(listOf(adEx4))
+		stillingService.lagreStilling(adEx4)
 		val ex4ResponseDetaljer = restTemplate.postForEntity("$root/getDetails",
 				listOf(adEx4.uuid), GetDetailsResponse::class.java)
 		val ex4Ad = ex4ResponseDetaljer.body!!.details[adEx4.uuid]!!
@@ -124,4 +122,6 @@ class TimestampTests {
 		val ex4ResponseChanges = restTemplate.getForEntity("$root/getChanges/$nyereEnn", GetChangesResponse::class.java)
 		Assertions.assertTrue(ex4ResponseChanges.body!!.modifiedReferences[0].lastModificationTimestamp >= nyereEnn)
 	}
+
+
 }

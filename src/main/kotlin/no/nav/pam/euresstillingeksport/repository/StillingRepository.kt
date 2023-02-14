@@ -52,10 +52,14 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
      * @throws EmptyResultDataAccessException
      */
     fun findStillingsannonseById(uuid: String): StillingsannonseJson? {
-        val stillingsannonse = jdbcTemplate.queryForObject("select ${stillingFelter} " +
-                "from stillinger where id=?",
-                arrayOf(uuid), stillingsannonseMedContentRowMapper)
-        return stillingsannonse
+        val stillingsannonse = namedJdbcTemplate.query("select $stillingFelter " +
+                "from stillinger where id=:uuid",
+                MapSqlParameterSource().addValue("uuid", uuid), stillingsannonseMedContentRowMapper)
+        return if (stillingsannonse.size > 0) {
+            stillingsannonse[0]
+        } else {
+            null
+        }
     }
 
     fun findStillingsannonserByIds(idListe : List<String>) : List<StillingsannonseJson>{
@@ -65,7 +69,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         idChunks.forEach {
             val params = MapSqlParameterSource()
             params.addValue("idListe", it)
-            val annonserIChunk = namedJdbcTemplate.query("select ${stillingFelter} " +
+            val annonserIChunk = namedJdbcTemplate.query("select $stillingFelter " +
                         "from stillinger " +
                         "where id in (:idListe) " +
                         "order by sist_endret_ts asc",

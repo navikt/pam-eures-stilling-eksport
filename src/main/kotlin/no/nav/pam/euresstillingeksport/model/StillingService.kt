@@ -19,69 +19,58 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
     }
 
     @Transactional
-    fun lagreStillinger(ads: List<Ad>): Int {
-        var antallModifiserteStillinger: Int = 0
-        val eksisterendeStillinger = stillingRepository.findStillingsannonserByIds(ads.map {it.uuid})
-                .associateBy({it.stillingsannonseMetadata.id}, {it})
-        val nyeAnnonser = ArrayList<StillingsannonseJson>()
-        val endredeAnnonser = ArrayList<StillingsannonseJson>()
+    fun lagreStilling(stilling: Ad): Int {
+        val eksisterendeStilling = stillingRepository.findStillingsannonseById(stilling.uuid)
+        val skalSendestilEures = skalStillingSendesTilEures(stilling)
+        LOG.debug("Stilling ${stilling.uuid} skal sendes til Eures: ${skalSendestilEures} eksisterende stilling: ${eksisterendeStilling}")
 
-        ads
-                .filter {
-                    if (it.erIntern()) LOG.info("Avviser stillingen ${it.uuid} siden den er intern, men ${it.privacy}")
-                    it.erIkkeIntern()
-                }.filter {
-                    if(!it.erSaksbehandlet()) LOG.info("Avviser stillingen ${it.uuid} siden den ikke er saksbehandlet, men har status ${it.administration?.status}")
-                    it.erSaksbehandlet()
-                }.filter {
-                    if(it.erFraEures()) LOG.info("Avviser stillingen ${it.uuid} siden den stammer fra EURES, source=${it.source}")
-                    !it.erFraEures()
-                }
-                .filter {
-            try {
-                it.convertToPositionOpening()
-                true
-            } catch (e: Exception) {
-                val suffix = if (eksisterendeStillinger[it.uuid] == null) ""
-                        else ". Dette er en oppdatering av en eksisterende annonse."
-                LOG.error("Import av stillingsannonse avvist pga at den ikke kan konverteres til Eures format. " +
-                        "Stillingsannonse id:{}, feilmelding: {}{}", it.uuid, e.message, suffix, e)
-                false
+        if (eksisterendeStilling == null && skalSendestilEures) {
+            if (AdStatus.fromString(stilling.status) == AdStatus.ACTIVE) {
+                val jsonAd = objectMapper.writeValueAsString(stilling)
+                LOG.debug("Lagrer ny stilling ${stilling.uuid}")
+                stillingRepository.saveStillingsannonser(
+                    listOf(
+                        StillingsannonseJson(
+                            konverterTilStillingsannonseMetadata(stilling),
+                            jsonAd
+                        )
+                    )
+                )
+                return 1
+            } else {
+                LOG.info("Ny annonse {} har status {}, blir ikke lagt til", stilling.uuid, stilling.status)
             }
-        }.forEach {
-           val jsonAd = objectMapper.writeValueAsString(it)
-           if (eksisterendeStillinger[it.uuid] != null) {
-               // Stillingsannonsen fins i databasen fra før.
-               val eksisterendeAd = objectMapper.readValue(eksisterendeStillinger[it.uuid]?.jsonAd, Ad::class.java)
-               val eksisterendeMetadata = eksisterendeStillinger[it.uuid]?.stillingsannonseMetadata
-
-               val nyMetadata = konverterTilStillingsannonseMetadata(it, eksisterendeMetadata)
-
-               if (eksisterendeMetadata != null && nyMetadata != null
-                       && (!eksisterendeAd.equals(it)
-                               || eksisterendeMetadata.status != nyMetadata.status)) {
-                   // Reell endring i annonse
-                   endredeAnnonser.add(StillingsannonseJson(nyMetadata, jsonAd))
-                   antallModifiserteStillinger++
-                   LOG.info("Annonse {} er endret. Status er {}", it.uuid, it.status)
-               } else {
-                   LOG.info("Ingen endring i annonse {} - ignorerer", it.uuid)
-               }
-           } else {
-                // Ny Stillingsannonse - kun legg til nye annonser som er aktive
-                if (AdStatus.fromString(it.status) == AdStatus.ACTIVE) {
-                    nyeAnnonser.add(StillingsannonseJson(konverterTilStillingsannonseMetadata(it), jsonAd))
-                    antallModifiserteStillinger++
-               } else {
-                   LOG.info("Ny annonse {} har status {}, blir ikke lagt til", it.uuid, it.status)
-               }
-           }
         }
+        if (eksisterendeStilling != null && skalSendestilEures) {
+            val jsonAd = objectMapper.writeValueAsString(stilling)
+            val eksisterendeAd = objectMapper.readValue(eksisterendeStilling?.jsonAd, Ad::class.java)
+            val eksisterendeMetadata = eksisterendeStilling?.stillingsannonseMetadata
 
-        stillingRepository.updateStillingsannonser(endredeAnnonser)
-        stillingRepository.saveStillingsannonser(nyeAnnonser)
-        return antallModifiserteStillinger
+            val nyMetadata = konverterTilStillingsannonseMetadata(stilling, eksisterendeMetadata)
+
+            if (eksisterendeMetadata != null && nyMetadata != null
+                && (!eksisterendeAd.equals(stilling)
+                        || eksisterendeMetadata.status != nyMetadata.status)
+            ) {
+                // Reell endring i annonse
+                LOG.debug("Oppdaterer eksisterende stilling ${stilling.uuid}")
+                stillingRepository.updateStillingsannonser(listOf(StillingsannonseJson(nyMetadata, jsonAd)))
+                LOG.info("Annonse {} er endret. Status er {}", stilling.uuid, stilling.status)
+                return 1
+            } else {
+                LOG.info("Ingen endring i annonse {} - ignorerer", stilling.uuid)
+            }
+        }
+        if (eksisterendeStilling != null && !skalSendestilEures && AdStatus.ACTIVE.equals(eksisterendeStilling?.stillingsannonseMetadata?.status)) {
+            LOG.debug("Setter eksisterende stilling ${stilling.uuid} til inaktiv, da den ikke skal vises hos Eures")
+            val nyMetadata = eksisterendeStilling.stillingsannonseMetadata.copy(status=AdStatus.INACTIVE, sistEndretTs = stilling.updated, lukketTs = LocalDateTime.now())
+            val annonseSattInaktiv = eksisterendeStilling.copy(stillingsannonseMetadata = nyMetadata)
+            stillingRepository.updateStillingsannonser(listOf(annonseSattInaktiv))
+            return 1
+        }
+        return 0
     }
+
 
     fun slettNyereEnn(tidspunkt: LocalDateTime) = stillingRepository.slettNyereEnn(tidspunkt)
 
@@ -131,6 +120,29 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                 sistEndretTs = now,
                 lukketTs = closed
         )
+    }
+
+    fun skalStillingSendesTilEures(stilling: Ad) : Boolean {
+        if (stilling.erIntern()) {
+            LOG.info("Avviser stillingen ${stilling.uuid} siden den er intern, men ${stilling.privacy}")
+            return false
+        }
+        if (stilling.erFraEures()) {
+            LOG.info("Avviser stillingen ${stilling.uuid} siden den stammer fra EURES, source=${stilling.source}")
+            return false
+        }
+        if (!stilling.erSaksbehandlet()) {
+            LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er saksbehandlet, men har status ${stilling.administration?.status}")
+            return false
+        }
+        try {
+            stilling.convertToPositionOpening()
+        } catch (e: Exception) {
+            LOG.error("Import av stillingsannonse avvist pga at den ikke kan konverteres til Eures format. " +
+                    "Stillingsannonse id:{}, feilmelding: {}", stilling.uuid, e.message, e)
+            return false
+        }
+        return true
     }
 
     fun hentAlleAktiveStillinger() : List<StillingsannonseMetadata> =
