@@ -1,5 +1,4 @@
 {
   "ingress": ["https://pam-eures-stilling-eksport.intern.nav.no", "https://eures-eksport-gcp.nav.no"],
-  "cloudsql_tier": "db-custom-1-3840",
-  "kafka_pool": "nav-prod"
+  "cloudsql_tier": "db-custom-1-3840"
 }
