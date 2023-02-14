@@ -25,7 +25,7 @@ class ApiController {
      */
     @GetMapping("/getChanges/{timestamp}", produces = ["application/json"])
     fun getChanges(@PathVariable("timestamp") ts: Long): GetChangesResponse =
-        GetChangesResponse()
+        apiService.getChanges(ts)
 
     /**
      * Henter detaljer om en stilling
