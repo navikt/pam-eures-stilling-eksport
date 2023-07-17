@@ -15,8 +15,8 @@
 	<description>EURES eksport av stillinger</description>
 
 	<properties>
-		<java.version>12</java.version>
-		<kotlin.version>1.3.70</kotlin.version>
+		<java.version>17</java.version>
+		<kotlin.version>1.8.22</kotlin.version>
 		<logback-access.version>2.7.1</logback-access.version>
 		<logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
 		<wiremock.version>2.25.1</wiremock.version>
