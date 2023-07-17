@@ -3,7 +3,6 @@ package no.nav.pam.euresstillingeksport.rest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.micrometer.core.instrument.Tag
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
 import org.apache.http.HttpHost
@@ -15,16 +14,12 @@ import org.elasticsearch.client.RestClientBuilder
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags
-import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
-import org.springframework.http.HttpRequest
 import org.springframework.http.ResponseEntity
-import org.springframework.http.client.ClientHttpResponse
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.retry.annotation.EnableRetry
@@ -41,9 +36,6 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpFilter
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import org.springframework.http.client.observation.ClientRequestObservationConvention
-import org.springframework.http.client.observation.DefaultClientRequestObservationConvention
-import org.springframework.http.server.observation.ServerRequestObservationConvention
 import javax.sql.DataSource
 
 @Configuration
@@ -107,7 +99,7 @@ class ApiConfiguration {
 }
 
 class DenyEksternFilter : HttpFilter() {
-    override protected fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
+    override fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
         if (req != null &&
                 (req.getHeader("host").contains(".ekstern.", true) ||
                     req.getHeader("host").contains("eures-eksport-gcp.nav.no", true))
