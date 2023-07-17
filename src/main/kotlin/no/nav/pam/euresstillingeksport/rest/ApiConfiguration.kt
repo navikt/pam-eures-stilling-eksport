@@ -95,27 +95,6 @@ class ApiConfiguration {
     open fun lockProvider(@Autowired dataSource: DataSource, @Autowired transactionManager: PlatformTransactionManager) =
             JdbcTemplateLockProvider(JdbcTemplate(dataSource), transactionManager)
 
-    /*
-    @Bean
-    fun restTemplateTagConfigurer(): RestTemplateExchangeTagsProvider? {
-        return CustomRestTemplateExchangeTagsProvider()
-    }
-
-    private class CustomRestTemplateExchangeTagsProvider : RestTemplateExchangeTagsProvider {
-        override fun getTags(urlTemplate: String?, request: HttpRequest, response: ClientHttpResponse): Iterable<Tag> {
-            // we only use path for tags, because of hitting a limit of tags. The cardinality for uri might cause issue.
-            return Arrays.asList(
-                    RestTemplateExchangeTags.method(request),
-                    RestTemplateExchangeTags.uri(request.uri.path),
-                    RestTemplateExchangeTags.status(response),
-                    RestTemplateExchangeTags.clientName(request))
-        }
-    }
-
-    private class testing : ServerRequestObservationConvention {
-        val tester : ServerRequestObservationConvention =
-    }
-*/
     @Bean
     fun denyInternalFilter() : FilterRegistrationBean<HttpFilter> {
         val reg = FilterRegistrationBean<HttpFilter>();
