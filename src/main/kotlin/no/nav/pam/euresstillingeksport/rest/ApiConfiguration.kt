@@ -37,10 +37,13 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import java.net.URL
 import java.util.*
-import javax.servlet.FilterChain
-import javax.servlet.http.HttpFilter
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.FilterChain
+import jakarta.servlet.http.HttpFilter
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import org.springframework.http.client.observation.ClientRequestObservationConvention
+import org.springframework.http.client.observation.DefaultClientRequestObservationConvention
+import org.springframework.http.server.observation.ServerRequestObservationConvention
 import javax.sql.DataSource
 
 @Configuration
@@ -92,6 +95,7 @@ class ApiConfiguration {
     open fun lockProvider(@Autowired dataSource: DataSource, @Autowired transactionManager: PlatformTransactionManager) =
             JdbcTemplateLockProvider(JdbcTemplate(dataSource), transactionManager)
 
+    /*
     @Bean
     fun restTemplateTagConfigurer(): RestTemplateExchangeTagsProvider? {
         return CustomRestTemplateExchangeTagsProvider()
@@ -108,6 +112,10 @@ class ApiConfiguration {
         }
     }
 
+    private class testing : ServerRequestObservationConvention {
+        val tester : ServerRequestObservationConvention =
+    }
+*/
     @Bean
     fun denyInternalFilter() : FilterRegistrationBean<HttpFilter> {
         val reg = FilterRegistrationBean<HttpFilter>();

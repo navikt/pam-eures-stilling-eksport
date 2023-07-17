@@ -67,7 +67,6 @@ class KafkaConfig {
      * See [Consumer configs](http://kafka.apache.org/documentation.html#consumerconfigs)
      */
     @ConfigurationProperties(prefix = "kafka")
-    @ConstructorBinding
     data class InboundKafkaProperties(var bootstrapServers: String? = null,
                                       var truststorePath: String? = null,
                                       var credstorePassword: String? = null,
