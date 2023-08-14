@@ -3,7 +3,6 @@ package no.nav.pam.euresstillingeksport.rest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.micrometer.core.instrument.Tag
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
 import org.apache.http.HttpHost
@@ -15,16 +14,12 @@ import org.elasticsearch.client.RestClientBuilder
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags
-import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
-import org.springframework.http.HttpRequest
 import org.springframework.http.ResponseEntity
-import org.springframework.http.client.ClientHttpResponse
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.retry.annotation.EnableRetry
@@ -37,10 +32,10 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import java.net.URL
 import java.util.*
-import javax.servlet.FilterChain
-import javax.servlet.http.HttpFilter
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.FilterChain
+import jakarta.servlet.http.HttpFilter
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import javax.sql.DataSource
 
 @Configuration
@@ -93,22 +88,6 @@ class ApiConfiguration {
             JdbcTemplateLockProvider(JdbcTemplate(dataSource), transactionManager)
 
     @Bean
-    fun restTemplateTagConfigurer(): RestTemplateExchangeTagsProvider? {
-        return CustomRestTemplateExchangeTagsProvider()
-    }
-
-    private class CustomRestTemplateExchangeTagsProvider : RestTemplateExchangeTagsProvider {
-        override fun getTags(urlTemplate: String?, request: HttpRequest, response: ClientHttpResponse): Iterable<Tag> {
-            // we only use path for tags, because of hitting a limit of tags. The cardinality for uri might cause issue.
-            return Arrays.asList(
-                    RestTemplateExchangeTags.method(request),
-                    RestTemplateExchangeTags.uri(request.uri.path),
-                    RestTemplateExchangeTags.status(response),
-                    RestTemplateExchangeTags.clientName(request))
-        }
-    }
-
-    @Bean
     fun denyInternalFilter() : FilterRegistrationBean<HttpFilter> {
         val reg = FilterRegistrationBean<HttpFilter>();
         reg.filter = DenyEksternFilter()
@@ -120,7 +99,7 @@ class ApiConfiguration {
 }
 
 class DenyEksternFilter : HttpFilter() {
-    override protected fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
+    override fun doFilter(req: HttpServletRequest?, res: HttpServletResponse?, chain: FilterChain?) {
         if (req != null &&
                 (req.getHeader("host").contains(".ekstern.", true) ||
                     req.getHeader("host").contains("eures-eksport-gcp.nav.no", true))
