@@ -19,7 +19,7 @@
         <kotlin.version>1.8.22</kotlin.version>
         <logback-access.version>2.7.1</logback-access.version>
         <logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
-        <wiremock.version>2.25.1</wiremock.version>
+        <wiremock.version>2.35.1</wiremock.version>
         <shedlock.version>3.0.0</shedlock.version>
         <postgresql.version>42.2.13</postgresql.version>
         <elastic-client>7.17.1</elastic-client>
