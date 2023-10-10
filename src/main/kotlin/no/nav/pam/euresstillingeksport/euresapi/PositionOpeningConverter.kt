@@ -42,8 +42,8 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionQualifications = null, // We do not have these data in a structured format
             positionFormattedDescription = toFormattedDescription(),
             workingLanguageCode = "NO",
-            positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key].toString() ?: "na")),
-            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key].toString()
+            positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key]?.toString()?: "na")),
+            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]?.toString()
                     ?: ""),
             positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()
                     ?: ""),
