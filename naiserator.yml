@@ -17,7 +17,7 @@ spec:
   replicas:
     min: 2
     max: 2
-  cpuThresholdPercentage: 50
+    cpuThresholdPercentage: 50
   resources:
     limits:
       cpu: 3000m
@@ -44,7 +44,6 @@ spec:
         highAvailability: true
         diskSize: 50
         diskAutoresize: true
-        autoBackupTime: "03:30"
         databases:
           - name: pameuresexp
             envVarPrefix: DB
