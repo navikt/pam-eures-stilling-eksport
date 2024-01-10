@@ -3,17 +3,14 @@ package no.nav.pam.euresstillingeksport.rest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import jakarta.servlet.FilterChain
+import jakarta.servlet.http.HttpFilter
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
-import org.apache.http.HttpHost
-import org.apache.http.client.config.RequestConfig
-import org.apache.http.conn.ssl.DefaultHostnameVerifier
-import org.apache.http.impl.nio.client.HttpAsyncClientBuilder
-import org.elasticsearch.client.RestClient
-import org.elasticsearch.client.RestClientBuilder
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
@@ -30,12 +27,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import java.net.URL
-import java.util.*
-import jakarta.servlet.FilterChain
-import jakarta.servlet.http.HttpFilter
-import jakarta.servlet.http.HttpServletRequest
-import jakarta.servlet.http.HttpServletResponse
 import javax.sql.DataSource
 
 @Configuration
@@ -54,25 +45,6 @@ class ApiConfiguration {
                 registerModule(KotlinModule())
                 registerModule(JavaTimeModule())
             }
-
-
-    @Bean("safeElasticClientBuilder")
-    fun safeElasticClientBuilder(@Value("\${internalad-search-api.url}") elasticsearchUrl: URL? = null): RestClientBuilder {
-        return RestClient.builder(HttpHost.create(elasticsearchUrl.toString()))
-                .setPathPrefix("/eures/internalad")
-                .setRequestConfigCallback { requestConfigBuilder: RequestConfig.Builder ->
-                    requestConfigBuilder
-                            .setConnectionRequestTimeout(5000)
-                            .setConnectTimeout(10000)
-                            .setSocketTimeout(20000)
-                }
-                .setHttpClientConfigCallback { httpAsyncClientBuilder: HttpAsyncClientBuilder ->
-                    httpAsyncClientBuilder // Fix SSL hostname verification for *.local domains:
-                            .setSSLHostnameVerifier(DefaultHostnameVerifier())
-                            .setMaxConnTotal(256)
-                            .setMaxConnPerRoute(256)
-                }
-    }
 
     @Bean
     open fun restTemplate(@Autowired restTemplateBuilder: RestTemplateBuilder): RestTemplate {
