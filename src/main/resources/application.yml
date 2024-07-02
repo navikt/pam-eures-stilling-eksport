@@ -35,14 +35,6 @@ server:
   servlet:
     context-path: /
 
-internalad-search-api:
-  url: http://pam-internal-search-api
-pam-ad:
-  url: http://pam-ad/api/v1/ads
-vault:
-  dbcreds.url: https://vault.adeo.no/v1/postgresql/preprod-fss/static-creds/pam-eures-stillingeksport-prod-static-admin
-  auth.url: https://vault.adeo.no/v1/auth/kubernetes/preprod/sbs/login
-
 kafka:
   bootstrapServers: ${KAFKA_BROKERS:localhost}
   securityProtocol: SSL
