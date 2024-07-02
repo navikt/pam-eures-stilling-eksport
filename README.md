@@ -28,31 +28,6 @@ curl -k -XPOST -H 'Content-type: application/json' -d '["<uuid1>", "<uuid2>", ..
 
 ## Admin functions
 
-### Reread a job vacancy from pam-ad
-If a job vacancy for some reason needs to be fetched again from pam-ad:
-
-`curl -k https://$BASE_URL/internal/admin/rekjor/<uuid>`
-
-### Get feedpointer
-Get the timestamp of the feedpointer used to read job vacancies from pam-ad
-
-`curl -k https://$BASE_URL/internal/admin/feedpeker`
-
-### Reset feedpointer
-Reset the feed pointer to a given timestamp. Timestamp use the following format:
-`YYYY-MM-DDTHH:mm:SS`, e.g. `2019-12-01T12:00:00`
-
-`curl -k -XPUT https://$BASE_URL/internal/admin/feedpeker/<timestamp>`
-
-An optional *wipeDb* request parameter can be added to remove all vacancies newer
-than the timestamp, i.e.:
-
-`curl -k -XPUT https://$BASE_URL/internal/admin/feedpeker/<timestamp>?wipeDb=true`
-
-*NOTE*: If the feedpointer is reset during feed-reading, the reset issued by curl
-might be overwritten be the feed-reader. Resetting the feedpointer from the admin api
-does not interact with the internal locking mechanism used by the feedreader.
-
 ### Get statistics
 Get a count of Job Vacancies in the database grouped by their status.
 

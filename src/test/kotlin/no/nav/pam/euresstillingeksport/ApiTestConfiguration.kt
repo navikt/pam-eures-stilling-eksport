@@ -1,7 +1,5 @@
 package no.nav.pam.euresstillingeksport
 
-import com.github.tomakehurst.wiremock.WireMockServer
-import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.apache.hc.client5.http.impl.classic.HttpClients
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder
@@ -13,8 +11,6 @@ import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Primary
-import org.springframework.http.client.ClientHttpRequest
-import org.springframework.http.client.ClientHttpRequestFactory
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.web.client.RestTemplate
 import java.security.SecureRandom
@@ -38,76 +34,6 @@ open class ApiTestConfiguration {
     }
 
     companion object {
-        /**
-         * wiremockserver må starte hentes og startes manuelt i de testklassene som skal bruke det
-         */
-        fun wiremockServer(): WireMockServer =
-            wiremockServer(8081)
-
-        fun wiremockServer(port: Int): WireMockServer {
-            val wms = WireMockServer(port)
-
-            wms.stubFor(
-                post(urlPathEqualTo("/eures/internalad/_search"))
-                    .withRequestBody(
-                        matchingJsonPath(
-                            "$.query.bool.must[0].term.uuid.value",
-                            equalTo("db6cc067-7f39-42f1-9866-d9ee47894ec6")
-                        )
-                    )
-                    .willReturn(
-                        aResponse().withStatus(200)
-                            .withHeader("Content-Type", "application/json")
-                            .withBody(
-                                javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6_with-elastic-metadata.json")
-                                    .readText()
-                            )
-                    )
-            )
-
-            wms.stubFor(
-                post(urlPathEqualTo("/eures/internalad/_search"))
-                    .withRequestBody(matchingJsonPath("$.query.bool.must[0].term.uuid.value", equalTo("not_found")))
-                    .willReturn(
-                        aResponse().withStatus(404)
-                            .withHeader("Content-Type", "text/plain")
-                            .withBody(
-                                "Finner ikke stillingsannonse"
-                            )
-                    )
-            )
-
-            wms.stubFor(
-                post(urlPathEqualTo("/eures/internalad/_search"))
-                    .withRequestBody(matchingJsonPath("$.query.bool.must[0].term.uuid.value", equalTo("bad_request")))
-                    .willReturn(
-                        aResponse().withStatus(400)
-                            .withHeader("Content-Type", "text/plain")
-                            .withBody(
-                                "Dårlig EDB"
-                            )
-                    )
-            )
-
-            wms.stubFor(
-                post(urlPathEqualTo("/eures/internalad/_search"))
-                    .withRequestBody(
-                        matchingJsonPath(
-                            "$.query.bool.must[0].term.uuid.value",
-                            equalTo("service_unavailable")
-                        )
-                    )
-                    .willReturn(
-                        aResponse().withStatus(503)
-                            .withHeader("Content-Type", "text/plain")
-                            .withBody(
-                                "Utilgjengelig"
-                            )
-                    )
-            )
-
-            return wms
-        }
 
         /**
          * Disable SSL validering i default (Java innebygd) http client

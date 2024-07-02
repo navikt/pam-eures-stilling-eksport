@@ -25,9 +25,6 @@ spec:
     requests:
       cpu: 200m
       memory: 512Mi
-#  vault:
-#    enabled: true
-#  webproxy: true
   prometheus:
     enabled: true
     path: actuator/prometheus
@@ -53,13 +50,5 @@ spec:
           - name: pameuresexp
             envVarPrefix: DB
         cascadingDelete: false
-#  filesFrom:
-#    - secret: pam-eures-stilling-eksport-env-secret
-#      mountPath: /var/run/secrets/nais.io/vault
-  accessPolicy:
-    outbound:
-      rules:
-        - application: pam-ad
-        - application: pam-internal-search-api
   kafka:
     pool: {{kafka_pool}}
