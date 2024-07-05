@@ -3,7 +3,6 @@ package no.nav.pam.euresstillingeksport.kafka
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import no.nav.pam.geography.PostDataDAO
 import org.apache.kafka.clients.CommonClientConfigs
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener
@@ -14,7 +13,6 @@ import org.apache.kafka.common.serialization.*
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.ConstructorBinding
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
@@ -29,10 +27,6 @@ class KafkaConfig {
     companion object {
         private val LOG = LoggerFactory.getLogger(KafkaConfig::class.java)
     }
-
-    @Bean
-    fun postDataDAO() =
-            PostDataDAO()
 
     @Bean
     @Profile("!test")

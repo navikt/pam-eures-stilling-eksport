@@ -2,7 +2,6 @@ package no.nav.pam.euresstillingeksport.model
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import no.nav.pam.euresstillingeksport.administration.AdminApiController
 import no.nav.pam.euresstillingeksport.euresapi.PropertyMapping
 import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
@@ -34,7 +33,7 @@ data class Ad(
         val businessName: String?,
         val firstPublished: Boolean,
         val deactivatedByExpiry: Boolean,
-        val activationOnPublishingDate: Boolean
+        val activationOnPublishingDate: Boolean,
 ) {
     fun erSaksbehandlet() = administration?.erSaksbehandlet() ?: false
     fun erFraEures() = source == "EURES"
@@ -60,7 +59,8 @@ data class Location(
         val city: String?,
         val country: String?,
         val latitude: String?,
-        val longitude: String?
+        val longitude: String?,
+        val landskode: String? = null
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)

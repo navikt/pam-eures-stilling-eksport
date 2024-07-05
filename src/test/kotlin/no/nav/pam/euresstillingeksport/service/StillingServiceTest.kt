@@ -10,18 +10,20 @@ import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import java.time.LocalDateTime
 import java.util.*
 
 class FetchTest {
 
-    private val mockedRepo: StillingRepository = mock<StillingRepository>(StillingRepository::class.java)
+    private val mockedRepo = mock(StillingRepository::class.java)
+    private val mockedGeografiService = mock(GeografiService::class.java)
 
-    private val stillingService = StillingService(mockedRepo, objectMapper)
+    private val stillingService = StillingService(mockedRepo, mockedGeografiService, objectMapper)
 
     @Test
     fun `skal håndtere at stilling ikke finnes`() {
-        Mockito.`when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(null)
+        `when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(null)
 
         val res = stillingService.hentStillingsannonse(UUID.randomUUID().toString())
 
@@ -30,7 +32,7 @@ class FetchTest {
 
     @Test
     fun `at stillingsannonse mappes korrekt til Stillingsannonse`() {
-        Mockito.`when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(
+        `when`(mockedRepo.findStillingsannonseById(ArgumentMatchers.anyString())).thenReturn(
             StillingsannonseJson(
                 stillingsannonseMetadataMother,
                 objectMapper.writeValueAsString(adMother)
@@ -47,9 +49,10 @@ class FetchTest {
 
 class FiltreringsTest {
 
-    private val mockedRepo: StillingRepository = mock<StillingRepository>(StillingRepository::class.java)
+    private val mockedRepo = mock(StillingRepository::class.java)
+    private val mockedGeografiService = mock(GeografiService::class.java)
 
-    private val stillingService = StillingService(mockedRepo, objectMapper)
+    private val stillingService = StillingService(mockedRepo, mockedGeografiService, objectMapper)
 
     @Test
     fun `skal filtrere bort stillinger som ikke er saksbehandlet ferdig`() {
@@ -123,12 +126,26 @@ class FiltreringsTest {
     }
 
     @Test
-    fun `skal filtrere akseptere stillinger med andre kilder enn EURES`() {
+    fun `skal akseptere stillinger med andre kilder enn EURES`() {
         val stillingRegistrertAvSaksbehandler = adMother.copy(source = "ASS")
         assertThat(stillingService.lagreStilling(stillingRegistrertAvSaksbehandler)).isEqualTo(1)
     }
 
+    @Test
+    fun `filtrerer ut annonse som ikke ligger i EU`() {
+        `when`(mockedGeografiService.settLandskoder(any(Ad::class.java))).thenCallRealMethod()
+        `when`(mockedGeografiService.hentLandskodeHvisEuresLand("NORGE")).thenReturn(EuLandDTO("NO", "NORGE", "NORWAY"))
+        `when`(mockedGeografiService.hentLandskodeHvisEuresLand("KIRGISISTAN")).thenReturn(null)
+
+        val stillingINorge = mockedGeografiService.settLandskoder(adMother.copy(status = "ACTIVE", locationList = listOf(adMother.locationList.first().copy(country = "NORGE", landskode = null))))
+        val stillingUtenforEu = mockedGeografiService.settLandskoder(adMother.copy(status = "ACTIVE", locationList = listOf(adMother.locationList.first().copy(country = "KIRGISISTAN", landskode = null))))
+
+        assertThat(stillingService.lagreStilling(stillingINorge)).isEqualTo(1)
+        assertThat(stillingService.lagreStilling(stillingUtenforEu)).isEqualTo(0)
+    }
 }
+
+fun <T> any(type: Class<T>): T = Mockito.any<T>(type)
 
 private val stillingsannonseMetadataMother = StillingsannonseMetadata(
     id = UUID.randomUUID().toString(),
@@ -139,6 +156,19 @@ private val stillingsannonseMetadataMother = StillingsannonseMetadata(
     lukketTs = LocalDateTime.now()
 )
 
+private val defaultLocation = Location(
+    address = "Gate 2",
+    postalCode = "0542",
+    county = "Oslo",
+    municipal = "Oslo",
+    municipalCode = "1111",
+    city = "OSLO",
+    country = "NORGE",
+    latitude = null,
+    longitude = null,
+    landskode = "NO"
+)
+
 private val adMother = Ad(
     id = 1,
     uuid = UUID.randomUUID().toString(),
@@ -146,7 +176,7 @@ private val adMother = Ad(
     createdBy = null,
     updated = LocalDateTime.now(),
     updatedBy = null,
-    locationList = listOf(),
+    locationList = listOf(defaultLocation),
     properties = mapOf(),
     title = null,
     status = "ACTIVE",

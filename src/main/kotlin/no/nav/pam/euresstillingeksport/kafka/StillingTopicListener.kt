@@ -2,6 +2,7 @@ package no.nav.pam.euresstillingeksport.kafka
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.model.Ad
+import no.nav.pam.euresstillingeksport.model.GeografiService
 import no.nav.pam.euresstillingeksport.model.StillingService
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.ConsumerRecords
@@ -24,7 +25,8 @@ class StillingTopicListener(
     @Autowired private val kafkaHealthService: KafkaHealthService,
     @Autowired private val objectMapper: ObjectMapper,
     @Value("\${kafka.inboundTopic}") private val inboundTopic: String,
-    @Autowired private val stillingService: StillingService
+    @Autowired private val stillingService: StillingService,
+    @Autowired private val geografiService: GeografiService
 ) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingTopicListener::class.java)
@@ -76,8 +78,7 @@ class StillingTopicListener(
     }
 
     private fun handleRecord(record: ConsumerRecord<String?, ByteArray?>) {
-        val stilling = objectMapper.readValue(record.value(), Ad::class.java)
-
+        val stilling = objectMapper.readValue(record.value(), Ad::class.java).let { geografiService.settLandskoder(it) }
         LOG.info("Stilling ${stilling.uuid} parset OK")
         stillingService.lagreStilling(stilling)
     }

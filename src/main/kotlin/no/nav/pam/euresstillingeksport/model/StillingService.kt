@@ -12,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service
-open class StillingService(@Autowired private val stillingRepository: StillingRepository,
-                      @Autowired private val objectMapper: ObjectMapper) {
+class StillingService(
+    @Autowired private val stillingRepository: StillingRepository,
+    @Autowired private val geografiService: GeografiService,
+    @Autowired private val objectMapper: ObjectMapper
+) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingService::class.java)
     }
@@ -135,6 +138,11 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
             LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er saksbehandlet, men har status ${stilling.administration?.status}")
             return false
         }
+        if (stilling.locationList.all { it.landskode == null }) {
+            LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er innenfor EU/EØS")
+            return false
+        }
+
         try {
             stilling.convertToPositionOpening()
         } catch (e: Exception) {
@@ -153,7 +161,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
 
     fun hentStillingsannonser(uuidListe : List<String>) : List<Stillingsannonse> {
         return stillingRepository.findStillingsannonserByIds(uuidListe).map {
-            val ad = objectMapper.readValue(it.jsonAd, Ad::class.java)
+            val ad = objectMapper.readValue(it.jsonAd, Ad::class.java).let { ad -> geografiService.settLandskoder(ad) }
             Stillingsannonse(it.stillingsannonseMetadata, ad)
         }
     }

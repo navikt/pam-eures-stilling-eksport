@@ -1,7 +1,6 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
 import no.nav.pam.euresstillingeksport.model.Ad
-import java.util.Arrays.asList
 
 enum class PropertyMapping(val key: String) {
     applicationdue("applicationdue"), // may be "snarest"
@@ -20,7 +19,7 @@ fun Ad.convertToPositionOpening(): PositionOpening {
             documentID = DocumentId(uuid = uuid),
             positionOpeningStatusCode = PositionOpeningStatusCode("Active", "Active"),
             postingRequester = PostingRequester(),
-            positionProfile = asList(toPositionProfile())
+            positionProfile = listOf(toPositionProfile())
     )
 }
 
@@ -37,16 +36,13 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionOrganization = employer?.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toString()?.filter { it.isDigit() }?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
-            positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key].toString()
-                    ?: ""),
+            positionOfferingTypeCode = extentToPositionOfferingTypeCode(properties[PropertyMapping.engagementtype.key].toString()),
             positionQualifications = null, // We do not have these data in a structured format
             positionFormattedDescription = toFormattedDescription(),
             workingLanguageCode = "NO",
             positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key]?.toString()?: "na")),
-            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]?.toString()
-                    ?: ""),
-            positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()
-                    ?: ""),
+            immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]?.toString() ?: ""),
+            positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()),
             applicationCloseDate = expires!!
     )
 }
