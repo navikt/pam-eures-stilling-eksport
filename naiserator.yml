@@ -37,6 +37,10 @@ spec:
   {{#each ingress as |url|}}
      - {{url}}
   {{/each}}
+  accessPolicy:
+    outbound:
+      rules:
+        - application: pam-geografi
   gcp:
     sqlInstances:
       - name: pam-eures-eksport
