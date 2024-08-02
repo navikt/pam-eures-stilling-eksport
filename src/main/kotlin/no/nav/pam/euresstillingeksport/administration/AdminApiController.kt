@@ -1,6 +1,5 @@
 package no.nav.pam.euresstillingeksport.administration
 
-import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import no.nav.pam.euresstillingeksport.model.StillingService
 import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
 import org.slf4j.LoggerFactory

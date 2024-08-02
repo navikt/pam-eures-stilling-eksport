@@ -12,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Service
-open class StillingService(@Autowired private val stillingRepository: StillingRepository,
-                      @Autowired private val objectMapper: ObjectMapper) {
+class StillingService(
+    @Autowired private val stillingRepository: StillingRepository,
+    @Autowired private val geografiService: GeografiService,
+    @Autowired private val objectMapper: ObjectMapper
+) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingService::class.java)
     }
@@ -22,7 +25,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
     fun lagreStilling(stilling: Ad): Int {
         val eksisterendeStilling = stillingRepository.findStillingsannonseById(stilling.uuid)
         val skalSendestilEures = skalStillingSendesTilEures(stilling)
-        LOG.debug("Stilling ${stilling.uuid} skal sendes til Eures: ${skalSendestilEures} eksisterende stilling: ${eksisterendeStilling}")
+        LOG.debug("Stilling ${stilling.uuid} skal sendes til Eures: $skalSendestilEures eksisterende stilling: $eksisterendeStilling")
 
         if (eksisterendeStilling == null && skalSendestilEures) {
             if (AdStatus.fromString(stilling.status) == AdStatus.ACTIVE) {
@@ -43,15 +46,12 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
         }
         if (eksisterendeStilling != null && skalSendestilEures) {
             val jsonAd = objectMapper.writeValueAsString(stilling)
-            val eksisterendeAd = objectMapper.readValue(eksisterendeStilling?.jsonAd, Ad::class.java)
-            val eksisterendeMetadata = eksisterendeStilling?.stillingsannonseMetadata
+            val eksisterendeAd = objectMapper.readValue(eksisterendeStilling.jsonAd, Ad::class.java)
+            val eksisterendeMetadata = eksisterendeStilling.stillingsannonseMetadata
 
             val nyMetadata = konverterTilStillingsannonseMetadata(stilling, eksisterendeMetadata)
 
-            if (eksisterendeMetadata != null && nyMetadata != null
-                && (!eksisterendeAd.equals(stilling)
-                        || eksisterendeMetadata.status != nyMetadata.status)
-            ) {
+            if (nyMetadata != null && (!eksisterendeAd.equals(stilling) || eksisterendeMetadata.status != nyMetadata.status)) {
                 // Reell endring i annonse
                 LOG.debug("Oppdaterer eksisterende stilling ${stilling.uuid}")
                 stillingRepository.updateStillingsannonser(listOf(StillingsannonseJson(nyMetadata, jsonAd)))
@@ -61,7 +61,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
                 LOG.info("Ingen endring i annonse {} - ignorerer", stilling.uuid)
             }
         }
-        if (eksisterendeStilling != null && !skalSendestilEures && AdStatus.ACTIVE.equals(eksisterendeStilling?.stillingsannonseMetadata?.status)) {
+        if (eksisterendeStilling != null && !skalSendestilEures && AdStatus.ACTIVE.equals(eksisterendeStilling.stillingsannonseMetadata.status)) {
             LOG.debug("Setter eksisterende stilling ${stilling.uuid} til inaktiv, da den ikke skal vises hos Eures")
             val nyMetadata = eksisterendeStilling.stillingsannonseMetadata.copy(status=AdStatus.INACTIVE, sistEndretTs = stilling.updated, lukketTs = LocalDateTime.now())
             val annonseSattInaktiv = eksisterendeStilling.copy(stillingsannonseMetadata = nyMetadata)
@@ -135,6 +135,11 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
             LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er saksbehandlet, men har status ${stilling.administration?.status}")
             return false
         }
+        if (stilling.locationList.all { it.landskode == null }) {
+            LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er innenfor EU/EØS")
+            return false
+        }
+
         try {
             stilling.convertToPositionOpening()
         } catch (e: Exception) {
@@ -153,7 +158,7 @@ open class StillingService(@Autowired private val stillingRepository: StillingRe
 
     fun hentStillingsannonser(uuidListe : List<String>) : List<Stillingsannonse> {
         return stillingRepository.findStillingsannonserByIds(uuidListe).map {
-            val ad = objectMapper.readValue(it.jsonAd, Ad::class.java)
+            val ad = objectMapper.readValue(it.jsonAd, Ad::class.java).let { ad -> geografiService.settLandskoder(ad) }
             Stillingsannonse(it.stillingsannonseMetadata, ad)
         }
     }

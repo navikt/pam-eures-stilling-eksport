@@ -1,19 +1,19 @@
 package no.nav.pam.euresstillingeksport
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import no.nav.pam.euresstillingeksport.model.Converters
-import no.nav.pam.euresstillingeksport.model.Ad
-import no.nav.pam.euresstillingeksport.model.StillingService
 import no.nav.pam.euresstillingeksport.euresapi.EuresStatus
 import no.nav.pam.euresstillingeksport.euresapi.GetAllResponse
 import no.nav.pam.euresstillingeksport.euresapi.GetChangesResponse
 import no.nav.pam.euresstillingeksport.euresapi.GetDetailsResponse
+import no.nav.pam.euresstillingeksport.model.*
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
+import no.nav.pam.euresstillingeksport.service.any
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -39,6 +39,8 @@ class TimestampTests {
 	@Autowired
 	lateinit var stillingService : StillingService
 
+	val mockedGeografiService = mock(GeografiService::class.java)
+
 	val root = "/input/api/jv/v0.1"
 
 	fun initAd() : Ad =
@@ -47,8 +49,10 @@ class TimestampTests {
 			.copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 
 	@BeforeEach
-	fun cleanDb() {
+	fun setup() {
 		stillingRepository.slettNyereEnn(LocalDateTime.parse("1970-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+		`when`(mockedGeografiService.hentLandskodeHvisEuresLand("NORGE")).thenReturn(EuLandDTO("NO", "NORGE", "NORWAY"))
+		`when`(mockedGeografiService.settLandskoder(any(Ad::class.java))).thenCallRealMethod()
 	}
 
 	/*
@@ -60,7 +64,8 @@ class TimestampTests {
 	fun skalHandtereTimestamps() {
 		// Eksempel 1
 		val now = Converters.localdatetimeToTimestamp(LocalDateTime.now())
-		val ad = initAd()
+		val ad = initAd().let { mockedGeografiService.settLandskoder(it) }
+
 		stillingService.lagreStilling(ad)
 
 		val ex1Response = restTemplate.getForEntity("$root/getAll", GetAllResponse::class.java)
