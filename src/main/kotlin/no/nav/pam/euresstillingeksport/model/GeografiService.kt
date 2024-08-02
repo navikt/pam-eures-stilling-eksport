@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.RuntimeException
 import java.net.URI
+import java.net.URLEncoder
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
@@ -26,8 +27,9 @@ class GeografiService(@Autowired private val objectMapper: ObjectMapper) {
     }
 
     fun hentLandskodeHvisEuresLand(land: String): EuLandDTO? {
+        val urlEncodedLand = URLEncoder.encode(land, Charsets.UTF_8.name())
         val request = HttpRequest.newBuilder()
-            .uri(URI("$baseUrl/$land"))
+            .uri(URI("$baseUrl/$urlEncodedLand"))
             .header("Nav-CallId", "pam-eures-stilling-eksport")
             .GET().build()
 
