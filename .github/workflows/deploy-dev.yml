@@ -9,7 +9,6 @@ on:
     branches:
       - master
       - feature/**
-      - bruk-pam-geografi
 jobs:
   call-workflow:
     uses: navikt/pam-deploy/.github/workflows/deploy-dev.yml@v7
