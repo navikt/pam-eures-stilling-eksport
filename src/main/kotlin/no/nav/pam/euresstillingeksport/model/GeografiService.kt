@@ -14,7 +14,7 @@ import java.net.http.HttpResponse
 @Service
 class GeografiService(@Autowired private val objectMapper: ObjectMapper) {
     companion object {
-        private const val baseUrl = "http://pam-geografi/rest/euland/"
+        private const val baseUrl = "http://pam-geografi/rest/euland"
         private val logger = LoggerFactory.getLogger(GeografiService::class.java)
     }
 
