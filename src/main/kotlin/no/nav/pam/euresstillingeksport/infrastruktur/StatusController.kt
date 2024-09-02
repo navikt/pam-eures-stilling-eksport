@@ -12,13 +12,14 @@ import java.lang.Exception
 
 @RestController
 @RequestMapping("/internal")
-class StatusController(@Autowired private val repo: StillingRepository) {
+class StatusController(@Autowired private val repo: StillingRepository,
+                       @Autowired private val topicBridgeHealthService: KafkaHealthService) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StatusController::class.java)
     }
 
     @RequestMapping("/isAlive")
-    public fun isAlive(@Autowired topicBridgeHealthService: KafkaHealthService): ResponseEntity<String> {
+    fun isAlive(): ResponseEntity<String> {
         try {
             repo.findStillingsannonserByIds(listOf("finnes_ikke"))
         } catch (e: Exception) {
@@ -36,11 +37,11 @@ class StatusController(@Autowired private val repo: StillingRepository) {
     }
 
     @RequestMapping("/isReady")
-    public fun isReady(): ResponseEntity<String> =
+    fun isReady(): ResponseEntity<String> =
             ResponseEntity("OK", HttpStatus.OK)
 
     @RequestMapping("/diediedie")
-    fun diediedie(@Autowired topicBridgeHealthService: KafkaHealthService): ResponseEntity<String> {
+    fun diediedie(): ResponseEntity<String> {
         topicBridgeHealthService.addUnhealthyVote()
         LOG.info("Mottok selvmordsønske")
         return ResponseEntity("OK", HttpStatus.OK)
