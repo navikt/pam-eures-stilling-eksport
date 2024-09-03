@@ -118,10 +118,20 @@ class StillingTopicListener(
 
 @Service
 class KafkaHealthService {
-    private val unhealthyVotes = AtomicInteger(0)
+    companion object {
+        private val LOG = LoggerFactory.getLogger(KafkaHealthService::class.java)
+        private val unhealthyVotes = AtomicInteger(0)
+    }
 
-    fun addUnhealthyVote() =
-        unhealthyVotes.addAndGet(1)
 
-    fun isHealthy() = unhealthyVotes.get() == 0
+    fun addUnhealthyVote(): Int {
+        LOG.warn("Add unhealty vote: {}, {}", this, System.identityHashCode(this))
+        return unhealthyVotes.addAndGet(1)
+    }
+
+    fun isHealthy() :Boolean {
+        LOG.info("healthy: ${unhealthyVotes.get() == 0} {}, {}", this, System.identityHashCode(this))
+
+        return unhealthyVotes.get() == 0
+    }
 }
