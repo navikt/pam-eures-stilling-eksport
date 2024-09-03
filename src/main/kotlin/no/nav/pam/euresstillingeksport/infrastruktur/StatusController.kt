@@ -13,7 +13,7 @@ import java.lang.Exception
 @RestController
 @RequestMapping("/internal")
 class StatusController(@Autowired private val repo: StillingRepository,
-                       @Autowired private val topicBridgeHealthService: KafkaHealthService) {
+                       @Autowired private val kafkaHealthService: KafkaHealthService) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StatusController::class.java)
     }
@@ -27,7 +27,7 @@ class StatusController(@Autowired private val repo: StillingRepository,
             return ResponseEntity("Not OK", HttpStatus.SERVICE_UNAVAILABLE)
         }
 
-        return if (topicBridgeHealthService.isHealthy())
+        return if (kafkaHealthService.isHealthy())
             ResponseEntity("OK", HttpStatus.OK)
         else
             ResponseEntity("Not OK", HttpStatus.SERVICE_UNAVAILABLE)
@@ -39,7 +39,7 @@ class StatusController(@Autowired private val repo: StillingRepository,
 
     @RequestMapping("/diediedie")
     fun diediedie(): ResponseEntity<String> {
-        topicBridgeHealthService.addUnhealthyVote()
+        kafkaHealthService.addUnhealthyVote()
         LOG.info("Mottok selvmordsønske")
         return ResponseEntity("OK", HttpStatus.OK)
     }
