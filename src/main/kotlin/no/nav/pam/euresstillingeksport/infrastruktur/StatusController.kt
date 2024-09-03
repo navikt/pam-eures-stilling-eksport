@@ -36,12 +36,5 @@ class StatusController(@Autowired private val repo: StillingRepository,
     @RequestMapping("/isReady")
     fun isReady(): ResponseEntity<String> =
             ResponseEntity("OK", HttpStatus.OK)
-
-    @RequestMapping("/diediedie")
-    fun diediedie(): ResponseEntity<String> {
-        kafkaHealthService.addUnhealthyVote()
-        LOG.info("Mottok selvmordsønske")
-        return ResponseEntity("OK", HttpStatus.OK)
-    }
-
+    
 }
