@@ -43,7 +43,7 @@ class StillingTopicListener(
         t.start()
         return t
     }
-    
+
     private fun startListenerInternal() {
         LOG.info("Starter kafka listener...")
         var records: ConsumerRecords<String?, ByteArray?>? = null

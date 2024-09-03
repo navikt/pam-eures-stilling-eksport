@@ -16,7 +16,8 @@ fun main(args: Array<String>) {
 
 	val listener = ctx.getBean(StillingTopicListener::class.java)
 	if (listener != null) {
-		listener.startListener()
+		listener.startListener().join()
+		ctx.close()
 	} else {
 		LoggerFactory.getLogger(EuresStillingEksportApplication::class.java).info("We are not starting listener - this should only happen in dev")
 	}
