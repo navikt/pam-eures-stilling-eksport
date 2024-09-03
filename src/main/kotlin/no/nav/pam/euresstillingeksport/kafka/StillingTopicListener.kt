@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import java.time.Duration
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.concurrent.thread
 
 @Service
 @Profile("!test")
@@ -32,7 +33,18 @@ class StillingTopicListener(
         private val LOG = LoggerFactory.getLogger(StillingTopicListener::class.java)
     }
 
-    fun startListener() {
+    fun startListener(): Thread {
+        val t = object: Thread () {
+            override fun run() {
+                startListenerInternal()
+            }
+        }
+        t.name = "KafkaListener"
+        t.start()
+        return t
+    }
+
+    private fun startListenerInternal() {
         LOG.info("Starter kafka listener...")
         var records: ConsumerRecords<String?, ByteArray?>? = null
         val rollbackCounter = AtomicInteger(0)
@@ -57,14 +69,7 @@ class StillingTopicListener(
                 kafkaHealthService.addUnhealthyVote()
             } catch (ke: KafkaException) {
                 LOG.error("KafkaException occurred in consumeLoop", ke)
-                // Enten så ruller vi tilbake, eller så dreper vi appen - uvisst hva som er best strategi?
-                // Rollback har potensiale for å sende svært mange meldinger til topicet på veldig kort tid
-                // Har derfor lagt inn en grense på 10 rollback før appen omstartes. Det er fortsatt potensiale
-                // for å publisere svært mange meldinger, men det går ikke like fort...
-                if (ke.cause != null && ke.cause is AuthorizationException)
-                    kafkaHealthService.addUnhealthyVote()
-                else
-                    rollback(records!!, kafkaConsumer, rollbackCounter)
+                kafkaHealthService.addUnhealthyVote()
             } catch (e: Exception) {
                 // Catchall - impliserer at vi skal restarte app
                 LOG.error("Uventet Exception i consumerloop, restarter app ${e.message}", e)
@@ -113,10 +118,17 @@ class StillingTopicListener(
 
 @Service
 class KafkaHealthService {
-    private val unhealthyVotes = AtomicInteger(0)
+    companion object {
+        private val unhealthyVotes = AtomicInteger(0)
+    }
 
-    fun addUnhealthyVote() =
-        unhealthyVotes.addAndGet(1)
 
-    fun isHealthy() = unhealthyVotes.get() == 0
+    fun addUnhealthyVote(): Int {
+        return unhealthyVotes.addAndGet(1)
+    }
+
+    fun isHealthy() :Boolean {
+        val healthy = (unhealthyVotes.get() == 0)
+        return healthy
+    }
 }

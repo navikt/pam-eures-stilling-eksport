@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 	if (listener != null) {
 		listener.startListener()
 	} else {
-		LoggerFactory.getLogger(EuresStillingEksportApplication::class.java).info("We are not staring listener - this should only happen in dev")
+		LoggerFactory.getLogger(EuresStillingEksportApplication::class.java).info("We are not starting listener - this should only happen in dev")
 	}
 }
 
