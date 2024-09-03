@@ -130,8 +130,9 @@ class KafkaHealthService {
     }
 
     fun isHealthy() :Boolean {
-        LOG.info("healthy: ${unhealthyVotes.get() == 0} {}, {}", this, System.identityHashCode(this))
+        val healthy = (unhealthyVotes.get() == 0)
+        LOG.info("healthy: $healthy {}, {}", this, System.identityHashCode(this))
 
-        return unhealthyVotes.get() == 0
+        return healthy
     }
 }

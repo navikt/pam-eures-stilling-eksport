@@ -27,13 +27,10 @@ class StatusController(@Autowired private val repo: StillingRepository,
             return ResponseEntity("Not OK", HttpStatus.SERVICE_UNAVAILABLE)
         }
 
-        if (topicBridgeHealthService.isHealthy())
+        return if (topicBridgeHealthService.isHealthy())
             ResponseEntity("OK", HttpStatus.OK)
         else
             ResponseEntity("Not OK", HttpStatus.SERVICE_UNAVAILABLE)
-
-
-        return ResponseEntity("OK", HttpStatus.OK)
     }
 
     @RequestMapping("/isReady")
