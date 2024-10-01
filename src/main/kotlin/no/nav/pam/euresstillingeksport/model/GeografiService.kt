@@ -14,7 +14,7 @@ import java.net.http.HttpResponse
 @Service
 class GeografiService(@Autowired private val objectMapper: ObjectMapper) {
     companion object {
-        private const val baseUrl = "http://pam-geografi/rest/euland"
+        private const val baseUrl = "http://pam-geografi/rest/finn-euland"
         private val logger = LoggerFactory.getLogger(GeografiService::class.java)
     }
 
@@ -35,7 +35,7 @@ class GeografiService(@Autowired private val objectMapper: ObjectMapper) {
     fun hentLandskodeHvisEuresLand(land: String): EuLandDTO? {
         val urlEncodedLand = URLEncoder.encode(land, Charsets.UTF_8.name())
         val request = HttpRequest.newBuilder()
-            .uri(URI("$baseUrl/$urlEncodedLand"))
+            .uri(URI("$baseUrl?land=$urlEncodedLand"))
             .header("Nav-CallId", "pam-eures-stilling-eksport")
             .GET().build()
 
