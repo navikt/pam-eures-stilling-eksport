@@ -42,7 +42,7 @@ class ApiConfiguration {
     @Primary
     open fun objectMapper() =
             ObjectMapper().apply {
-                registerModule(KotlinModule())
+                registerModule(KotlinModule.Builder().build())
                 registerModule(JavaTimeModule())
             }
 

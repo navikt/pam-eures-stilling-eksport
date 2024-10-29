@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.7</version>
+        <version>3.3.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>no.nav.pam</groupId>
@@ -15,13 +15,13 @@
     <description>EURES eksport av stillinger</description>
 
     <properties>
-        <java.version>17</java.version>
-        <kotlin.version>1.8.22</kotlin.version>
-        <logback-access.version>2.7.1</logback-access.version>
-        <logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
-        <wiremock.version>2.25.1</wiremock.version>
-        <shedlock.version>3.0.0</shedlock.version>
-        <postgresql.version>42.7.2</postgresql.version>
+        <java.version>21</java.version>
+        <kotlin.version>2.0.21</kotlin.version>
+        <logback-access.version>4.3.2</logback-access.version>
+        <logstash-logback-encoder.version>8.0</logstash-logback-encoder.version>
+        <wiremock.version>3.9.2</wiremock.version>
+        <shedlock.version>5.16.0</shedlock.version>
+        <postgresql.version>42.7.4</postgresql.version>
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
         <kafka.version>3.4.0</kafka.version>
         <hikari.version>3.4.1</hikari.version>
@@ -35,13 +35,13 @@
                 <version>${logstash-logback-encoder.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.rakugakibox.spring.boot</groupId>
+                <groupId>dev.akkinoc.spring.boot</groupId>
                 <artifactId>logback-access-spring-boot-starter</artifactId>
                 <version>${logback-access.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.tomakehurst</groupId>
-                <artifactId>wiremock-jre8</artifactId>
+                <groupId>org.wiremock</groupId>
+                <artifactId>wiremock-standalone</artifactId>
                 <version>${wiremock.version}</version>
             </dependency>
             <dependency>
@@ -124,8 +124,14 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>net.rakugakibox.spring.boot</groupId>
+            <groupId>dev.akkinoc.spring.boot</groupId>
             <artifactId>logback-access-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback.access</groupId>
+                    <artifactId>tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>net.logstash.logback</groupId>
@@ -171,8 +177,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock-jre8</artifactId>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock-standalone</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
