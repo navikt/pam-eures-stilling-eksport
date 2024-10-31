@@ -204,6 +204,6 @@ private val adMother = Ad(
 )
 
 private val objectMapper = ObjectMapper().apply {
-    registerModule(KotlinModule())
+    registerModule(KotlinModule.Builder().build())
     registerModule(JavaTimeModule())
 }

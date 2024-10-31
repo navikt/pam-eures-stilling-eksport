@@ -1,5 +1,4 @@
-FROM ghcr.io/navikt/baseimages/temurin:17
-LABEL maintainer="Team Jakt"
+FROM ghcr.io/navikt/baseimages/temurin:21
 
 ENV JAVA_OPTS="-XX:-OmitStackTraceInFastThrow"
 
