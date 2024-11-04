@@ -1,17 +1,10 @@
 dbnavn: stillingdb
 
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /internal/h2-console
-      settings:
-        web-allow-others: true
   datasource:
-    url: jdbc:h2:mem:${dbnavn};MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:14:///${dbnavn}?TC_INITSCRIPT=postgres/postgres-init.sql
+    username: postgres
+    password: password
   main:
     allow-bean-definition-overriding: true
-
