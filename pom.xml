@@ -23,7 +23,7 @@
         <shedlock.version>5.16.0</shedlock.version>
         <postgresql.version>42.7.4</postgresql.version>
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
-        <kafka.version>3.4.0</kafka.version>
+        <kafka.version>3.7.1</kafka.version>
         <hikari.version>3.4.1</hikari.version>
         <testcontainers.version>1.20.3</testcontainers.version>
     </properties>
