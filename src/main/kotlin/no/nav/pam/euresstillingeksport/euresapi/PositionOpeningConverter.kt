@@ -60,13 +60,13 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
     }
 }
 
-private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
-    val euresCodes: MutableList<JobCategoryCode> = mutableListOf()
+ fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
+    val euresCodes: MutableSet<JobCategoryCode> = mutableSetOf()
 
     properties["classification_esco_code"]?.let {
         euresCodes.add(JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal",
                     code = it.toString()))
-        Ad.LOG.info("La til ESCO kode ${it.toString()} til $uuid")
+        Ad.LOG.info("La til ESCO kode $it til $uuid")
     }
     categoryList.forEach { c ->
         if (c.categoryType?.equals("STYRK08NAV", ignoreCase = true) == true) {
@@ -74,11 +74,17 @@ private fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
         } else if (c.categoryType?.equals("STYRK08", ignoreCase = true) == true) {
             euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
         } else if (c.categoryType?.equals("ESCO", ignoreCase = true) == true) {
-            euresCodes.add(JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal",
-                    code = c.code ?:"INGEN"))
+            if (c.code?.startsWith("http://data.europa.eu/esco/isco/c") == true) {
+                euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code.replace("http://data.europa.eu/esco/isco/c", ""))))
+                Ad.LOG.info("ESCO code contains '/isco' ${c.code} $uuid")
+            } else {
+                euresCodes.add(
+                    JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal", code = c.code ?:"INGEN")
+                )
+            }
         }
     }
-    return euresCodes
+    return euresCodes.toList()
 }
 
 private fun styrkToEsco(styrk: String?) : String {

@@ -213,21 +213,21 @@ data class ExperienceCategory(
 )
 
 data class Measure(
-        val unitCode: String, // attribute
-        val value: Int // value
+    val unitCode: String, // attribute
+    val value: Int // value
 )
 
 class DegreeTypeCode // enum/kodeverk
 class LicenseTypeCode // enum/kodeverk
 data class JobCategoryCode(
-        @JacksonXmlProperty(isAttribute = true, localName = "listName")
-        val listName: String = "ISCO2008", // Attribute
-        @JacksonXmlProperty(isAttribute = true, localName = "listVersionID")
-        val listVersionID: String = "2008", // Attribute
-        @JacksonXmlProperty(isAttribute = true, localName = "listURI")
-        val listURI: String = "http://ec.europa.eu/esco/ConceptScheme/ISCO2008", // Attribute
-        @JacksonXmlText
-        val code: String
+    @JacksonXmlProperty(isAttribute = true, localName = "listName")
+    val listName: String = "ISCO2008", // Attribute
+    @JacksonXmlProperty(isAttribute = true, localName = "listVersionID")
+    val listVersionID: String = "2008", // Attribute
+    @JacksonXmlProperty(isAttribute = true, localName = "listURI")
+    val listURI: String = "http://ec.europa.eu/esco/ConceptScheme/ISCO2008", // Attribute
+    @JacksonXmlText
+    val code: String
 )
 
 enum class PositionOfferingTypeCode {
@@ -251,17 +251,17 @@ enum class PositionScheduleTypeCode {
 }
 
 data class PositionPeriod(
-        val startDate: Date
+    val startDate: Date
 )
 
 data class Date(
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        val formattedDateTime: LocalDateTime? = null,
-        val dateText: String
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    val formattedDateTime: LocalDateTime? = null,
+    val dateText: String
 )
 
 data class PositionFormattedDescription(
-        @JacksonXmlCData
-        val content: String
+    @JacksonXmlCData
+    val content: String
 )
 

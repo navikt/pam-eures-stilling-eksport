@@ -25,19 +25,14 @@ class StillingService(
     fun lagreStilling(stilling: Ad): Int {
         val eksisterendeStilling = stillingRepository.findStillingsannonseById(stilling.uuid)
         val skalSendestilEures = skalStillingSendesTilEures(stilling)
-        LOG.debug("Stilling ${stilling.uuid} skal sendes til Eures: $skalSendestilEures eksisterende stilling: $eksisterendeStilling")
+        LOG.info("Stilling ${stilling.uuid} skal sendes til Eures: $skalSendestilEures eksisterende stilling: $eksisterendeStilling")
 
         if (eksisterendeStilling == null && skalSendestilEures) {
             if (AdStatus.fromString(stilling.status) == AdStatus.ACTIVE) {
                 val jsonAd = objectMapper.writeValueAsString(stilling)
                 LOG.debug("Lagrer ny stilling ${stilling.uuid}")
                 stillingRepository.saveStillingsannonser(
-                    listOf(
-                        StillingsannonseJson(
-                            konverterTilStillingsannonseMetadata(stilling),
-                            jsonAd
-                        )
-                    )
+                    listOf(StillingsannonseJson(konverterTilStillingsannonseMetadata(stilling), jsonAd))
                 )
                 return 1
             } else {

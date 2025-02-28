@@ -8,7 +8,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.ConsumerRecords
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.KafkaException
-import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.errors.*
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +16,6 @@ import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import java.time.Duration
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.concurrent.thread
 
 @Service
 @Profile("!test")
@@ -87,33 +85,6 @@ class StillingTopicListener(
         LOG.info("Stilling ${stilling.uuid} parset OK")
         stillingService.lagreStilling(stilling)
     }
-
-    private fun rollback(
-        records: ConsumerRecords<String?, ByteArray?>,
-        kafkaConsumer: KafkaConsumer<String?, ByteArray?>,
-        rollbackCounter: AtomicInteger
-    ) {
-        try {
-            val firstOffsets = mutableMapOf<String, MutableMap<Int, Long>>()
-            records.forEach() {
-                val partitions = firstOffsets[it.topic()] ?: mutableMapOf()
-                firstOffsets[it.topic()] = partitions
-                val currentOffset = it.offset()
-                val earliest = partitions[it.partition()] ?: currentOffset
-                partitions[it.partition()] = Math.min(currentOffset, earliest)
-            }
-            firstOffsets.forEach { entry ->
-                for (partitionOffset in entry.value) {
-                    LOG.info("Ruller tilbake ${entry.key} partition ${partitionOffset.key} til ${partitionOffset.value}")
-                    kafkaConsumer.seek(TopicPartition(entry.key, partitionOffset.key), partitionOffset.value)
-                }
-            }
-            rollbackCounter.addAndGet(1)
-        } catch (e: Exception) {
-            LOG.error("Rollback feilet, restarter appen", e)
-            kafkaHealthService.addUnhealthyVote()
-        }
-    }
 }
 
 @Service
@@ -121,7 +92,6 @@ class KafkaHealthService {
     companion object {
         private val unhealthyVotes = AtomicInteger(0)
     }
-
 
     fun addUnhealthyVote(): Int {
         return unhealthyVotes.addAndGet(1)
