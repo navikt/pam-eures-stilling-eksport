@@ -64,9 +64,7 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
     val euresCodes: MutableSet<JobCategoryCode> = mutableSetOf()
 
     properties["classification_esco_code"]?.let {
-        euresCodes.add(JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal",
-                    code = it.toString()))
-        Ad.LOG.info("La til ESCO kode $it til $uuid")
+        euresCodes.add(createJobCategoryCodeForIscoOrEsco(it.toString(), uuid))
     }
     categoryList.forEach { c ->
         if (c.categoryType?.equals("STYRK08NAV", ignoreCase = true) == true) {
@@ -74,17 +72,24 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
         } else if (c.categoryType?.equals("STYRK08", ignoreCase = true) == true) {
             euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
         } else if (c.categoryType?.equals("ESCO", ignoreCase = true) == true) {
-            if (c.code?.startsWith("http://data.europa.eu/esco/isco/c") == true) {
-                euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code.replace("http://data.europa.eu/esco/isco/c", ""))))
-                Ad.LOG.info("ESCO code contains '/isco' ${c.code} $uuid")
-            } else {
-                euresCodes.add(
-                    JobCategoryCode(listName = "ESCO_Occupations", listVersionID = "ESCOv1.07", listURI = "https://ec.europa.eu/esco/portal", code = c.code ?:"INGEN")
-                )
-            }
+            euresCodes.add(createJobCategoryCodeForIscoOrEsco(c.code ?: "INGEN", uuid))
         }
     }
     return euresCodes.toList()
+}
+
+fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryCode {
+    val iscoPrefix = "http://data.europa.eu/esco/isco/c"
+    if (code.startsWith(iscoPrefix)) {
+        Ad.LOG.info("ESCO code contains '/isco' $code $uuid")
+        return JobCategoryCode(code = styrkToEsco(code.replace(iscoPrefix, "")))
+    }
+    return JobCategoryCode(
+        listName = "ESCO_Occupations",
+        listVersionID = "ESCOv1.07",
+        listURI = "https://ec.europa.eu/esco/portal",
+        code = code
+    )
 }
 
 private fun styrkToEsco(styrk: String?) : String {
@@ -108,6 +113,7 @@ private fun extentToPositionOfferingTypeCode(extent: String): PositionOfferingTy
         else -> PositionOfferingTypeCode.DirectHire
     }
 }
+
 private fun extentToPositionScheduleTypeCode(extent: String): PositionScheduleTypeCode {
     return when(extent) {
         "Heltid" -> PositionScheduleTypeCode.FullTime

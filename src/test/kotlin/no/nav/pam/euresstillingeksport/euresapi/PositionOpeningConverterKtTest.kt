@@ -12,28 +12,28 @@ import kotlin.random.Random
 
 class PositionOpeningConverterKtTest {
 
-    fun objectMapper() = ObjectMapper().apply {
+    private fun objectMapper() = ObjectMapper().apply {
         registerModule(KotlinModule.Builder().build())
         registerModule(JavaTimeModule())
     }
 
-    fun initAd(): Ad = objectMapper()
+    private fun initAd(): Ad = objectMapper()
         .readValue(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"), Ad::class.java)
         .copy(uuid = UUID.randomUUID().toString(), status = "ACTIVE")
 
-    val random = Random(100000)
+    private val random = Random(100000)
 
     @Test
     fun `Fjerne duplikate jobCategories`() {
         val jobCategoryCode = initAd().copy(
             categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab"), createStyrkCategory("3412")),
-            properties = mapOf("classification_esco_code" to "http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab") //'http://data.europa.eu/esco/occupation/c56bb750-db0b-487b-89f4-82dee6dcab09
+            properties = mapOf("classification_esco_code" to "http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab")
         ).toJobCategoryCode()
         assertEquals(2, jobCategoryCode.size)
     }
 
     @Test
-    fun `Esco av typen Isco vises som Isco`() {
+    fun `Esco av typen Isco vises som Isco fra categoryList`() {
         val jobCategoryCode = initAd().copy(
             categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/isco/c4323")),
             properties = mapOf()
@@ -45,11 +45,24 @@ class PositionOpeningConverterKtTest {
         assertEquals("2008", jobCategoryCode[0].listVersionID)
     }
 
-    fun createEscoCategory(code: String): Category {
+    @Test
+        fun `Esco av typen Isco vises som Isco for property classification_esco_code`() {
+        val jobCategoryCode = initAd().copy(
+            categoryList = emptyList(),
+            properties =mapOf("classification_esco_code" to "http://data.europa.eu/esco/isco/c4323")
+        ).toJobCategoryCode()
+        assertEquals(1, jobCategoryCode.size)
+        assertEquals("4323", jobCategoryCode[0].code)
+        assertEquals("http://ec.europa.eu/esco/ConceptScheme/ISCO2008", jobCategoryCode[0].listURI)
+        assertEquals("ISCO2008", jobCategoryCode[0].listName)
+        assertEquals("2008", jobCategoryCode[0].listVersionID)
+    }
+
+    private fun createEscoCategory(code: String): Category {
         return Category(random.nextLong(), code, "ESCO", "", "", null)
     }
 
-    fun createStyrkCategory(code: String): Category {
+    private fun createStyrkCategory(code: String): Category {
         return Category(random.nextLong(), code, "STYRK08", "", "", null)
     }
 }
