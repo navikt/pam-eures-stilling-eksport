@@ -104,7 +104,7 @@ fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryC
     }
     return JobCategoryCode(
         listName = "ESCO_Occupations",
-        listVersionID = "ESCOv1.07",
+        listVersionID = "ESCOv1.09",
         listURI = "https://ec.europa.eu/esco/portal",
         code = code
     )
