@@ -99,7 +99,7 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
 fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryCode {
     val iscoPrefix = "http://data.europa.eu/esco/isco/c"
     if (code.startsWith(iscoPrefix)) {
-        Ad.LOG.info("ESCO code contains '/isco' $code $uuid")
+        Ad.LOG.debug("ESCO code contains '/isco' $code $uuid")
         return JobCategoryCode(code = styrkToEsco(code.replace(iscoPrefix, "")))
     }
     return JobCategoryCode(
