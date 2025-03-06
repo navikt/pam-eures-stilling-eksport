@@ -46,16 +46,25 @@ class PositionOpeningConverterKtTest {
     }
 
     @Test
-        fun `Esco av typen Isco vises som Isco for property classification_esco_code`() {
+    fun `Esco av typen Isco vises som Isco for property classification_esco_code`() {
         val jobCategoryCode = initAd().copy(
             categoryList = emptyList(),
-            properties =mapOf("classification_esco_code" to "http://data.europa.eu/esco/isco/c4323")
+            properties = mapOf("classification_esco_code" to "http://data.europa.eu/esco/isco/c4323")
         ).toJobCategoryCode()
         assertEquals(1, jobCategoryCode.size)
         assertEquals("4323", jobCategoryCode[0].code)
         assertEquals("http://ec.europa.eu/esco/ConceptScheme/ISCO2008", jobCategoryCode[0].listURI)
         assertEquals("ISCO2008", jobCategoryCode[0].listName)
         assertEquals("2008", jobCategoryCode[0].listVersionID)
+    }
+
+    @Test
+    fun `Parse experience in years gives the least required number of years`() {
+        assertEquals(0, parseExperienceInYears(""""experience": ["Ingen"]"""))
+        assertEquals(1, parseExperienceInYears(""""experience": ["Noe"]"""))
+        assertEquals(4, parseExperienceInYears(""""experience": ["Mye"]"""))
+        assertEquals(0, parseExperienceInYears(""""experience": ["Ingen","Noe","Mye"]"""))
+        assertEquals(1, parseExperienceInYears(""""experience": ["Noe","Mye"]"""))
     }
 
     private fun createEscoCategory(code: String): Category {
