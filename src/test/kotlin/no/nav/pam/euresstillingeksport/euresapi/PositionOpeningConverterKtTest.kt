@@ -59,6 +59,19 @@ class PositionOpeningConverterKtTest {
     }
 
     @Test
+    fun `JobCategoryCode for Esco har riktige opplysninger`() {
+        val jobCategoryCode = initAd().copy(
+            categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/occupation/4ad4024e-d1d3-4dea-b6d1-2c7948111dce")),
+            properties = mapOf()
+        ).toJobCategoryCode()
+        assertEquals(1, jobCategoryCode.size)
+        assertEquals("http://data.europa.eu/esco/occupation/4ad4024e-d1d3-4dea-b6d1-2c7948111dce", jobCategoryCode[0].code)
+        assertEquals("https://ec.europa.eu/esco/portal", jobCategoryCode[0].listURI)
+        assertEquals("ESCO_Occupations", jobCategoryCode[0].listName)
+        assertEquals("ESCOv1.09", jobCategoryCode[0].listVersionID)
+    }
+
+    @Test
     fun `Parse experience in years gives the least required number of years`() {
         assertEquals(0, parseExperienceInYears(""""experience": ["Ingen"]"""))
         assertEquals(1, parseExperienceInYears(""""experience": ["Noe"]"""))
