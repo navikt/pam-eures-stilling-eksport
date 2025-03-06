@@ -35,11 +35,11 @@ class PositionOpeningConverterKtTest {
     @Test
     fun `Esco av typen Isco vises som Isco fra categoryList`() {
         val jobCategoryCode = initAd().copy(
-            categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/isco/c4323")),
+            categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/isco/C5321")),
             properties = mapOf()
         ).toJobCategoryCode()
         assertEquals(1, jobCategoryCode.size)
-        assertEquals("4323", jobCategoryCode[0].code)
+        assertEquals("5321", jobCategoryCode[0].code)
         assertEquals("http://ec.europa.eu/esco/ConceptScheme/ISCO2008", jobCategoryCode[0].listURI)
         assertEquals("ISCO2008", jobCategoryCode[0].listName)
         assertEquals("2008", jobCategoryCode[0].listVersionID)
