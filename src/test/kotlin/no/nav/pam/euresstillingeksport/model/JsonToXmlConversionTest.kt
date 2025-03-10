@@ -100,4 +100,14 @@ class ConversionTest {
         Assertions.assertThat(EuNace("09.109").code()).isEqualTo("B9.1.0")
     }
 
+    @Test
+    fun `Experience summary is correct`() {
+        val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
+        val adWithExperience = ad.copy(properties = mapOf("experience" to "[\"Noe\"]"))
+        val positionOpening = adWithExperience.convertToPositionOpening()
+        val xml = HrxmlSerializer.serialize(positionOpening)
+
+        val expectedXml = read("src/test/resources/ads/ad_with_experience.xml")
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+    }
 }

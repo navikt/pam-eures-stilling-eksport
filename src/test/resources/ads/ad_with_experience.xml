@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<PositionOpening xmlns="http://www.hr-xml.org/3" validFrom="2019-11-05" majorVersionID="3" minorVersionID="2">
+  <DocumentID schemeID="NAV-002" schemeAgencyID="NAV" schemeAgencyName="NAV public employment services" schemeVersionID="1.3">db6cc067-7f39-42f1-9866-d9ee47894ec6</DocumentID>
+  <PositionOpeningStatusCode name="Active">Active</PositionOpeningStatusCode>
+  <PostingRequester>
+    <PartyID schemeID="NAV" schemeAgencyID="NAV PES" schemeAgencyName="Nav public employment services">9999</PartyID>
+  </PostingRequester>
+  <PositionProfile languageCode="no">
+    <PostingInstruction>
+      <ApplicationMethod>
+        <Instructions><![CDATA[<a href="https://arbeidsplassen.nav.no/stillinger/stilling/db6cc067-7f39-42f1-9866-d9ee47894ec6" rel="nofollow">Link to the vacancy on the Norwegian job board</a>]]></Instructions>
+      </ApplicationMethod>
+    </PostingInstruction>
+    <PositionTitle>Motorkyndige Teknikkere/ Elektrikkere/ Feilsøkere</PositionTitle>
+    <PositionLocation>
+      <Address>
+        <wstxns1:AddressLine xmlns:wstxns1="http://www.openapplications.org/oagis/9">Kværnerveien 6</wstxns1:AddressLine>
+        <wstxns2:CityName xmlns:wstxns2="http://www.openapplications.org/oagis/9">OSLO</wstxns2:CityName>
+        <CountryCode>NO</CountryCode>
+        <wstxns3:PostalCode xmlns:wstxns3="http://www.openapplications.org/oagis/9">0195</wstxns3:PostalCode>
+      </Address>
+    </PositionLocation>
+    <PositionOrganization>
+      <OrganizationIdentifiers>
+        <OrganizationName>NORDISK TOGTEKNIKK AS</OrganizationName>
+        <OrganizationLegalID>987938323</OrganizationLegalID>
+      </OrganizationIdentifiers>
+      <IndustryCode>C33.1.7</IndustryCode>
+    </PositionOrganization>
+    <PositionOpenQuantity>1</PositionOpenQuantity>
+    <JobCategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">7411</JobCategoryCode>
+    <PositionOfferingTypeCode>DirectHire</PositionOfferingTypeCode>
+    <PositionQualifications>
+      <ExperienceSummary>
+        <ExperienceCategory>
+          <CategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">7411</CategoryCode>
+          <Measure unitCode="year">1</Measure>
+        </ExperienceCategory>
+      </ExperienceSummary>
+    </PositionQualifications>
+    <PositionFormattedDescription>
+      <Content><![CDATA[For fullstendig annonsetekst, se annonsen hos finn.no: <a href="null">null</a>.]]></Content>
+    </PositionFormattedDescription>
+    <WorkingLanguageCode>NO</WorkingLanguageCode>
+    <PositionPeriod>
+      <StartDate>
+        <DateText>na</DateText>
+      </StartDate>
+    </PositionPeriod>
+    <ImmediateStartIndicator>false</ImmediateStartIndicator>
+    <PositionScheduleTypeCode>FullTime</PositionScheduleTypeCode>
+    <ApplicationCloseDate>2019-03-01</ApplicationCloseDate>
+  </PositionProfile>
+</PositionOpening>
