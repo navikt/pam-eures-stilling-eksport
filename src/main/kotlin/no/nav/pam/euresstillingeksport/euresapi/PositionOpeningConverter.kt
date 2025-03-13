@@ -86,9 +86,9 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
     }
     categoryList.forEach { c ->
         if (c.categoryType?.equals("STYRK08NAV", ignoreCase = true) == true) {
-            euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
+            euresCodes.add(JobCategoryCode(code = styrkToIsco(c.code)))
         } else if (c.categoryType?.equals("STYRK08", ignoreCase = true) == true) {
-            euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
+            euresCodes.add(JobCategoryCode(code = styrkToIsco(c.code)))
         } else if (c.categoryType?.equals("ESCO", ignoreCase = true) == true) {
             euresCodes.add(createJobCategoryCodeForIscoOrEsco(c.code ?: "INGEN", uuid))
         }
@@ -101,7 +101,7 @@ fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryC
     val iscoPrefixWithCapitalC = "http://data.europa.eu/esco/isco/C"
     if (code.lowercase().startsWith(iscoPrefix)) {
         Ad.LOG.debug("ESCO code contains '/isco' $code $uuid")
-        return JobCategoryCode(code = styrkToEsco(code
+        return JobCategoryCode(code = styrkToIsco(code
             .replace(iscoPrefix, "")
             .replace(iscoPrefixWithCapitalC, "")
         ))
@@ -114,9 +114,11 @@ fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryC
     )
 }
 
-private fun styrkToEsco(styrk: String?) : String {
+private fun styrkToIsco(styrk: String?) : String {
     if(styrk == null) return "INGEN"
     if(styrk.length < 4) return "INGEN"
+    if (styrk == "2223") return "2221" // Sykepleier Styrk08 kode som ikke finnes i Isco
+    if (styrk == "2224") return "2221" // Helsepleier Styrk08 kode som ikke finnes i Isco
     return styrk.substring(0..3)
 }
 
