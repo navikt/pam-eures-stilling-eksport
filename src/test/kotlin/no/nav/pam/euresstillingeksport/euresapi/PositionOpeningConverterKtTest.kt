@@ -80,6 +80,28 @@ class PositionOpeningConverterKtTest {
         assertEquals(1, parseExperienceInYears(""""experience": ["Noe","Mye"]"""))
     }
 
+    @Test
+    fun `Styrk08 kode 2223 Sykepleier oversettes til Isco kode 2221`() {
+        val jobCategoryCode = initAd().copy(
+            categoryList = listOf(createStyrkCategory("2223")),
+            properties = emptyMap()
+        ).toJobCategoryCode()
+        assertEquals(1, jobCategoryCode.size)
+        assertEquals("2221", jobCategoryCode[0].code)
+        assertEquals("ISCO2008", jobCategoryCode[0].listName)
+        assertEquals("http://ec.europa.eu/esco/ConceptScheme/ISCO2008", jobCategoryCode[0].listURI)
+        assertEquals("2008", jobCategoryCode[0].listVersionID)
+    }
+
+    @Test
+    fun `Ugyldige Isco koder blir fjernet`() {
+        val invalidJobCategoryCode = initAd().copy(
+            categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/isco/C532")), // Kun tre tall er ugyldig
+            properties = emptyMap()
+        ).toJobCategoryCode()
+        assertEquals(0, invalidJobCategoryCode.size)
+    }
+
     private fun createEscoCategory(code: String): Category {
         return Category(random.nextLong(), code, "ESCO", "", "", null)
     }

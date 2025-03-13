@@ -82,29 +82,44 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
     val euresCodes: MutableSet<JobCategoryCode> = mutableSetOf()
 
     properties["classification_esco_code"]?.let {
-        euresCodes.add(createJobCategoryCodeForIscoOrEsco(it.toString(), uuid))
+        val jobCategoryCode = createJobCategoryCodeForIscoOrEsco(it.toString(), uuid)
+        if (jobCategoryCode != null) {
+            euresCodes.add(jobCategoryCode)
+        }
     }
     categoryList.forEach { c ->
-        if (c.categoryType?.equals("STYRK08NAV", ignoreCase = true) == true) {
-            euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
-        } else if (c.categoryType?.equals("STYRK08", ignoreCase = true) == true) {
-            euresCodes.add(JobCategoryCode(code = styrkToEsco(c.code)))
-        } else if (c.categoryType?.equals("ESCO", ignoreCase = true) == true) {
-            euresCodes.add(createJobCategoryCodeForIscoOrEsco(c.code ?: "INGEN", uuid))
+        val iscoCode = styrkToIsco(c.code)
+        if (c.categoryType?.uppercase() == "STYRK08NAV" && iscoCode != null) {
+            euresCodes.add(JobCategoryCode(code = iscoCode))
+        } else if (c.categoryType?.uppercase() == "STYRK08" && iscoCode != null) {
+            euresCodes.add(JobCategoryCode(code = iscoCode))
+        } else if (c.categoryType?.uppercase() == "ESCO") {
+            val jobCategoryCode = createJobCategoryCodeForIscoOrEsco(c.code, uuid)
+            if (jobCategoryCode != null) {
+                euresCodes.add(jobCategoryCode)
+            }
         }
     }
     return euresCodes.toList()
 }
 
-fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryCode {
+fun createJobCategoryCodeForIscoOrEsco(code: String?, uuid: String): JobCategoryCode? {
+    if (code.isNullOrEmpty()) {
+        return null
+    }
+
     val iscoPrefix = "http://data.europa.eu/esco/isco/c"
     val iscoPrefixWithCapitalC = "http://data.europa.eu/esco/isco/C"
     if (code.lowercase().startsWith(iscoPrefix)) {
         Ad.LOG.debug("ESCO code contains '/isco' $code $uuid")
-        return JobCategoryCode(code = styrkToEsco(code
-            .replace(iscoPrefix, "")
-            .replace(iscoPrefixWithCapitalC, "")
-        ))
+        val iscoCode = styrkToIsco(code
+                .replace(iscoPrefix, "")
+                .replace(iscoPrefixWithCapitalC, "")
+        )
+        if (iscoCode == null) {
+            return null
+        }
+        return JobCategoryCode(code = iscoCode)
     }
     return JobCategoryCode(
         listName = "ESCO_Occupations",
@@ -114,9 +129,11 @@ fun createJobCategoryCodeForIscoOrEsco(code: String, uuid: String): JobCategoryC
     )
 }
 
-private fun styrkToEsco(styrk: String?) : String {
-    if(styrk == null) return "INGEN"
-    if(styrk.length < 4) return "INGEN"
+private fun styrkToIsco(styrk: String?) : String? {
+    if(styrk == null) return null
+    if(styrk.length < 4) return null
+    if (styrk == "2223") return "2221" // Sykepleier Styrk08 kode som ikke finnes i Isco
+    if (styrk == "2224") return "3412" // Helsepleier Styrk08 kode som ikke finnes i Isco
     return styrk.substring(0..3)
 }
 
