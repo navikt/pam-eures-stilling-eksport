@@ -93,6 +93,15 @@ class PositionOpeningConverterKtTest {
         assertEquals("2008", jobCategoryCode[0].listVersionID)
     }
 
+    @Test
+    fun `Ugyldige Isco koder blir fjernet`() {
+        val invalidJobCategoryCode = initAd().copy(
+            categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/isco/C532")), // Kun tre tall er ugyldig
+            properties = emptyMap()
+        ).toJobCategoryCode()
+        assertEquals(0, invalidJobCategoryCode.size)
+    }
+
     private fun createEscoCategory(code: String): Category {
         return Category(random.nextLong(), code, "ESCO", "", "", null)
     }
