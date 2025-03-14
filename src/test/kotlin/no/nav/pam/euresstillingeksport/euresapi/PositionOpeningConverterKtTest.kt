@@ -94,6 +94,26 @@ class PositionOpeningConverterKtTest {
     }
 
     @Test
+    fun `Styrk08 kode 2224 Helsepleier oversettes til Isco kode 3412`() {
+        val jobCategoryCode = initAd().copy(
+            categoryList = listOf(createStyrkCategory("2224")),
+            properties = emptyMap()
+        ).toJobCategoryCode()
+        assertEquals(1, jobCategoryCode.size)
+        assertEquals("3412", jobCategoryCode[0].code)
+    }
+
+    @Test
+    fun `Styrk08 kode 3439 Andre yrker innen estetiske fag oversettes til Isco kode 3435`() {
+        val jobCategoryCode = initAd().copy(
+            categoryList = listOf(createStyrkCategory("3439")),
+            properties = emptyMap()
+        ).toJobCategoryCode()
+        assertEquals(1, jobCategoryCode.size)
+        assertEquals("3435", jobCategoryCode[0].code)
+    }
+
+    @Test
     fun `Ugyldige Isco koder blir fjernet`() {
         val invalidJobCategoryCode = initAd().copy(
             categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/isco/C532")), // Kun tre tall er ugyldig

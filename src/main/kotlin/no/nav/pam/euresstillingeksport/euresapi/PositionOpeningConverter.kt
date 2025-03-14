@@ -134,6 +134,7 @@ private fun styrkToIsco(styrk: String?) : String? {
     if(styrk.length < 4) return null
     if (styrk == "2223") return "2221" // Sykepleier Styrk08 kode som ikke finnes i Isco
     if (styrk == "2224") return "3412" // Helsepleier Styrk08 kode som ikke finnes i Isco
+    if (styrk == "3439") return "3435" // Andre yrker innen estetiske fag som ikke finnes i Isco
     return styrk.substring(0..3)
 }
 
