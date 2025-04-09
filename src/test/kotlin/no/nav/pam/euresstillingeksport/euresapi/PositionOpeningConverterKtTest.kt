@@ -68,7 +68,7 @@ class PositionOpeningConverterKtTest {
         assertEquals("http://data.europa.eu/esco/occupation/4ad4024e-d1d3-4dea-b6d1-2c7948111dce", jobCategoryCode[0].code)
         assertEquals("https://ec.europa.eu/esco/portal", jobCategoryCode[0].listURI)
         assertEquals("ESCO_Occupations", jobCategoryCode[0].listName)
-        assertEquals("ESCOv1.09", jobCategoryCode[0].listVersionID)
+        assertEquals("ESCOv1", jobCategoryCode[0].listVersionID)
     }
 
     @Test
