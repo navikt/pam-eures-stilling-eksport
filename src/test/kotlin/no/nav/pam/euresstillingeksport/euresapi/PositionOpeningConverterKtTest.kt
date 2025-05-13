@@ -26,8 +26,10 @@ class PositionOpeningConverterKtTest {
     @Test
     fun `Fjerne duplikate jobCategories`() {
         val jobCategoryCode = initAd().copy(
-            categoryList = listOf(createEscoCategory("http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab"), createStyrkCategory("3412")),
-            properties = mapOf("classification_esco_code" to "http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab")
+            categoryList = listOf(
+                createEscoCategory("http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab"),
+                createStyrkCategory("3412"),
+                createEscoCategory("http://data.europa.eu/esco/occupation/8d703e8f-1e57-4246-8a6b-cb87a760d4ab")),
         ).toJobCategoryCode()
         assertEquals(2, jobCategoryCode.size)
     }
@@ -40,19 +42,6 @@ class PositionOpeningConverterKtTest {
         ).toJobCategoryCode()
         assertEquals(1, jobCategoryCode.size)
         assertEquals("5321", jobCategoryCode[0].code)
-        assertEquals("http://ec.europa.eu/esco/ConceptScheme/ISCO2008", jobCategoryCode[0].listURI)
-        assertEquals("ISCO2008", jobCategoryCode[0].listName)
-        assertEquals("2008", jobCategoryCode[0].listVersionID)
-    }
-
-    @Test
-    fun `Esco av typen Isco vises som Isco for property classification_esco_code`() {
-        val jobCategoryCode = initAd().copy(
-            categoryList = emptyList(),
-            properties = mapOf("classification_esco_code" to "http://data.europa.eu/esco/isco/c4323")
-        ).toJobCategoryCode()
-        assertEquals(1, jobCategoryCode.size)
-        assertEquals("4323", jobCategoryCode[0].code)
         assertEquals("http://ec.europa.eu/esco/ConceptScheme/ISCO2008", jobCategoryCode[0].listURI)
         assertEquals("ISCO2008", jobCategoryCode[0].listName)
         assertEquals("2008", jobCategoryCode[0].listVersionID)

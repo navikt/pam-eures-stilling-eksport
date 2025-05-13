@@ -81,12 +81,6 @@ private fun Ad.toFormattedDescription(): PositionFormattedDescription {
  fun Ad.toJobCategoryCode(): List<JobCategoryCode> {
     val euresCodes: MutableSet<JobCategoryCode> = mutableSetOf()
 
-    properties["classification_esco_code"]?.let {
-        val jobCategoryCode = createJobCategoryCodeForIscoOrEsco(it.toString(), uuid)
-        if (jobCategoryCode != null) {
-            euresCodes.add(jobCategoryCode)
-        }
-    }
     categoryList.forEach { c ->
         val iscoCode = styrkToIsco(c.code)
         if (c.categoryType?.uppercase() == "STYRK08NAV" && iscoCode != null) {
