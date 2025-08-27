@@ -15,7 +15,7 @@
     <PositionLocation>
       <Address>
         <wstxns1:CityName xmlns:wstxns1="http://www.openapplications.org/oagis/9">LYSAKER</wstxns1:CityName>
-        <wstxns2:CountrySubDivisionCode xmlns:wstxns2="http://www.openapplications.org/oagis/9">NO084</wstxns2:CountrySubDivisionCode>
+        <wstxns2:CountrySubDivisionCode xmlns:wstxns2="http://www.openapplications.org/oagis/9">NO082</wstxns2:CountrySubDivisionCode>
         <CountryCode>NO</CountryCode>
         <wstxns3:PostalCode xmlns:wstxns3="http://www.openapplications.org/oagis/9">1366</wstxns3:PostalCode>
       </Address>
