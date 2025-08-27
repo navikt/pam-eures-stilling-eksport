@@ -15,6 +15,8 @@ fun Location.toPositionLocation(): PositionLocation {
 
 fun countyToCountrySubDivisionCode(county: String?): String? {
     return when (county?.uppercase()) {
+        "TRØNDELAG" -> "NO060"
+        "NORDLAND" -> "NO071"
         "TROMS" -> "NO072"
         "FINNMARK" -> "NO073"
         "OSLO" -> "NO081"
