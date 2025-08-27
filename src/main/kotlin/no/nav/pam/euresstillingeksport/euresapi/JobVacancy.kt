@@ -114,7 +114,7 @@ data class Address(
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
     val cityName: String?,
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
-    val countrySubDivisionCode: String?, // TODO kommunenummer - namespace
+    val countrySubDivisionCode: String?,
     val countryCode: String,
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
     val postalCode: String?
