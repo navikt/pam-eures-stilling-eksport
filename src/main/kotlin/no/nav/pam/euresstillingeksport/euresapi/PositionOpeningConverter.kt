@@ -5,6 +5,7 @@ import no.nav.pam.euresstillingeksport.euresapi.ExperienceLevel.INGEN_KRAV_TIL_A
 import no.nav.pam.euresstillingeksport.euresapi.ExperienceLevel.MYE_ARBEIDSERFARING
 import no.nav.pam.euresstillingeksport.euresapi.ExperienceLevel.NOE_ARBEIDSERFARING
 import no.nav.pam.euresstillingeksport.model.Ad
+import no.nav.pam.euresstillingeksport.model.removeAddressesWithOnlyCountryIfMoreSpecificIsGiven
 
 enum class PropertyMapping(val key: String) {
     applicationdue("applicationdue"), // may be "snarest"
@@ -37,7 +38,7 @@ private fun Ad.toPositionProfile(): PositionProfile {
                     )
             ),
             positionTitle = title ?: "" ,
-            positionLocation = locationList.map { it.toPositionLocation() },
+            positionLocation = locationList.map { it.toPositionLocation() }.removeAddressesWithOnlyCountryIfMoreSpecificIsGiven(),
             positionOrganization = employer?.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toString()?.filter { it.isDigit() }?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),

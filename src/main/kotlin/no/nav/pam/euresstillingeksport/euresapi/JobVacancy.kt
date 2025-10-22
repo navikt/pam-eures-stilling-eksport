@@ -118,7 +118,14 @@ data class Address(
     val countryCode: String,
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
     val postalCode: String?
-)
+) {
+    fun isOnlyCountry(): Boolean {
+        return addressLine.isNullOrBlank() &&
+                cityName.isNullOrBlank() &&
+                countrySubDivisionCode.isNullOrBlank() &&
+                postalCode.isNullOrBlank() && countryCode.isNotBlank()
+    }
+}
 
 
 data class PostingInstruction(
