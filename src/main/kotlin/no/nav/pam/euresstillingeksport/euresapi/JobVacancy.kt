@@ -1,6 +1,7 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.dataformat.xml.annotation.*
 import java.time.LocalDateTime
 
@@ -119,6 +120,8 @@ data class Address(
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
     val postalCode: String?
 ) {
+
+    @JsonIgnore
     fun isOnlyCountry(): Boolean {
         return addressLine.isNullOrBlank() &&
                 cityName.isNullOrBlank() &&
