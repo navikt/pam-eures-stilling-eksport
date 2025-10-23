@@ -165,7 +165,7 @@ data class StillingsannonseJson (
 )
 
 /**
- * We get an Error from Eures if we provide a specific adress and at the same time provide a country.
+ * We get an Error from Eures if we provide a specific address and at the same time provide a country.
  * Therefore we remove all addresses that only contains country if there is at least one address
  * that is more specific than only country.
  */
