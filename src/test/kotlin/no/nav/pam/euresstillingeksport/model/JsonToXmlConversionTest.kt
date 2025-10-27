@@ -8,7 +8,6 @@ import no.nav.pam.euresstillingeksport.euresapi.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.euresapi.EuNace
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.FileInputStream
 
@@ -108,6 +107,28 @@ class ConversionTest {
         val xml = HrxmlSerializer.serialize(positionOpening)
 
         val expectedXml = read("src/test/resources/ads/ad_with_experience.xml")
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+    }
+
+    @Test
+    fun `Locations with only country are removed when there exists a more specific address`() {
+        val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
+        val locationList = ad.locationList.toMutableList()
+        locationList.add(Location(
+            address = null,
+            postalCode = null,
+            county = null,
+            municipal = null,
+            municipalCode = null,
+            city = null,
+            country = "Norway",
+            latitude = null,
+            longitude = null
+        ))
+        val adWithOnlyCountryLocation = ad.copy(locationList = locationList)
+        val xml = HrxmlSerializer.serialize(adWithOnlyCountryLocation.convertToPositionOpening())
+
+        val expectedXml = read("src/test/resources/ads/ad_1.xml")
         Assertions.assertThat(xml).isEqualTo(expectedXml)
     }
 }

@@ -2,6 +2,7 @@ package no.nav.pam.euresstillingeksport.model
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import no.nav.pam.euresstillingeksport.euresapi.PositionLocation
 import no.nav.pam.euresstillingeksport.euresapi.PropertyMapping
 import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
@@ -162,3 +163,16 @@ data class StillingsannonseJson (
         val stillingsannonseMetadata: StillingsannonseMetadata,
         val jsonAd: String
 )
+
+/**
+ * We get an Error from Eures if we provide a specific address and at the same time provide a country.
+ * Therefore we remove all addresses that only contains country if there is at least one address
+ * that is more specific than only country.
+ */
+fun List<PositionLocation>.removeAddressesWithOnlyCountryIfMoreSpecificIsGiven(): List<PositionLocation> {
+    val locationsMoreSpecificThanOnlyCountry = this.filter { !it.address.isOnlyCountry() }
+    if (locationsMoreSpecificThanOnlyCountry.isNotEmpty()) {
+        return locationsMoreSpecificThanOnlyCountry
+    }
+    return this
+}
