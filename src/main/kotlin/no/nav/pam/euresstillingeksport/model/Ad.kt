@@ -176,3 +176,15 @@ fun List<PositionLocation>.removeAddressesWithOnlyCountryIfMoreSpecificIsGiven()
     }
     return this
 }
+
+fun List<PositionLocation>.removeDuplicates(): List<PositionLocation> {
+    return this.distinctBy {
+        listOf(
+            it.address.addressLine,
+            it.address.cityName,
+            it.address.countrySubDivisionCode,
+            it.address.postalCode,
+            it.address.countryCode,
+        )
+    }
+}

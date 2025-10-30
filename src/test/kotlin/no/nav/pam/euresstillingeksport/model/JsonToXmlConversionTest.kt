@@ -17,6 +17,17 @@ class ConversionTest {
         registerModule(JavaTimeModule())
         configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true)
     }
+    val LOCATION_NORWAY = Location(
+            address = null,
+            postalCode = null,
+            county = null,
+            municipal = null,
+            municipalCode = null,
+            city = null,
+            country = "Norway",
+            latitude = null,
+            longitude = null
+        )
 
     @Test
     fun initialTest() {
@@ -114,21 +125,22 @@ class ConversionTest {
     fun `Locations with only country are removed when there exists a more specific address`() {
         val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
         val locationList = ad.locationList.toMutableList()
-        locationList.add(Location(
-            address = null,
-            postalCode = null,
-            county = null,
-            municipal = null,
-            municipalCode = null,
-            city = null,
-            country = "Norway",
-            latitude = null,
-            longitude = null
-        ))
+        locationList.add(LOCATION_NORWAY)
         val adWithOnlyCountryLocation = ad.copy(locationList = locationList)
         val xml = HrxmlSerializer.serialize(adWithOnlyCountryLocation.convertToPositionOpening())
 
         val expectedXml = read("src/test/resources/ads/ad_1.xml")
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+    }
+
+    @Test
+    fun `Duplikater fjernes`() {
+        val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
+        val locationList = listOf(LOCATION_NORWAY, LOCATION_NORWAY)
+        val adWithOnlyCountryLocation = ad.copy(locationList = locationList)
+        val xml = HrxmlSerializer.serialize(adWithOnlyCountryLocation.convertToPositionOpening())
+
+        val expectedXml = read("src/test/resources/ads/ad_with_only_country.xml")
         Assertions.assertThat(xml).isEqualTo(expectedXml)
     }
 }
