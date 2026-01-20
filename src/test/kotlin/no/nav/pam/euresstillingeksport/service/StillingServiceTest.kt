@@ -73,7 +73,7 @@ class FiltreringsTest {
     }
 
     @Test
-    fun `skal ikke filtrere bort stillinger som ikke er mangler saksbehandlingsstatus`() {
+    fun `skal ikke filtrere bort stillinger som mangler saksbehandlingsstatus`() {
         val missingAdministration = adMother.copy(administration = null)
         assertThat(stillingService.lagreStilling(missingAdministration)).isEqualTo(1)
     }
