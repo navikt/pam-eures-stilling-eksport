@@ -21,7 +21,7 @@
         <logstash-logback-encoder.version>8.0</logstash-logback-encoder.version>
         <wiremock.version>3.9.2</wiremock.version>
         <shedlock.version>5.16.0</shedlock.version>
-        <postgresql.version>42.7.4</postgresql.version>
+        <postgresql.version>42.7.7</postgresql.version>
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
         <kafka.version>3.8.1</kafka.version>
         <hikari.version>3.4.1</hikari.version>
