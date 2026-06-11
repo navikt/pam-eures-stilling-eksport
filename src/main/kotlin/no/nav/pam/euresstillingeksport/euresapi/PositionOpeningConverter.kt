@@ -18,7 +18,8 @@ enum class PropertyMapping(val key: String) {
     sourceurl("sourceurl"),
     euresflagg("euresflagg"),
     employerDescription("employerdescription"),
-    experience("experience")
+    experience("experience"),
+    remote("remote"),
 }
 
 fun Ad.convertToPositionOpening(): PositionOpening {
@@ -52,8 +53,17 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key]?.toString()?: "na")),
             immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]?.toString() ?: ""),
             positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()),
-            applicationCloseDate = expires!!
+            applicationCloseDate = expires!!,
+            userArea = toUserArea()
     )
+}
+
+private fun Ad.toUserArea(): UserArea? {
+    return when (properties[PropertyMapping.remote.key]?.toString()) {
+        "Hjemmekontor" -> UserArea(remoteWorkIndicator = true)
+        "Hjemmekontor ikke mulig" -> UserArea(remoteWorkIndicator = false)
+        else -> null
+    }
 }
 
 fun Ad.toPositionQualifications(): PositionQualifications? {

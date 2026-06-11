@@ -111,6 +111,32 @@ class PositionOpeningConverterKtTest {
         assertEquals(0, invalidJobCategoryCode.size)
     }
 
+    @Test
+    fun `RemoteWorkIndicator er true naar remote er Hjemmekontor`() {
+        val positionProfile = initAd().copy(
+            properties = mapOf("remote" to "Hjemmekontor")
+        ).convertToPositionOpening().positionProfile[0]
+        assertNotNull(positionProfile.userArea)
+        assertEquals(true, positionProfile.userArea?.remoteWorkIndicator)
+    }
+
+    @Test
+    fun `RemoteWorkIndicator er false naar remote er Hjemmekontor ikke mulig`() {
+        val positionProfile = initAd().copy(
+            properties = mapOf("remote" to "Hjemmekontor ikke mulig")
+        ).convertToPositionOpening().positionProfile[0]
+        assertNotNull(positionProfile.userArea)
+        assertEquals(false, positionProfile.userArea?.remoteWorkIndicator)
+    }
+
+    @Test
+    fun `UserArea er ikke satt naar remote ikke er satt`() {
+        val positionProfile = initAd().copy(
+            properties = mapOf()
+        ).convertToPositionOpening().positionProfile[0]
+        assertNull(positionProfile.userArea)
+    }
+
     private fun createEscoCategory(code: String): Category {
         return Category(random.nextLong(), code, "ESCO", "", "", null)
     }

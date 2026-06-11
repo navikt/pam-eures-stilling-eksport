@@ -79,7 +79,12 @@ data class PositionProfile(
     val immediateStartIndicator: Boolean,
     val positionScheduleTypeCode: PositionScheduleTypeCode,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    val applicationCloseDate: LocalDateTime       // YYYY-MM-DD
+    val applicationCloseDate: LocalDateTime,       // YYYY-MM-DD
+    val userArea: UserArea? = null,
+)
+
+data class UserArea(
+    val remoteWorkIndicator: Boolean?,
 )
 
 data class PositionOrganization(
