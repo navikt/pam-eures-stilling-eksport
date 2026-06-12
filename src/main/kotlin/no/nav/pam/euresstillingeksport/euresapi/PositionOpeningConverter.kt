@@ -54,11 +54,11 @@ private fun Ad.toPositionProfile(): PositionProfile {
             immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]?.toString() ?: ""),
             positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()),
             applicationCloseDate = expires!!,
-            userArea = toUserArea()
+            userArea = toUserAreaWithRemoteWork()
     )
 }
 
-private fun Ad.toUserArea(): UserArea? {
+private fun Ad.toUserAreaWithRemoteWork(): UserArea? {
     return when (properties[PropertyMapping.remote.key]?.toString()) {
         "Hjemmekontor" -> UserArea(remoteWorkIndicator = true)
         "Hjemmekontor ikke mulig" -> UserArea(remoteWorkIndicator = false)
