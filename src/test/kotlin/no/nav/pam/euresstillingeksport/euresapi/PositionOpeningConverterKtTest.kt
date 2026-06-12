@@ -112,7 +112,7 @@ class PositionOpeningConverterKtTest {
     }
 
     @Test
-    fun `RemoteWorkIndicator er true naar remote er Hjemmekontor`() {
+    fun `RemoteWorkIndicator er true når remote er Hjemmekontor`() {
         val positionProfile = initAd().copy(
             properties = mapOf("remote" to "Hjemmekontor")
         ).convertToPositionOpening().positionProfile[0]
@@ -121,7 +121,7 @@ class PositionOpeningConverterKtTest {
     }
 
     @Test
-    fun `RemoteWorkIndicator er false naar remote er Hjemmekontor ikke mulig`() {
+    fun `RemoteWorkIndicator er false når remote er Hjemmekontor ikke mulig`() {
         val positionProfile = initAd().copy(
             properties = mapOf("remote" to "Hjemmekontor ikke mulig")
         ).convertToPositionOpening().positionProfile[0]
@@ -130,7 +130,7 @@ class PositionOpeningConverterKtTest {
     }
 
     @Test
-    fun `UserArea er ikke satt naar remote ikke er satt`() {
+    fun `UserArea er ikke satt når remote ikke er satt`() {
         val positionProfile = initAd().copy(
             properties = mapOf()
         ).convertToPositionOpening().positionProfile[0]
