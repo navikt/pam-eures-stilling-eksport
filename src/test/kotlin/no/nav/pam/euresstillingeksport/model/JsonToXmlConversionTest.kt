@@ -105,9 +105,11 @@ class ConversionTest {
 
     @Test
     fun `string value value of valid nace values`() {
-        Assertions.assertThat(EuNace("74.300").code()).isEqualTo("M74.3.0")
+        Assertions.assertThat(EuNace("74.300").code()).isEqualTo("N74.3.0")
         Assertions.assertThat(EuNace("1.230").code()).isEqualTo("A1.2.3")
         Assertions.assertThat(EuNace("09.109").code()).isEqualTo("B9.1.0")
+        Assertions.assertThat(EuNace("61.100").code()).isEqualTo("K61.1.0")
+        Assertions.assertThat(EuNace("87.102").code()).isEqualTo("R87.1.0")
     }
 
     @Test
