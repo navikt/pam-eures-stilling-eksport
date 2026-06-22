@@ -108,8 +108,11 @@ class ConversionTest {
         Assertions.assertThat(EuNace("74.300").code()).isEqualTo("N74.3.0")
         Assertions.assertThat(EuNace("1.230").code()).isEqualTo("A1.2.3")
         Assertions.assertThat(EuNace("09.109").code()).isEqualTo("B9.1.0")
+        Assertions.assertThat(EuNace("60.100").code()).isEqualTo("J60.1.0")
         Assertions.assertThat(EuNace("61.100").code()).isEqualTo("K61.1.0")
+        Assertions.assertThat(EuNace("64.100").code()).isEqualTo("L64.1.0")
         Assertions.assertThat(EuNace("87.102").code()).isEqualTo("R87.1.0")
+        Assertions.assertThat(EuNace("99.000").code()).isEqualTo("V99.0.0")
     }
 
     @Test
