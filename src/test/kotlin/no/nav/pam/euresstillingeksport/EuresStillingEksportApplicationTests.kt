@@ -7,12 +7,12 @@ import no.nav.pam.euresstillingeksport.euresapi.GetDetailsResponse
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.test.context.ActiveProfiles
+import org.springframework.boot.resttestclient.TestRestTemplate
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@AutoConfigureTestRestTemplate
 class EuresStillingEksportApplicationTests {
 
 	@Autowired

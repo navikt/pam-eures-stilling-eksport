@@ -1,22 +1,18 @@
 management:
-  endpoint.health.enabled: true
+  endpoint:
+    health:
+      access: read-only
   endpoints:
-    prometheus.enabled: true
-    prometheus.web.enabled: true
-    web.exposure.include: health,info,status,metrics,prometheus,configprops,env,beans,mappings
+    web:
+      exposure:
+        include: health,info,status,metrics,prometheus,configprops,env,beans,mappings
   metrics:
-    web.server.auto-time-requests: true
     distribution.percentiles-histogram.http.server.requests: true
     distribution.percentiles-histogram.http.client.requests: true
-  health:
-    elasticsearch:
-      enabled: false
 spring:
-  metrics.web.server.auto-time-requests: true
   task.scheduling.pool.size: 5
   main:
     banner-mode: "off"
-    allow-bean-definition-overriding: true
   profiles:
     active: ${NAIS_CLUSTER_NAME:dev}
   datasource:
@@ -27,13 +23,16 @@ spring:
       minimum-idle: 1
       maximum-pool-size: 3
 
-server:
-  error:
-    whitelabel:
+  web:
+    error:
+      include-stacktrace: never
+      whitelabel:
+        enabled: true
+
+app:
+  kafka:
+    listener:
       enabled: true
-    include-stacktrace: never
-  servlet:
-    context-path: /
 
 kafka:
   bootstrapServers: ${KAFKA_BROKERS:localhost}

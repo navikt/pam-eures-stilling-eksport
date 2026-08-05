@@ -2,10 +2,9 @@ package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.dataformat.xml.annotation.*
+import tools.jackson.dataformat.xml.annotation.*
 import java.time.LocalDateTime
 
-@JacksonXmlRootElement
 data class PositionOpening(
     // Jackson namespace hack
     @JacksonXmlProperty(isAttribute = true, localName = "xmlns")

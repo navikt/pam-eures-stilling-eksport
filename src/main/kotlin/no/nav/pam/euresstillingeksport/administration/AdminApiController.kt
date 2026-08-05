@@ -2,34 +2,33 @@ package no.nav.pam.euresstillingeksport.administration
 
 import no.nav.pam.euresstillingeksport.model.StillingService
 import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
-import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 @RestController
-@RequestMapping("/internal/admin")
-class AdminApiController(@Autowired private val stillingService: StillingService) {
+@RequestMapping(AdminApiController.BASE_PATH)
+class AdminApiController(private val stillingService: StillingService) {
 
     companion object {
-        private val LOG = LoggerFactory.getLogger(AdminApiController::class.java)
+        private const val BASE_PATH = "/internal/admin"
     }
-
 
     @GetMapping("/statistikk")
     fun statistikk() : ResponseEntity<List<AnnonseStatistikk>> {
         val statistikk = stillingService.hentStatistikk(null)
-        return ResponseEntity(statistikk, HttpStatus.OK)
+        return ResponseEntity.ok(statistikk)
     }
 
     @GetMapping("/statistikk/{fraOgMed}")
     fun statistikk(@PathVariable("fraOgMed") fraOgMed: String) : ResponseEntity<List<AnnonseStatistikk>> {
         val fom = LocalDateTime.parse(fraOgMed, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         val statistikk = stillingService.hentStatistikk(fom)
-        return ResponseEntity(statistikk, HttpStatus.OK)
+        return ResponseEntity.ok(statistikk)
     }
 
 }

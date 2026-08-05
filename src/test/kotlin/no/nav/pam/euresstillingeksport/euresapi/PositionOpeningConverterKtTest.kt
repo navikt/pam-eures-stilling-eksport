@@ -1,8 +1,8 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import tools.jackson.databind.ObjectMapper
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.module.kotlin.KotlinModule
 import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.model.Category
 import org.junit.jupiter.api.Assertions.*
@@ -12,13 +12,12 @@ import kotlin.random.Random
 
 class PositionOpeningConverterKtTest {
 
-    private fun objectMapper() = ObjectMapper().apply {
-        registerModule(KotlinModule.Builder().build())
-        registerModule(JavaTimeModule())
-    }
+    private fun objectMapper() = JsonMapper.builder()
+        .addModule(KotlinModule.Builder().build())
+        .build()
 
     private fun initAd(): Ad = objectMapper()
-        .readValue(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"), Ad::class.java)
+        .readValue(javaClass.getResourceAsStream("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"), Ad::class.java)
         .copy(uuid = UUID.randomUUID().toString(), status = "ACTIVE")
 
     private val random = Random(100000)

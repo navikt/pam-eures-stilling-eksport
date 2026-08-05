@@ -1,0 +1,26 @@
+name: prs
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - "**.md"
+      - ".gitignore"
+      - "LICENCE"
+      - "CODEOWNERS"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up JDK
+        uses: actions/setup-java@v5.7.0
+        with:
+          java-version: 25
+          distribution: temurin
+          cache: maven
+      - name: Build and verify
+        run: ./build.sh

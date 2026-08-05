@@ -1,8 +1,5 @@
 package no.nav.pam.euresstillingeksport.kafka
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import org.apache.kafka.clients.CommonClientConfigs
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener
@@ -11,26 +8,24 @@ import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.config.SslConfigs
 import org.apache.kafka.common.serialization.*
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
-import org.springframework.context.annotation.Profile
-import org.springframework.retry.annotation.EnableRetry
 import java.util.*
 
 
 @Configuration
-@EnableRetry
+@EnableConfigurationProperties(KafkaConfig.InboundKafkaProperties::class)
 class KafkaConfig {
     companion object {
         private val LOG = LoggerFactory.getLogger(KafkaConfig::class.java)
     }
 
     @Bean
-    @Profile("!test")
-    fun kafkaConsumer(@Autowired inboundKafkaProperties: InboundKafkaProperties)
+    @ConditionalOnProperty(prefix = "app.kafka.listener", name = ["enabled"], havingValue = "true", matchIfMissing = true)
+    fun kafkaConsumer(inboundKafkaProperties: InboundKafkaProperties)
             : KafkaConsumer<String?, ByteArray?> {
         val kafkaConfig = inboundKafkaProperties.asProperties()
         val topic = inboundKafkaProperties.inboundTopic!!
@@ -106,12 +101,4 @@ class KafkaConfig {
             return props
         }
     }
-
-    @Bean
-    @Primary
-    open fun objectMapper() =
-            ObjectMapper().apply {
-                registerModule(KotlinModule.Builder().build())
-                registerModule(JavaTimeModule())
-            }
 }

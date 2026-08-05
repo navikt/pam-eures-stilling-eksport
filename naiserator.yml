@@ -28,6 +28,9 @@ spec:
     enabled: true
     path: actuator/prometheus
   observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
     logging:
       destinations:
         - id: loki
