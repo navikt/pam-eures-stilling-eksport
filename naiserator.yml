@@ -23,7 +23,7 @@ spec:
       memory: 2048Mi
     requests:
       cpu: 200m
-      memory: 512Mi
+      memory: 1200Mi
   prometheus:
     enabled: true
     path: actuator/prometheus
