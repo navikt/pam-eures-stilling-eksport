@@ -126,10 +126,6 @@ class StillingService(
             LOG.info("Avviser stillingen ${stilling.uuid} siden den stammer fra EURES, source=${stilling.source}")
             return false
         }
-        if (!stilling.erSaksbehandlet()) {
-            LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er saksbehandlet, men har status ${stilling.administration?.status}")
-            return false
-        }
         if (stilling.locationList.all { it.landskode == null }) {
             LOG.info("Avviser stillingen ${stilling.uuid} siden den ikke er innenfor EU/EØS")
             return false

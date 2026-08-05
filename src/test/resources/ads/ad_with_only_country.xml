@@ -8,17 +8,13 @@
   <PositionProfile languageCode="no">
     <PostingInstruction>
       <ApplicationMethod>
-        <Instructions><![CDATA[<a href="https://arbeidsplassen.nav.no/stillinger/stilling/db6cc067-7f39-42f1-9866-d9ee47894ec6" rel="nofollow">Link to the vacancy on the Norwegian job board</a>]]></Instructions>
+        <Instructions><![CDATA[https://www.finn.no/138328250]]></Instructions>
       </ApplicationMethod>
     </PostingInstruction>
     <PositionTitle>Motorkyndige Teknikkere/ Elektrikkere/ Feilsøkere</PositionTitle>
     <PositionLocation>
       <Address>
-        <wstxns1:AddressLine xmlns:wstxns1="http://www.openapplications.org/oagis/9">Kværnerveien 6</wstxns1:AddressLine>
-        <wstxns2:CityName xmlns:wstxns2="http://www.openapplications.org/oagis/9">OSLO</wstxns2:CityName>
-        <wstxns3:CountrySubDivisionCode xmlns:wstxns3="http://www.openapplications.org/oagis/9">NO081</wstxns3:CountrySubDivisionCode>
         <CountryCode>NO</CountryCode>
-        <wstxns4:PostalCode xmlns:wstxns4="http://www.openapplications.org/oagis/9">0195</wstxns4:PostalCode>
       </Address>
     </PositionLocation>
     <PositionOrganization>
@@ -28,24 +24,16 @@
       </OrganizationIdentifiers>
       <IndustryCode>C33.1.7</IndustryCode>
     </PositionOrganization>
-    <PositionOpenQuantity>1</PositionOpenQuantity>
+    <PositionOpenQuantity>2</PositionOpenQuantity>
     <JobCategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">7411</JobCategoryCode>
     <PositionOfferingTypeCode>DirectHire</PositionOfferingTypeCode>
-    <PositionQualifications>
-      <ExperienceSummary>
-        <ExperienceCategory>
-          <CategoryCode listName="ISCO2008" listVersionID="2008" listURI="http://ec.europa.eu/esco/ConceptScheme/ISCO2008">7411</CategoryCode>
-          <Measure unitCode="year">1</Measure>
-        </ExperienceCategory>
-      </ExperienceSummary>
-    </PositionQualifications>
     <PositionFormattedDescription>
-      <Content><![CDATA[For fullstendig annonsetekst, se annonsen hos finn.no: <a href="null">null</a>.]]></Content>
+      <Content><![CDATA[For fullstendig annonsetekst, se annonsen hos finn.no: <a href="https://www.finn.no/138328250">https://www.finn.no/138328250</a>.]]></Content>
     </PositionFormattedDescription>
     <WorkingLanguageCode>NO</WorkingLanguageCode>
     <PositionPeriod>
       <StartDate>
-        <DateText>na</DateText>
+        <DateText>01.03.2019</DateText>
       </StartDate>
     </PositionPeriod>
     <ImmediateStartIndicator>false</ImmediateStartIndicator>

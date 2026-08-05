@@ -16,8 +16,9 @@
       <Address>
         <wstxns1:AddressLine xmlns:wstxns1="http://www.openapplications.org/oagis/9">Kværnerveien 6</wstxns1:AddressLine>
         <wstxns2:CityName xmlns:wstxns2="http://www.openapplications.org/oagis/9">OSLO</wstxns2:CityName>
+        <wstxns3:CountrySubDivisionCode xmlns:wstxns3="http://www.openapplications.org/oagis/9">NO081</wstxns3:CountrySubDivisionCode>
         <CountryCode>NO</CountryCode>
-        <wstxns3:PostalCode xmlns:wstxns3="http://www.openapplications.org/oagis/9">0195</wstxns3:PostalCode>
+        <wstxns4:PostalCode xmlns:wstxns4="http://www.openapplications.org/oagis/9">0195</wstxns4:PostalCode>
       </Address>
     </PositionLocation>
     <PositionOrganization>
