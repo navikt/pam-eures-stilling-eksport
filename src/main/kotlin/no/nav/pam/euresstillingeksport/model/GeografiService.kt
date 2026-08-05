@@ -1,8 +1,7 @@
 package no.nav.pam.euresstillingeksport.model
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.RuntimeException
 import java.net.URI
@@ -12,7 +11,7 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
 @Service
-class GeografiService(@Autowired private val objectMapper: ObjectMapper) {
+class GeografiService(private val objectMapper: ObjectMapper) {
     companion object {
         private const val baseUrl = "http://pam-geografi/rest/finn-euland"
         private val logger = LoggerFactory.getLogger(GeografiService::class.java)

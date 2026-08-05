@@ -1,8 +1,8 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import tools.jackson.module.kotlin.jacksonObjectMapper
+import tools.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.euresapi.EmployerPropertyMapping.Nace2
 import no.nav.pam.euresstillingeksport.model.Employer
 import org.slf4j.LoggerFactory
@@ -49,11 +49,12 @@ fun Employer.toIndustryCode(): List<IndustryCode> {
     if(!properties.containsKey(Nace2.key))
         return emptyList()
 
-    return properties.getValue(Nace2.key)
-            .let { Nace2Converter().convert(it) }
-            .map { EuNace(it.code) }
-            .filter { it.isValid() }
-            .map { IndustryCode(it.code()) }
+    return properties[Nace2.key]
+            ?.let { Nace2Converter().convert(it) }
+            ?.map { EuNace(it.code) }
+            ?.filter { it.isValid() }
+            ?.map { IndustryCode(it.code()) }
+            ?: emptyList()
 
 }
 
@@ -111,4 +112,3 @@ private data class NorskNace(
         val code: String,
         val name: String
 )
-

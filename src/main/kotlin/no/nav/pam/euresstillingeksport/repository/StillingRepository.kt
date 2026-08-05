@@ -33,7 +33,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 rs.getInt("euresflagg") == 1,
                 rs.getTimestamp("opprettet_ts").toLocalDateTime(),
                 rs.getTimestamp("sist_endret_ts").toLocalDateTime(),
-                rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() } ?: null)
+                rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() })
     }
 
     private val stillingsannonseMedContentRowMapper = RowMapper<StillingsannonseJson>
@@ -44,7 +44,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 rs.getInt("euresflagg") == 1,
                 rs.getTimestamp("opprettet_ts").toLocalDateTime(),
                 rs.getTimestamp("sist_endret_ts").toLocalDateTime(),
-                rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() } ?: null),
+                rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() }),
                 rs.getString("json_stilling"))
     }
 
@@ -195,7 +195,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
         val params = MapSqlParameterSource()
         var where = ""
         if (fraOgMedTidspunkt != null) {
-            "where sist_endret_ts >= :fom "
+            where = "where sist_endret_ts >= :fom "
             params.addValue("fom", fraOgMedTidspunkt)
         }
 

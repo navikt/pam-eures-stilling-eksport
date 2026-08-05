@@ -1,23 +1,23 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import tools.jackson.databind.PropertyNamingStrategies
+import tools.jackson.databind.SerializationFeature
+import tools.jackson.dataformat.xml.XmlMapper
+import tools.jackson.dataformat.xml.XmlWriteFeature
+import tools.jackson.module.kotlin.KotlinModule
 
 object HrxmlSerializer {
 
-    private val xml: XmlMapper = XmlMapper().apply {
-        registerKotlinModule()
-        registerModule(JavaTimeModule())
-        propertyNamingStrategy = PropertyNamingStrategy.UPPER_CAMEL_CASE
-        setSerializationInclusion(JsonInclude.Include.NON_NULL)
-        enable(ToXmlGenerator.Feature.WRITE_XML_DECLARATION)
-        enable(SerializationFeature.INDENT_OUTPUT)
-    }
+    private val xml: XmlMapper = XmlMapper.builder()
+        .addModule(KotlinModule.Builder().build())
+        .propertyNamingStrategy(PropertyNamingStrategies.UPPER_CAMEL_CASE)
+        .changeDefaultPropertyInclusion {
+            JsonInclude.Value.construct(JsonInclude.Include.NON_NULL, JsonInclude.Include.NON_NULL)
+        }
+        .enable(XmlWriteFeature.WRITE_XML_DECLARATION)
+        .enable(SerializationFeature.INDENT_OUTPUT)
+        .build()
 
     fun serialize(positionOpening: PositionOpening): String {
         return xml.writeValueAsString(positionOpening)

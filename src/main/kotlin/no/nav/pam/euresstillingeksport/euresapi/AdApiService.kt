@@ -4,20 +4,19 @@ import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.Tags
 import no.nav.pam.euresstillingeksport.model.Converters
 import no.nav.pam.euresstillingeksport.model.StillingService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.Exception
 import java.util.concurrent.atomic.AtomicInteger
 
 @Service
-class AdApiService(@Autowired private val stillingService: StillingService,
-                   @Autowired private val meterRegistry: MeterRegistry) : ApiService {
+class AdApiService(private val stillingService: StillingService,
+                   private val meterRegistry: MeterRegistry) : ApiService {
 
     private val euresLagMeter = meterRegistry.gauge("eures.lag.hours", AtomicInteger(0))
-    private val euresLastPollMeter = mapOf<String, AtomicInteger?>(
-            Pair("Opprettet", meterRegistry.gauge("eures.last.poll", Tags.of("type", "Opprettet"), AtomicInteger(0))),
-            Pair("Endret", meterRegistry.gauge("eures.last.poll", Tags.of("type", "Endret"), AtomicInteger(0))),
-            Pair("Lukket", meterRegistry.gauge("eures.last.poll", Tags.of("type", "Lukket"), AtomicInteger(0))))
+    private val euresLastPollMeter = mapOf(
+            "Opprettet" to meterRegistry.gauge("eures.last.poll", Tags.of("type", "Opprettet"), AtomicInteger(0)),
+            "Endret" to meterRegistry.gauge("eures.last.poll", Tags.of("type", "Endret"), AtomicInteger(0)),
+            "Lukket" to meterRegistry.gauge("eures.last.poll", Tags.of("type", "Lukket"), AtomicInteger(0)))
 
     /** Kun referanser til aktive stillingsannonser skal returneres */
     override fun getAll(): GetAllResponse {
@@ -26,7 +25,7 @@ class AdApiService(@Autowired private val stillingService: StillingService,
         return GetAllResponse(stillingsannonser.map {
             Stillingreferanse(Converters.localdatetimeToTimestamp(it.opprettetTs),
                     Converters.localdatetimeToTimestamp(it.sistEndretTs),
-                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null,
+                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) },
                     it.id,
                     it.kilde,
                     EuresStatus.fromAdStatus(it.status))
@@ -35,7 +34,7 @@ class AdApiService(@Autowired private val stillingService: StillingService,
 
     override fun getChanges(ts: Long): GetChangesResponse {
         val lagInHours = (System.currentTimeMillis() - ts)/3600000
-        euresLagMeter?.set(lagInHours.toInt())
+        euresLagMeter.set(lagInHours.toInt())
 
         val stillingsannonser = stillingService.hentAlleStillinger(ts)
 
@@ -46,7 +45,7 @@ class AdApiService(@Autowired private val stillingService: StillingService,
         stillingsannonser.forEach {
             val stillingreferanse = Stillingreferanse(Converters.localdatetimeToTimestamp(it.opprettetTs),
                     Converters.localdatetimeToTimestamp(it.sistEndretTs),
-                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) } ?: null,
+                    it.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) },
                     it.id,
                     it.kilde,
                     EuresStatus.fromAdStatus(it.status))
@@ -78,7 +77,6 @@ class AdApiService(@Autowired private val stillingService: StillingService,
                             creationTimestamp = Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.opprettetTs),
                             lastModificationTimestamp = Converters.localdatetimeToTimestamp(it.stillingsannonseMetadata.sistEndretTs),
                             closingTimestamp = it.stillingsannonseMetadata.lukketTs?.let { ts -> Converters.localdatetimeToTimestamp(ts) }
-                                    ?: null
                     )
                 }))
     }
@@ -87,4 +85,3 @@ class AdApiService(@Autowired private val stillingService: StillingService,
         return HrxmlSerializer.serialize(positionOpening)
     }
 }
-

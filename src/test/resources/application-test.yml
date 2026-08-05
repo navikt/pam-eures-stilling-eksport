@@ -6,5 +6,8 @@ spring:
     url: jdbc:tc:postgresql:14:///${dbnavn}?TC_INITSCRIPT=postgres/postgres-init.sql
     username: postgres
     password: password
-  main:
-    allow-bean-definition-overriding: true
+
+app:
+  kafka:
+    listener:
+      enabled: false

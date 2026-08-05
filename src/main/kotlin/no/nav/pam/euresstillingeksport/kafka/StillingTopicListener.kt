@@ -1,37 +1,42 @@
 package no.nav.pam.euresstillingeksport.kafka
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.model.GeografiService
 import no.nav.pam.euresstillingeksport.model.StillingService
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.apache.kafka.clients.consumer.ConsumerRecords
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.KafkaException
 import org.apache.kafka.common.errors.*
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.Profile
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
 import java.time.Duration
 import java.util.concurrent.atomic.AtomicInteger
 
 @Service
-@Profile("!test")
+@ConditionalOnProperty(prefix = "app.kafka.listener", name = ["enabled"], havingValue = "true", matchIfMissing = true)
 class StillingTopicListener(
-    @Autowired private val kafkaConsumer: KafkaConsumer<String?, ByteArray?>,
-    @Autowired private val kafkaHealthService: KafkaHealthService,
-    @Autowired private val objectMapper: ObjectMapper,
+    private val kafkaConsumer: KafkaConsumer<String?, ByteArray?>,
+    private val kafkaHealthService: KafkaHealthService,
+    private val objectMapper: ObjectMapper,
     @Value("\${kafka.inboundTopic}") private val inboundTopic: String,
-    @Autowired private val stillingService: StillingService,
-    @Autowired private val geografiService: GeografiService
+    private val stillingService: StillingService,
+    private val geografiService: GeografiService
 ) {
     companion object {
         private val LOG = LoggerFactory.getLogger(StillingTopicListener::class.java)
     }
 
-    fun startListener(): Thread {
+    @EventListener(ApplicationReadyEvent::class)
+    fun onApplicationReady() {
+        startListener()
+    }
+
+    private fun startListener(): Thread {
         val t = object: Thread () {
             override fun run() {
                 startListenerInternal()
@@ -44,10 +49,9 @@ class StillingTopicListener(
 
     private fun startListenerInternal() {
         LOG.info("Starter kafka listener...")
-        var records: ConsumerRecords<String?, ByteArray?>? = null
         while (kafkaHealthService.isHealthy()) {
             try {
-                records = kafkaConsumer.poll(Duration.ofSeconds(10))
+                val records = kafkaConsumer.poll(Duration.ofSeconds(10))
                 LOG.info("Fikk ${records.count()} verdier. ")
                 if (records.count() > 0) {
                     if (records.count() > 1) {
@@ -88,9 +92,7 @@ class StillingTopicListener(
 
 @Service
 class KafkaHealthService {
-    companion object {
-        private val unhealthyVotes = AtomicInteger(0)
-    }
+    private val unhealthyVotes = AtomicInteger(0)
 
     fun addUnhealthyVote(): Int {
         return unhealthyVotes.addAndGet(1)

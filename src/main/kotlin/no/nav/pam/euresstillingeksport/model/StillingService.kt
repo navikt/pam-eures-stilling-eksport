@@ -1,6 +1,6 @@
 package no.nav.pam.euresstillingeksport.model
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import no.nav.pam.euresstillingeksport.repository.AnnonseStatistikk
 import no.nav.pam.euresstillingeksport.repository.StillingRepository

@@ -1,6 +1,6 @@
 package no.nav.pam.euresstillingeksport
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import tools.jackson.databind.ObjectMapper
 import no.nav.pam.euresstillingeksport.model.Ad
 import no.nav.pam.euresstillingeksport.model.AdStatus
 import no.nav.pam.euresstillingeksport.model.StillingsannonseJson
@@ -10,15 +10,15 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.test.context.ActiveProfiles
+import org.springframework.boot.resttestclient.TestRestTemplate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@AutoConfigureTestRestTemplate
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AdminApiTests {
 
@@ -34,7 +34,7 @@ class AdminApiTests {
     val root = "/internal/admin"
 
     fun initAd() : Ad =
-            objectMapper.readValue<Ad>(javaClass.getResource("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"),
+            objectMapper.readValue(javaClass.getResourceAsStream("/mockdata/ad-db6cc067-7f39-42f1-9866-d9ee47894ec6.json"),
                     Ad::class.java)
                     .copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 

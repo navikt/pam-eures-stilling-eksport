@@ -18,7 +18,7 @@ data class Ad(
         //val mediaList: [],
         //val contactList [],
         val locationList: List<Location>,
-        val properties: Map<String, Any>,
+        val properties: Map<String, Any?>,
         val title: String?,
         val status: String?,
         val privacy: String?,
@@ -32,9 +32,9 @@ data class Ad(
         val administration: Administration?,
         val publishedByAdmin: String?,
         val businessName: String?,
-        val firstPublished: Boolean,
-        val deactivatedByExpiry: Boolean,
-        val activationOnPublishingDate: Boolean,
+        val firstPublished: Boolean = false,
+        val deactivatedByExpiry: Boolean = false,
+        val activationOnPublishingDate: Boolean = false,
 ) {
     fun erSaksbehandlet() = administration?.erSaksbehandlet() ?: false
     fun erFraEures() = source == "EURES"
@@ -76,11 +76,11 @@ data class Category(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Administration(
-        val id: Long,
-        val status: String,
+        val id: Long = 0,
+        val status: String = "",
         val comments: String?,
         val reportee: String?,
-        val remarks: List<String>,
+        val remarks: List<String> = emptyList(),
         val navIdent: String?
 ) {
     fun erSaksbehandlet() = status == "DONE"
@@ -98,15 +98,15 @@ data class Employer(
         // val contactList: [],
         val locationList: List<Location>,
         // Key er key (f.eks nace2, value er en json string)
-        val properties: Map<String, Any>,
+        val properties: Map<String, Any?>,
         val name: String?,
         val orgnr: String?,
         val status: String?,
         val parentOrgnr: String?,
         val publicName: String?,
-        val deactivated: Boolean,
+        val deactivated: Boolean = false,
         val orgform: String?,
-        val employees: Int
+        val employees: Int = 0
 )
 
 enum class AdStatus {

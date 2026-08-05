@@ -1,9 +1,11 @@
 package no.nav.pam.euresstillingeksport.model
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import tools.jackson.core.StreamWriteFeature
+import tools.jackson.databind.DeserializationFeature
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.module.kotlin.KotlinFeature
+import tools.jackson.module.kotlin.KotlinModule
+import tools.jackson.module.kotlin.readValue
 import no.nav.pam.euresstillingeksport.euresapi.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.euresapi.EuNace
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
@@ -13,10 +15,16 @@ import java.io.FileInputStream
 
 class ConversionTest {
 
-    val JSON = jacksonObjectMapper().apply {
-        registerModule(JavaTimeModule())
-        configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true)
-    }
+    val JSON = JsonMapper.builder()
+        .addModule(
+            KotlinModule.Builder()
+                .disable(KotlinFeature.StrictNullChecks)
+                .enable(KotlinFeature.NullIsSameAsDefault)
+                .build()
+        )
+        .disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+        .configure(StreamWriteFeature.IGNORE_UNKNOWN, true)
+        .build()
     val LOCATION_NORWAY = Location(
             address = null,
             postalCode = null,

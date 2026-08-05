@@ -1,8 +1,7 @@
 package no.nav.pam.euresstillingeksport.service
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.module.kotlin.KotlinModule
 import no.nav.pam.euresstillingeksport.model.*
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import org.assertj.core.api.Assertions.assertThat
@@ -203,7 +202,6 @@ private val adMother = Ad(
     activationOnPublishingDate = false
 )
 
-private val objectMapper = ObjectMapper().apply {
-    registerModule(KotlinModule.Builder().build())
-    registerModule(JavaTimeModule())
-}
+private val objectMapper = JsonMapper.builder()
+    .addModule(KotlinModule.Builder().build())
+    .build()
