@@ -8,7 +8,6 @@ import no.nav.pam.euresstillingeksport.euresapi.HrxmlSerializer
 import no.nav.pam.euresstillingeksport.euresapi.EuNace
 import no.nav.pam.euresstillingeksport.euresapi.convertToPositionOpening
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.FileInputStream
 
@@ -18,6 +17,17 @@ class ConversionTest {
         registerModule(JavaTimeModule())
         configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true)
     }
+    val LOCATION_NORWAY = Location(
+            address = null,
+            postalCode = null,
+            county = null,
+            municipal = null,
+            municipalCode = null,
+            city = null,
+            country = "Norway",
+            latitude = null,
+            longitude = null
+        )
 
     @Test
     fun initialTest() {
@@ -95,9 +105,14 @@ class ConversionTest {
 
     @Test
     fun `string value value of valid nace values`() {
-        Assertions.assertThat(EuNace("74.300").code()).isEqualTo("M74.3.0")
+        Assertions.assertThat(EuNace("74.300").code()).isEqualTo("N74.3.0")
         Assertions.assertThat(EuNace("1.230").code()).isEqualTo("A1.2.3")
         Assertions.assertThat(EuNace("09.109").code()).isEqualTo("B9.1.0")
+        Assertions.assertThat(EuNace("60.100").code()).isEqualTo("J60.1.0")
+        Assertions.assertThat(EuNace("61.100").code()).isEqualTo("K61.1.0")
+        Assertions.assertThat(EuNace("64.100").code()).isEqualTo("L64.1.0")
+        Assertions.assertThat(EuNace("87.102").code()).isEqualTo("R87.1.0")
+        Assertions.assertThat(EuNace("99.000").code()).isEqualTo("V99.0.0")
     }
 
     @Test
@@ -108,6 +123,29 @@ class ConversionTest {
         val xml = HrxmlSerializer.serialize(positionOpening)
 
         val expectedXml = read("src/test/resources/ads/ad_with_experience.xml")
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+    }
+
+    @Test
+    fun `Locations with only country are removed when there exists a more specific address`() {
+        val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
+        val locationList = ad.locationList.toMutableList()
+        locationList.add(LOCATION_NORWAY)
+        val adWithOnlyCountryLocation = ad.copy(locationList = locationList)
+        val xml = HrxmlSerializer.serialize(adWithOnlyCountryLocation.convertToPositionOpening())
+
+        val expectedXml = read("src/test/resources/ads/ad_1.xml")
+        Assertions.assertThat(xml).isEqualTo(expectedXml)
+    }
+
+    @Test
+    fun `Duplikater fjernes`() {
+        val ad = read("src/test/resources/ads/ad_1.json").let { JSON.readValue<Ad>(it) }
+        val locationList = listOf(LOCATION_NORWAY, LOCATION_NORWAY)
+        val adWithOnlyCountryLocation = ad.copy(locationList = locationList)
+        val xml = HrxmlSerializer.serialize(adWithOnlyCountryLocation.convertToPositionOpening())
+
+        val expectedXml = read("src/test/resources/ads/ad_with_only_country.xml")
         Assertions.assertThat(xml).isEqualTo(expectedXml)
     }
 }

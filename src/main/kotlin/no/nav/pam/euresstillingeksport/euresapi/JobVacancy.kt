@@ -1,6 +1,7 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.dataformat.xml.annotation.*
 import java.time.LocalDateTime
 
@@ -78,7 +79,12 @@ data class PositionProfile(
     val immediateStartIndicator: Boolean,
     val positionScheduleTypeCode: PositionScheduleTypeCode,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    val applicationCloseDate: LocalDateTime       // YYYY-MM-DD
+    val applicationCloseDate: LocalDateTime,       // YYYY-MM-DD
+    val userArea: UserArea? = null,
+)
+
+data class UserArea(
+    val remoteWorkIndicator: Boolean?,
 )
 
 data class PositionOrganization(
@@ -114,11 +120,20 @@ data class Address(
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
     val cityName: String?,
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
-    val countrySubDivisionCode: String?, // TODO kommunenummer - namespace
+    val countrySubDivisionCode: String?,
     val countryCode: String,
     @JacksonXmlProperty(namespace = "http://www.openapplications.org/oagis/9")
     val postalCode: String?
-)
+) {
+
+    @JsonIgnore
+    fun isOnlyCountry(): Boolean {
+        return addressLine.isNullOrBlank() &&
+                cityName.isNullOrBlank() &&
+                countrySubDivisionCode.isNullOrBlank() &&
+                postalCode.isNullOrBlank() && countryCode.isNotBlank()
+    }
+}
 
 
 data class PostingInstruction(

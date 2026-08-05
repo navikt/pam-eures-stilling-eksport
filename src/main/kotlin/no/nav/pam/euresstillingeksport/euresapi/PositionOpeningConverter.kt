@@ -5,6 +5,8 @@ import no.nav.pam.euresstillingeksport.euresapi.ExperienceLevel.INGEN_KRAV_TIL_A
 import no.nav.pam.euresstillingeksport.euresapi.ExperienceLevel.MYE_ARBEIDSERFARING
 import no.nav.pam.euresstillingeksport.euresapi.ExperienceLevel.NOE_ARBEIDSERFARING
 import no.nav.pam.euresstillingeksport.model.Ad
+import no.nav.pam.euresstillingeksport.model.removeAddressesWithOnlyCountryIfMoreSpecificIsGiven
+import no.nav.pam.euresstillingeksport.model.removeDuplicates
 
 enum class PropertyMapping(val key: String) {
     applicationdue("applicationdue"), // may be "snarest"
@@ -16,7 +18,8 @@ enum class PropertyMapping(val key: String) {
     sourceurl("sourceurl"),
     euresflagg("euresflagg"),
     employerDescription("employerdescription"),
-    experience("experience")
+    experience("experience"),
+    remote("remote"),
 }
 
 fun Ad.convertToPositionOpening(): PositionOpening {
@@ -37,7 +40,9 @@ private fun Ad.toPositionProfile(): PositionProfile {
                     )
             ),
             positionTitle = title ?: "" ,
-            positionLocation = locationList.map { it.toPositionLocation() },
+            positionLocation = locationList.map { it.toPositionLocation() }
+                .removeAddressesWithOnlyCountryIfMoreSpecificIsGiven()
+                .removeDuplicates(),
             positionOrganization = employer?.toPositionOrganization(),
             positionOpenQuantity = properties[PropertyMapping.positionCount.key]?.toString()?.filter { it.isDigit() }?.toInt() ?: 1,
             jobCategoryCode = toJobCategoryCode(),
@@ -48,8 +53,17 @@ private fun Ad.toPositionProfile(): PositionProfile {
             positionPeriod = PositionPeriod(startDate = Date(dateText = properties[PropertyMapping.starttime.key]?.toString()?: "na")),
             immediateStartIndicator = guessImmediatStartTime(properties[PropertyMapping.starttime.key]?.toString() ?: ""),
             positionScheduleTypeCode = extentToPositionScheduleTypeCode(properties[PropertyMapping.extent.key].toString()),
-            applicationCloseDate = expires!!
+            applicationCloseDate = expires!!,
+            userArea = toUserAreaWithRemoteWork()
     )
+}
+
+private fun Ad.toUserAreaWithRemoteWork(): UserArea? {
+    return when (properties[PropertyMapping.remote.key]?.toString()) {
+        "Hjemmekontor" -> UserArea(remoteWorkIndicator = true)
+        "Hjemmekontor ikke mulig" -> UserArea(remoteWorkIndicator = false)
+        else -> null
+    }
 }
 
 fun Ad.toPositionQualifications(): PositionQualifications? {

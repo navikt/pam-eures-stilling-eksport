@@ -25,7 +25,7 @@
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
         <kafka.version>3.8.1</kafka.version>
         <hikari.version>3.4.1</hikari.version>
-        <testcontainers.version>1.20.3</testcontainers.version>
+        <testcontainers.version>1.21.4</testcontainers.version>
     </properties>
 
     <dependencyManagement>
