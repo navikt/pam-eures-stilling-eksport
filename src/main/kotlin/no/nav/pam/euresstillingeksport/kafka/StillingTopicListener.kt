@@ -45,8 +45,7 @@ class StillingTopicListener(
     private fun startListenerInternal() {
         LOG.info("Starter kafka listener...")
         var records: ConsumerRecords<String?, ByteArray?>? = null
-        val rollbackCounter = AtomicInteger(0)
-        while (kafkaHealthService.isHealthy() && rollbackCounter.get() < 10) {
+        while (kafkaHealthService.isHealthy()) {
             try {
                 records = kafkaConsumer.poll(Duration.ofSeconds(10))
                 LOG.info("Fikk ${records.count()} verdier. ")
