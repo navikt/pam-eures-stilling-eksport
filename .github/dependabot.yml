@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "gradle"
+  - package-ecosystem: "maven"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -12,7 +12,7 @@ updates:
     labels:
       - "dependencies"
     groups:
-      gradle-dependencies:
+      maven-dependencies:
         applies-to: version-updates
         patterns:
           - "*"
