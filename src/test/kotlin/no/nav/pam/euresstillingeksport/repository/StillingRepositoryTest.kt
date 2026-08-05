@@ -23,4 +23,9 @@ class StillingRepositoryTest {
         val randomUuid = UUID.randomUUID().toString()
         Assertions.assertNull(stillingRepository.findStillingsannonseById(randomUuid))
     }
+
+    @Test
+    fun `metadata query skal ikke hente json_stilling`() {
+        Assertions.assertFalse(stillingRepository.stillingMetadataFields().contains("json_stilling"))
+    }
 }

@@ -24,6 +24,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
 
     private val namedJdbcTemplate = NamedParameterJdbcTemplate(jdbcTemplate)
     private val stillingFelter = "id, kilde, status, euresflagg, opprettet_ts, sist_endret_ts, lukket_ts, json_stilling"
+    private val stillingMetafelter = "id, kilde, status, euresflagg, opprettet_ts, sist_endret_ts, lukket_ts"
 
     private val stillingsannonseRowMapper = RowMapper<StillingsannonseMetadata>
     { rs, rowNum ->
@@ -47,6 +48,8 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                 rs.getTimestamp("lukket_ts")?.let { it.toLocalDateTime() }),
                 rs.getString("json_stilling"))
     }
+
+    internal fun stillingMetadataFields(): String = stillingMetafelter
 
     /**
      * @throws EmptyResultDataAccessException
@@ -73,7 +76,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
                         "from stillinger " +
                         "where id in (:idListe) " +
                         "order by sist_endret_ts asc",
-                MapSqlParameterSource().addValue("idListe", idListe),
+                params,
                 stillingsannonseMedContentRowMapper)
             annonser.addAll(annonserIChunk)
         }
@@ -96,7 +99,7 @@ class StillingRepository(@Autowired private val jdbcTemplate: JdbcTemplate) {
             sqlParametre.addValue("status", status)
         }
 
-        val stillingsannonser = namedJdbcTemplate.query("select ${stillingFelter} " +
+        val stillingsannonser = namedJdbcTemplate.query("select ${stillingMetafelter} " +
                 "from stillinger " +
                 "where 1=1 " +
                 "$statusSql $nyereEnnSql " +
