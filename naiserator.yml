@@ -46,7 +46,7 @@ spec:
   gcp:
     sqlInstances:
       - name: pam-eures-eksport
-        type: POSTGRES_14
+        type: POSTGRES_18
         tier: "{{ cloudsql_tier }}"
         diskType: SSD
         highAvailability: true
