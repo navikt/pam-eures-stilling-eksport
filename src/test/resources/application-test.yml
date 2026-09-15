@@ -3,7 +3,7 @@ dbnavn: stillingdb
 spring:
   datasource:
     driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
-    url: jdbc:tc:postgresql:14:///${dbnavn}?TC_INITSCRIPT=postgres/postgres-init.sql
+    url: jdbc:tc:postgresql:18:///${dbnavn}?TC_INITSCRIPT=postgres/postgres-init.sql
     username: postgres
     password: password
 
