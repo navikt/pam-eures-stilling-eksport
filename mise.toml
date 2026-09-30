@@ -1,0 +1,5 @@
+[tools]
+java = "25"
+
+[tasks.build]
+run = "./mvnw clean verify --batch-mode --no-transfer-progress -T 1C"

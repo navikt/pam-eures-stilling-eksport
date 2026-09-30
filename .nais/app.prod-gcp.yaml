@@ -1,0 +1,19 @@
+spec:
+  ingresses:
+    - https://pam-eures-stilling-eksport.intern.nav.no
+    - https://eures-eksport-gcp.nav.no
+  gcp:
+    sqlInstances:
+      - name: pam-eures-eksport
+        type: POSTGRES_18
+        tier: db-custom-1-3840
+        diskType: SSD
+        highAvailability: true
+        diskSize: 50
+        diskAutoresize: true
+        databases:
+          - name: pameuresexp
+            envVarPrefix: DB
+        cascadingDelete: false
+  kafka:
+    pool: nav-prod

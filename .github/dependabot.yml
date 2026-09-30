@@ -12,7 +12,7 @@ updates:
     labels:
       - "dependencies"
     groups:
-      maven-dependencies:
+      maven:
         applies-to: version-updates
         patterns:
           - "*"
@@ -29,3 +29,24 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Oslo"
+    cooldown:
+      default-days: 7
+    labels:
+      - "dependencies"
+      - "docker"
+    groups:
+      docker:
+        patterns:
+          - "*"
