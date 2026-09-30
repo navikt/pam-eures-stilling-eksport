@@ -1,12 +1,11 @@
-apiVersion: "nais.io/v1alpha1"
-kind: "Application"
+apiVersion: nais.io/v1alpha1
+kind: Application
 metadata:
   name: pam-eures-stilling-eksport
   namespace: teampam
   labels:
     team: teampam
 spec:
-  image: {{ image }}
   port: 8080
   liveness:
     path: internal/isAlive
@@ -35,26 +34,7 @@ spec:
       destinations:
         - id: loki
         - id: elastic
-  ingresses:
-  {{#each ingress as |url|}}
-     - {{url}}
-  {{/each}}
   accessPolicy:
     outbound:
       rules:
         - application: pam-geografi
-  gcp:
-    sqlInstances:
-      - name: pam-eures-eksport
-        type: POSTGRES_18
-        tier: "{{ cloudsql_tier }}"
-        diskType: SSD
-        highAvailability: true
-        diskSize: 50
-        diskAutoresize: true
-        databases:
-          - name: pameuresexp
-            envVarPrefix: DB
-        cascadingDelete: false
-  kafka:
-    pool: {{kafka_pool}}
