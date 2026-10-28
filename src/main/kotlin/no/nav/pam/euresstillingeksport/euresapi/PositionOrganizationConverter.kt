@@ -38,7 +38,7 @@ private class Nace2Converter {
 fun Employer.toPositionOrganization(): PositionOrganization {
     return PositionOrganization(
             organizationIdentifiers = OrganizationIdentifiers(
-                    organizationLegalID = orgnr,
+                    organizationLegalID = parentOrgnr?.takeIf { it.isNotBlank() } ?: orgnr,
                     organizationName = name ?: ""
             ),
             industryCode = toIndustryCode()
