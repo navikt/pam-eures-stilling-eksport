@@ -1,9 +1,9 @@
 package no.nav.pam.euresstillingeksport.euresapi
 
 import tools.jackson.databind.JsonNode
-import tools.jackson.databind.ObjectMapper
 import tools.jackson.databind.json.JsonMapper
 import tools.jackson.module.kotlin.KotlinModule
+import no.nav.pam.euresstillingeksport.model.Employer
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -24,4 +24,39 @@ class PositionOrganizationConverterTest {
             assertThat(euNace.isValid()).isTrue
         }
     }
+
+    @Test
+    fun `OrganizationLegalID skal være parentOrgnr når den finnes`() {
+        val organization = employer(orgnr = "987938323", parentOrgnr = "914251559").toPositionOrganization()
+        assertThat(organization.organizationIdentifiers.organizationLegalID).isEqualTo("914251559")
+    }
+
+    @Test
+    fun `OrganizationLegalID skal falle tilbake til orgnr når parentOrgnr mangler`() {
+        val organization = employer(orgnr = "987938323", parentOrgnr = null).toPositionOrganization()
+        assertThat(organization.organizationIdentifiers.organizationLegalID).isEqualTo("987938323")
+    }
+
+    @Test
+    fun `OrganizationLegalID skal falle tilbake til orgnr når parentOrgnr er blank`() {
+        val organization = employer(orgnr = "987938323", parentOrgnr = " ").toPositionOrganization()
+        assertThat(organization.organizationIdentifiers.organizationLegalID).isEqualTo("987938323")
+    }
+
+    private fun employer(orgnr: String?, parentOrgnr: String?) = Employer(
+        id = 1,
+        uuid = "uuid",
+        created = null,
+        createdBy = null,
+        updated = null,
+        updatedBy = null,
+        locationList = emptyList(),
+        properties = emptyMap(),
+        name = "Arbeidsgiver AS",
+        orgnr = orgnr,
+        status = null,
+        parentOrgnr = parentOrgnr,
+        publicName = null,
+        orgform = null
+    )
 }
