@@ -55,6 +55,7 @@ class AdminApiTests {
                 listOf(toStillingsannonseJson(ad1), toStillingsannonseJson(ad2))
         )
 
-        client.get().uri("$root/statistikk").exchange().expectStatus().is2xxSuccessful
+        client.get().uri("$root/statistikk").exchange()
+            .expectStatus().is2xxSuccessful.expectBody()
     }
 }
