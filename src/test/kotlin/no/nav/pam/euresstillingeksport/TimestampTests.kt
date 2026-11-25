@@ -15,21 +15,21 @@ import org.junit.jupiter.api.TestInstance
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.resttestclient.TestRestTemplate
+import org.springframework.test.web.servlet.client.RestTestClient
 import org.springframework.web.client.ResourceAccessException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestRestTemplate
+@AutoConfigureRestTestClient
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TimestampTests {
 
 	@Autowired
-	lateinit var restTemplate: TestRestTemplate
+	lateinit var client: RestTestClient
 
 	@Autowired
 	lateinit var stillingRepository: StillingRepository
@@ -51,9 +51,9 @@ class TimestampTests {
 
 	private fun postDetails(uuid: String): GetDetailsResponse {
 		return try {
-			restTemplate.postForEntity("$root/getDetails", listOf(uuid), GetDetailsResponse::class.java).body!!
+			client.post().uri("$root/getDetails").body(listOf(uuid)).exchange().expectStatus().is2xxSuccessful.returnResult(GetDetailsResponse::class.java).responseBody!!
 		} catch (_: ResourceAccessException) {
-			restTemplate.postForEntity("$root/getDetails", listOf(uuid), GetDetailsResponse::class.java).body!!
+			client.post().uri("$root/getDetails").body(listOf(uuid)).exchange().expectStatus().is2xxSuccessful.returnResult(GetDetailsResponse::class.java).responseBody!!
 		}
 	}
 
@@ -77,29 +77,29 @@ class TimestampTests {
 
 		stillingService.lagreStilling(ad)
 
-		val ex1Response = restTemplate.getForEntity("$root/getAll", GetAllResponse::class.java)
-		Assertions.assertTrue(ex1Response.body!!.allReferences[0].creationTimestamp >= now)
+		val ex1Response = client.get().uri("$root/getAll").exchange().expectStatus().is2xxSuccessful.returnResult(GetAllResponse::class.java)
+		Assertions.assertTrue(ex1Response.responseBody!!.allReferences[0].creationTimestamp >= now)
 
 		// Tester at også getChanges er i samsvar med eksempelet
 		var nyereEnn = now
-		val ex1ResponseChanges = restTemplate.getForEntity("$root/getChanges/$nyereEnn", GetChangesResponse::class.java)
-		Assertions.assertTrue(ex1ResponseChanges.body!!.createdReferences[0].creationTimestamp >= now)
+		val ex1ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
+		Assertions.assertTrue(ex1ResponseChanges.responseBody!!.createdReferences[0].creationTimestamp >= now)
 
 		// Eksempel 2: Annonsen fra eksempel 1 gjøres utilgjengelig i det nasjonale systemet. Da skal den
 		// fremstå som lukket for EURES, og ikke finnes i getAll
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		val adEx2 = ad.copy(status="INACTIVE")
 		stillingService.lagreStilling(adEx2)
-		val ex2Response = restTemplate.getForEntity("$root/getAll", GetAllResponse::class.java)
-		Assertions.assertTrue(ex2Response.body!!.allReferences.isEmpty())
+		val ex2Response = client.get().uri("$root/getAll").exchange().expectStatus().is2xxSuccessful.returnResult(GetAllResponse::class.java)
+		Assertions.assertTrue(ex2Response.responseBody!!.allReferences.isEmpty())
 
 		val ex2Ad = postDetails(adEx2.uuid).details[adEx2.uuid]!!
 		Assertions.assertNotNull(ex2Ad.closingTimestamp)
 		Assertions.assertTrue(ex2Ad.status == EuresStatus.CLOSED)
 
 		// Tester at også getChanges er i samsvar med eksempelet
-		val ex2ResponseChanges = restTemplate.getForEntity("$root/getChanges/$nyereEnn", GetChangesResponse::class.java)
-		Assertions.assertTrue(ex2ResponseChanges.body!!.closedReferences[0].closingTimestamp!! >= nyereEnn)
+		val ex2ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
+		Assertions.assertTrue(ex2ResponseChanges.responseBody!!.closedReferences[0].closingTimestamp!! >= nyereEnn)
 
 		// Eksempel 3: Annonsen fra eksempel 2 blir igjen tilgjengelig i det nasjonale systemet.
 		// Da skal den fremstå med nytt creation timestamp for EURES
@@ -113,8 +113,8 @@ class TimestampTests {
 		Assertions.assertTrue(ex3Ad.status == EuresStatus.ACTIVE)
 
 		// Tester at også getChanges er i samsvar med eksempelet
-		val ex3ResponseChanges = restTemplate.getForEntity("$root/getChanges/$nyereEnn", GetChangesResponse::class.java)
-		Assertions.assertTrue(ex3ResponseChanges.body!!.createdReferences[0].creationTimestamp >= nyereEnn)
+		val ex3ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
+		Assertions.assertTrue(ex3ResponseChanges.responseBody!!.createdReferences[0].creationTimestamp >= nyereEnn)
 
 		// Eksempel 4: (eksempelet motsier annet som er sagt om modification timestamp, så her tolker jeg litt)
 		val adEx4 = adEx3.copy(medium = UUID.randomUUID().toString())
@@ -126,7 +126,7 @@ class TimestampTests {
 		Assertions.assertTrue(ex4Ad.lastModificationTimestamp!! > ex3Ad.lastModificationTimestamp!!)
 
 		// Tester at også getChanges er i samsvar med eksempelet
-		val ex4ResponseChanges = restTemplate.getForEntity("$root/getChanges/$nyereEnn", GetChangesResponse::class.java)
-		Assertions.assertTrue(ex4ResponseChanges.body!!.modifiedReferences[0].lastModificationTimestamp >= nyereEnn)
+		val ex4ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
+		Assertions.assertTrue(ex4ResponseChanges.responseBody!!.modifiedReferences[0].lastModificationTimestamp >= nyereEnn)
 	}
 }

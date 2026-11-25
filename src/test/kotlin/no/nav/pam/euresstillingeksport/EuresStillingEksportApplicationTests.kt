@@ -7,16 +7,16 @@ import no.nav.pam.euresstillingeksport.euresapi.GetDetailsResponse
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.resttestclient.TestRestTemplate
+import org.springframework.test.web.servlet.client.RestTestClient
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestRestTemplate
+@AutoConfigureRestTestClient
 class EuresStillingEksportApplicationTests {
 
 	@Autowired
-	lateinit var restTemplate: TestRestTemplate
+	lateinit var client: RestTestClient
 
 	val root = "/input/api/jv/v0.1"
 
@@ -26,35 +26,30 @@ class EuresStillingEksportApplicationTests {
 
 	@Test
 	fun skalSvarePaaPing() {
-		val pong = restTemplate.getForEntity("${root}/ping", String::class.java)
-		Assertions.assertTrue(pong.statusCode.is2xxSuccessful)
-		Assertions.assertTrue(pong.body!!.startsWith("Hello from Input API"))
+		val pong = client.get().uri("${root}/ping").exchange().expectStatus().is2xxSuccessful.returnResult(String::class.java)
+		Assertions.assertTrue(pong.responseBody!!.startsWith("Hello from Input API"))
 	}
 
 	@Test
 	fun skalSvarePaaGetAll() {
-		val response = restTemplate.getForEntity("${root}/getAll", GetAllResponse::class.java)
-		Assertions.assertTrue(response.statusCode.is2xxSuccessful)
-		Assertions.assertNotNull(response.body)
-		Assertions.assertNotNull(response.body!!.allReferences)
+		val response = client.get().uri("${root}/getAll").exchange().expectStatus().is2xxSuccessful.returnResult(GetAllResponse::class.java)
+		Assertions.assertNotNull(response.responseBody)
+		Assertions.assertNotNull(response.responseBody!!.allReferences)
 	}
 
 	@Test
 	fun skalSvarePaaGetChanges() {
 		val ts = Converters.isoDatetimeToTimestamp("2019-10-01T12:00:00")
-		val response = restTemplate.getForEntity("${root}/getChanges/${ts}", GetChangesResponse::class.java)
-		Assertions.assertTrue(response.statusCode.is2xxSuccessful)
-		Assertions.assertNotNull(response.body)
-		Assertions.assertNotNull(response.body!!.modifiedReferences)
+		val response = client.get().uri("${root}/getChanges/${ts}").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
+		Assertions.assertNotNull(response.responseBody)
+		Assertions.assertNotNull(response.responseBody!!.modifiedReferences)
 	}
 
 	@Test
 	fun skalSvarePaaGetDetails() {
-		val response = restTemplate.postForEntity("${root}/getDetails",
-				listOf("id1", "id2"),
-				GetDetailsResponse::class.java)
-		Assertions.assertTrue(response.statusCode.is2xxSuccessful)
-		Assertions.assertNotNull(response.body)
-		Assertions.assertNotNull(response.body!!.details)
+		val response = client.post().uri("$root/getDetails").body(listOf("id1", "id2"))
+			.exchange().expectStatus().is2xxSuccessful.returnResult(GetDetailsResponse::class.java)
+		Assertions.assertNotNull(response.responseBody)
+		Assertions.assertNotNull(response.responseBody!!.details)
 	}
 }
