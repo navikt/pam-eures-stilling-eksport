@@ -8,7 +8,7 @@ import no.nav.pam.euresstillingeksport.euresapi.GetDetailsResponse
 import no.nav.pam.euresstillingeksport.model.*
 import no.nav.pam.euresstillingeksport.repository.StillingRepository
 import no.nav.pam.euresstillingeksport.service.any
-import org.junit.jupiter.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -50,12 +50,21 @@ class TimestampTests {
 			.copy(uuid = UUID.randomUUID().toString(), status="ACTIVE")
 
 	private fun postDetails(uuid: String): GetDetailsResponse {
+		fun fetch() = client.post().uri("$root/getDetails").body(listOf(uuid)).exchange()
+			.expectStatus().is2xxSuccessful.returnResult(GetDetailsResponse::class.java).responseBody!!
+
 		return try {
-			client.post().uri("$root/getDetails").body(listOf(uuid)).exchange().expectStatus().is2xxSuccessful.returnResult(GetDetailsResponse::class.java).responseBody!!
+			fetch()
 		} catch (_: ResourceAccessException) {
-			client.post().uri("$root/getDetails").body(listOf(uuid)).exchange().expectStatus().is2xxSuccessful.returnResult(GetDetailsResponse::class.java).responseBody!!
+			fetch()
 		}
 	}
+
+	private fun allReferences() = client.get().uri("$root/getAll").exchange()
+		.expectStatus().is2xxSuccessful.returnResult(GetAllResponse::class.java).responseBody!!.allReferences
+
+	private fun changesSince(timestamp: Long) = client.get().uri("$root/getChanges/$timestamp").exchange()
+		.expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java).responseBody!!
 
 	@BeforeEach
 	fun setup() {
@@ -77,29 +86,25 @@ class TimestampTests {
 
 		stillingService.lagreStilling(ad)
 
-		val ex1Response = client.get().uri("$root/getAll").exchange().expectStatus().is2xxSuccessful.returnResult(GetAllResponse::class.java)
-		Assertions.assertTrue(ex1Response.responseBody!!.allReferences[0].creationTimestamp >= now)
+		assertThat(allReferences().first().creationTimestamp).isGreaterThanOrEqualTo(now)
 
 		// Tester at også getChanges er i samsvar med eksempelet
 		var nyereEnn = now
-		val ex1ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
-		Assertions.assertTrue(ex1ResponseChanges.responseBody!!.createdReferences[0].creationTimestamp >= now)
+		assertThat(changesSince(nyereEnn).createdReferences.first().creationTimestamp).isGreaterThanOrEqualTo(now)
 
 		// Eksempel 2: Annonsen fra eksempel 1 gjøres utilgjengelig i det nasjonale systemet. Da skal den
 		// fremstå som lukket for EURES, og ikke finnes i getAll
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		val adEx2 = ad.copy(status="INACTIVE")
 		stillingService.lagreStilling(adEx2)
-		val ex2Response = client.get().uri("$root/getAll").exchange().expectStatus().is2xxSuccessful.returnResult(GetAllResponse::class.java)
-		Assertions.assertTrue(ex2Response.responseBody!!.allReferences.isEmpty())
+		assertThat(allReferences()).isEmpty()
 
 		val ex2Ad = postDetails(adEx2.uuid).details[adEx2.uuid]!!
-		Assertions.assertNotNull(ex2Ad.closingTimestamp)
-		Assertions.assertTrue(ex2Ad.status == EuresStatus.CLOSED)
+		assertThat(ex2Ad.closingTimestamp).isNotNull()
+		assertThat(ex2Ad.status).isEqualTo(EuresStatus.CLOSED)
 
 		// Tester at også getChanges er i samsvar med eksempelet
-		val ex2ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
-		Assertions.assertTrue(ex2ResponseChanges.responseBody!!.closedReferences[0].closingTimestamp!! >= nyereEnn)
+		assertThat(changesSince(nyereEnn).closedReferences.first().closingTimestamp).isGreaterThanOrEqualTo(nyereEnn)
 
 		// Eksempel 3: Annonsen fra eksempel 2 blir igjen tilgjengelig i det nasjonale systemet.
 		// Da skal den fremstå med nytt creation timestamp for EURES
@@ -108,13 +113,12 @@ class TimestampTests {
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		stillingService.lagreStilling(adEx3)
 		val ex3Ad = postDetails(adEx3.uuid).details[adEx3.uuid]!!
-		Assertions.assertNull(ex3Ad.closingTimestamp)
-		Assertions.assertTrue(ex3Ad.creationTimestamp > ex2Ad.creationTimestamp)
-		Assertions.assertTrue(ex3Ad.status == EuresStatus.ACTIVE)
+		assertThat(ex3Ad.closingTimestamp).isNull()
+		assertThat(ex3Ad.creationTimestamp).isGreaterThan(ex2Ad.creationTimestamp)
+		assertThat(ex3Ad.status).isEqualTo(EuresStatus.ACTIVE)
 
 		// Tester at også getChanges er i samsvar med eksempelet
-		val ex3ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
-		Assertions.assertTrue(ex3ResponseChanges.responseBody!!.createdReferences[0].creationTimestamp >= nyereEnn)
+		assertThat(changesSince(nyereEnn).createdReferences.first().creationTimestamp).isGreaterThanOrEqualTo(nyereEnn)
 
 		// Eksempel 4: (eksempelet motsier annet som er sagt om modification timestamp, så her tolker jeg litt)
 		val adEx4 = adEx3.copy(medium = UUID.randomUUID().toString())
@@ -122,11 +126,10 @@ class TimestampTests {
 		nyereEnn = Converters.localdatetimeToTimestamp(LocalDateTime.now())
 		stillingService.lagreStilling(adEx4)
 		val ex4Ad = postDetails(adEx4.uuid).details[adEx4.uuid]!!
-		Assertions.assertTrue(ex4Ad.creationTimestamp == ex3Ad.creationTimestamp)
-		Assertions.assertTrue(ex4Ad.lastModificationTimestamp!! > ex3Ad.lastModificationTimestamp!!)
+		assertThat(ex4Ad.creationTimestamp).isEqualTo(ex3Ad.creationTimestamp)
+		assertThat(ex4Ad.lastModificationTimestamp).isGreaterThan(requireNotNull(ex3Ad.lastModificationTimestamp))
 
 		// Tester at også getChanges er i samsvar med eksempelet
-		val ex4ResponseChanges = client.get().uri("$root/getChanges/$nyereEnn").exchange().expectStatus().is2xxSuccessful.returnResult(GetChangesResponse::class.java)
-		Assertions.assertTrue(ex4ResponseChanges.responseBody!!.modifiedReferences[0].lastModificationTimestamp >= nyereEnn)
+		assertThat(changesSince(nyereEnn).modifiedReferences.first().lastModificationTimestamp).isGreaterThanOrEqualTo(nyereEnn)
 	}
 }
